@@ -64,10 +64,20 @@ CONSTRUCTION_UNIVERSAL = {
     "Silicon Wafers",
     "Silicon",
     "Smart Chips",
-    "Stimulants",
     "Superfluid Coolant",
     "Turret Components",
-    "Weapons Components",
+    "Weapon Components",
+} | {
+    "Satellites, Resource Probes, Nav Beacons",
+    "Drones and Laser Towers",
+    "Missiles",
+    "Mines",
+    "Turret Weapons",
+    "Engines and Thrusters",
+    "Fixed Weapons",
+    "Ship Hulls",
+    "Shields",
+    "Station modules",
 }
 CONSTRUCTION_RECYCLING_ONLY = {"Raw Scrap", "Scrap Metal"}
 CONSTRUCTION_TELADI_ONLY = {"Teladianium"}
@@ -99,17 +109,9 @@ class Material:
     tier: str
     name: str
     inputs: dict[str, list[str]]
-    outputs: list[str]
 
     def __str__(self) -> str:
         return f"{self.tier}.{self.name}"
-
-    def d2class(self) -> str:
-        match self.tier:
-            case "Raw":
-                return "ware_raw"
-            case _:
-                return "ware"
 
     def inputs_for_variant(self, variant: str) -> list[str]:
         return self.inputs.get(variant, ())
@@ -160,42 +162,61 @@ class Production:
         header = string.Template(
             textwrap.dedent(
                 """
-            direction: right
-            grid-columns: 4
-            grid-gap: 100
-                                
-            classes: {
-                tier: {
-                    direction: right
-                }
-                ware: { }
-                ware_raw: {
-                    shape: hexagon
-                }
-                produced_by: { }
-                produced_by_common: {
-                    style: {
-                        stroke: grey
-                        stroke-dash: 3
+                direction: right
+                
+                                    
+                classes: {
+                    tier: {
+                        direction: right
+                    }
+                    ware: {
+                        shape: step
+                    }
+                    raw: {
+                        shape: hexagon
+                    }
+                    product: {
+                        shape: rectangle
+                    }
+                    consumable: {
+                        shape: diamond
+                    }
+                    produced_by: { }
+                    produced_by_common: {
+                        style: {
+                            stroke: grey
+                            stroke-dash: 3
+                        }
                     }
                 }
-            }
 
-            title: |md
-                # ${title}
-            | { near: top-center }
-            """
+                title: |md
+                    # ${title}
+                | { near: top-center }
+                """
             )
         )
 
+        # Header
         output = [header.substitute(title=f"{self.variant} {self.name}")]
 
+        # Shapes
         for tier in self.tiers:
             output.append(f"{tier}: {{ class: tier }}")
-
         for material in self.materials:
-            output.append(f"{material}: {{ class: {material.d2class()} }}")
+            match material.tier:
+                case "Raw":
+                    d2class = "raw"
+                case "Consumable":
+                    d2class = "consumable"
+                case "Product":
+                    d2class = "product"
+                case _:
+                    d2class = "ware"
+            output.append(f"{material}: {{ class: {d2class} }}")
+        output.append("")
 
+        # Connections
         mapping = {m.name: m for m in self.materials}
         for material in self.materials:
             for material_input in material.inputs_for_variant(self.variant):
@@ -218,17 +239,15 @@ class Production:
 
     @property
     def tiers(self) -> list[str]:
-        return list(sorted(set(m.tier for m in self.materials)))
+        present = set(m.tier for m in self.materials)
+        tiers = ["Raw", "Tier 1", "Tier 2", "Tier 3", "Consumables", "Product"]
+        return [t for t in tiers if t in present]
 
     @classmethod
     def read(cls, filename: str) -> typing.Self:
         data = json.loads(pathlib.Path(__file__).with_name(filename).read_text())
-        return cls(
-            materials=[
-                Material(tier=item["tier"], name=item["name"], inputs=item["inputs"], outputs=item["outputs"])
-                for item in sorted(data, key=lambda item: item["name"])
-            ]
-        )
+        materials = [Material(tier=m["tier"], name=m["name"], inputs=m["inputs"]) for m in data]
+        return cls(materials=list(sorted(materials, key=str)))
 
 
 def main():

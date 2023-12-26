@@ -2,71 +2,37 @@
   {
     "tier": "Raw",
     "name": "Helium",
-    "inputs": {},
-    "outputs": [
-      "Metallic Microlattice",
-      "Stimulants",
-      "Superfluid Coolant"
-    ]
+    "inputs": {}
   },
   {
     "tier": "Raw",
     "name": "Hydrogen",
-    "inputs": {},
-    "outputs": [
-      "Antimatter Cells",
-      "Computronic Substrate"
-    ]
+    "inputs": {}
   },
   {
     "tier": "Raw",
     "name": "Ice",
-    "inputs": {},
-    "outputs": [
-      "Protein Paste",
-      "Water",
-      "Medical Supplies"
-    ]
+    "inputs": {}
   },
   {
     "tier": "Raw",
     "name": "Methane",
-    "inputs": {},
-    "outputs": [
-      "Graphene",
-      "Protein Paste",
-      "Silicon Carbide"
-    ]
+    "inputs": {}
   },
   {
     "tier": "Raw",
     "name": "Ore",
-    "inputs": {},
-    "outputs": [
-      "Computronic Substrate",
-      "Metallic Microlattice",
-      "Refined Metals",
-      "Teladianium"
-    ]
+    "inputs": {}
   },
   {
     "tier": "Raw",
     "name": "Silicon",
-    "inputs": {},
-    "outputs": [
-      "Computronic Substrate",
-      "Silicon Wafers",
-      "Stimulants",
-      "Silicon Carbide"
-    ]
+    "inputs": {}
   },
   {
     "tier": "Raw",
     "name": "Raw Scrap",
-    "inputs": {},
-    "outputs": [
-      "Scrap Metal"
-    ]
+    "inputs": {}
   },
   {
     "tier": "Tier 1",
@@ -75,11 +41,7 @@
       "Universal": [
         "Hydrogen"
       ]
-    },
-    "outputs": [
-      "Engine Parts",
-      "Claytronics"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -93,8 +55,7 @@
       "Recycling": [
         "Scrap Metal"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 1",
@@ -103,13 +64,7 @@
       "Universal": [
         "Methane"
       ]
-    },
-    "outputs": [
-      "Advanced Composites",
-      "Hull Parts",
-      "Plasma Conductors",
-      "Quantum Tubes"
-    ]
+    }
   },
   {
     "tier": "Tier 1",
@@ -119,10 +74,7 @@
         "Helium",
         "Ore"
       ]
-    },
-    "outputs": [
-      "Silicon Carbide"
-    ]
+    }
   },
   {
     "tier": "Tier 1",
@@ -132,11 +84,7 @@
         "Ice",
         "Methane"
       ]
-    },
-    "outputs": [
-      "Terran MRE",
-      "Medical Supplies"
-    ]
+    }
   },
   {
     "tier": "Tier 1",
@@ -145,13 +93,7 @@
       "Universal": [
         "Ore"
       ]
-    },
-    "outputs": [
-      "Advanced Composites",
-      "Engine Parts",
-      "Hull Parts",
-      "Scanning Arrays"
-    ]
+    }
   },
   {
     "tier": "Tier 1",
@@ -160,12 +102,7 @@
       "Universal": [
         "Silicon"
       ]
-    },
-    "outputs": [
-      "Microchips",
-      "Scanning Arrays",
-      "Smart Chips"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -175,8 +112,7 @@
         "Helium",
         "Silicon"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 1",
@@ -185,11 +121,7 @@
       "Universal": [
         "Helium"
       ]
-    },
-    "outputs": [
-      "Plasma Conductors",
-      "Quantum Tubes"
-    ]
+    }
   },
   {
     "tier": "Tier 1",
@@ -198,13 +130,7 @@
       "Universal": [
         "Ore"
       ]
-    },
-    "outputs": [
-      "Hull Parts",
-      "Advanced Composites",
-      "Scanning Arrays",
-      "Engine Parts"
-    ]
+    }
   },
   {
     "tier": "Tier 1",
@@ -213,23 +139,7 @@
       "Universal": [
         "Ice"
       ]
-    },
-    "outputs": [
-      "Chelt Meat",
-      "Maja Snails",
-      "Meat",
-      "Scruffin Fruit",
-      "Soja Beans",
-      "Spices",
-      "Sunrise Flowers",
-      "Swamp Plant",
-      "Wheat",
-      "Medical Supplies",
-      "Nostrop Oil",
-      "Spacefuel",
-      "BoGas",
-      "Plankton"
-    ]
+    }
   },
   {
     "tier": "Tier 1",
@@ -238,13 +148,7 @@
       "Universal": [
         "Raw Scrap"
       ]
-    },
-    "outputs": [
-      "Claytronics",
-      "Hull Parts",
-      "Computronic Substrate",
-      "Silicon Carbide"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -258,11 +162,7 @@
         "Graphene",
         "Teladianium"
       ]
-    },
-    "outputs": [
-      "Antimatter Converters",
-      "Missile Components"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -271,8 +171,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 2",
@@ -286,10 +185,7 @@
         "Antimatter Cells",
         "Teladianium"
       ]
-    },
-    "outputs": [
-      "Drone Components"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -306,12 +202,7 @@
       "Recycling": [
         "Scrap Metal"
       ]
-    },
-    "outputs": [
-      "Drone Components",
-      "Missile Components",
-      "Weapons Components"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -320,11 +211,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Maja Dust",
-      "Soja Husk"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -333,10 +220,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Food Rations"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -345,14 +229,7 @@
       "Universal": [
         "Silicon Wafers"
       ]
-    },
-    "outputs": [
-      "Advanced Electronics",
-      "Antimatter Converters",
-      "Claytronics",
-      "Drone Components",
-      "Turret Components"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -362,12 +239,7 @@
         "Graphene",
         "Superfluid Coolant"
       ]
-    },
-    "outputs": [
-      "Field Coils",
-      "Shield Components",
-      "Weapons Components"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -377,14 +249,7 @@
         "Graphene",
         "Superfluid Coolant"
       ]
-    },
-    "outputs": [
-      "Advanced Electronics",
-      "Claytronics",
-      "Field Coils",
-      "Shield Components",
-      "Turret Components"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -398,11 +263,7 @@
         "Teladianium",
         "Silicon Wafers"
       ]
-    },
-    "outputs": [
-      "Drone Components",
-      "Turret Components"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -411,10 +272,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Medical Supplies"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -428,8 +286,7 @@
       "Recycling": [
         "Scrap Metal"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 2",
@@ -438,8 +295,7 @@
       "Universal": [
         "Silicon Wafers"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 2",
@@ -448,11 +304,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Soja Husk",
-      "Medical Supplies"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -461,15 +313,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Food Rations",
-      "Maja Dust",
-      "Medical Supplies",
-      "Nostrop Oil",
-      "Soja Husk",
-      "Spaceweed"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -478,11 +322,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Nostrop Oil",
-      "Medical Supplies"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -491,10 +331,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Spaceweed"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -503,8 +340,7 @@
       "Terran": [
         "Protein Paste"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 2",
@@ -513,12 +349,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "Food Rations",
-      "Medical Supplies",
-      "Spacefuel"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -527,10 +358,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "BoFu"
-    ]
+    }
   },
   {
     "tier": "Tier 2",
@@ -539,11 +367,7 @@
       "Universal": [
         "Water"
       ]
-    },
-    "outputs": [
-      "BoFu",
-      "Medical Supplies"
-    ]
+    }
   },
   {
     "tier": "Tier 3",
@@ -553,8 +377,7 @@
         "Microchips",
         "Quantum Tubes"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -564,8 +387,7 @@
         "Microchips",
         "Advanced Composites"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -579,8 +401,7 @@
       "Recycling": [
         "Scrap Metal"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -592,8 +413,7 @@
         "Microchips",
         "Scanning Arrays"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -603,8 +423,7 @@
         "Plasma Conductors",
         "Quantum Tubes"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -615,8 +434,7 @@
         "Spices",
         "Wheat"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -626,8 +444,7 @@
         "Maja Snails",
         "Spices"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -661,8 +478,7 @@
         "Water",
         "Plankton"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -672,8 +488,7 @@
         "Advanced Composites",
         "Hull Parts"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -684,8 +499,7 @@
         "Sunrise Flowers",
         "Water"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -695,8 +509,7 @@
         "Plasma Conductors",
         "Quantum Tubes"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -707,8 +520,7 @@
         "Soja Beans",
         "Spices"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -718,8 +530,7 @@
         "Wheat",
         "Water"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -729,8 +540,7 @@
         "Spices",
         "Swamp Plant"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -741,19 +551,17 @@
         "Quantum Tubes",
         "Scanning Arrays"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
-    "name": "Weapons Components",
+    "name": "Weapon Components",
     "inputs": {
       "Universal": [
         "Hull Parts",
         "Plasma Conductors"
       ]
-    },
-    "outputs": []
+    }
   },
   {
     "tier": "Tier 3",
@@ -763,7 +571,106 @@
         "BoGas",
         "Plankton"
       ]
-    },
-    "outputs": []
+    }
+  },
+  {
+    "tier": "Consumables",
+    "name": "Satellites, Resource Probes, Nav Beacons",
+    "inputs": {
+      "Universal": [
+        "Scanning Arrays",
+        "Advanced Electronics",
+        "Hull Parts"
+      ]
+    }
+  },
+  {
+    "tier": "Consumables",
+    "name": "Drones and Laser Towers",
+    "inputs": {
+      "Universal": [
+        "Drone Components",
+        "Smart Chips"
+      ]
+    }
+  },
+  {
+    "tier": "Consumables",
+    "name": "Missiles",
+    "inputs": {
+      "Universal": [
+        "Missile Components",
+        "Smart Chips"
+      ]
+    }
+  },
+  {
+    "tier": "Consumables",
+    "name": "Mines",
+    "inputs": {
+      "Universal": [
+        "Weapon Components",
+        "Smart Chips"
+      ]
+    }
+  },
+  {
+    "tier": "Product",
+    "name": "Turret Weapons",
+    "inputs": {
+      "Universal": [
+        "Turret Components",
+        "Advanced Electronics"
+      ]
+    }
+  },
+  {
+    "tier": "Product",
+    "name": "Engines and Thrusters",
+    "inputs": {
+      "Universal": [
+        "Antimatter Converters",
+        "Engine Parts"
+      ]
+    }
+  },
+  {
+    "tier": "Product",
+    "name": "Fixed Weapons",
+    "inputs": {
+      "Universal": [
+        "Advanced Electronics",
+        "Weapon Components"
+      ]
+    }
+  },
+  {
+    "tier": "Product",
+    "name": "Ship Hulls",
+    "inputs": {
+      "Universal": [
+        "Hull Parts"
+      ]
+    }
+  },
+  {
+    "tier": "Product",
+    "name": "Shields",
+    "inputs": {
+      "Universal": [
+        "Field Coils",
+        "Shield Components"
+      ]
+    }
+  },
+  {
+    "tier": "Product",
+    "name": "Station modules",
+    "inputs": {
+      "Universal": [
+        "Hull Parts",
+        "Claytronics"
+      ]
+    }
   }
 ]
