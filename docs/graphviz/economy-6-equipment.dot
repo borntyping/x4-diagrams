@@ -1,0 +1,107 @@
+graph "X4 Economy" {
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	graph [nodesep=0.3 pad=0.5 ranksep=2]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
+	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
+	subgraph 0 {
+		cluster=true label="Tier 0 (Harvested)"
+	}
+	subgraph 1 {
+		cluster=true label="Tier 1 (Basic Food)"
+	}
+	subgraph 2 {
+		cluster=true label="Tier 2 (Food and Drugs)"
+	}
+	subgraph 3 {
+		cluster=true label="Tier 3 (Refined)"
+		"Computronic Substrate" [colour=lightsteelblue2]
+		"Metallic Microlattice" [colour=lightsteelblue2]
+	}
+	subgraph 4 {
+		cluster=true label="Tier 4 (Advanced)"
+		"Hull Parts" [colour=lightsteelblue2]
+		"Engine Parts" [colour=lightsteelblue2]
+		"Smart Chips" [colour=lightsteelblue2]
+		"Silicon Carbide" [colour=lightsteelblue2]
+	}
+	subgraph 5 {
+		cluster=true label="Tier 5 (Components)"
+		"Drone Components" [colour=lightsteelblue2]
+		"Turret Components" [colour=lightsteelblue2]
+		"Missile Components" [colour=lightsteelblue2]
+		"Field Coils" [colour=lightsteelblue2]
+		"Shield Components" [colour=lightsteelblue2]
+		"Antimatter Converters" [colour=lightsteelblue2]
+		"Weapon Components" [colour=lightsteelblue2]
+		"Scanning Arrays" [colour=orange1]
+		Claytronics [colour=lightsteelblue2]
+		"Advanced Electronics" [colour=lightsteelblue2]
+	}
+	subgraph 6 {
+		cluster=true label="Tier 6 (Equipment)"
+		"Ship Hulls" [colour=lightsteelblue2]
+		"Nav Beacons" [colour=lightsteelblue2]
+		Missiles [colour=lightsteelblue2]
+		"Station modules" [colour=hotpink1]
+		Engines [colour=hotpink1]
+		Thrusters [colour=hotpink1]
+		Mines [colour=lightsteelblue2]
+		Drones [colour=lightsteelblue2]
+		"Laser Towers" [colour=lightsteelblue2]
+		Shields [colour=hotpink1]
+		Turrets [colour=hotpink1]
+		"Guns and Launchers" [colour=hotpink1]
+		Satellites [colour=lightsteelblue2]
+	}
+	"Metallic Microlattice" -- "Silicon Carbide" [color=slategray4 constraint=true]
+	"Engine Parts" -- "Drone Components" [color=slategray4 constraint=true]
+	"Hull Parts" -- "Drone Components" [color=slategray4 constraint=true]
+	"Scanning Arrays" -- "Drone Components" [color=slategray4 constraint=true]
+	"Scanning Arrays" -- "Turret Components" [color=slategray4 constraint=true]
+	"Hull Parts" -- "Missile Components" [color=slategray4 constraint=true]
+	"Hull Parts" -- "Weapon Components" [color=slategray4 constraint=true]
+	"Hull Parts" -- "Ship Hulls" [color=slategray4 constraint=true]
+	"Metallic Microlattice" -- "Ship Hulls" [color=slategray4 constraint=true]
+	"Computronic Substrate" -- "Ship Hulls" [color=slategray4 constraint=true]
+	"Hull Parts" -- "Nav Beacons" [color=slategray4 constraint=true]
+	"Missile Components" -- Missiles [color=slategray4 constraint=true]
+	"Smart Chips" -- Missiles [color=slategray4 constraint=true]
+	"Hull Parts" -- "Station modules" [color=slategray4 constraint=true]
+	Claytronics -- "Station modules" [color=slategray4 constraint=true]
+	"Silicon Carbide" -- "Station modules" [color=slategray4 constraint=true]
+	"Computronic Substrate" -- "Station modules" [color=slategray4 constraint=true]
+	"Antimatter Converters" -- Engines [color=slategray4 constraint=true]
+	"Engine Parts" -- Engines [color=slategray4 constraint=true]
+	"Metallic Microlattice" -- Engines [color=slategray4 constraint=true]
+	"Silicon Carbide" -- Engines [color=slategray4 constraint=true]
+	"Computronic Substrate" -- Engines [color=slategray4 constraint=true]
+	"Antimatter Converters" -- Thrusters [color=slategray4 constraint=true]
+	"Engine Parts" -- Thrusters [color=slategray4 constraint=true]
+	"Metallic Microlattice" -- Thrusters [color=slategray4 constraint=true]
+	"Silicon Carbide" -- Thrusters [color=slategray4 constraint=true]
+	"Computronic Substrate" -- Thrusters [color=slategray4 constraint=true]
+	"Weapon Components" -- Mines [color=slategray4 constraint=true]
+	"Smart Chips" -- Mines [color=slategray4 constraint=true]
+	"Drone Components" -- Drones [color=slategray4 constraint=true]
+	"Smart Chips" -- Drones [color=slategray4 constraint=true]
+	"Drone Components" -- "Laser Towers" [color=slategray4 constraint=true]
+	"Smart Chips" -- "Laser Towers" [color=slategray4 constraint=true]
+	"Field Coils" -- Shields [color=slategray4 constraint=true]
+	"Shield Components" -- Shields [color=slategray4 constraint=true]
+	"Metallic Microlattice" -- Shields [color=slategray4 constraint=true]
+	"Silicon Carbide" -- Shields [color=slategray4 constraint=true]
+	"Computronic Substrate" -- Shields [color=slategray4 constraint=true]
+	"Turret Components" -- Turrets [color=slategray4 constraint=true]
+	"Advanced Electronics" -- Turrets [color=slategray4 constraint=true]
+	"Metallic Microlattice" -- Turrets [color=slategray4 constraint=true]
+	"Silicon Carbide" -- Turrets [color=slategray4 constraint=true]
+	"Computronic Substrate" -- Turrets [color=slategray4 constraint=true]
+	"Advanced Electronics" -- "Guns and Launchers" [color=slategray4 constraint=true]
+	"Weapon Components" -- "Guns and Launchers" [color=slategray4 constraint=true]
+	"Metallic Microlattice" -- "Guns and Launchers" [color=slategray4 constraint=true]
+	"Silicon Carbide" -- "Guns and Launchers" [color=slategray4 constraint=true]
+	"Computronic Substrate" -- "Guns and Launchers" [color=slategray4 constraint=true]
+	"Scanning Arrays" -- Satellites [color=slategray4 constraint=true]
+	"Advanced Electronics" -- Satellites [color=slategray4 constraint=true]
+	"Hull Parts" -- Satellites [color=slategray4 constraint=true]
+}

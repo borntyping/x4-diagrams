@@ -1,8 +1,6 @@
-import pathlib
-
 import click
 
-from .oldeconomy import main as economy_main
+from .economy import main as economy_main
 from .factions import main as factions_main
 
 

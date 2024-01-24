@@ -24,7 +24,9 @@ def connections(
     return {tuple(sorted((faction.tag, other))) for faction in factions for other in get_others(faction)}
 
 
-def filter_factions(factions: typing.Sequence[Faction], excluded_factions: typing.Collection[Faction]) -> typing.Sequence[Faction]:
+def filter_factions(
+    factions: typing.Sequence[Faction], excluded_factions: typing.Collection[Faction]
+) -> typing.Sequence[Faction]:
     excluded_tags = [f.tag for f in excluded_factions]
     return [
         dataclasses.replace(
@@ -86,7 +88,11 @@ def graph(
 
 
 @click.command(name="factions")
-@click.option("--output-directory", default="output", type=click.Path(exists=False, file_okay=False, dir_okay=True, writable=True, path_type=pathlib.Path))
+@click.option(
+    "--output-directory",
+    default="output",
+    type=click.Path(exists=False, file_okay=False, dir_okay=True, writable=True, path_type=pathlib.Path),
+)
 def main(output_directory: pathlib.Path) -> None:
     (output_directory / "factions.dot").write_text(graph())
 

@@ -1,0 +1,104 @@
+graph "X4 Economy" {
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	graph [nodesep=0.3 pad=0.5 ranksep=2]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
+	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
+	subgraph 0 {
+		cluster=true label="Tier 0 (Harvested)"
+		Helium [colour=lightsteelblue2]
+		Methane [colour=lightsteelblue2]
+		Silicon [colour=lightsteelblue2]
+		Ice [colour=lightsteelblue2]
+		Water [colour=lightsteelblue2]
+	}
+	subgraph 1 {
+		cluster=true label="Tier 1 (Basic Food)"
+		"Maja Snails" [colour=lightsteelblue2]
+		Meat [colour=lightsteelblue2]
+		"Soja Beans" [colour=lightsteelblue2]
+		Spices [colour=lightsteelblue2]
+		"Sunrise Flowers" [colour=lightsteelblue2]
+		"Swamp Plant" [colour=lightsteelblue2]
+		Wheat [colour=lightsteelblue2]
+		"Chelt Meat" [colour=lightsteelblue2]
+		"Scruffin Fruit" [colour=lightsteelblue2]
+		"Protein Paste" [colour=lightsteelblue2]
+		Plankton [colour=lightsteelblue2]
+		BoGas [colour=lightsteelblue2]
+	}
+	subgraph 2 {
+		cluster=true label="Tier 2 (Food and Drugs)"
+		Spacefuel [colour=lightsteelblue2]
+		"Food Rations" [colour=lightsteelblue2]
+		"Maja Dust" [colour=lightsteelblue2]
+		"Soja Husk" [colour=lightsteelblue2]
+		Spaceweed [colour=lightsteelblue2]
+		"Nostrop Oil" [colour=lightsteelblue2]
+		"Medical Supplies" [colour=lightsteelblue2]
+		"Terran MRE" [colour=lightsteelblue2]
+		Stimulants [colour=lightsteelblue2]
+		BoFu [colour=lightsteelblue2]
+	}
+	subgraph 3 {
+		cluster=true label="Tier 3 (Refined)"
+	}
+	subgraph 4 {
+		cluster=true label="Tier 4 (Advanced)"
+	}
+	subgraph 5 {
+		cluster=true label="Tier 5 (Components)"
+	}
+	subgraph 6 {
+		cluster=true label="Tier 6 (Equipment)"
+	}
+	Ice -- Water [color=slategray4 constraint=true]
+	Water -- "Maja Snails" [color=azure2 constraint=false]
+	Water -- Meat [color=azure2 constraint=false]
+	Water -- "Soja Beans" [color=azure2 constraint=false]
+	Water -- Spices [color=azure2 constraint=false]
+	Water -- "Sunrise Flowers" [color=azure2 constraint=false]
+	Water -- "Swamp Plant" [color=azure2 constraint=false]
+	Water -- Wheat [color=azure2 constraint=false]
+	Water -- "Chelt Meat" [color=azure2 constraint=false]
+	Water -- "Scruffin Fruit" [color=azure2 constraint=false]
+	Ice -- "Protein Paste" [color=slategray4 constraint=true]
+	Methane -- "Protein Paste" [color=slategray4 constraint=true]
+	Water -- Plankton [color=azure2 constraint=false]
+	Water -- BoGas [color=azure2 constraint=false]
+	Water -- Spacefuel [color=azure2 constraint=false]
+	Wheat -- Spacefuel [color=slategray4 constraint=true]
+	Meat -- "Food Rations" [color=slategray4 constraint=true]
+	Spices -- "Food Rations" [color=slategray4 constraint=true]
+	Wheat -- "Food Rations" [color=slategray4 constraint=true]
+	"Maja Snails" -- "Maja Dust" [color=slategray4 constraint=true]
+	Spices -- "Maja Dust" [color=slategray4 constraint=true]
+	"Maja Snails" -- "Soja Husk" [color=slategray4 constraint=true]
+	"Soja Beans" -- "Soja Husk" [color=slategray4 constraint=true]
+	Spices -- "Soja Husk" [color=slategray4 constraint=true]
+	Spices -- Spaceweed [color=goldenrod constraint=true]
+	"Swamp Plant" -- Spaceweed [color=goldenrod constraint=true]
+	Spices -- "Nostrop Oil" [color=goldenrod constraint=true]
+	"Sunrise Flowers" -- "Nostrop Oil" [color=goldenrod constraint=true]
+	Water -- "Nostrop Oil" [color=azure2 constraint=false]
+	Spices -- "Medical Supplies" [color=azure2 constraint=false]
+	Water -- "Medical Supplies" [color=azure2 constraint=false]
+	Wheat -- "Medical Supplies" [color=azure2 constraint=false]
+	"Soja Beans" -- "Medical Supplies" [color=azure2 constraint=false]
+	Spices -- "Medical Supplies" [color=azure2 constraint=false]
+	Water -- "Medical Supplies" [color=azure2 constraint=false]
+	Spices -- "Medical Supplies" [color=azure2 constraint=false]
+	"Sunrise Flowers" -- "Medical Supplies" [color=azure2 constraint=false]
+	Water -- "Medical Supplies" [color=azure2 constraint=false]
+	"Scruffin Fruit" -- "Medical Supplies" [color=azure2 constraint=false]
+	Spices -- "Medical Supplies" [color=azure2 constraint=false]
+	Water -- "Medical Supplies" [color=azure2 constraint=false]
+	Ice -- "Medical Supplies" [color=azure2 constraint=false]
+	"Protein Paste" -- "Medical Supplies" [color=azure2 constraint=false]
+	Plankton -- "Medical Supplies" [color=azure2 constraint=false]
+	Water -- "Medical Supplies" [color=azure2 constraint=false]
+	"Protein Paste" -- "Terran MRE" [color=slategray4 constraint=true]
+	Helium -- Stimulants [color=slategray4 constraint=true]
+	Silicon -- Stimulants [color=slategray4 constraint=true]
+	BoGas -- BoFu [color=slategray4 constraint=true]
+	Plankton -- BoFu [color=slategray4 constraint=true]
+}

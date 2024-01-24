@@ -1,0 +1,84 @@
+graph "X4 Economy" {
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	graph [nodesep=0.3 pad=0.5 ranksep=2]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
+	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
+	subgraph 0 {
+		cluster=true label="Tier 0 (Harvested)"
+		Helium [colour=lightsteelblue2]
+		Methane [colour=lightsteelblue2]
+		Ore [colour=lightsteelblue2]
+		Hydrogen [colour=lightsteelblue2]
+		Silicon [colour=lightsteelblue2]
+		"Scrap Metal" [colour=lightsteelblue2]
+	}
+	subgraph 1 {
+		cluster=true label="Tier 1 (Basic Food)"
+	}
+	subgraph 2 {
+		cluster=true label="Tier 2 (Food and Drugs)"
+	}
+	subgraph 3 {
+		cluster=true label="Tier 3 (Refined)"
+		"Superfluid Coolant" [colour=lightsteelblue2]
+		Graphene [colour=lightsteelblue2]
+		"Refined Metals" [colour=lightsteelblue2]
+		Teladianium [colour=lightsteelblue2]
+		"Antimatter Cells" [colour=lightsteelblue2]
+		"Silicon Wafers" [colour=lightsteelblue2]
+		"Computronic Substrate" [colour=lightsteelblue2]
+		"Metallic Microlattice" [colour=lightsteelblue2]
+	}
+	subgraph 4 {
+		cluster=true label="Tier 4 (Advanced)"
+		"Plasma Conductors" [colour=lightsteelblue2]
+		"Quantum Tubes" [colour=lightsteelblue2]
+		"Advanced Composites" [colour=lightsteelblue2]
+		"Hull Parts" [colour=lightsteelblue2]
+		"Engine Parts" [colour=lightsteelblue2]
+		Microchips [colour=lightsteelblue2]
+		"Smart Chips" [colour=lightsteelblue2]
+		"Silicon Carbide" [colour=lightsteelblue2]
+	}
+	subgraph 5 {
+		cluster=true label="Tier 5 (Components)"
+	}
+	subgraph 6 {
+		cluster=true label="Tier 6 (Equipment)"
+	}
+	Helium -- "Superfluid Coolant" [color=slategray4 constraint=true]
+	Methane -- Graphene [color=slategray4 constraint=true]
+	Ore -- "Refined Metals" [color=slategray4 constraint=true]
+	Ore -- Teladianium [color=goldenrod constraint=true]
+	Hydrogen -- "Antimatter Cells" [color=slategray4 constraint=true]
+	Silicon -- "Silicon Wafers" [color=slategray4 constraint=true]
+	Hydrogen -- "Computronic Substrate" [color=slategray4 constraint=true]
+	Ore -- "Computronic Substrate" [color=slategray4 constraint=true]
+	Silicon -- "Computronic Substrate" [color=slategray4 constraint=true]
+	"Scrap Metal" -- "Computronic Substrate" [color=red constraint=false]
+	Helium -- "Metallic Microlattice" [color=slategray4 constraint=true]
+	Ore -- "Metallic Microlattice" [color=slategray4 constraint=true]
+	Graphene -- "Plasma Conductors" [color=slategray4 constraint=true]
+	"Superfluid Coolant" -- "Plasma Conductors" [color=slategray4 constraint=true]
+	Graphene -- "Quantum Tubes" [color=slategray4 constraint=true]
+	"Superfluid Coolant" -- "Quantum Tubes" [color=slategray4 constraint=true]
+	Graphene -- "Advanced Composites" [color=slategray4 constraint=true]
+	"Refined Metals" -- "Advanced Composites" [color=firebrick constraint=true]
+	Graphene -- "Advanced Composites" [color=goldenrod constraint=true]
+	Teladianium -- "Advanced Composites" [color=goldenrod constraint=true]
+	Graphene -- "Hull Parts" [color=slategray4 constraint=true]
+	"Refined Metals" -- "Hull Parts" [color=firebrick constraint=true]
+	"Scrap Metal" -- "Hull Parts" [color=red constraint=false]
+	Graphene -- "Hull Parts" [color=goldenrod constraint=true]
+	Teladianium -- "Hull Parts" [color=goldenrod constraint=true]
+	"Antimatter Cells" -- "Engine Parts" [color=slategray4 constraint=true]
+	"Refined Metals" -- "Engine Parts" [color=firebrick constraint=true]
+	"Antimatter Cells" -- "Engine Parts" [color=goldenrod constraint=true]
+	Teladianium -- "Engine Parts" [color=goldenrod constraint=true]
+	"Silicon Wafers" -- Microchips [color=slategray4 constraint=true]
+	"Silicon Wafers" -- "Smart Chips" [color=slategray4 constraint=true]
+	"Metallic Microlattice" -- "Silicon Carbide" [color=slategray4 constraint=true]
+	Methane -- "Silicon Carbide" [color=slategray4 constraint=true]
+	Silicon -- "Silicon Carbide" [color=slategray4 constraint=true]
+	"Scrap Metal" -- "Silicon Carbide" [color=red constraint=false]
+}

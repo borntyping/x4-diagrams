@@ -1,6 +1,13 @@
 import dataclasses
 import typing
 
+import structlog
+
+logger = structlog.get_logger()
+
+
+Method = typing.Literal["Universal", "Recycling", "Argon", "Boron", "Paranid", "Split", "Teladi", "Terran"]
+
 
 @dataclasses.dataclass(frozen=True)
 class Race:
@@ -29,68 +36,98 @@ class Faction:
         )
 
 
-@dataclasses.dataclass(frozen=True)
-class Resource:
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class Production:
+    method: Method
+    time: int | None = dataclasses.field(default=None)
+    amount: int | None = dataclasses.field(default=None)
+    wares: dict[str, int] = dataclasses.field(default_factory=dict)
+
+    colours: typing.ClassVar[typing.Dict[str, str | None]] = {
+        "Universal": "rgba(185, 217, 235, 0.90)",
+        "Recycling": "rgba(0, 248, 0, 0.25)",
+        "Argon": "rgba(55, 55, 255, 0.25)",
+        "Boron": "rgba(0, 0, 200, 0.25)",
+        "Paranid": "rgba(133, 0, 255, 0.25)",
+        "Split": "rgba(255, 0, 0, 0.25)",
+        "Teladi": "rgba(245, 245, 39, 0.25)",
+        "Terran": "rgba(200, 200, 200, 0.50)",
+    }
+
+    def filter_resources(self, include: set[str], exclude: set[str]) -> typing.Self:
+        wares = {k: v for k, v in self.wares.items() if k in include and k not in exclude}
+        return dataclasses.replace(self, wares=wares)
+
+    def colour(self) -> str:
+        return self.colours[self.method]
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class Ware:
+    identifier: str
     name: str
-    race: str | None = dataclasses.field(default=None)
+    volume: int | None = dataclasses.field(default=None)
+    storage: typing.Literal["Container", "Liquid", "Solid", "Condensate"] | None = dataclasses.field(default=None)
+    price_min: int | None = dataclasses.field(default=None)
+    price_avg: int | None = dataclasses.field(default=None)
+    price_max: int | None = dataclasses.field(default=None)
+    production: list[Production] = dataclasses.field(default_factory=tuple)
+
     tags: set[str] = dataclasses.field(default_factory=set)
     colour: str = dataclasses.field(default="lightsteelblue2")
-    recipes: dict[str, set[str]] = dataclasses.field(default_factory=dict)
 
     def __str__(self) -> str:
         return f"{self.name}"
 
     @property
     def id(self) -> str:
-        return self.name.lower().replace(" ", "")
+        return self.name.lower().replace(" ", "_")
 
     def fillcolor(self) -> str:
-        if self.race == "Argon":
-            return "green"
-        elif self.race == "Paranid":
-            return "blue"
-        if self.race == "Teladi":
-            return "yellow"
-
         return self.colour
 
-    def inputs(self):
-        if not self.recipes:
-            return ()
+    def dependencies(self) -> set[str]:
+        return set(ware for production in self.production for ware in production.wares.keys())
 
-        always = set.intersection(*self.recipes.values())
-        for input_resource_name in always:
-            yield "always", input_resource_name
+    def filter_resources(self, include: set[str], exclude: set[str]) -> typing.Self:
+        production = [p.filter_resources(include=include, exclude=exclude) for p in self.production]
+        production = [p for p in production if p.wares]
+        logger.debug("Filtered resources for resource", name=self.name, a=len(self.production), b=len(production))
+        return dataclasses.replace(self, production=production)
 
-        for recipe, input_resource_names in self.recipes.items():
-            for input_resource_name in input_resource_names - always:
-                yield recipe, input_resource_name
+    def filter_methods(self, method: Method) -> typing.Self:
+        production = {p.method: p for p in self.production}
 
-    def inputs_for_variant(self, variant: str) -> set[str]:
-        return self.recipes.get(variant, self.recipes.get("Universal", set()))
+        if selected := production.get(method):
+            return dataclasses.replace(self, production=[selected])
+        elif universal := production.get("Universal"):
+            return dataclasses.replace(self, production=[universal])
 
-    def all_inputs(self) -> set[str]:
-        return {i for inputs in self.recipes.values() for i in inputs}
-
-    def filter_recipes(self, resources: set[str]) -> typing.Self:
-        return dataclasses.replace(
-            self,
-            recipes={variant: {r for r in inputs if r in resources} for variant, inputs in self.recipes.items()},
-        )
+        return dataclasses.replace(self, production=[])
 
 
-@dataclasses.dataclass(order=True, frozen=True)
+@dataclasses.dataclass(order=True, frozen=True, kw_only=True)
 class Tier:
     level: int
     name: str
-    resources: typing.Sequence[Resource]
+    wares: typing.Sequence[Ware]
 
     def __str__(self) -> str:
         return f"Tier {self.level} ({self.name})"
 
     def __bool__(self) -> bool:
-        return bool(self.resources)
+        return bool(self.wares)
 
-    def filter_resources(self, names: set[str]) -> typing.Self:
-        resources = [r.filter_recipes(names) for r in self.resources if r.name in names]
-        return dataclasses.replace(self, resources=resources)
+    def filter_resources(self, include: set[str], exclude: set[str]) -> typing.Self:
+        wares = [
+            w.filter_resources(include=include, exclude=exclude)
+            for w in self.wares
+            if w.identifier in include and w.identifier not in exclude
+        ]
+        logger.debug("Filtered resources for tier", name=self.name, before=len(self.wares), after=len(wares))
+        return dataclasses.replace(self, wares=wares)
+
+    def filter_methods(self, method: Method) -> typing.Self:
+        wares = [w.filter_methods(method) for w in self.wares]
+        wares = [w for w in wares if w.production]
+        return dataclasses.replace(self, wares=wares)

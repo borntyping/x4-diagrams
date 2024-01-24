@@ -10,12 +10,15 @@ packages = [{include = "x4_diagrams"}]
 python = "^3.12"
 graphviz = "^0.20.1"
 click = "^8.1.7"
+plotly = "^5.18.0"
+structlog = "^24.1.0"
+kaleido = "0.2.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.12.1"
 
 [tool.black]
-line-length = 256
+line-length = 128
 
 [build-system]
 requires = ["poetry-core"]

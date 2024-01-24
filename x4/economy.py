@@ -1,12 +1,18 @@
 import dataclasses
+import logging
 import pathlib
 import typing
 
 import click
 import graphviz
+import plotly.graph_objs
+import structlog
 
-from x4.types import Resource, Tier
+from x4.types import Method, Ware, Tier
 from x4_data.economy import TIERS
+
+
+logger = structlog.get_logger()
 
 
 @dataclasses.dataclass(frozen=True)
@@ -14,29 +20,98 @@ class EconomyGraph:
     tiers: typing.Sequence[Tier]
     selected_variant: str = "Universal"
 
-    def resources(self) -> typing.Mapping[str, Resource]:
-        return {resource.id: resource for tier in self.tiers for resource in tier.resources}
+    def resources(self) -> typing.Mapping[str, Ware]:
+        return {resource.identifier: resource for tier in self.tiers for resource in tier.wares}
 
     def select_recipe(self, variant: str) -> typing.Self:
         return dataclasses.replace(self, selected_variant=variant)
 
-    def select_tiers(self, *levels: int) -> typing.Self:
-        mapping = {resource.name: resource for tier in self.tiers for resource in tier.resources}
+    def include_tiers(self, levels: set[int]) -> typing.Self:
+        logger.debug("Filtering economy graph by tier", include_tiers=levels)
+        resources = self.resources()
+        tiers = [t for t in self.tiers if t.level in levels]
 
-        for tier in self.tiers:
-            for resource in tier.resources:
-                assert isinstance(resource, Resource)
+        # Select resources in the given tiers.
+        selected = {r.identifier for t in tiers for r in t.wares}
 
-        selected = [resource.name for tier in self.tiers for resource in tier.resources if tier.level in levels]
-        dependencies = [i for r in selected for i in mapping[r].all_inputs()]
-        resources = set(selected) | set(dependencies)
+        # Select the dependencies of those resources.
+        dependencies = {i for i in selected for i in resources[i].dependencies()}
 
-        tiers = [tier.filter_resources(resources) for tier in self.tiers]
+        include = selected | dependencies
+        tiers = [t.filter_resources(include=include, exclude=set()) for t in self.tiers]
+        return dataclasses.replace(self, tiers=tiers)
+
+    def include_methods(self, method: Method) -> typing.Self:
+        logger.debug("Filtering economy graph by build method", method=method)
+        tiers = [t.filter_methods(method=method) for t in self.tiers]
+        return dataclasses.replace(self, tiers=tiers)
+
+    def exclude_resources(self, exclude: set[str] = frozenset()) -> typing.Self:
+        logger.debug("Filtering economy graph by resource")
+        include = {r for r in self.resources()}
+        tiers = [t.filter_resources(include=include, exclude=exclude) for t in self.tiers]
         return dataclasses.replace(self, tiers=tiers)
 
 
 @dataclasses.dataclass(frozen=True)
-class EconomyGraphWriter:
+class PlotlyWriter:
+    output_directory: pathlib.Path
+
+    @dataclasses.dataclass(frozen=True)
+    class Link:
+        source: int
+        target: int
+        value: int
+        label: str
+        color: str
+
+    def plot(self, economy: EconomyGraph, title_text: str):
+        resources = {resource.identifier: resource for tier in economy.tiers for resource in tier.wares}
+        if not resources:
+            exit()
+
+        labels = [resource.name for resource in resources.values()]
+        links = [
+            self.Link(
+                source=labels.index(resources[source].name),
+                target=labels.index(target.name),
+                value=value,
+                label=production.method,
+                color=production.colour(),
+            )
+            for tier in economy.tiers
+            for target in tier.wares
+            for production in target.production
+            for source, value in production.wares.items()
+        ]
+
+        figure = plotly.graph_objs.Figure(
+            data=plotly.graph_objs.Sankey(
+                arrangement="snap",
+                node={
+                    "label": [resource.name for resource in economy.resources().values()],
+                },
+                link={
+                    "source": [link.source for link in links],
+                    "target": [link.target for link in links],
+                    "value": [link.value for link in links],
+                    "label": [link.label for link in links],
+                    # "color": [link.color for link in links],
+                },
+            )
+        )
+        figure.update_layout(title_text=title_text)
+        return figure
+
+    def __call__(self, filename: str, economy: EconomyGraph, title_text: str) -> None:
+        self.output_directory.mkdir(exist_ok=True)
+        path = self.output_directory / filename
+        self.plot(economy=economy, title_text=title_text).write_image(path.as_posix())
+        logger.info("Drew economy graph with plotly", title_text=title_text, filename=filename)
+
+
+@dataclasses.dataclass(frozen=True)
+class GraphvizWriter:
     output_directory: pathlib.Path
 
     def dot(self, economy: EconomyGraph) -> str:
@@ -67,19 +142,22 @@ class EconomyGraphWriter:
         for tier in economy.tiers:
             with g.subgraph(name=str(tier.level)) as s:
                 s.attr(label=str(tier), cluster="true")
-                for resource in tier.resources:
+                for resource in tier.wares:
                     s.node(resource.name, colour=resource.fillcolor())
 
-        for output_resource in economy.resources().values():
-            for recipe, input_resource_name in output_resource.inputs():
-                constraint = self.recipe_constraint(recipe, input_resource_name, output_resource.name)
-                color = self.recipe_color(recipe, input_resource_name, output_resource.name)
-                g.edge(
-                    input_resource_name,
-                    output_resource.name,
-                    constraint=constraint,
-                    color=color,
-                )
+        resources = economy.resources()
+        for output_resource in resources.values():
+            for production in output_resource.production:
+                for input_resource_id, amount in production.wares.items():
+                    input_resource = resources[input_resource_id]
+                    constraint = self.recipe_constraint(production.method, input_resource.name, output_resource.name)
+                    color = self.recipe_color(production.method, input_resource.name, output_resource.name)
+                    g.edge(
+                        input_resource.name,
+                        output_resource.name,
+                        constraint=constraint,
+                        color=color,
+                    )
         return g.source
 
     @staticmethod
@@ -114,12 +192,13 @@ class EconomyGraphWriter:
         self.output_directory.mkdir(exist_ok=True)
         path = self.output_directory / filename
         path.write_text(self.dot(economy=economy))
+        logger.info("Drew economy graph with graphviz", filename=filename)
 
 
 @click.command(name="economy")
 @click.option(
     "--output-directory",
-    default="output",
+    default="docs",
     type=click.Path(
         exists=False,
         file_okay=False,
@@ -129,15 +208,32 @@ class EconomyGraphWriter:
     ),
 )
 def main(output_directory: pathlib.Path):
-    writer = EconomyGraphWriter(output_directory=output_directory)
     economy = EconomyGraph(tiers=TIERS)
+    economy = economy.exclude_resources({"energy_cells"})
 
-    writer("economy-2-food-and-drugs.dot", economy.select_tiers(1, 2))
-    writer("economy-3-refined.dot", economy.select_tiers(3))
-    writer("economy-4-advanced.dot", economy.select_tiers(3, 4))
-    writer("economy-5-components.dot", economy.select_tiers(5))
-    writer("economy-6-equipment.dot", economy.select_tiers(6))
+    food_and_drugs = economy.include_tiers({1, 2})
+    refined = economy.include_tiers({3})
+    advanced = economy.include_tiers({3, 4})
+    components = economy.include_tiers({5})
+    equipment = economy.include_tiers({6})
+    construction = economy.include_tiers({3, 4, 5, 6})
+
+    p = PlotlyWriter(output_directory=output_directory / "plotly")
+    p("economy-food-and-drugs.png", food_and_drugs, title_text="Food & Drugs")
+    p("economy-3-refined.png", refined, title_text="Refined")
+    p("economy-4-advanced.png", advanced, title_text="Advanced")
+    p("economy-5-components.png", components, title_text="Components")
+    p("economy-6-equipment.png", equipment, title_text="Equipment")
+    p("economy-construction.png", construction, title_text="Construction")
+
+    g = GraphvizWriter(output_directory=output_directory / "graphviz")
+    g("economy-food-and-drugs.dot", food_and_drugs)
+    g("economy-3-refined.dot", refined)
+    g("economy-4-advanced.dot", advanced)
+    g("economy-5-components.dot", components)
+    g("economy-6-equipment.dot", equipment)
 
 
 if __name__ == "__main__":
+    structlog.stdlib.recreate_defaults(log_level=logging.INFO)
     main()
