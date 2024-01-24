@@ -1,10 +1,14 @@
 import dataclasses
-import json
+import itertools
 import pathlib
 import string
 import textwrap
 import typing
 
+import click
+
+from x4.types import Resource
+from x4_data.economy import RESOURCES
 
 AGRICULTURE_UNIVERSAL = {
     "Ice",
@@ -39,46 +43,51 @@ AGRICULTURE_TERRAN = {
 }
 AGRICULTURE = AGRICULTURE_UNIVERSAL | AGRICULTURE_TERRAN
 
-
-CONSTRUCTION_UNIVERSAL = {
-    "Advanced Composites",
-    "Advanced Electronics",
-    "Antimatter Cells",
-    "Antimatter Converters",
-    "Claytronics",
-    "Drone Components",
-    "Engine Parts",
-    "Field Coils",
-    "Graphene",
-    "Helium",
-    "Hull Parts",
-    "Hydrogen",
-    "Methane",
-    "Microchips",
-    "Missile Components",
-    "Ore",
-    "Plasma Conductors",
-    "Quantum Tubes",
-    "Scanning Arrays",
-    "Shield Components",
-    "Silicon Wafers",
-    "Silicon",
-    "Smart Chips",
-    "Superfluid Coolant",
-    "Turret Components",
-    "Weapon Components",
-} | {
-    "Satellites, Resource Probes, Nav Beacons",
-    "Drones and Laser Towers",
-    "Missiles",
-    "Mines",
-    "Turret Weapons",
-    "Engines and Thrusters",
-    "Fixed Weapons",
-    "Ship Hulls",
-    "Shields",
-    "Station modules",
-}
+CONSTRUCTION_UNIVERSAL = (
+    {
+        "Advanced Composites",
+        "Advanced Electronics",
+        "Antimatter Cells",
+        "Antimatter Converters",
+        "Claytronics",
+        "Drone Components",
+        "Engine Parts",
+        "Field Coils",
+        "Graphene",
+        "Helium",
+        "Hull Parts",
+        "Hydrogen",
+        "Methane",
+        "Microchips",
+        "Missile Components",
+        "Ore",
+        "Plasma Conductors",
+        "Quantum Tubes",
+        "Scanning Arrays",
+        "Shield Components",
+        "Silicon Wafers",
+        "Silicon",
+        "Smart Chips",
+        "Superfluid Coolant",
+        "Turret Components",
+        "Weapon Components",
+    }
+    | {
+        "Drones",
+        "Engines",
+        "Laser Towers",
+        "Mines",
+        "Missiles",
+        "Satellites",
+        "Shields",
+        "Ship Hulls",
+        "Station Modules",
+        "Thrusters",
+        "Turrets",
+        "Weapons",
+    }
+    | {"Ships", "Stations", "Deployables"}
+)
 CONSTRUCTION_RECYCLING_ONLY = {"Raw Scrap", "Scrap Metal"}
 CONSTRUCTION_TELADI_ONLY = {"Teladianium"}
 CONSTRUCTION_TERRAN_ONLY = {
@@ -95,36 +104,20 @@ CONSTRUCTION_TERRAN_ONLY = {
     "Stimulants",
 }
 CONSTRUCTION_UNIVERSAL_ONLY = {"Refined Metals"}
-CONSTRUCTION = (
-    CONSTRUCTION_UNIVERSAL
-    | CONSTRUCTION_RECYCLING_ONLY
-    | CONSTRUCTION_TELADI_ONLY
-    | CONSTRUCTION_TERRAN_ONLY
-    | CONSTRUCTION_UNIVERSAL_ONLY
-)
-
-
-@dataclasses.dataclass()
-class Material:
-    tier: str
-    name: str
-    inputs: dict[str, list[str]]
-
-    def __str__(self) -> str:
-        return f"{self.tier}.{self.name}"
-
-    def inputs_for_variant(self, variant: str) -> list[str]:
-        return self.inputs.get(variant, ())
+CONSTRUCTION = CONSTRUCTION_UNIVERSAL | CONSTRUCTION_RECYCLING_ONLY | CONSTRUCTION_TELADI_ONLY | CONSTRUCTION_TERRAN_ONLY | CONSTRUCTION_UNIVERSAL_ONLY
 
 
 @dataclasses.dataclass()
 class Production:
-    materials: list[Material]
+    materials: list[Resource]
     variant: str = "Universal"
     name: str = "Production"
 
     def recycling(self) -> typing.Self:
-        return self._replace(AGRICULTURE_UNIVERSAL | CONSTRUCTION_UNIVERSAL | CONSTRUCTION_RECYCLING_ONLY, variant="Recycling")
+        return self._replace(
+            AGRICULTURE_UNIVERSAL | CONSTRUCTION_UNIVERSAL | CONSTRUCTION_UNIVERSAL_ONLY | CONSTRUCTION_RECYCLING_ONLY,
+            variant="Recycling",
+        )
 
     def teladi(self) -> typing.Self:
         return self._replace(AGRICULTURE_UNIVERSAL | CONSTRUCTION_UNIVERSAL | CONSTRUCTION_TELADI_ONLY, variant="Teladi")
@@ -155,8 +148,15 @@ class Production:
             name=name if name else self.name,
         )
 
-    def _filter(self, f: typing.Callable[[Material], bool]) -> list[Material]:
+    def _filter(self, f: typing.Callable[[Resource], bool]) -> list[Resource]:
         return [m for m in self.materials if f(m)]
+
+    def _get(self, name: str, for_material: Resource):
+        mapping = {m.name: m for m in self.materials}
+        try:
+            return mapping[name]
+        except KeyError as error:
+            raise Exception(f"{for_material.name} depends on {name}, which is missing from the {self.variant} {self.name} production chain") from error
 
     def d2(self, filename: str) -> str:
         header = string.Template(
@@ -217,15 +217,9 @@ class Production:
         output.append("")
 
         # Connections
-        mapping = {m.name: m for m in self.materials}
         for material in self.materials:
-            for material_input in material.inputs_for_variant(self.variant):
-                try:
-                    other = mapping[material_input]
-                except KeyError as error:
-                    raise Exception(
-                        f"{material.name} depends on {material_input}, which is missing from the {self.variant} {self.name} production chain"
-                    ) from error
+            for other_name in material.inputs_for_variant(self.variant):
+                other = self._get(other_name, for_material=material)
 
                 if other.name in {"Water"}:
                     d2class = "produced_by_common"
@@ -237,20 +231,66 @@ class Production:
         path = pathlib.Path(__file__).with_name("output") / filename
         path.write_text("\n".join(output))
 
+    def dot(self) -> str:
+        return ""
+
+    def write(self, output_directory: pathlib.Path, filename: str):
+        (output_directory / filename).write_text(self.dot())
+        return
+
+    def old(self, output_directory: pathlib.Path, filename: str):
+        with (output_directory / filename).open("w") as file:
+            print("digraph {", file=file)
+            print('  fontname="Helvetica,Arial,sans-serif"', file=file)
+            print('  graph [pad="0.5", ranksep="2", nodesep="0.3"];', file=file)
+            print(
+                '  node [fontname="Helvetica,Arial,sans-serif",penwidth="0",style="filled",linecolor="black",margin="0.2"]',
+                file=file,
+            )
+            print('  edge [fontname="Helvetica,Arial,sans-serif",penwidth="2.5"]', file=file)
+
+            for tier, materials in itertools.groupby(self.materials, key=lambda m: m.tier):
+                print(f"  subgraph {tier.id} {{", file=file)
+                print(f"    cluster = true;", file=file)
+                print(f'    label = "{tier.name}";', file=file)
+                for material in materials:
+                    print(
+                        f'    node [label="{material.name}",shape="box",fillcolor="{material.node_colour}"] {material.id};',
+                        file=file,
+                    )
+                print("  }", file=file)
+
+            for material in self.materials:
+                for other_name in material.inputs_for_variant(self.variant):
+                    other = self._get(other_name, for_material=material)
+                    print(f'  {other.id} -> {material.id} [color="{other.node_colour}"];', file=file)
+
+            print("}", file=file)
+
     @property
     def tiers(self) -> list[str]:
-        present = set(m.tier for m in self.materials)
-        tiers = ["Raw", "Tier 1", "Tier 2", "Tier 3", "Consumables", "Product"]
-        return [t for t in tiers if t in present]
+        return list(sorted(set(m.tier for m in self.materials)))
 
     @classmethod
     def read(cls, filename: str) -> typing.Self:
-        data = json.loads(pathlib.Path(__file__).with_name(filename).read_text())
-        materials = [Material(tier=m["tier"], name=m["name"], inputs=m["inputs"]) for m in data]
-        return cls(materials=list(sorted(materials, key=str)))
+        return cls(materials=list(sorted(RESOURCES, key=str)))
 
 
-def main():
+@click.command(name="economy")
+@click.option(
+    "--output-directory",
+    default="output",
+    type=click.Path(
+        exists=False,
+        file_okay=False,
+        dir_okay=True,
+        writable=True,
+        path_type=pathlib.Path,
+    ),
+)
+def main(output_directory: pathlib.Path):
+    output_directory.mkdir(exist_ok=True)
+
     production = Production.read("production.json")
 
     agriculture_terran = production.agriculture().terran()
@@ -261,13 +301,14 @@ def main():
     construction_universal = production.construction().universal()
     terran = production.terran()
 
-    agriculture_terran.d2("x4-agriculture-terran.d2")
-    agriculture_universal.d2("x4-agriculture-universal.d2")
-    construction_recycling.d2("x4-construction-recycling.d2")
-    construction_teladi.d2("x4-construction-teladi.d2")
-    construction_terran.d2("x4-construction-terran.d2")
-    construction_universal.d2("x4-construction-universal.d2")
-    terran.d2("x4-terran.d2")
+    agriculture_terran.dot(output_directory, "x4-agriculture-terran.dot")
+    agriculture_universal.dot(output_directory, "x4-agriculture-universal.dot")
+    construction_recycling.dot(output_directory, "x4-construction-recycling.dot")
+    construction_teladi.dot(output_directory, "x4-construction-teladi.dot")
+    construction_terran.dot(output_directory, "x4-construction-terran.dot")
+    construction_universal.dot(output_directory, "x4-construction-universal.dot")
+    terran.dot(output_directory, "x4-terran.dot")
+    production.dot(output_directory, "x4.dot")
 
 
 if __name__ == "__main__":
