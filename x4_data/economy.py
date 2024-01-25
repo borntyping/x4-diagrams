@@ -1,6 +1,17 @@
-from x4.types import Production, Ware, Tier
+import typing
+
+from x4.types import Method, Recipe, Ware, Tier
 
 UNDEFINED = 10
+
+COMMONWEALTH_METHODS: typing.Sequence[Method] = [
+    "Universal",
+    "Argon",
+    "Boron",
+    "Paranid",
+    "Split",
+    "Teladi",
+]
 
 TIERS = [
     Tier(
@@ -15,7 +26,7 @@ TIERS = [
                 price_min=37,
                 price_avg=44,
                 price_max=51,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="methane",
@@ -25,7 +36,7 @@ TIERS = [
                 price_min=41,
                 price_avg=48,
                 price_max=55,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="ore",
@@ -35,7 +46,7 @@ TIERS = [
                 price_min=43,
                 price_avg=50,
                 price_max=58,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="hydrogen",
@@ -45,7 +56,7 @@ TIERS = [
                 price_min=49,
                 price_avg=58,
                 price_max=67,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="silicon",
@@ -55,7 +66,7 @@ TIERS = [
                 price_min=111,
                 price_avg=130,
                 price_max=150,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="nividium",
@@ -65,7 +76,7 @@ TIERS = [
                 price_min=434,
                 price_avg=510,
                 price_max=587,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="ice",
@@ -75,7 +86,7 @@ TIERS = [
                 price_min=26,
                 price_avg=30,
                 price_max=35,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="raw_scrap",
@@ -85,7 +96,7 @@ TIERS = [
                 price_min=153,
                 price_avg=180,
                 price_max=207,
-                production=[],
+                recipes=[],
             ),
             Ware(
                 key="scrap_metal",
@@ -95,8 +106,8 @@ TIERS = [
                 price_min=318,
                 price_avg=375,
                 price_max=431,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=60,
                         amount=1,
                         method="Recycling",
@@ -115,8 +126,8 @@ TIERS = [
                 price_min=32,
                 price_avg=53,
                 price_max=74,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=120,
                         amount=193,
                         method="Universal",
@@ -135,14 +146,14 @@ TIERS = [
                 price_min=10,
                 price_avg=16,
                 price_max=22,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=60,
                         amount=175,
                         method="Universal",
                         wares={},
                     ),
-                    Production(
+                    Recipe(
                         time=60,
                         amount=50,
                         method="Terran",
@@ -164,8 +175,8 @@ TIERS = [
                 price_min=35,
                 price_avg=58,
                 price_max=81,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=450,
                         amount=146,
                         method="Paranid",
@@ -184,8 +195,8 @@ TIERS = [
                 price_min=29,
                 price_avg=48,
                 price_max=68,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=450,
                         amount=290,
                         method="Argon",
@@ -204,8 +215,8 @@ TIERS = [
                 price_min=40,
                 price_avg=67,
                 price_max=93,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=104,
                         method="Paranid",
@@ -224,8 +235,8 @@ TIERS = [
                 price_min=12,
                 price_avg=20,
                 price_max=28,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=500,
                         method="Universal",
@@ -244,8 +255,8 @@ TIERS = [
                 price_min=48,
                 price_avg=80,
                 price_max=112,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=100,
                         method="Teladi",
@@ -264,8 +275,8 @@ TIERS = [
                 price_min=50,
                 price_avg=84,
                 price_max=117,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=450,
                         amount=120,
                         method="Teladi",
@@ -284,8 +295,8 @@ TIERS = [
                 price_min=19,
                 price_avg=31,
                 price_max=44,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=310,
                         method="Argon",
@@ -304,8 +315,8 @@ TIERS = [
                 price_min=31,
                 price_avg=51,
                 price_max=72,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=450,
                         amount=209,
                         method="Split",
@@ -324,8 +335,8 @@ TIERS = [
                 price_min=17,
                 price_avg=28,
                 price_max=40,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=255,
                         method="Split",
@@ -344,8 +355,8 @@ TIERS = [
                 price_min=57,
                 price_avg=96,
                 price_max=134,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=219,
                         method="Terran",
@@ -365,8 +376,8 @@ TIERS = [
                 price_min=11,
                 price_avg=18,
                 price_max=25,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=400,
                         amount=275,
                         method="Boron",
@@ -385,8 +396,8 @@ TIERS = [
                 price_min=44,
                 price_avg=73,
                 price_max=102,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=150,
                         amount=110,
                         method="Boron",
@@ -411,8 +422,8 @@ TIERS = [
                 price_min=60,
                 price_avg=133,
                 price_max=207,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=480,
                         amount=98,
                         method="Argon",
@@ -432,8 +443,8 @@ TIERS = [
                 price_min=12,
                 price_avg=21,
                 price_max=29,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=240,
                         amount=460,
                         method="Argon",
@@ -454,8 +465,8 @@ TIERS = [
                 price_min=94,
                 price_avg=208,
                 price_max=323,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=64,
                         method="Paranid",
@@ -475,8 +486,8 @@ TIERS = [
                 price_min=19,
                 price_avg=32,
                 price_max=45,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=350,
                         method="Paranid",
@@ -497,8 +508,8 @@ TIERS = [
                 price_min=75,
                 price_avg=166,
                 price_max=257,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=183,
                         method="Teladi",
@@ -518,8 +529,8 @@ TIERS = [
                 price_min=20,
                 price_avg=34,
                 price_max=47,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=500,
                         method="Teladi",
@@ -540,8 +551,8 @@ TIERS = [
                 price_min=43,
                 price_avg=66,
                 price_max=89,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=208,
                         method="Argon",
@@ -552,7 +563,7 @@ TIERS = [
                             "wheat": 30,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=208,
                         method="Paranid",
@@ -563,7 +574,7 @@ TIERS = [
                             "water": 60,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=208,
                         method="Teladi",
@@ -574,7 +585,7 @@ TIERS = [
                             "water": 60,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=208,
                         method="Split",
@@ -585,7 +596,7 @@ TIERS = [
                             "water": 60,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=140,
                         method="Terran",
@@ -595,7 +606,7 @@ TIERS = [
                             "protein_paste": 24,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=208,
                         method="Boron",
@@ -615,8 +626,8 @@ TIERS = [
                 price_min=32,
                 price_avg=54,
                 price_max=75,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=240,
                         amount=175,
                         method="Terran",
@@ -635,8 +646,8 @@ TIERS = [
                 price_min=153,
                 price_avg=340,
                 price_max=527,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=98,
                         method="Terran",
@@ -656,8 +667,8 @@ TIERS = [
                 price_min=61,
                 price_avg=101,
                 price_max=142,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=240,
                         amount=82,
                         method="Boron",
@@ -683,8 +694,8 @@ TIERS = [
                 price_min=90,
                 price_avg=150,
                 price_max=211,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=240,
                         amount=95,
                         method="Universal",
@@ -703,8 +714,8 @@ TIERS = [
                 price_min=100,
                 price_avg=166,
                 price_max=233,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=240,
                         amount=96,
                         method="Universal",
@@ -723,8 +734,8 @@ TIERS = [
                 price_min=89,
                 price_avg=148,
                 price_max=207,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=150,
                         amount=88,
                         method="Universal",
@@ -743,8 +754,8 @@ TIERS = [
                 price_min=121,
                 price_avg=202,
                 price_max=283,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=120,
                         amount=70,
                         method="Teladi",
@@ -763,8 +774,8 @@ TIERS = [
                 price_min=121,
                 price_avg=202,
                 price_max=282,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=120,
                         amount=99,
                         method="Universal",
@@ -783,8 +794,8 @@ TIERS = [
                 price_min=180,
                 price_avg=299,
                 price_max=419,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=180,
                         amount=107,
                         method="Universal",
@@ -803,8 +814,8 @@ TIERS = [
                 price_min=7452,
                 price_avg=8280,
                 price_max=9108,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=98,
                         method="Terran",
@@ -815,7 +826,7 @@ TIERS = [
                             "silicon": 3000,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=50,
                         method="Recycling",
@@ -834,8 +845,8 @@ TIERS = [
                 price_min=42,
                 price_avg=50,
                 price_max=57,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=180,
                         amount=190,
                         method="Terran",
@@ -861,8 +872,8 @@ TIERS = [
                 price_min=769,
                 price_avg=1026,
                 price_max=1282,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=900,
                         amount=44,
                         method="Universal",
@@ -882,8 +893,8 @@ TIERS = [
                 price_min=225,
                 price_avg=300,
                 price_max=375,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=720,
                         amount=94,
                         method="Universal",
@@ -903,8 +914,8 @@ TIERS = [
                 price_min=432,
                 price_avg=540,
                 price_max=648,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=54,
                         method="Universal",
@@ -914,7 +925,7 @@ TIERS = [
                             "refined_metals": 80,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=54,
                         method="Teladi",
@@ -934,8 +945,8 @@ TIERS = [
                 price_min=146,
                 price_avg=209,
                 price_max=272,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=900,
                         amount=294,
                         method="Universal",
@@ -945,7 +956,7 @@ TIERS = [
                             "refined_metals": 280,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=200,
                         method="Recycling",
@@ -954,7 +965,7 @@ TIERS = [
                             "scrap_metal": 75,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=900,
                         amount=294,
                         method="Teladi",
@@ -974,8 +985,8 @@ TIERS = [
                 price_min=128,
                 price_avg=182,
                 price_max=237,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=900,
                         amount=208,
                         method="Universal",
@@ -985,7 +996,7 @@ TIERS = [
                             "refined_metals": 96,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=900,
                         amount=208,
                         method="Teladi",
@@ -1005,8 +1016,8 @@ TIERS = [
                 price_min=805,
                 price_avg=948,
                 price_max=1090,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=72,
                         method="Universal",
@@ -1025,8 +1036,8 @@ TIERS = [
                 price_min=46,
                 price_avg=57,
                 price_max=69,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=143,
                         method="Universal",
@@ -1045,8 +1056,8 @@ TIERS = [
                 price_min=1202,
                 price_avg=1414,
                 price_max=1627,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=48,
                         method="Terran",
@@ -1057,7 +1068,7 @@ TIERS = [
                             "silicon": 300,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=60,
                         method="Recycling",
@@ -1082,8 +1093,8 @@ TIERS = [
                 price_min=685,
                 price_avg=914,
                 price_max=1142,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=1200,
                         amount=105,
                         method="Universal",
@@ -1105,8 +1116,8 @@ TIERS = [
                 price_min=164,
                 price_avg=273,
                 price_max=383,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=1800,
                         amount=170,
                         method="Universal",
@@ -1127,8 +1138,8 @@ TIERS = [
                 price_min=6,
                 price_avg=9,
                 price_max=13,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=900,
                         amount=281,
                         method="Universal",
@@ -1148,8 +1159,8 @@ TIERS = [
                 price_min=247,
                 price_avg=412,
                 price_max=576,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=175,
                         method="Universal",
@@ -1169,8 +1180,8 @@ TIERS = [
                 price_min=113,
                 price_avg=188,
                 price_max=264,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=1200,
                         amount=193,
                         method="Universal",
@@ -1190,8 +1201,8 @@ TIERS = [
                 price_min=248,
                 price_avg=354,
                 price_max=461,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=300,
                         amount=133,
                         method="Universal",
@@ -1211,8 +1222,8 @@ TIERS = [
                 price_min=171,
                 price_avg=285,
                 price_max=399,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=1800,
                         amount=170,
                         method="Universal",
@@ -1232,8 +1243,8 @@ TIERS = [
                 price_min=842,
                 price_avg=1053,
                 price_max=1264,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=600,
                         amount=36,
                         method="Universal",
@@ -1243,7 +1254,7 @@ TIERS = [
                             "silicon_wafers": 60,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=600,
                         amount=36,
                         method="Teladi",
@@ -1264,8 +1275,8 @@ TIERS = [
                 price_min=1734,
                 price_avg=2040,
                 price_max=2346,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=900,
                         amount=108,
                         method="Universal",
@@ -1276,7 +1287,7 @@ TIERS = [
                             "quantum_tubes": 100,
                         },
                     ),
-                    Production(
+                    Recipe(
                         time=300,
                         amount=60,
                         method="Recycling",
@@ -1295,8 +1306,8 @@ TIERS = [
                 price_min=710,
                 price_avg=1014,
                 price_max=1318,
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         time=720,
                         amount=54,
                         method="Universal",
@@ -1317,14 +1328,14 @@ TIERS = [
             Ware(
                 key="ship_hulls",
                 name="Ship Hulls",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "hull_parts": UNDEFINED,
                         },
                     ),
-                    Production(
+                    Recipe(
                         method="Terran",
                         wares={
                             "metallic_microlattice": UNDEFINED,
@@ -1337,8 +1348,8 @@ TIERS = [
             Ware(
                 key="nav_beacons",
                 name="Nav Beacons",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "hull_parts": UNDEFINED,
@@ -1350,8 +1361,8 @@ TIERS = [
             Ware(
                 key="missiles",
                 name="Missiles",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "missile_components": UNDEFINED,
@@ -1365,15 +1376,15 @@ TIERS = [
                 key="station_modules",
                 name="Station modules",
                 colour="hotpink1",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "hull_parts": UNDEFINED,
                             "claytronics": UNDEFINED,
                         },
                     ),
-                    Production(
+                    Recipe(
                         method="Terran",
                         wares={
                             "silicon_carbide": UNDEFINED,
@@ -1387,15 +1398,15 @@ TIERS = [
                 key="engines",
                 name="Engines",
                 colour="hotpink1",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "antimatter_converters": UNDEFINED,
                             "engine_parts": UNDEFINED,
                         },
                     ),
-                    Production(
+                    Recipe(
                         method="Terran",
                         wares={
                             "metallic_microlattice": UNDEFINED,
@@ -1410,15 +1421,15 @@ TIERS = [
                 key="thrusters",
                 name="Thrusters",
                 colour="hotpink1",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "antimatter_converters": UNDEFINED,
                             "engine_parts": UNDEFINED,
                         },
                     ),
-                    Production(
+                    Recipe(
                         method="Terran",
                         wares={
                             "metallic_microlattice": UNDEFINED,
@@ -1432,8 +1443,8 @@ TIERS = [
             Ware(
                 key="mines",
                 name="Mines",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "weapon_components": UNDEFINED,
@@ -1446,8 +1457,8 @@ TIERS = [
             Ware(
                 key="drones",
                 name="Drones",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "drone_components": UNDEFINED,
@@ -1460,8 +1471,8 @@ TIERS = [
             Ware(
                 key="laser_towers",
                 name="Laser Towers",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "drone_components": UNDEFINED,
@@ -1475,15 +1486,15 @@ TIERS = [
                 key="shields",
                 name="Shields",
                 colour="hotpink1",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "field_coils": UNDEFINED,
                             "shield_components": UNDEFINED,
                         },
                     ),
-                    Production(
+                    Recipe(
                         method="Terran",
                         wares={
                             "metallic_microlattice": UNDEFINED,
@@ -1498,15 +1509,15 @@ TIERS = [
                 key="turrets",
                 name="Turrets",
                 colour="hotpink1",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "turret_components": UNDEFINED,
                             "advanced_electronics": UNDEFINED,
                         },
                     ),
-                    Production(
+                    Recipe(
                         method="Terran",
                         wares={
                             "metallic_microlattice": UNDEFINED,
@@ -1521,15 +1532,15 @@ TIERS = [
                 key="guns_and_launchers",
                 name="Guns and Launchers",
                 colour="hotpink1",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "advanced_electronics": UNDEFINED,
                             "weapon_components": UNDEFINED,
                         },
                     ),
-                    Production(
+                    Recipe(
                         method="Terran",
                         wares={
                             "metallic_microlattice": UNDEFINED,
@@ -1543,8 +1554,8 @@ TIERS = [
             Ware(
                 key="satellites",
                 name="Satellites",
-                production=[
-                    Production(
+                recipes=[
+                    Recipe(
                         method="Universal",
                         wares={
                             "scanning_arrays": UNDEFINED,

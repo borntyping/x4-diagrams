@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>X4 Diagrams</title>
+  <link
+      rel="stylesheet"
+      href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"/>
+  <style>
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+      grid-gap: 1em;
+    }
+
+    .card {
+      text-align: center;
+    }
+
+    .card img {
+      aspect-ratio: 2 / 1;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <article class="paper container container-lg">
+    <section>
+      <h1>X4 Diagrams</h1>
+
+      <p>Created by <a href="https://borntyping.co.uk">@borntyping</a>.</p>
+      <p>Source code at
+        <a href="https://github.com/borntyping/x4-diagrams">github.com/borntyping/x4-diagrams</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Production</h2>
+
+      {% for group, group_diagrams in diagrams|groupby("group") %}
+        <h3>{{ group }}</h3>
+        <div class="cards">
+          {% for diagram in group_diagrams %}
+            <div class="card">
+              <img src="{{ diagram.image }}" alt="{{ diagram.image }}">
+              <div class="card-body">
+                <h4 class="card-title">{{ diagram.title }}</h4>
+                <h5 class="card-subtitle">{{ diagram.subtitle }}</h5>
+                <p class="child-borders margin-bottom-none">
+                  {% for text, path in diagram.links.items() %}
+                    <a
+                        href="{{ path }}"
+                        class="paper-btn btn-small">{{ text }}</a>
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </section>
+  </article>
+</body>
+</html>

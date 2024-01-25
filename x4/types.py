@@ -59,7 +59,7 @@ class Faction:
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class Production:
+class Recipe:
     method: Method
     time: int | None = dataclasses.field(default=None)
     amount: int | None = dataclasses.field(default=None)
@@ -96,7 +96,7 @@ class Ware:
     price_min: int | None = dataclasses.field(default=None)
     price_avg: int | None = dataclasses.field(default=None)
     price_max: int | None = dataclasses.field(default=None)
-    production: list[Production] = dataclasses.field(default_factory=tuple)
+    recipes: typing.Sequence[Recipe] = dataclasses.field(default_factory=tuple)
 
     tags: set[str] = dataclasses.field(default_factory=set)
     colour: str = dataclasses.field(default="lightsteelblue2")
@@ -109,23 +109,25 @@ class Ware:
         return self.name.lower().replace(" ", "_")
 
     def dependencies(self) -> set[str]:
-        return {d for p in self.production for d in p.dependencies()}
+        return {d for p in self.recipes for d in p.dependencies()}
 
     def fillcolor(self) -> str:
         return self.colour
 
-    def use_production_methods(self, methods: list[Method]) -> typing.Self | None:
-        production = {p.method: p for p in self.production}
-
+    def single_recipe(self, methods: typing.Sequence[Method]) -> typing.Sequence[Recipe]:
+        production = {p.method: p for p in self.recipes}
         for method in methods:
-            if selected := production.get(method):
-                return dataclasses.replace(self, production=[selected])
+            if recipe := production.get(method):
+                return [recipe]
 
-        return dataclasses.replace(self, production=[])
+        return []
+
+    def with_single_recipe(self, methods: typing.Sequence[Method]) -> typing.Self:
+        return dataclasses.replace(self, recipes=self.single_recipe(methods))
 
     def remove_production_input(self, resource_id: str) -> typing.Self:
-        production = [p.remove_production_input(resource_id) for p in self.production]
-        return dataclasses.replace(self, production=production)
+        recipes = [p.remove_production_input(resource_id) for p in self.recipes]
+        return dataclasses.replace(self, recipes=recipes)
 
 
 @dataclasses.dataclass(order=True, frozen=True, kw_only=True)
@@ -147,8 +149,8 @@ class Tier:
         wares = [w for w in self.wares if wf.match(w.key)]
         return dataclasses.replace(self, wares=wares)
 
-    def use_production_methods(self, methods: list[Method]) -> typing.Self:
-        wares = [ware.use_production_methods(methods) for ware in self.wares]
+    def use_recipes(self, methods: typing.Sequence[Method]) -> typing.Self:
+        wares = [ware.with_single_recipe(methods) for ware in self.wares]
         return dataclasses.replace(self, wares=wares)
 
     def remove_production_input(self, resource_id: str) -> typing.Self:
@@ -166,16 +168,16 @@ class Economy:
             assert isinstance(tier, Tier)
 
     def __repr__(self):
-        return "Economy<{} tiers, {} wares>".format(
-            len(self.tiers),
-            len(self.wares()),
-        )
+        return "Economy<{} tiers, {} wares, {} recipes>".format(len(self.tiers), len(self.wares()), len(self.recipes()))
 
     def tier_ids(self) -> typing.List[int]:
         return [t.level for t in self.tiers]
 
     def wares(self) -> typing.Mapping[str, Ware]:
         return {resource.key: resource for tier in self.tiers for resource in tier.wares}
+
+    def recipes(self) -> typing.Sequence[Recipe]:
+        return [production for tier in self.tiers for ware in tier.wares for production in ware.recipes]
 
     def dependencies(self) -> set[str]:
         wares = {ware.key for tier in self.tiers for ware in tier.wares}
@@ -186,15 +188,14 @@ class Economy:
         wf = WareFilter(include=include, exclude=None)
         tiers: list[Tier] = [t.filter_resources(wf) for t in self.tiers]
         new = dataclasses.replace(self, tiers=tiers)
-        logger.debug("Filtered wares", wf=wf)
-        logger.debug("Old economy", economy=repr(self))
-        logger.debug("New economy", economy=repr(new))
+        logger.debug("Filtered wares", economy=repr(new), wf=wf)
         return new
 
     def filter_tiers(self, tier_ids: set[int]) -> typing.Self:
         tiers: list[Tier] = [t for t in self.tiers if t.level in tier_ids]
-        logger.debug("Filtered tiers", tier_ids=tier_ids)
-        return dataclasses.replace(self, tiers=tiers)
+        economy = dataclasses.replace(self, tiers=tiers)
+        logger.debug("Filtered tiers", economy=economy, tier_ids=tier_ids)
+        return economy
 
     def include_tiers(self, tier_ids: set[int]) -> typing.Self:
         logger.debug("Including tiers", economy=self, tier_ids=tier_ids)
@@ -203,32 +204,51 @@ class Economy:
         return self.filter_wares(include=include)
 
     def remove_production_input(self, resource_id: str) -> typing.Self:
-        logger.debug("Removing production input", economy=self, resource_id=resource_id)
         tiers: list[Tier] = [t.remove_production_input(resource_id) for t in self.tiers]
-        return dataclasses.replace(self, tiers=tiers)
+        economy = dataclasses.replace(self, tiers=tiers)
+        logger.debug(
+            "Removed production input",
+            economy=economy,
+            resource_id=resource_id,
+        )
+        return economy
 
-    def filter_production_methods_and_unused_wares(self, methods: list[Method]) -> typing.Self:
+    def filter_production_methods_and_unused_wares(self, methods: typing.Sequence[Method]) -> typing.Self:
         """
         This needs to select wares using only those production methods,
         then find the dependencies of those wares,
         then remove unused production methods from the final list of wares.
         """
-        logger.debug("Using production methods", economy=self, methods=methods)
 
-        modified = self.filter_production_methods(methods)
-        include = modified.dependencies()
-        return modified.filter_wares(include=include)
+        # Remove undesired recipes from the economy.
+        economy = self.use_recipes(methods)
 
-    def filter_production_methods(self, methods: list[Method]) -> typing.Self:
+        # Select wares that use one of our desired methods.
+        wares = [ware for tier in economy.tiers for ware in tier.wares if ware.recipes]
+
+        # Filter the economy to those wares and their inputs.
+        output_wares = {ware.key for ware in wares}
+        input_wares = {input_ware for ware in wares for recipe in ware.single_recipe(methods) for input_ware in recipe.wares}
+        economy = economy.filter_wares(include=output_wares | input_wares)
+
+        logger.debug("Filtered methods and wares", economy=economy, methods=methods)
+        return economy
+
+    def use_recipes(self, methods: typing.Sequence[Method]) -> typing.Self:
         """
         Filter production methods.
         This doesn't do any filtering of wares.
         """
-        logger.debug("Using production methods", economy=self, methods=methods)
-        tiers = [tier.use_production_methods(methods) for tier in self.tiers]
-        return dataclasses.replace(self, tiers=tiers)
 
-    def validate(self):
+        tiers = [tier.use_recipes(methods) for tier in self.tiers]
+
+        economy = dataclasses.replace(self, tiers=tiers)
+        logger.debug("Filtered production methods", economy=economy, methods=methods)
+        return economy
+
+    def validate(self) -> typing.Self:
+        logger.info("Validating economy", economy=self)
+
         wares = self.wares()
 
         if not wares:
@@ -245,3 +265,5 @@ class Economy:
         if missing:
             description = ", ".join(["{} → {}".format(ware, dep) for ware, dep in missing])
             raise Exception(f"Missing dependencies for {self!r} economy: {description}")
+
+        return self
