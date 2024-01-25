@@ -14,44 +14,44 @@ graph "X4 Economy" {
 	}
 	subgraph 3 {
 		cluster=true label="Tier 3 (Refined)"
-		"Computronic Substrate" [colour=lightsteelblue2]
-		"Metallic Microlattice" [colour=lightsteelblue2]
+		"Computronic Substrate" [colour=lightsteelblue2 shape=box]
+		"Metallic Microlattice" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 4 {
 		cluster=true label="Tier 4 (Advanced)"
-		"Hull Parts" [colour=lightsteelblue2]
-		"Engine Parts" [colour=lightsteelblue2]
-		"Smart Chips" [colour=lightsteelblue2]
-		"Silicon Carbide" [colour=lightsteelblue2]
+		"Hull Parts" [colour=lightsteelblue2 shape=box]
+		"Engine Parts" [colour=lightsteelblue2 shape=box]
+		"Smart Chips" [colour=lightsteelblue2 shape=box]
+		"Silicon Carbide" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 5 {
 		cluster=true label="Tier 5 (Components)"
-		"Drone Components" [colour=lightsteelblue2]
-		"Turret Components" [colour=lightsteelblue2]
-		"Missile Components" [colour=lightsteelblue2]
-		"Field Coils" [colour=lightsteelblue2]
-		"Shield Components" [colour=lightsteelblue2]
-		"Antimatter Converters" [colour=lightsteelblue2]
-		"Weapon Components" [colour=lightsteelblue2]
-		"Scanning Arrays" [colour=orange1]
-		Claytronics [colour=lightsteelblue2]
-		"Advanced Electronics" [colour=lightsteelblue2]
+		"Drone Components" [colour=lightsteelblue2 shape=box]
+		"Turret Components" [colour=lightsteelblue2 shape=box]
+		"Missile Components" [colour=lightsteelblue2 shape=box]
+		"Field Coils" [colour=lightsteelblue2 shape=box]
+		"Shield Components" [colour=lightsteelblue2 shape=box]
+		"Antimatter Converters" [colour=lightsteelblue2 shape=box]
+		"Weapon Components" [colour=lightsteelblue2 shape=box]
+		"Scanning Arrays" [colour=orange1 shape=box]
+		Claytronics [colour=lightsteelblue2 shape=box]
+		"Advanced Electronics" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 6 {
 		cluster=true label="Tier 6 (Equipment)"
-		"Ship Hulls" [colour=lightsteelblue2]
-		"Nav Beacons" [colour=lightsteelblue2]
-		Missiles [colour=lightsteelblue2]
-		"Station modules" [colour=hotpink1]
-		Engines [colour=hotpink1]
-		Thrusters [colour=hotpink1]
-		Mines [colour=lightsteelblue2]
-		Drones [colour=lightsteelblue2]
-		"Laser Towers" [colour=lightsteelblue2]
-		Shields [colour=hotpink1]
-		Turrets [colour=hotpink1]
-		"Guns and Launchers" [colour=hotpink1]
-		Satellites [colour=lightsteelblue2]
+		"Ship Hulls" [colour=lightsteelblue2 shape=box]
+		"Nav Beacons" [colour=lightsteelblue2 shape=box]
+		Missiles [colour=lightsteelblue2 shape=box]
+		"Station modules" [colour=hotpink1 shape=box]
+		Engines [colour=hotpink1 shape=box]
+		Thrusters [colour=hotpink1 shape=box]
+		Mines [colour=lightsteelblue2 shape=box]
+		Drones [colour=lightsteelblue2 shape=box]
+		"Laser Towers" [colour=lightsteelblue2 shape=box]
+		Shields [colour=hotpink1 shape=box]
+		Turrets [colour=hotpink1 shape=box]
+		"Guns and Launchers" [colour=hotpink1 shape=box]
+		Satellites [colour=lightsteelblue2 shape=box]
 	}
 	"Metallic Microlattice" -- "Silicon Carbide" [color=slategray4 constraint=true]
 	"Engine Parts" -- "Drone Components" [color=slategray4 constraint=true]

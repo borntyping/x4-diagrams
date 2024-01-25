@@ -114,7 +114,7 @@ class PlotlyWriter:
 class GraphvizWriter:
     output_directory: pathlib.Path
 
-    def dot(self, economy: EconomyGraph) -> str:
+    def dot(self, economy: EconomyGraph) -> graphviz.Graph:
         fontname = "Helvetica,Arial,sans-serif"
         g = graphviz.Graph("X4 Economy")
         g.attr(fontname=fontname, compound="true")
@@ -143,22 +143,30 @@ class GraphvizWriter:
             with g.subgraph(name=str(tier.level)) as s:
                 s.attr(label=str(tier), cluster="true")
                 for resource in tier.wares:
-                    s.node(resource.name, colour=resource.fillcolor())
+                    s.node(resource.name, colour=resource.fillcolor(), shape="box")
 
         resources = economy.resources()
         for output_resource in resources.values():
             for production in output_resource.production:
                 for input_resource_id, amount in production.wares.items():
                     input_resource = resources[input_resource_id]
-                    constraint = self.recipe_constraint(production.method, input_resource.name, output_resource.name)
-                    color = self.recipe_color(production.method, input_resource.name, output_resource.name)
+                    constraint = self.recipe_constraint(
+                        production.method,
+                        input_resource.name,
+                        output_resource.name,
+                    )
+                    color = self.recipe_color(
+                        production.method,
+                        input_resource.name,
+                        output_resource.name,
+                    )
                     g.edge(
                         input_resource.name,
                         output_resource.name,
                         constraint=constraint,
                         color=color,
                     )
-        return g.source
+        return g
 
     @staticmethod
     def recipe_constraint(recipe: str, input_resource_name: str, output_resource_name: str) -> str:
@@ -189,10 +197,11 @@ class GraphvizWriter:
         return "slategray4"
 
     def __call__(self, filename: str, economy: EconomyGraph) -> None:
+        graph = self.dot(economy=economy)
         self.output_directory.mkdir(exist_ok=True)
-        path = self.output_directory / filename
-        path.write_text(self.dot(economy=economy))
-        logger.info("Drew economy graph with graphviz", filename=filename)
+
+        output = graph.render(directory=self.output_directory, filename=filename, format="png")
+        logger.info("Drew economy graph with graphviz", output=output)
 
 
 @click.command(name="economy")
@@ -218,15 +227,15 @@ def main(output_directory: pathlib.Path):
     equipment = economy.include_tiers({6})
     construction = economy.include_tiers({3, 4, 5, 6})
 
-    p = PlotlyWriter(output_directory=output_directory / "plotly")
-    p("economy-food-and-drugs.png", food_and_drugs, title_text="Food & Drugs")
-    p("economy-3-refined.png", refined, title_text="Refined")
-    p("economy-4-advanced.png", advanced, title_text="Advanced")
-    p("economy-5-components.png", components, title_text="Components")
-    p("economy-6-equipment.png", equipment, title_text="Equipment")
-    p("economy-construction.png", construction, title_text="Construction")
+    p = PlotlyWriter(output_directory=output_directory / "sankey")
+    p("economy-food-and-drugs.png", food_and_drugs, title_text="Tier 1–2: Food & Drugs")
+    p("economy-3-refined.png", refined, title_text="Tier 3: Refined")
+    p("economy-4-advanced.png", advanced, title_text="Tier 4: Advanced")
+    p("economy-5-components.png", components, title_text="Tier 5: Components")
+    p("economy-6-equipment.png", equipment, title_text="Tier 6: Equipment")
+    p("economy-construction.png", construction, title_text="Tier 3–6: Ship and Station construction")
 
-    g = GraphvizWriter(output_directory=output_directory / "graphviz")
+    g = GraphvizWriter(output_directory=output_directory / "graph")
     g("economy-food-and-drugs.dot", food_and_drugs)
     g("economy-3-refined.dot", refined)
     g("economy-4-advanced.dot", advanced)

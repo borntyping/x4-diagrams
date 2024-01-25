@@ -3,16 +3,22 @@ x4-diagrams
 
 Diagrams illustrating [X4] faction relationships and economy flows.
 
-| Graphviz                                                                |                                                                     |
-|-------------------------------------------------------------------------|---------------------------------------------------------------------|
-| ![economy-food-and-drugs.png](docs/graphviz/economy-food-and-drugs.png) | ![economy-3-refined.png](docs/graphviz/economy-3-refined.png)       |
-| ![economy-4-advanced.png](docs/graphviz/economy-4-advanced.png)         | ![economy-5-components.png](docs/graphviz/economy-5-components.png) |
-| ![economy-6-equipment.png](docs/graphviz/economy-6-equipment.png)       |                                                                     |
+## Graphs
 
+<img src="./docs/graph/economy-3-refined.png" alt="" style="width: 500px;">
+<img src="./docs/graph/economy-4-advanced.png" alt="" style="width: 500px;">
+<img src="./docs/graph/economy-5-components.png" alt="" style="width: 500px;">
+<img src="./docs/graph/economy-6-equipment.png" alt="" style="width: 500px;">
+<img src="./docs/graph/economy-food-and-drugs.png" alt="" style="width: 500px;">
 
-| Plotly                                                                |                                                                   |
-|-----------------------------------------------------------------------|-------------------------------------------------------------------|
-| ![economy-food-and-drugs.png](docs/plotly/economy-food-and-drugs.png) | ![economy-construction.png](docs/plotly/economy-construction.png) |
+## Sankey diagrams
+
+<img src="./docs/sankey/economy-construction.png" alt="" style="width: 500px;">
+<img src="./docs/sankey/economy-food-and-drugs.png" alt="" style="width: 500px;">
+<img src="./docs/sankey/economy-3-refined.png" alt="" style="width: 500px;">
+<img src="./docs/sankey/economy-4-advanced.png" alt="" style="width: 500px;">
+<img src="./docs/sankey/economy-5-components.png" alt="" style="width: 500px;">
+<img src="./docs/sankey/economy-6-equipment.png" alt="" style="width: 500px;">
 
 Usage
 -----

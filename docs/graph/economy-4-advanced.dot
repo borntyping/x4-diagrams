@@ -5,12 +5,12 @@ graph "X4 Economy" {
 	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
 	subgraph 0 {
 		cluster=true label="Tier 0 (Harvested)"
-		Helium [colour=lightsteelblue2]
-		Methane [colour=lightsteelblue2]
-		Ore [colour=lightsteelblue2]
-		Hydrogen [colour=lightsteelblue2]
-		Silicon [colour=lightsteelblue2]
-		"Scrap Metal" [colour=lightsteelblue2]
+		Helium [colour=lightsteelblue2 shape=box]
+		Methane [colour=lightsteelblue2 shape=box]
+		Ore [colour=lightsteelblue2 shape=box]
+		Hydrogen [colour=lightsteelblue2 shape=box]
+		Silicon [colour=lightsteelblue2 shape=box]
+		"Scrap Metal" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 1 {
 		cluster=true label="Tier 1 (Basic Food)"
@@ -20,25 +20,25 @@ graph "X4 Economy" {
 	}
 	subgraph 3 {
 		cluster=true label="Tier 3 (Refined)"
-		"Superfluid Coolant" [colour=lightsteelblue2]
-		Graphene [colour=lightsteelblue2]
-		"Refined Metals" [colour=lightsteelblue2]
-		Teladianium [colour=lightsteelblue2]
-		"Antimatter Cells" [colour=lightsteelblue2]
-		"Silicon Wafers" [colour=lightsteelblue2]
-		"Computronic Substrate" [colour=lightsteelblue2]
-		"Metallic Microlattice" [colour=lightsteelblue2]
+		"Superfluid Coolant" [colour=lightsteelblue2 shape=box]
+		Graphene [colour=lightsteelblue2 shape=box]
+		"Refined Metals" [colour=lightsteelblue2 shape=box]
+		Teladianium [colour=lightsteelblue2 shape=box]
+		"Antimatter Cells" [colour=lightsteelblue2 shape=box]
+		"Silicon Wafers" [colour=lightsteelblue2 shape=box]
+		"Computronic Substrate" [colour=lightsteelblue2 shape=box]
+		"Metallic Microlattice" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 4 {
 		cluster=true label="Tier 4 (Advanced)"
-		"Plasma Conductors" [colour=lightsteelblue2]
-		"Quantum Tubes" [colour=lightsteelblue2]
-		"Advanced Composites" [colour=lightsteelblue2]
-		"Hull Parts" [colour=lightsteelblue2]
-		"Engine Parts" [colour=lightsteelblue2]
-		Microchips [colour=lightsteelblue2]
-		"Smart Chips" [colour=lightsteelblue2]
-		"Silicon Carbide" [colour=lightsteelblue2]
+		"Plasma Conductors" [colour=lightsteelblue2 shape=box]
+		"Quantum Tubes" [colour=lightsteelblue2 shape=box]
+		"Advanced Composites" [colour=lightsteelblue2 shape=box]
+		"Hull Parts" [colour=lightsteelblue2 shape=box]
+		"Engine Parts" [colour=lightsteelblue2 shape=box]
+		Microchips [colour=lightsteelblue2 shape=box]
+		"Smart Chips" [colour=lightsteelblue2 shape=box]
+		"Silicon Carbide" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 5 {
 		cluster=true label="Tier 5 (Components)"

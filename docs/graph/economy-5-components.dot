@@ -5,7 +5,7 @@ graph "X4 Economy" {
 	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
 	subgraph 0 {
 		cluster=true label="Tier 0 (Harvested)"
-		"Scrap Metal" [colour=lightsteelblue2]
+		"Scrap Metal" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 1 {
 		cluster=true label="Tier 1 (Basic Food)"
@@ -15,32 +15,32 @@ graph "X4 Economy" {
 	}
 	subgraph 3 {
 		cluster=true label="Tier 3 (Refined)"
-		"Refined Metals" [colour=lightsteelblue2]
-		Teladianium [colour=lightsteelblue2]
-		"Antimatter Cells" [colour=lightsteelblue2]
-		"Silicon Wafers" [colour=lightsteelblue2]
+		"Refined Metals" [colour=lightsteelblue2 shape=box]
+		Teladianium [colour=lightsteelblue2 shape=box]
+		"Antimatter Cells" [colour=lightsteelblue2 shape=box]
+		"Silicon Wafers" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 4 {
 		cluster=true label="Tier 4 (Advanced)"
-		"Plasma Conductors" [colour=lightsteelblue2]
-		"Quantum Tubes" [colour=lightsteelblue2]
-		"Advanced Composites" [colour=lightsteelblue2]
-		"Hull Parts" [colour=lightsteelblue2]
-		"Engine Parts" [colour=lightsteelblue2]
-		Microchips [colour=lightsteelblue2]
+		"Plasma Conductors" [colour=lightsteelblue2 shape=box]
+		"Quantum Tubes" [colour=lightsteelblue2 shape=box]
+		"Advanced Composites" [colour=lightsteelblue2 shape=box]
+		"Hull Parts" [colour=lightsteelblue2 shape=box]
+		"Engine Parts" [colour=lightsteelblue2 shape=box]
+		Microchips [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 5 {
 		cluster=true label="Tier 5 (Components)"
-		"Drone Components" [colour=lightsteelblue2]
-		"Turret Components" [colour=lightsteelblue2]
-		"Missile Components" [colour=lightsteelblue2]
-		"Field Coils" [colour=lightsteelblue2]
-		"Shield Components" [colour=lightsteelblue2]
-		"Antimatter Converters" [colour=lightsteelblue2]
-		"Weapon Components" [colour=lightsteelblue2]
-		"Scanning Arrays" [colour=orange1]
-		Claytronics [colour=lightsteelblue2]
-		"Advanced Electronics" [colour=lightsteelblue2]
+		"Drone Components" [colour=lightsteelblue2 shape=box]
+		"Turret Components" [colour=lightsteelblue2 shape=box]
+		"Missile Components" [colour=lightsteelblue2 shape=box]
+		"Field Coils" [colour=lightsteelblue2 shape=box]
+		"Shield Components" [colour=lightsteelblue2 shape=box]
+		"Antimatter Converters" [colour=lightsteelblue2 shape=box]
+		"Weapon Components" [colour=lightsteelblue2 shape=box]
+		"Scanning Arrays" [colour=orange1 shape=box]
+		Claytronics [colour=lightsteelblue2 shape=box]
+		"Advanced Electronics" [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 6 {
 		cluster=true label="Tier 6 (Equipment)"
