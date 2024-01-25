@@ -1,13 +1,12 @@
 import dataclasses
 import itertools
-import pathlib
 import typing
 
-import click
 import graphviz
 
+from x4 import docs
 from x4.types import Faction
-from x4_data.factions import FACTIONS, ALIENS, PIRATES
+from x4_data.factions import ALIENS, FACTIONS, PIRATES
 
 
 def factions_grouped_by_race() -> typing.Sequence[typing.Tuple[str, list[Faction]]]:
@@ -86,14 +85,8 @@ def graph(
     return dot.unflatten(stagger=2).source
 
 
-@click.command(name="factions")
-@click.option(
-    "--output-directory",
-    default="output",
-    type=click.Path(exists=False, file_okay=False, dir_okay=True, writable=True, path_type=pathlib.Path),
-)
-def main(output_directory: pathlib.Path) -> None:
-    (output_directory / "factions.dot").write_text(graph())
+def main() -> None:
+    (docs / "factions.dot").write_text(graph())
 
 
 if __name__ == "__main__":

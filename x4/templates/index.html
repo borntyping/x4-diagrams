@@ -13,7 +13,7 @@
   <style>
     .cards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-auto-rows: 1fr;
       grid-gap: 1em;
     }
@@ -29,24 +29,43 @@
   </style>
 </head>
 <body>
-  <article class="paper container container-lg">
+  <article class="paper container container-lg margin-top-large margin-bottom-large">
     <section>
-      <h1>X4 Diagrams</h1>
-
-      <p>Created by <a href="https://borntyping.co.uk">@borntyping</a>.</p>
-      <p>Source code at
+      <h1 class="margin-top-none">X4 Diagrams</h1>
+      <p>
+        Created by
+        <a href="https://borntyping.co.uk">@borntyping</a>. Source code at
         <a href="https://github.com/borntyping/x4-diagrams">github.com/borntyping/x4-diagrams</a>.
       </p>
+      <p>
+        This project is entirely unaffiliated with Egosoft. Go buy
+        <a href="https://store.steampowered.com/app/392160/X4_Foundations/">X4: Foundations</a>.
+      </p>
+      <p>
+        Created with
+        <a href="https://graphviz.org/">GraphViz</a>,
+        <a href="https://plotly.com/graphing-libraries/">Plotly Graphing Libraries</a>,
+        <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a>,
+        and
+        <a href="https://www.structlog.org/en/stable/">structlog</a>. </p>
     </section>
 
     <section>
-      <h2>Production</h2>
+      <h2 id="Production">Production</h2>
 
-      {% for group, group_diagrams in diagrams|groupby("group") %}
-        <h3>{{ group }}</h3>
+      <ol>
+        {% for group, group_diagrams in groups.items() %}
+          <li>
+            <a href="#{{ group }}">{{ group }}</a>
+          </li>
+        {% endfor %}
+      </ol>
+
+      {% for group, diagrams in groups.items() %}
+        <h3 id="{{ group }}">{{ group }}</h3>
         <div class="cards">
-          {% for diagram in group_diagrams %}
-            <div class="card">
+          {% for diagram in diagrams %}
+            <div id="{{ diagram.title }}" class="card">
               <img src="{{ diagram.image }}" alt="{{ diagram.image }}">
               <div class="card-body">
                 <h4 class="card-title">{{ diagram.title }}</h4>

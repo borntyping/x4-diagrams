@@ -1,5 +1,6 @@
 economy:
-  rm -rf docs/graph/ docs/sankey/
+  @rm -r "docs/"
+  @mkdir "docs/"
   poetry run python -m x4.economy
 
 test:

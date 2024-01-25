@@ -15,9 +15,6 @@ graph "X4 Economy" {
 		"Sunrise Flowers" [colour=lightsteelblue2 shape=box]
 		"Swamp Plant" [colour=lightsteelblue2 shape=box]
 		Wheat [colour=lightsteelblue2 shape=box]
-		"Chelt Meat" [colour=lightsteelblue2 shape=box]
-		"Scruffin Fruit" [colour=lightsteelblue2 shape=box]
-		"Protein Paste" [colour=lightsteelblue2 shape=box]
 		Plankton [colour=lightsteelblue2 shape=box]
 		BoGas [colour=lightsteelblue2 shape=box]
 	}
@@ -30,8 +27,6 @@ graph "X4 Economy" {
 		Spaceweed [colour=lightsteelblue2 shape=box]
 		"Nostrop Oil" [colour=lightsteelblue2 shape=box]
 		"Medical Supplies" [colour=lightsteelblue2 shape=box]
-		"Terran MRE" [colour=lightsteelblue2 shape=box]
-		Stimulants [colour=lightsteelblue2 shape=box]
 		BoFu [colour=lightsteelblue2 shape=box]
 	}
 	subgraph 3 {
@@ -46,4 +41,21 @@ graph "X4 Economy" {
 	subgraph 6 {
 		cluster=true label="Tier 6 (Equipment)"
 	}
+	Wheat -- Spacefuel [color=slategray4 constraint=true]
+	Meat -- "Food Rations" [color=slategray4 constraint=true]
+	Spices -- "Food Rations" [color=slategray4 constraint=true]
+	Wheat -- "Food Rations" [color=slategray4 constraint=true]
+	"Maja Snails" -- "Maja Dust" [color=slategray4 constraint=true]
+	Spices -- "Maja Dust" [color=slategray4 constraint=true]
+	"Maja Snails" -- "Soja Husk" [color=slategray4 constraint=true]
+	"Soja Beans" -- "Soja Husk" [color=slategray4 constraint=true]
+	Spices -- "Soja Husk" [color=slategray4 constraint=true]
+	Spices -- Spaceweed [color=goldenrod constraint=true]
+	"Swamp Plant" -- Spaceweed [color=goldenrod constraint=true]
+	Spices -- "Nostrop Oil" [color=goldenrod constraint=true]
+	"Sunrise Flowers" -- "Nostrop Oil" [color=goldenrod constraint=true]
+	Spices -- "Medical Supplies" [color=azure2 constraint=false]
+	Wheat -- "Medical Supplies" [color=azure2 constraint=false]
+	BoGas -- BoFu [color=slategray4 constraint=true]
+	Plankton -- BoFu [color=slategray4 constraint=true]
 }

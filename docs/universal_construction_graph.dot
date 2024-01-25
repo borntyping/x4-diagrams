@@ -67,7 +67,6 @@ graph "X4 Economy" {
 		"Guns and Launchers" [colour=hotpink1 shape=box]
 		Satellites [colour=lightsteelblue2 shape=box]
 	}
-	Ice -- Water [color=slategray4 constraint=true]
 	Helium -- "Superfluid Coolant" [color=slategray4 constraint=true]
 	Methane -- Graphene [color=slategray4 constraint=true]
 	Ore -- "Refined Metals" [color=slategray4 constraint=true]

@@ -4,7 +4,7 @@ from x4.types import Method, Recipe, Ware, Tier
 
 UNDEFINED = 10
 
-COMMONWEALTH_METHODS: typing.Sequence[Method] = [
+COMMONWEALTH: typing.Sequence[Method] = [
     "Universal",
     "Argon",
     "Boron",

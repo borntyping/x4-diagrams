@@ -10,7 +10,6 @@ graph "X4 Economy" {
 		Ore [colour=lightsteelblue2 shape=box]
 		Hydrogen [colour=lightsteelblue2 shape=box]
 		Silicon [colour=lightsteelblue2 shape=box]
-		Ice [colour=lightsteelblue2 shape=box]
 		"Raw Scrap" [colour=lightsteelblue2 shape=box]
 		"Scrap Metal" [colour=lightsteelblue2 shape=box]
 		Water [colour=lightsteelblue2 shape=box]
@@ -72,7 +71,6 @@ graph "X4 Economy" {
 		Satellites [colour=lightsteelblue2 shape=box]
 	}
 	"Raw Scrap" -- "Scrap Metal" [color=slategray4 constraint=true]
-	Ice -- Water [color=slategray4 constraint=true]
 	Helium -- "Superfluid Coolant" [color=slategray4 constraint=true]
 	Methane -- Graphene [color=slategray4 constraint=true]
 	Ore -- "Refined Metals" [color=slategray4 constraint=true]
