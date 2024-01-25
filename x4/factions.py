@@ -8,7 +8,6 @@ import graphviz
 
 from x4.types import Faction
 from x4_data.factions import FACTIONS, ALIENS, PIRATES
-from x4_data.races import Race
 
 
 def factions_grouped_by_race() -> typing.Sequence[typing.Tuple[str, list[Faction]]]:

@@ -8,49 +8,107 @@ import graphviz
 import plotly.graph_objs
 import structlog
 
-from x4.types import Method, Ware, Tier
+from x4.logs import configure_structlog_once
+from x4.types import Economy, Method
 from x4_data.economy import TIERS
 
 
-logger = structlog.get_logger()
+logger = structlog.get_logger(logger_name=__name__)
 
 
-@dataclasses.dataclass(frozen=True)
-class EconomyGraph:
-    tiers: typing.Sequence[Tier]
-    selected_variant: str = "Universal"
+@dataclasses.dataclass(frozen=True, repr=False)
+class EconomyGraph(Economy):
+    names: typing.Tuple[str, ...] = ()
 
-    def resources(self) -> typing.Mapping[str, Ware]:
-        return {resource.identifier: resource for tier in self.tiers for resource in tier.wares}
+    def __repr__(self):
+        return "Economy<{}, {} tiers, {} wares>".format(
+            self.title(),
+            len(self.tiers),
+            len(self.wares()),
+        )
 
-    def select_recipe(self, variant: str) -> typing.Self:
-        return dataclasses.replace(self, selected_variant=variant)
+    def __str__(self) -> str:
+        return self.title()
 
-    def include_tiers(self, levels: set[int]) -> typing.Self:
-        logger.debug("Filtering economy graph by tier", include_tiers=levels)
-        resources = self.resources()
-        tiers = [t for t in self.tiers if t.level in levels]
+    def filename(self) -> str:
+        return "-".join([x.lower() for x in self.names])
 
-        # Select resources in the given tiers.
-        selected = {r.identifier for t in tiers for r in t.wares}
+    def title(self) -> str:
+        return " ".join(self.names)
 
-        # Select the dependencies of those resources.
-        dependencies = {i for i in selected for i in resources[i].dependencies()}
+    def consumption(self) -> typing.Self:
+        return self.filter(names=["Consumption"], include_tier_keys={1, 2})
 
-        include = selected | dependencies
-        tiers = [t.filter_resources(include=include, exclude=set()) for t in self.tiers]
-        return dataclasses.replace(self, tiers=tiers)
+    def construction(self) -> typing.Self:
+        return self.filter(names=["Construction"], include_tier_keys={3, 4, 5, 6})
 
-    def include_methods(self, method: Method) -> typing.Self:
-        logger.debug("Filtering economy graph by build method", method=method)
-        tiers = [t.filter_methods(method=method) for t in self.tiers]
-        return dataclasses.replace(self, tiers=tiers)
+    def harvested(self) -> typing.Self:
+        return self.filter(names=["Harvested"], include_tier_keys={0})
 
-    def exclude_resources(self, exclude: set[str] = frozenset()) -> typing.Self:
-        logger.debug("Filtering economy graph by resource")
-        include = {r for r in self.resources()}
-        tiers = [t.filter_resources(include=include, exclude=exclude) for t in self.tiers]
-        return dataclasses.replace(self, tiers=tiers)
+    def basic_food(self) -> typing.Self:
+        return self.filter(names=["Basic Food"], include_tier_keys={1})
+
+    def food_and_drugs(self) -> typing.Self:
+        return self.filter(names=["Food and Drugs"], include_tier_keys={2})
+
+    def refined(self) -> typing.Self:
+        return self.filter(names=["Refined"], include_tier_keys={3})
+
+    def components(self) -> typing.Self:
+        return self.filter(names=["Components"], include_tier_keys={5})
+
+    def advanced(self) -> typing.Self:
+        return self.filter(names=["Advanced"], include_tier_keys={4})
+
+    def equipment(self) -> typing.Self:
+        return self.filter(names=["Equipment"], include_tier_keys={6})
+
+    def terminal(self) -> typing.Self:
+        return self.filter(names=["Terminal"], include_tier_keys={7})
+
+    def universal(self) -> typing.Self:
+        return self.filter(names=["Universal"], methods=["Universal"])
+
+    def terran(self) -> typing.Self:
+        return self.filter(names=["Terran"], methods=["Terran"])
+
+    def add_names(self, names: list[str]) -> typing.Self:
+        return dataclasses.replace(self, names=(*self.names, *names))
+
+    def filter(
+        old,
+        names: list[str],
+        methods: list[Method] | None = None,
+        exclusive: bool = False,
+        include_tier_keys: set[int] | None = None,
+    ) -> typing.Self:
+        new = old.add_names(names)
+
+        logger.debug(
+            "Filtering economy",
+            title=new.title(),
+            methods=methods,
+            exclusive=exclusive,
+            filter_tiers=include_tier_keys,
+        )
+
+        if include_tier_keys is not None:
+            new = new.include_tiers(include_tier_keys)
+
+        if methods is not None:
+            new = new.filter_production_methods_and_unused_wares(methods)
+
+        new.validate()
+
+        logger.info(
+            "Filtered economy",
+            title=new.title(),
+            methods=methods,
+            exclusive=exclusive,
+            filter_tiers=include_tier_keys,
+        )
+
+        return new
 
 
 @dataclasses.dataclass(frozen=True)
@@ -65,10 +123,11 @@ class PlotlyWriter:
         label: str
         color: str
 
-    def plot(self, economy: EconomyGraph, title_text: str):
-        resources = {resource.identifier: resource for tier in economy.tiers for resource in tier.wares}
+    def plot(self, economy: EconomyGraph):
+        resources = {resource.key: resource for tier in economy.tiers for resource in tier.wares}
+
         if not resources:
-            exit()
+            raise Exception("Economy contains no resources")
 
         labels = [resource.name for resource in resources.values()]
         links = [
@@ -89,7 +148,7 @@ class PlotlyWriter:
             data=plotly.graph_objs.Sankey(
                 arrangement="snap",
                 node={
-                    "label": [resource.name for resource in economy.resources().values()],
+                    "label": [resource.name for resource in economy.wares().values()],
                 },
                 link={
                     "source": [link.source for link in links],
@@ -100,21 +159,27 @@ class PlotlyWriter:
                 },
             )
         )
-        figure.update_layout(title_text=title_text)
+        figure.update_layout(title_text=economy.title())
         return figure
 
-    def __call__(self, filename: str, economy: EconomyGraph, title_text: str) -> None:
+    def render(self, economy: typing.Iterable[EconomyGraph]) -> typing.Iterable[pathlib.Path]:
         self.output_directory.mkdir(exist_ok=True)
-        path = self.output_directory / filename
-        self.plot(economy=economy, title_text=title_text).write_image(path.as_posix())
-        logger.info("Drew economy graph with plotly", title_text=title_text, filename=filename)
+        for economy in economy:
+            path = self.output_directory / f"{economy.filename()}.png"
+            self.plot(economy=economy).write_image(path.as_posix())
+            logger.warning(
+                "Drew economy with plotly",
+                economy=economy.title(),
+                path=path.as_posix(),
+            )
+            yield pathlib.Path(path)
 
 
 @dataclasses.dataclass(frozen=True)
 class GraphvizWriter:
     output_directory: pathlib.Path
 
-    def dot(self, economy: EconomyGraph) -> graphviz.Graph:
+    def dot(self, economy: Economy) -> graphviz.Graph:
         fontname = "Helvetica,Arial,sans-serif"
         g = graphviz.Graph("X4 Economy")
         g.attr(fontname=fontname, compound="true")
@@ -145,7 +210,7 @@ class GraphvizWriter:
                 for resource in tier.wares:
                     s.node(resource.name, colour=resource.fillcolor(), shape="box")
 
-        resources = economy.resources()
+        resources = economy.wares()
         for output_resource in resources.values():
             for production in output_resource.production:
                 for input_resource_id, amount in production.wares.items():
@@ -196,12 +261,42 @@ class GraphvizWriter:
                 return "goldenrod"
         return "slategray4"
 
-    def __call__(self, filename: str, economy: EconomyGraph) -> None:
-        graph = self.dot(economy=economy)
+    def render(self, economies: typing.Iterable[EconomyGraph]) -> typing.Iterable[pathlib.Path]:
         self.output_directory.mkdir(exist_ok=True)
+        for economy in economies:
+            dot = self.dot(economy=economy)
+            path = dot.render(
+                directory=self.output_directory,
+                filename=f"{economy.filename()}.dot",
+                outfile=self.output_directory / f"{economy.filename()}.png",
+                format="png",
+            )
+            logger.info("Drew economy with graphviz", economy=economy, path=path)
+            yield pathlib.Path(path)
 
-        output = graph.render(directory=self.output_directory, filename=filename, format="png")
-        logger.info("Drew economy graph with graphviz", output=output)
+
+def breakdown() -> typing.Sequence[EconomyGraph]:
+    economy = EconomyGraph(TIERS)
+    economy = economy.remove_production_input("energy_cells")
+    economy = economy.remove_production_input("water")
+
+    universal_consumption = economy.universal().consumption()
+    universal_construction = economy.universal().construction()
+
+    terran_consumption = economy.terran().consumption()
+    terran_construction = economy.terran().construction()
+
+    teladi_consumption = economy.filter(names=["Teladi"], methods=["Teladi"]).consumption()
+    teladi_construction = economy.filter(names=["Teladi"], methods=["Teladi", "Universal"]).construction()
+
+    return [
+        universal_consumption,
+        universal_construction,
+        terran_consumption,
+        terran_construction,
+        teladi_consumption,
+        teladi_construction,
+    ]
 
 
 @click.command(name="economy")
@@ -217,32 +312,19 @@ class GraphvizWriter:
     ),
 )
 def main(output_directory: pathlib.Path):
-    economy = EconomyGraph(tiers=TIERS)
-    economy = economy.exclude_resources({"energy_cells"})
+    writers = [
+        PlotlyWriter(output_directory=output_directory / "sankey"),
+        GraphvizWriter(output_directory=output_directory / "graphs"),
+    ]
 
-    food_and_drugs = economy.include_tiers({1, 2})
-    refined = economy.include_tiers({3})
-    advanced = economy.include_tiers({3, 4})
-    components = economy.include_tiers({5})
-    equipment = economy.include_tiers({6})
-    construction = economy.include_tiers({3, 4, 5, 6})
+    economies = breakdown()
 
-    p = PlotlyWriter(output_directory=output_directory / "sankey")
-    p("economy-food-and-drugs.png", food_and_drugs, title_text="Tier 1–2: Food & Drugs")
-    p("economy-3-refined.png", refined, title_text="Tier 3: Refined")
-    p("economy-4-advanced.png", advanced, title_text="Tier 4: Advanced")
-    p("economy-5-components.png", components, title_text="Tier 5: Components")
-    p("economy-6-equipment.png", equipment, title_text="Tier 6: Equipment")
-    p("economy-construction.png", construction, title_text="Tier 3–6: Ship and Station construction")
+    paths = [path for writer in writers for path in writer.render(economies)]
 
-    g = GraphvizWriter(output_directory=output_directory / "graph")
-    g("economy-food-and-drugs.dot", food_and_drugs)
-    g("economy-3-refined.dot", refined)
-    g("economy-4-advanced.dot", advanced)
-    g("economy-5-components.dot", components)
-    g("economy-6-equipment.dot", equipment)
+    for path in paths:
+        print(f'<img src="{path}" alt="{path.name}" style="width: 500px;">')
 
 
 if __name__ == "__main__":
-    structlog.stdlib.recreate_defaults(log_level=logging.INFO)
+    configure_structlog_once()
     main()

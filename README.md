@@ -3,22 +3,23 @@ x4-diagrams
 
 Diagrams illustrating [X4] faction relationships and economy flows.
 
-## Graphs
-
-<img src="./docs/graph/economy-3-refined.png" alt="" style="width: 500px;">
-<img src="./docs/graph/economy-4-advanced.png" alt="" style="width: 500px;">
-<img src="./docs/graph/economy-5-components.png" alt="" style="width: 500px;">
-<img src="./docs/graph/economy-6-equipment.png" alt="" style="width: 500px;">
-<img src="./docs/graph/economy-food-and-drugs.png" alt="" style="width: 500px;">
-
 ## Sankey diagrams
 
-<img src="./docs/sankey/economy-construction.png" alt="" style="width: 500px;">
-<img src="./docs/sankey/economy-food-and-drugs.png" alt="" style="width: 500px;">
-<img src="./docs/sankey/economy-3-refined.png" alt="" style="width: 500px;">
-<img src="./docs/sankey/economy-4-advanced.png" alt="" style="width: 500px;">
-<img src="./docs/sankey/economy-5-components.png" alt="" style="width: 500px;">
-<img src="./docs/sankey/economy-6-equipment.png" alt="" style="width: 500px;">
+<img src="docs/sankey/universal-consumption.png" alt="universal-consumption.png" style="width: 500px;">
+<img src="docs/sankey/universal-construction.png" alt="universal-construction.png" style="width: 500px;">
+<img src="docs/sankey/terran-consumption.png" alt="terran-consumption.png" style="width: 500px;">
+<img src="docs/sankey/terran-construction.png" alt="terran-construction.png" style="width: 500px;">
+<img src="docs/sankey/teladi-consumption.png" alt="teladi-consumption.png" style="width: 500px;">
+<img src="docs/sankey/teladi-construction.png" alt="teladi-construction.png" style="width: 500px;">
+
+## Graphs
+
+<img src="docs/graphs/universal-consumption.png" alt="universal-consumption.png" style="width: 500px;">
+<img src="docs/graphs/universal-construction.png" alt="universal-construction.png" style="width: 500px;">
+<img src="docs/graphs/terran-consumption.png" alt="terran-consumption.png" style="width: 500px;">
+<img src="docs/graphs/terran-construction.png" alt="terran-construction.png" style="width: 500px;">
+<img src="docs/graphs/teladi-consumption.png" alt="teladi-consumption.png" style="width: 500px;">
+<img src="docs/graphs/teladi-construction.png" alt="teladi-construction.png" style="width: 500px;">
 
 Usage
 -----

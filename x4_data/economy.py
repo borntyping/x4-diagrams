@@ -8,7 +8,7 @@ TIERS = [
         name="Harvested",
         wares=[
             Ware(
-                identifier="helium",
+                key="helium",
                 name="Helium",
                 volume=6,
                 storage="Liquid",
@@ -18,7 +18,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="methane",
+                key="methane",
                 name="Methane",
                 volume=6,
                 storage="Liquid",
@@ -28,7 +28,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="ore",
+                key="ore",
                 name="Ore",
                 volume=10,
                 storage="Solid",
@@ -38,7 +38,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="hydrogen",
+                key="hydrogen",
                 name="Hydrogen",
                 volume=6,
                 storage="Liquid",
@@ -48,7 +48,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="silicon",
+                key="silicon",
                 name="Silicon",
                 volume=10,
                 storage="Solid",
@@ -58,7 +58,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="nividium",
+                key="nividium",
                 name="Nividium",
                 volume=10,
                 storage="Solid",
@@ -68,7 +68,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="ice",
+                key="ice",
                 name="Ice",
                 volume=8,
                 storage="Solid",
@@ -78,7 +78,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="raw_scrap",
+                key="raw_scrap",
                 name="Raw Scrap",
                 volume=10,
                 storage="Solid",
@@ -88,7 +88,7 @@ TIERS = [
                 production=[],
             ),
             Ware(
-                identifier="scrap_metal",
+                key="scrap_metal",
                 name="Scrap Metal",
                 volume=10,
                 storage="Solid",
@@ -108,7 +108,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="water",
+                key="water",
                 name="Water",
                 volume=6,
                 storage="Container",
@@ -128,7 +128,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="energy_cells",
+                key="energy_cells",
                 name="Energy Cells",
                 volume=1,
                 storage="Container",
@@ -157,7 +157,7 @@ TIERS = [
         name="Basic Food",
         wares=[
             Ware(
-                identifier="maja_snails",
+                key="maja_snails",
                 name="Maja Snails",
                 volume=6,
                 storage="Container",
@@ -177,7 +177,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="meat",
+                key="meat",
                 name="Meat",
                 volume=6,
                 storage="Container",
@@ -197,7 +197,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="soja_beans",
+                key="soja_beans",
                 name="Soja Beans",
                 volume=5,
                 storage="Container",
@@ -217,7 +217,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="spices",
+                key="spices",
                 name="Spices",
                 volume=3,
                 storage="Container",
@@ -237,7 +237,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="sunrise_flowers",
+                key="sunrise_flowers",
                 name="Sunrise Flowers",
                 volume=5,
                 storage="Container",
@@ -257,7 +257,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="swamp_plant",
+                key="swamp_plant",
                 name="Swamp Plant",
                 volume=6,
                 storage="Container",
@@ -277,7 +277,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="wheat",
+                key="wheat",
                 name="Wheat",
                 volume=4,
                 storage="Container",
@@ -297,7 +297,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="chelt_meat",
+                key="chelt_meat",
                 name="Chelt Meat",
                 volume=7,
                 storage="Container",
@@ -317,7 +317,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="scruffin_fruits",
+                key="scruffin_fruits",
                 name="Scruffin Fruit",
                 volume=6,
                 storage="Container",
@@ -337,7 +337,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="protein_paste",
+                key="protein_paste",
                 name="Protein Paste",
                 volume=4,
                 storage="Container",
@@ -358,7 +358,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="plankton",
+                key="plankton",
                 name="Plankton",
                 volume=1,
                 storage="Container",
@@ -378,7 +378,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="bogas",
+                key="bogas",
                 name="BoGas",
                 volume=4,
                 storage="Container",
@@ -404,7 +404,7 @@ TIERS = [
         name="Food and Drugs",
         wares=[
             Ware(
-                identifier="spacefuel",
+                key="spacefuel",
                 name="Spacefuel",
                 volume=2,
                 storage="Container",
@@ -425,7 +425,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="food_rations",
+                key="food_rations",
                 name="Food Rations",
                 volume=1,
                 storage="Container",
@@ -447,7 +447,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="maja_dust",
+                key="maja_dust",
                 name="Maja Dust",
                 volume=6,
                 storage="Container",
@@ -468,7 +468,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="soja_husk",
+                key="soja_husk",
                 name="Soja Husk",
                 volume=1,
                 storage="Container",
@@ -490,7 +490,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="spaceweed",
+                key="spaceweed",
                 name="Spaceweed",
                 volume=3,
                 storage="Container",
@@ -511,7 +511,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="nostrop_oil",
+                key="nostrop_oil",
                 name="Nostrop Oil",
                 volume=1,
                 storage="Container",
@@ -533,7 +533,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="medical_supplies",
+                key="medical_supplies",
                 name="Medical Supplies",
                 volume=2,
                 storage="Container",
@@ -608,7 +608,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="terran_mre",
+                key="terran_mre",
                 name="Terran MRE",
                 volume=2,
                 storage="Container",
@@ -628,7 +628,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="stimulants",
+                key="stimulants",
                 name="Stimulants",
                 volume=12,
                 storage="Container",
@@ -649,7 +649,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="bofu",
+                key="bofu",
                 name="BoFu",
                 volume=4,
                 storage="Container",
@@ -676,7 +676,7 @@ TIERS = [
         name="Refined",
         wares=[
             Ware(
-                identifier="superfluid_coolant",
+                key="superfluid_coolant",
                 name="Superfluid Coolant",
                 volume=16,
                 storage="Container",
@@ -696,7 +696,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="graphene",
+                key="graphene",
                 name="Graphene",
                 volume=20,
                 storage="Container",
@@ -716,7 +716,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="refined_metals",
+                key="refined_metals",
                 name="Refined Metals",
                 volume=14,
                 storage="Container",
@@ -736,7 +736,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="teladianium",
+                key="teladianium",
                 name="Teladianium",
                 volume=16,
                 storage="Container",
@@ -756,7 +756,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="antimatter_cells",
+                key="antimatter_cells",
                 name="Antimatter Cells",
                 volume=18,
                 storage="Container",
@@ -776,7 +776,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="silicon_wafers",
+                key="silicon_wafers",
                 name="Silicon Wafers",
                 volume=18,
                 storage="Container",
@@ -796,7 +796,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="computronic_substrate",
+                key="computronic_substrate",
                 name="Computronic Substrate",
                 volume=50,
                 storage="Container",
@@ -827,7 +827,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="metallic_microlattice",
+                key="metallic_microlattice",
                 name="Metallic Microlattice",
                 volume=1,
                 storage="Container",
@@ -854,7 +854,7 @@ TIERS = [
         name="Advanced",
         wares=[
             Ware(
-                identifier="plasma_conductors",
+                key="plasma_conductors",
                 name="Plasma Conductors",
                 volume=32,
                 storage="Container",
@@ -875,7 +875,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="quantum_tubes",
+                key="quantum_tubes",
                 name="Quantum Tubes",
                 volume=22,
                 storage="Container",
@@ -896,7 +896,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="advanced_composites",
+                key="advanced_composites",
                 name="Advanced Composites",
                 volume=32,
                 storage="Container",
@@ -927,7 +927,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="hull_parts",
+                key="hull_parts",
                 name="Hull Parts",
                 volume=12,
                 storage="Container",
@@ -967,7 +967,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="engine_parts",
+                key="engine_parts",
                 name="Engine Parts",
                 volume=15,
                 storage="Container",
@@ -998,7 +998,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="microchips",
+                key="microchips",
                 name="Microchips",
                 volume=22,
                 storage="Container",
@@ -1018,7 +1018,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="smart_chips",
+                key="smart_chips",
                 name="Smart Chips",
                 volume=2,
                 storage="Container",
@@ -1038,7 +1038,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="silicon_carbide",
+                key="silicon_carbide",
                 name="Silicon Carbide",
                 volume=20,
                 storage="Container",
@@ -1075,7 +1075,7 @@ TIERS = [
         name="Components",
         wares=[
             Ware(
-                identifier="drone_components",
+                key="drone_components",
                 name="Drone Components",
                 volume=30,
                 storage="Container",
@@ -1098,7 +1098,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="turret_components",
+                key="turret_components",
                 name="Turret Components",
                 volume=20,
                 storage="Container",
@@ -1120,7 +1120,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="missile_components",
+                key="missile_components",
                 name="Missile Components",
                 volume=2,
                 storage="Container",
@@ -1141,7 +1141,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="field_coils",
+                key="field_coils",
                 name="Field Coils",
                 volume=15,
                 storage="Container",
@@ -1162,7 +1162,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="shield_components",
+                key="shield_components",
                 name="Shield Components",
                 volume=10,
                 storage="Container",
@@ -1183,7 +1183,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="antimatter_converters",
+                key="antimatter_converters",
                 name="Antimatter Converters",
                 volume=10,
                 storage="Container",
@@ -1204,7 +1204,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="weapon_components",
+                key="weapon_components",
                 name="Weapon Components",
                 volume=20,
                 storage="Container",
@@ -1225,7 +1225,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="scanning_arrays",
+                key="scanning_arrays",
                 name="Scanning Arrays",
                 volume=38,
                 storage="Container",
@@ -1257,7 +1257,7 @@ TIERS = [
                 colour="orange1",
             ),
             Ware(
-                identifier="claytronics",
+                key="claytronics",
                 name="Claytronics",
                 volume=24,
                 storage="Container",
@@ -1288,7 +1288,7 @@ TIERS = [
                 ],
             ),
             Ware(
-                identifier="advanced_electronics",
+                key="advanced_electronics",
                 name="Advanced Electronics",
                 volume=30,
                 storage="Container",
@@ -1315,7 +1315,7 @@ TIERS = [
         name="Equipment",
         wares=[
             Ware(
-                identifier="ship_hulls",
+                key="ship_hulls",
                 name="Ship Hulls",
                 production=[
                     Production(
@@ -1335,7 +1335,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="nav_beacons",
+                key="nav_beacons",
                 name="Nav Beacons",
                 production=[
                     Production(
@@ -1348,7 +1348,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="missiles",
+                key="missiles",
                 name="Missiles",
                 production=[
                     Production(
@@ -1362,7 +1362,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="station_modules",
+                key="station_modules",
                 name="Station modules",
                 colour="hotpink1",
                 production=[
@@ -1384,7 +1384,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="engines",
+                key="engines",
                 name="Engines",
                 colour="hotpink1",
                 production=[
@@ -1407,7 +1407,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="thrusters",
+                key="thrusters",
                 name="Thrusters",
                 colour="hotpink1",
                 production=[
@@ -1430,7 +1430,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="mines",
+                key="mines",
                 name="Mines",
                 production=[
                     Production(
@@ -1444,7 +1444,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="drones",
+                key="drones",
                 name="Drones",
                 production=[
                     Production(
@@ -1458,7 +1458,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="laser_towers",
+                key="laser_towers",
                 name="Laser Towers",
                 production=[
                     Production(
@@ -1472,7 +1472,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="shields",
+                key="shields",
                 name="Shields",
                 colour="hotpink1",
                 production=[
@@ -1495,7 +1495,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="turrets",
+                key="turrets",
                 name="Turrets",
                 colour="hotpink1",
                 production=[
@@ -1518,7 +1518,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="guns_and_launchers",
+                key="guns_and_launchers",
                 name="Guns and Launchers",
                 colour="hotpink1",
                 production=[
@@ -1541,7 +1541,7 @@ TIERS = [
                 tags={"terminal"},
             ),
             Ware(
-                identifier="satellites",
+                key="satellites",
                 name="Satellites",
                 production=[
                     Production(

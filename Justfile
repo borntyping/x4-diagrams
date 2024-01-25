@@ -1,3 +1,6 @@
 economy:
-  rm -r docs/graph/ docs/sankey/
+  rm -rf docs/graph/ docs/sankey/
   poetry run python -m x4.economy
+
+test:
+  poetry run pytest -v
