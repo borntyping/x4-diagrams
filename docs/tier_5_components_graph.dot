@@ -1,0 +1,72 @@
+graph "X4 Economy" {
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	graph [nodesep=0.3 pad=0.5 ranksep=2]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
+	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
+	subgraph 0 {
+		cluster=true label=Harvested
+		"Energy Cells" [colour=lightsteelblue2 shape=box]
+	}
+	subgraph 3 {
+		cluster=true label=Refined
+		"Refined Metals" [colour=lightsteelblue2 shape=box]
+		"Antimatter Cells" [colour=lightsteelblue2 shape=box]
+		"Silicon Wafers" [colour=lightsteelblue2 shape=box]
+	}
+	subgraph 4 {
+		cluster=true label=Advanced
+		"Plasma Conductors" [colour=lightsteelblue2 shape=box]
+		"Quantum Tubes" [colour=lightsteelblue2 shape=box]
+		"Advanced Composites" [colour=lightsteelblue2 shape=box]
+		"Hull Parts" [colour=lightsteelblue2 shape=box]
+		"Engine Parts" [colour=lightsteelblue2 shape=box]
+		Microchips [colour=lightsteelblue2 shape=box]
+	}
+	subgraph 5 {
+		cluster=true label=Components
+		"Drone Components" [colour=lightsteelblue2 shape=box]
+		"Turret Components" [colour=lightsteelblue2 shape=box]
+		"Missile Components" [colour=lightsteelblue2 shape=box]
+		"Field Coils" [colour=lightsteelblue2 shape=box]
+		"Shield Components" [colour=lightsteelblue2 shape=box]
+		"Antimatter Converters" [colour=lightsteelblue2 shape=box]
+		"Weapon Components" [colour=lightsteelblue2 shape=box]
+		"Scanning Arrays" [colour=orange1 shape=box]
+		Claytronics [colour=lightsteelblue2 shape=box]
+		"Advanced Electronics" [colour=lightsteelblue2 shape=box]
+	}
+	"Energy Cells" -- "Drone Components" [color=azure2 constraint=false]
+	"Engine Parts" -- "Drone Components" [color=slategray4 constraint=true]
+	"Hull Parts" -- "Drone Components" [color=slategray4 constraint=true]
+	Microchips -- "Drone Components" [color=slategray4 constraint=true]
+	"Scanning Arrays" -- "Drone Components" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Turret Components" [color=azure2 constraint=false]
+	Microchips -- "Turret Components" [color=slategray4 constraint=true]
+	"Quantum Tubes" -- "Turret Components" [color=slategray4 constraint=true]
+	"Scanning Arrays" -- "Turret Components" [color=slategray4 constraint=true]
+	"Advanced Composites" -- "Missile Components" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Missile Components" [color=azure2 constraint=false]
+	"Hull Parts" -- "Missile Components" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Field Coils" [color=azure2 constraint=false]
+	"Plasma Conductors" -- "Field Coils" [color=slategray4 constraint=true]
+	"Quantum Tubes" -- "Field Coils" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Shield Components" [color=azure2 constraint=false]
+	"Plasma Conductors" -- "Shield Components" [color=slategray4 constraint=true]
+	"Quantum Tubes" -- "Shield Components" [color=slategray4 constraint=true]
+	"Advanced Composites" -- "Antimatter Converters" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Antimatter Converters" [color=azure2 constraint=false]
+	Microchips -- "Antimatter Converters" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Weapon Components" [color=azure2 constraint=false]
+	"Hull Parts" -- "Weapon Components" [color=slategray4 constraint=true]
+	"Plasma Conductors" -- "Weapon Components" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Scanning Arrays" [color=azure2 constraint=false]
+	"Refined Metals" -- "Scanning Arrays" [color=firebrick constraint=true]
+	"Silicon Wafers" -- "Scanning Arrays" [color=slategray4 constraint=true]
+	"Antimatter Cells" -- Claytronics [color=slategray4 constraint=true]
+	"Energy Cells" -- Claytronics [color=azure2 constraint=false]
+	Microchips -- Claytronics [color=slategray4 constraint=true]
+	"Quantum Tubes" -- Claytronics [color=slategray4 constraint=true]
+	"Energy Cells" -- "Advanced Electronics" [color=azure2 constraint=false]
+	Microchips -- "Advanced Electronics" [color=slategray4 constraint=true]
+	"Quantum Tubes" -- "Advanced Electronics" [color=slategray4 constraint=true]
+}

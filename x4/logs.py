@@ -43,7 +43,7 @@ def configure_structlog_once():
                             value_style=structlog.dev.BRIGHT,
                             reset_style=structlog.dev.RESET_ALL,
                             value_repr=str,
-                            width=40,
+                            width=30,
                         ),
                     ),
                     structlog.dev.Column(

@@ -1,6 +1,6 @@
 import pytest
 
-from x4.types import Include
+from x4.economy.economy import Include
 
 
 @pytest.mark.parametrize(
@@ -14,4 +14,4 @@ from x4.types import Include
     ],
 )
 def test_ware_filter(wf: Include, key: str, expected: bool) -> None:
-    assert wf.match(key) == expected
+    assert wf(key) == expected

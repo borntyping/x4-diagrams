@@ -1,0 +1,66 @@
+graph "X4 Economy" {
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	graph [nodesep=0.3 pad=0.5 ranksep=2]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
+	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
+	subgraph 4 {
+		cluster=true label=Advanced
+		"Hull Parts" [colour=lightsteelblue2 shape=box]
+		"Engine Parts" [colour=lightsteelblue2 shape=box]
+		"Smart Chips" [colour=lightsteelblue2 shape=box]
+	}
+	subgraph 5 {
+		cluster=true label=Components
+		"Drone Components" [colour=lightsteelblue2 shape=box]
+		"Turret Components" [colour=lightsteelblue2 shape=box]
+		"Missile Components" [colour=lightsteelblue2 shape=box]
+		"Field Coils" [colour=lightsteelblue2 shape=box]
+		"Shield Components" [colour=lightsteelblue2 shape=box]
+		"Antimatter Converters" [colour=lightsteelblue2 shape=box]
+		"Weapon Components" [colour=lightsteelblue2 shape=box]
+		"Scanning Arrays" [colour=orange1 shape=box]
+		Claytronics [colour=lightsteelblue2 shape=box]
+		"Advanced Electronics" [colour=lightsteelblue2 shape=box]
+	}
+	subgraph 6 {
+		cluster=true label=Equipment
+		"Ship Hulls" [colour=lightsteelblue2 shape=box]
+		"Nav Beacons" [colour=lightsteelblue2 shape=box]
+		Missiles [colour=lightsteelblue2 shape=box]
+		"Station modules" [colour=hotpink1 shape=box]
+		Engines [colour=hotpink1 shape=box]
+		Thrusters [colour=hotpink1 shape=box]
+		Mines [colour=lightsteelblue2 shape=box]
+		Drones [colour=lightsteelblue2 shape=box]
+		"Laser Towers" [colour=lightsteelblue2 shape=box]
+		Shields [colour=hotpink1 shape=box]
+		Turrets [colour=hotpink1 shape=box]
+		"Guns and Launchers" [colour=hotpink1 shape=box]
+		Satellites [colour=lightsteelblue2 shape=box]
+	}
+	"Hull Parts" -- "Ship Hulls" [color=slategray4 constraint=true]
+	"Hull Parts" -- "Nav Beacons" [color=slategray4 constraint=true]
+	"Missile Components" -- Missiles [color=slategray4 constraint=true]
+	"Smart Chips" -- Missiles [color=slategray4 constraint=true]
+	"Hull Parts" -- "Station modules" [color=slategray4 constraint=true]
+	Claytronics -- "Station modules" [color=slategray4 constraint=true]
+	"Antimatter Converters" -- Engines [color=slategray4 constraint=true]
+	"Engine Parts" -- Engines [color=slategray4 constraint=true]
+	"Antimatter Converters" -- Thrusters [color=slategray4 constraint=true]
+	"Engine Parts" -- Thrusters [color=slategray4 constraint=true]
+	"Weapon Components" -- Mines [color=slategray4 constraint=true]
+	"Smart Chips" -- Mines [color=slategray4 constraint=true]
+	"Drone Components" -- Drones [color=slategray4 constraint=true]
+	"Smart Chips" -- Drones [color=slategray4 constraint=true]
+	"Drone Components" -- "Laser Towers" [color=slategray4 constraint=true]
+	"Smart Chips" -- "Laser Towers" [color=slategray4 constraint=true]
+	"Field Coils" -- Shields [color=slategray4 constraint=true]
+	"Shield Components" -- Shields [color=slategray4 constraint=true]
+	"Turret Components" -- Turrets [color=slategray4 constraint=true]
+	"Advanced Electronics" -- Turrets [color=slategray4 constraint=true]
+	"Advanced Electronics" -- "Guns and Launchers" [color=slategray4 constraint=true]
+	"Weapon Components" -- "Guns and Launchers" [color=slategray4 constraint=true]
+	"Scanning Arrays" -- Satellites [color=slategray4 constraint=true]
+	"Advanced Electronics" -- Satellites [color=slategray4 constraint=true]
+	"Hull Parts" -- Satellites [color=slategray4 constraint=true]
+}

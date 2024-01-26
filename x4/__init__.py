@@ -1,4 +1,5 @@
 import pathlib
 
-root = pathlib.Path(__file__).parent
-docs = root.with_name("docs")
+root = pathlib.Path(__file__)
+docs = root.parent.with_name("docs")
+templates = root.with_name("templates")

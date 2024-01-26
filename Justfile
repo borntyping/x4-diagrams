@@ -1,5 +1,5 @@
 economy:
-  @rm -r "docs/"
+  @rm -rf "docs/"
   @mkdir "docs/"
   poetry run python -m x4.economy
 

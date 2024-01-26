@@ -1,0 +1,54 @@
+graph "X4 Economy" {
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	graph [nodesep=0.3 pad=0.5 ranksep=2]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
+	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
+	subgraph 0 {
+		cluster=true label=Harvested
+		Water [colour=lightsteelblue2 shape=box]
+		"Energy Cells" [colour=lightsteelblue2 shape=box]
+	}
+	subgraph 1 {
+		cluster=true label="Basic Food"
+		"Maja Snails" [colour=lightsteelblue2 shape=box]
+		Meat [colour=lightsteelblue2 shape=box]
+		"Soja Beans" [colour=lightsteelblue2 shape=box]
+		Spices [colour=lightsteelblue2 shape=box]
+		"Sunrise Flowers" [colour=lightsteelblue2 shape=box]
+		"Swamp Plant" [colour=lightsteelblue2 shape=box]
+		Wheat [colour=lightsteelblue2 shape=box]
+		"Chelt Meat" [colour=lightsteelblue2 shape=box]
+		"Scruffin Fruit" [colour=lightsteelblue2 shape=box]
+		"Protein Paste" [colour=lightsteelblue2 shape=box]
+		Plankton [colour=lightsteelblue2 shape=box]
+		BoGas [colour=lightsteelblue2 shape=box]
+	}
+	subgraph 2 {
+		cluster=true label="Food and Drugs"
+		Spacefuel [colour=lightsteelblue2 shape=box]
+		"Food Rations" [colour=lightsteelblue2 shape=box]
+		"Maja Dust" [colour=lightsteelblue2 shape=box]
+		"Soja Husk" [colour=lightsteelblue2 shape=box]
+		Spaceweed [colour=lightsteelblue2 shape=box]
+		"Nostrop Oil" [colour=lightsteelblue2 shape=box]
+		"Medical Supplies" [colour=lightsteelblue2 shape=box]
+		"Terran MRE" [colour=lightsteelblue2 shape=box]
+		Stimulants [colour=lightsteelblue2 shape=box]
+		BoFu [colour=lightsteelblue2 shape=box]
+	}
+	"Energy Cells" -- "Maja Snails" [color=azure2 constraint=false]
+	Water -- "Maja Snails" [color=azure2 constraint=false]
+	"Energy Cells" -- "Soja Beans" [color=azure2 constraint=false]
+	Water -- "Soja Beans" [color=azure2 constraint=false]
+	"Energy Cells" -- "Maja Dust" [color=azure2 constraint=false]
+	"Maja Snails" -- "Maja Dust" [color=slategray4 constraint=true]
+	Spices -- "Maja Dust" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Soja Husk" [color=azure2 constraint=false]
+	"Maja Snails" -- "Soja Husk" [color=slategray4 constraint=true]
+	"Soja Beans" -- "Soja Husk" [color=slategray4 constraint=true]
+	Spices -- "Soja Husk" [color=slategray4 constraint=true]
+	"Energy Cells" -- "Medical Supplies" [color=azure2 constraint=false]
+	"Soja Beans" -- "Medical Supplies" [color=azure2 constraint=false]
+	Spices -- "Medical Supplies" [color=azure2 constraint=false]
+	Water -- "Medical Supplies" [color=azure2 constraint=false]
+}

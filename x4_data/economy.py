@@ -1,17 +1,15 @@
 import typing
 
-from x4.types import Method, Recipe, Ware, Tier
+from x4.types import InputWare, Method, Recipe, Tier, Ware
 
-UNDEFINED = 10
-
-COMMONWEALTH: typing.Sequence[Method] = [
+COMMONWEALTH: typing.Sequence[Method] = (
     "Universal",
     "Argon",
     "Boron",
     "Paranid",
     "Split",
     "Teladi",
-]
+)
 
 TIER_0 = Tier(key=0, name="Harvested")
 TIER_1 = Tier(key=1, name="Basic Food")
@@ -124,10 +122,10 @@ WARES_TIER_0 = [
                 time=60,
                 amount=1,
                 method="Recycling",
-                wares={
-                    "energy_cells": 10,
-                    "raw_scrap": 1,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 10),
+                    InputWare("raw_scrap", 1),
+                ),
             )
         ],
     ),
@@ -145,10 +143,10 @@ WARES_TIER_0 = [
                 time=120,
                 amount=193,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "ice": 320,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("ice", 320),
+                ),
             ),
         ],
     ),
@@ -166,13 +164,13 @@ WARES_TIER_0 = [
                 time=60,
                 amount=175,
                 method="Universal",
-                wares={},
+                input_wares=(),
             ),
             Recipe(
                 time=60,
                 amount=50,
                 method="Terran",
-                wares={},
+                input_wares=(),
             ),
         ],
     ),
@@ -193,10 +191,10 @@ WARES_TIER_1 = [
                 time=450,
                 amount=146,
                 method="Paranid",
-                wares={
-                    "energy_cells": 40,
-                    "water": 100,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 40),
+                    InputWare("water", 100),
+                ),
             ),
         ],
     ),
@@ -214,10 +212,10 @@ WARES_TIER_1 = [
                 time=450,
                 amount=290,
                 method="Argon",
-                wares={
-                    "energy_cells": 80,
-                    "water": 100,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 80),
+                    InputWare("water", 100),
+                ),
             ),
         ],
     ),
@@ -235,10 +233,10 @@ WARES_TIER_1 = [
                 time=300,
                 amount=104,
                 method="Paranid",
-                wares={
-                    "energy_cells": 30,
-                    "water": 80,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 30),
+                    InputWare("water", 80),
+                ),
             ),
         ],
     ),
@@ -256,10 +254,10 @@ WARES_TIER_1 = [
                 time=600,
                 amount=500,
                 method="Universal",
-                wares={
-                    "energy_cells": 40,
-                    "water": 80,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 40),
+                    InputWare("water", 80),
+                ),
             ),
         ],
     ),
@@ -277,10 +275,10 @@ WARES_TIER_1 = [
                 time=300,
                 amount=100,
                 method="Teladi",
-                wares={
-                    "energy_cells": 30,
-                    "water": 80,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 30),
+                    InputWare("water", 80),
+                ),
             ),
         ],
     ),
@@ -298,10 +296,10 @@ WARES_TIER_1 = [
                 time=450,
                 amount=120,
                 method="Teladi",
-                wares={
-                    "energy_cells": 40,
-                    "water": 100,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 40),
+                    InputWare("water", 100),
+                ),
             ),
         ],
     ),
@@ -319,10 +317,10 @@ WARES_TIER_1 = [
                 time=300,
                 amount=310,
                 method="Argon",
-                wares={
-                    "energy_cells": 60,
-                    "water": 80,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("water", 80),
+                ),
             ),
         ],
     ),
@@ -340,10 +338,10 @@ WARES_TIER_1 = [
                 time=450,
                 amount=209,
                 method="Split",
-                wares={
-                    "energy_cells": 50,
-                    "water": 120,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 50),
+                    InputWare("water", 120),
+                ),
             ),
         ],
     ),
@@ -361,10 +359,10 @@ WARES_TIER_1 = [
                 time=300,
                 amount=255,
                 method="Split",
-                wares={
-                    "energy_cells": 30,
-                    "water": 80,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 30),
+                    InputWare("water", 80),
+                ),
             ),
         ],
     ),
@@ -382,11 +380,11 @@ WARES_TIER_1 = [
                 time=300,
                 amount=219,
                 method="Terran",
-                wares={
-                    "energy_cells": 80,
-                    "ice": 80,
-                    "methane": 200,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 80),
+                    InputWare("ice", 80),
+                    InputWare("methane", 200),
+                ),
             )
         ],
     ),
@@ -404,10 +402,10 @@ WARES_TIER_1 = [
                 time=400,
                 amount=275,
                 method="Boron",
-                wares={
-                    "energy_cells": 20,
-                    "water": 50,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 20),
+                    InputWare("water", 50),
+                ),
             ),
         ],
     ),
@@ -425,10 +423,10 @@ WARES_TIER_1 = [
                 time=150,
                 amount=110,
                 method="Boron",
-                wares={
-                    "energy_cells": 40,
-                    "water": 100,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 40),
+                    InputWare("water", 100),
+                ),
             ),
         ],
     ),
@@ -449,11 +447,11 @@ WARES_TIER_2 = [
                 time=480,
                 amount=98,
                 method="Argon",
-                wares={
-                    "energy_cells": 40,
-                    "water": 100,
-                    "wheat": 80,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 40),
+                    InputWare("water", 100),
+                    InputWare("wheat", 80),
+                ),
             )
         ],
     ),
@@ -471,12 +469,12 @@ WARES_TIER_2 = [
                 time=240,
                 amount=460,
                 method="Argon",
-                wares={
-                    "energy_cells": 100,
-                    "meat": 40,
-                    "spices": 40,
-                    "wheat": 40,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("meat", 40),
+                    InputWare("spices", 40),
+                    InputWare("wheat", 40),
+                ),
             )
         ],
     ),
@@ -494,11 +492,11 @@ WARES_TIER_2 = [
                 time=600,
                 amount=64,
                 method="Paranid",
-                wares={
-                    "energy_cells": 40,
-                    "maja_snails": 120,
-                    "spices": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 40),
+                    InputWare("maja_snails", 120),
+                    InputWare("spices", 60),
+                ),
             )
         ],
     ),
@@ -516,12 +514,12 @@ WARES_TIER_2 = [
                 time=300,
                 amount=350,
                 method="Paranid",
-                wares={
-                    "energy_cells": 80,
-                    "maja_snails": 50,
-                    "soja_beans": 40,
-                    "spices": 20,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 80),
+                    InputWare("maja_snails", 50),
+                    InputWare("soja_beans", 40),
+                    InputWare("spices", 20),
+                ),
             )
         ],
     ),
@@ -539,11 +537,11 @@ WARES_TIER_2 = [
                 time=600,
                 amount=183,
                 method="Teladi",
-                wares={
-                    "energy_cells": 140,
-                    "spices": 40,
-                    "swamp_plant": 120,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 140),
+                    InputWare("spices", 40),
+                    InputWare("swamp_plant", 120),
+                ),
             )
         ],
     ),
@@ -561,12 +559,12 @@ WARES_TIER_2 = [
                 time=300,
                 amount=500,
                 method="Teladi",
-                wares={
-                    "energy_cells": 100,
-                    "spices": 40,
-                    "sunrise_flowers": 40,
-                    "water": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("spices", 40),
+                    InputWare("sunrise_flowers", 40),
+                    InputWare("water", 60),
+                ),
             )
         ],
     ),
@@ -584,65 +582,65 @@ WARES_TIER_2 = [
                 time=300,
                 amount=208,
                 method="Argon",
-                wares={
-                    "energy_cells": 100,
-                    "spices": 40,
-                    "water": 60,
-                    "wheat": 30,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("spices", 40),
+                    InputWare("water", 60),
+                    InputWare("wheat", 30),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Paranid",
-                wares={
-                    "energy_cells": 100,
-                    "soja_beans": 10,
-                    "spices": 40,
-                    "water": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("soja_beans", 10),
+                    InputWare("spices", 40),
+                    InputWare("water", 60),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Teladi",
-                wares={
-                    "energy_cells": 100,
-                    "spices": 40,
-                    "sunrise_flowers": 12,
-                    "water": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("spices", 40),
+                    InputWare("sunrise_flowers", 12),
+                    InputWare("water", 60),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Split",
-                wares={
-                    "energy_cells": 100,
-                    "scruffin_fruits": 30,
-                    "spices": 60,
-                    "water": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("scruffin_fruits", 30),
+                    InputWare("spices", 60),
+                    InputWare("water", 60),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=140,
                 method="Terran",
-                wares={
-                    "energy_cells": 100,
-                    "ice": 50,
-                    "protein_paste": 24,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("ice", 50),
+                    InputWare("protein_paste", 24),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Boron",
-                wares={
-                    "energy_cells": 100,
-                    "plankton": 95,
-                    "water": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("plankton", 95),
+                    InputWare("water", 60),
+                ),
             ),
         ],
     ),
@@ -660,10 +658,10 @@ WARES_TIER_2 = [
                 time=240,
                 amount=175,
                 method="Terran",
-                wares={
-                    "energy_cells": 60,
-                    "protein_paste": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("protein_paste", 60),
+                ),
             )
         ],
     ),
@@ -681,11 +679,11 @@ WARES_TIER_2 = [
                 time=300,
                 amount=98,
                 method="Terran",
-                wares={
-                    "energy_cells": 80,
-                    "helium": 400,
-                    "silicon": 20,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 80),
+                    InputWare("helium", 400),
+                    InputWare("silicon", 20),
+                ),
             )
         ],
     ),
@@ -703,11 +701,11 @@ WARES_TIER_2 = [
                 time=240,
                 amount=82,
                 method="Boron",
-                wares={
-                    "bogas": 40,
-                    "energy_cells": 40,
-                    "plankton": 120,
-                },
+                input_wares=(
+                    InputWare("bogas", 40),
+                    InputWare("energy_cells", 40),
+                    InputWare("plankton", 120),
+                ),
             )
         ],
     ),
@@ -728,10 +726,10 @@ WARES_TIER_3 = [
                 time=240,
                 amount=95,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "helium": 320,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("helium", 320),
+                ),
             ),
         ],
     ),
@@ -749,10 +747,10 @@ WARES_TIER_3 = [
                 time=240,
                 amount=96,
                 method="Universal",
-                wares={
-                    "energy_cells": 80,
-                    "methane": 320,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 80),
+                    InputWare("methane", 320),
+                ),
             ),
         ],
     ),
@@ -770,10 +768,10 @@ WARES_TIER_3 = [
                 time=150,
                 amount=88,
                 method="Universal",
-                wares={
-                    "energy_cells": 90,
-                    "ore": 240,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 90),
+                    InputWare("ore", 240),
+                ),
             ),
         ],
     ),
@@ -791,10 +789,10 @@ WARES_TIER_3 = [
                 time=120,
                 amount=70,
                 method="Teladi",
-                wares={
-                    "energy_cells": 45,
-                    "ore": 280,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 45),
+                    InputWare("ore", 280),
+                ),
             ),
         ],
     ),
@@ -812,10 +810,10 @@ WARES_TIER_3 = [
                 time=120,
                 amount=99,
                 method="Universal",
-                wares={
-                    "energy_cells": 100,
-                    "hydrogen": 320,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 100),
+                    InputWare("hydrogen", 320),
+                ),
             ),
         ],
     ),
@@ -833,10 +831,10 @@ WARES_TIER_3 = [
                 time=180,
                 amount=107,
                 method="Universal",
-                wares={
-                    "energy_cells": 90,
-                    "silicon": 240,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 90),
+                    InputWare("silicon", 240),
+                ),
             ),
         ],
     ),
@@ -854,21 +852,21 @@ WARES_TIER_3 = [
                 time=600,
                 amount=98,
                 method="Terran",
-                wares={
-                    "energy_cells": 4000,
-                    "hydrogen": 2000,
-                    "ore": 3000,
-                    "silicon": 3000,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 4000),
+                    InputWare("hydrogen", 2000),
+                    InputWare("ore", 3000),
+                    InputWare("silicon", 3000),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=50,
                 method="Recycling",
-                wares={
-                    "energy_cells": 12500,
-                    "scrap_metal": 1000,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 12500),
+                    InputWare("scrap_metal", 1000),
+                ),
             ),
         ],
     ),
@@ -886,11 +884,11 @@ WARES_TIER_3 = [
                 time=180,
                 amount=190,
                 method="Terran",
-                wares={
-                    "energy_cells": 50,
-                    "helium": 130,
-                    "ore": 50,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 50),
+                    InputWare("helium", 130),
+                    InputWare("ore", 50),
+                ),
             )
         ],
     ),
@@ -911,11 +909,11 @@ WARES_TIER_4 = [
                 time=900,
                 amount=44,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "graphene": 96,
-                    "superfluid_coolant": 140,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("graphene", 96),
+                    InputWare("superfluid_coolant", 140),
+                ),
             )
         ],
     ),
@@ -933,11 +931,11 @@ WARES_TIER_4 = [
                 time=720,
                 amount=94,
                 method="Universal",
-                wares={
-                    "energy_cells": 40,
-                    "graphene": 116,
-                    "superfluid_coolant": 30,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 40),
+                    InputWare("graphene", 116),
+                    InputWare("superfluid_coolant", 30),
+                ),
             )
         ],
     ),
@@ -955,21 +953,21 @@ WARES_TIER_4 = [
                 time=300,
                 amount=54,
                 method="Universal",
-                wares={
-                    "energy_cells": 50,
-                    "graphene": 80,
-                    "refined_metals": 80,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 50),
+                    InputWare("graphene", 80),
+                    InputWare("refined_metals", 80),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=54,
                 method="Teladi",
-                wares={
-                    "energy_cells": 50,
-                    "graphene": 80,
-                    "teladianium": 58,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 50),
+                    InputWare("graphene", 80),
+                    InputWare("teladianium", 58),
+                ),
             ),
         ],
     ),
@@ -987,30 +985,30 @@ WARES_TIER_4 = [
                 time=900,
                 amount=294,
                 method="Universal",
-                wares={
-                    "energy_cells": 80,
-                    "graphene": 40,
-                    "refined_metals": 280,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 80),
+                    InputWare("graphene", 40),
+                    InputWare("refined_metals", 280),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=200,
                 method="Recycling",
-                wares={
-                    "energy_cells": 3500,
-                    "scrap_metal": 75,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 3500),
+                    InputWare("scrap_metal", 75),
+                ),
             ),
             Recipe(
                 time=900,
                 amount=294,
                 method="Teladi",
-                wares={
-                    "energy_cells": 80,
-                    "graphene": 40,
-                    "teladianium": 204,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 80),
+                    InputWare("graphene", 40),
+                    InputWare("teladianium", 204),
+                ),
             ),
         ],
     ),
@@ -1028,21 +1026,21 @@ WARES_TIER_4 = [
                 time=900,
                 amount=208,
                 method="Universal",
-                wares={
-                    "antimatter_cells": 80,
-                    "energy_cells": 60,
-                    "refined_metals": 96,
-                },
+                input_wares=(
+                    InputWare("antimatter_cells", 80),
+                    InputWare("energy_cells", 60),
+                    InputWare("refined_metals", 96),
+                ),
             ),
             Recipe(
                 time=900,
                 amount=208,
                 method="Teladi",
-                wares={
-                    "antimatter_cells": 80,
-                    "energy_cells": 60,
-                    "teladianium": 70,
-                },
+                input_wares=(
+                    InputWare("antimatter_cells", 80),
+                    InputWare("energy_cells", 60),
+                    InputWare("teladianium", 70),
+                ),
             ),
         ],
     ),
@@ -1060,10 +1058,10 @@ WARES_TIER_4 = [
                 time=600,
                 amount=72,
                 method="Universal",
-                wares={
-                    "energy_cells": 50,
-                    "silicon_wafers": 200,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 50),
+                    InputWare("silicon_wafers", 200),
+                ),
             )
         ],
     ),
@@ -1081,10 +1079,10 @@ WARES_TIER_4 = [
                 time=600,
                 amount=143,
                 method="Universal",
-                wares={
-                    "energy_cells": 50,
-                    "silicon_wafers": 20,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 50),
+                    InputWare("silicon_wafers", 20),
+                ),
             )
         ],
     ),
@@ -1102,21 +1100,21 @@ WARES_TIER_4 = [
                 time=300,
                 amount=48,
                 method="Terran",
-                wares={
-                    "energy_cells": 200,
-                    "metallic_microlattice": 2,
-                    "methane": 400,
-                    "silicon": 300,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 200),
+                    InputWare("metallic_microlattice", 2),
+                    InputWare("methane", 400),
+                    InputWare("silicon", 300),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=60,
                 method="Recycling",
-                wares={
-                    "energy_cells": 4000,
-                    "scrap_metal": 250,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 4000),
+                    InputWare("scrap_metal", 250),
+                ),
             ),
         ],
     ),
@@ -1137,13 +1135,13 @@ WARES_TIER_5 = [
                 time=1200,
                 amount=105,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "engine_parts": 20,
-                    "hull_parts": 20,
-                    "microchips": 20,
-                    "scanning_arrays": 40,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("engine_parts", 20),
+                    InputWare("hull_parts", 20),
+                    InputWare("microchips", 20),
+                    InputWare("scanning_arrays", 40),
+                ),
             )
         ],
     ),
@@ -1161,12 +1159,12 @@ WARES_TIER_5 = [
                 time=1800,
                 amount=170,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "microchips": 20,
-                    "quantum_tubes": 20,
-                    "scanning_arrays": 10,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("microchips", 20),
+                    InputWare("quantum_tubes", 20),
+                    InputWare("scanning_arrays", 10),
+                ),
             )
         ],
     ),
@@ -1184,11 +1182,11 @@ WARES_TIER_5 = [
                 time=900,
                 amount=281,
                 method="Universal",
-                wares={
-                    "advanced_composites": 2,
-                    "energy_cells": 20,
-                    "hull_parts": 2,
-                },
+                input_wares=(
+                    InputWare("advanced_composites", 2),
+                    InputWare("energy_cells", 20),
+                    InputWare("hull_parts", 2),
+                ),
             )
         ],
     ),
@@ -1206,11 +1204,11 @@ WARES_TIER_5 = [
                 time=600,
                 amount=175,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "plasma_conductors": 40,
-                    "quantum_tubes": 43,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("plasma_conductors", 40),
+                    InputWare("quantum_tubes", 43),
+                ),
             )
         ],
     ),
@@ -1228,11 +1226,11 @@ WARES_TIER_5 = [
                 time=1200,
                 amount=193,
                 method="Universal",
-                wares={
-                    "energy_cells": 70,
-                    "plasma_conductors": 20,
-                    "quantum_tubes": 20,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 70),
+                    InputWare("plasma_conductors", 20),
+                    InputWare("quantum_tubes", 20),
+                ),
             )
         ],
     ),
@@ -1250,11 +1248,11 @@ WARES_TIER_5 = [
                 time=300,
                 amount=133,
                 method="Universal",
-                wares={
-                    "advanced_composites": 20,
-                    "energy_cells": 80,
-                    "microchips": 30,
-                },
+                input_wares=(
+                    InputWare("advanced_composites", 20),
+                    InputWare("energy_cells", 80),
+                    InputWare("microchips", 30),
+                ),
             )
         ],
     ),
@@ -1272,11 +1270,11 @@ WARES_TIER_5 = [
                 time=1800,
                 amount=170,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "hull_parts": 20,
-                    "plasma_conductors": 30,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("hull_parts", 20),
+                    InputWare("plasma_conductors", 30),
+                ),
             )
         ],
     ),
@@ -1294,21 +1292,21 @@ WARES_TIER_5 = [
                 time=600,
                 amount=36,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "refined_metals": 100,
-                    "silicon_wafers": 60,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("refined_metals", 100),
+                    InputWare("silicon_wafers", 60),
+                ),
             ),
             Recipe(
                 time=600,
                 amount=36,
                 method="Teladi",
-                wares={
-                    "energy_cells": 60,
-                    "silicon_wafers": 60,
-                    "teladianium": 73,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("silicon_wafers", 60),
+                    InputWare("teladianium", 73),
+                ),
             ),
         ],
         colour="orange1",
@@ -1327,21 +1325,21 @@ WARES_TIER_5 = [
                 time=900,
                 amount=108,
                 method="Universal",
-                wares={
-                    "antimatter_cells": 100,
-                    "energy_cells": 140,
-                    "microchips": 160,
-                    "quantum_tubes": 100,
-                },
+                input_wares=(
+                    InputWare("antimatter_cells", 100),
+                    InputWare("energy_cells", 140),
+                    InputWare("microchips", 160),
+                    InputWare("quantum_tubes", 100),
+                ),
             ),
             Recipe(
                 time=300,
                 amount=60,
                 method="Recycling",
-                wares={
-                    "energy_cells": 12000,
-                    "scrap_metal": 300,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 12000),
+                    InputWare("scrap_metal", 300),
+                ),
             ),
         ],
     ),
@@ -1359,11 +1357,11 @@ WARES_TIER_5 = [
                 time=720,
                 amount=54,
                 method="Universal",
-                wares={
-                    "energy_cells": 60,
-                    "microchips": 44,
-                    "quantum_tubes": 20,
-                },
+                input_wares=(
+                    InputWare("energy_cells", 60),
+                    InputWare("microchips", 44),
+                    InputWare("quantum_tubes", 20),
+                ),
             )
         ],
     ),
@@ -1377,16 +1375,14 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "hull_parts": UNDEFINED,
-                },
+                input_wares=(InputWare("hull_parts", None),),
             ),
             Recipe(
                 method="Terran",
-                wares={
-                    "metallic_microlattice": UNDEFINED,
-                    "computronic_substrate": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("metallic_microlattice", None),
+                    InputWare("computronic_substrate", None),
+                ),
             ),
         ],
         tags={"terminal"},
@@ -1398,9 +1394,7 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "hull_parts": UNDEFINED,
-                },
+                input_wares=(InputWare("hull_parts", None),),
             )
         ],
         tags={"terminal"},
@@ -1412,10 +1406,10 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "missile_components": UNDEFINED,
-                    "smart_chips": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("missile_components", None),
+                    InputWare("smart_chips", None),
+                ),
             )
         ],
         tags={"terminal"},
@@ -1428,17 +1422,17 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "hull_parts": UNDEFINED,
-                    "claytronics": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("hull_parts", None),
+                    InputWare("claytronics", None),
+                ),
             ),
             Recipe(
                 method="Terran",
-                wares={
-                    "silicon_carbide": UNDEFINED,
-                    "computronic_substrate": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("silicon_carbide", None),
+                    InputWare("computronic_substrate", None),
+                ),
             ),
         ],
         tags={"terminal"},
@@ -1451,18 +1445,18 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "antimatter_converters": UNDEFINED,
-                    "engine_parts": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("antimatter_converters", None),
+                    InputWare("engine_parts", None),
+                ),
             ),
             Recipe(
                 method="Terran",
-                wares={
-                    "metallic_microlattice": UNDEFINED,
-                    "silicon_carbide": UNDEFINED,
-                    "computronic_substrate": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("metallic_microlattice", None),
+                    InputWare("silicon_carbide", None),
+                    InputWare("computronic_substrate", None),
+                ),
             ),
         ],
         tags={"terminal"},
@@ -1475,18 +1469,18 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "antimatter_converters": UNDEFINED,
-                    "engine_parts": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("antimatter_converters", None),
+                    InputWare("engine_parts", None),
+                ),
             ),
             Recipe(
                 method="Terran",
-                wares={
-                    "metallic_microlattice": UNDEFINED,
-                    "silicon_carbide": UNDEFINED,
-                    "computronic_substrate": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("metallic_microlattice", None),
+                    InputWare("silicon_carbide", None),
+                    InputWare("computronic_substrate", None),
+                ),
             ),
         ],
         tags={"terminal"},
@@ -1498,10 +1492,10 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "weapon_components": UNDEFINED,
-                    "smart_chips": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("weapon_components", None),
+                    InputWare("smart_chips", None),
+                ),
             )
         ],
         tags={"terminal"},
@@ -1513,10 +1507,10 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "drone_components": UNDEFINED,
-                    "smart_chips": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("drone_components", None),
+                    InputWare("smart_chips", None),
+                ),
             )
         ],
         tags={"terminal"},
@@ -1528,10 +1522,10 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "drone_components": UNDEFINED,
-                    "smart_chips": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("drone_components", None),
+                    InputWare("smart_chips", None),
+                ),
             )
         ],
         tags={"terminal"},
@@ -1544,18 +1538,18 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "field_coils": UNDEFINED,
-                    "shield_components": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("field_coils", None),
+                    InputWare("shield_components", None),
+                ),
             ),
             Recipe(
                 method="Terran",
-                wares={
-                    "metallic_microlattice": UNDEFINED,
-                    "silicon_carbide": UNDEFINED,
-                    "computronic_substrate": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("metallic_microlattice", None),
+                    InputWare("silicon_carbide", None),
+                    InputWare("computronic_substrate", None),
+                ),
             ),
         ],
         tags={"terminal"},
@@ -1568,18 +1562,18 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "turret_components": UNDEFINED,
-                    "advanced_electronics": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("turret_components", None),
+                    InputWare("advanced_electronics", None),
+                ),
             ),
             Recipe(
                 method="Terran",
-                wares={
-                    "metallic_microlattice": UNDEFINED,
-                    "silicon_carbide": UNDEFINED,
-                    "computronic_substrate": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("metallic_microlattice", None),
+                    InputWare("silicon_carbide", None),
+                    InputWare("computronic_substrate", None),
+                ),
             ),
         ],
         tags={"terminal"},
@@ -1592,18 +1586,18 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "advanced_electronics": UNDEFINED,
-                    "weapon_components": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("advanced_electronics", None),
+                    InputWare("weapon_components", None),
+                ),
             ),
             Recipe(
                 method="Terran",
-                wares={
-                    "metallic_microlattice": UNDEFINED,
-                    "silicon_carbide": UNDEFINED,
-                    "computronic_substrate": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("metallic_microlattice", None),
+                    InputWare("silicon_carbide", None),
+                    InputWare("computronic_substrate", None),
+                ),
             ),
         ],
         tags={"terminal"},
@@ -1615,11 +1609,11 @@ WARES_TIER_6 = [
         recipes=[
             Recipe(
                 method="Universal",
-                wares={
-                    "scanning_arrays": UNDEFINED,
-                    "advanced_electronics": UNDEFINED,
-                    "hull_parts": UNDEFINED,
-                },
+                input_wares=(
+                    InputWare("scanning_arrays", None),
+                    InputWare("advanced_electronics", None),
+                    InputWare("hull_parts", None),
+                ),
             )
         ],
         tags={"terminal"},
