@@ -1,4 +1,5 @@
 import dataclasses
+import itertools
 import pathlib
 import typing
 
@@ -9,8 +10,8 @@ import structlog
 
 from x4 import docs
 from x4.logs import configure_structlog_once
-from x4.types import Economy, Method, Tier
-from x4_data.economy import COMMONWEALTH, TIERS
+from x4.types import Economy, Method, Tier, Ware
+from x4_data.economy import COMMONWEALTH, WARES
 
 logger = structlog.get_logger(logger_name=__name__)
 
@@ -19,13 +20,6 @@ logger = structlog.get_logger(logger_name=__name__)
 class EconomyGraph(Economy):
     name: str = "X4"
     group: str = "X4"
-
-    def __repr__(self):
-        return "Economy<{}, {} tiers, {} wares>".format(
-            self.title(),
-            len(self.tiers),
-            len(self.wares()),
-        )
 
     def __str__(self) -> str:
         return self.title()
@@ -99,10 +93,10 @@ class EconomyGraph(Economy):
         )
 
         if include_tier_keys is not None:
-            new = new.include_tiers(include_tier_keys)
+            new = new.select_tiers(include_tier_keys)
 
         if methods is not None:
-            new = new.filter_production_methods_and_unused_wares(methods)
+            new = new.select_method(methods)
 
         new.validate()
 
@@ -123,10 +117,10 @@ class EconomyGraph(Economy):
         return self.filter(group="Universal", methods=["Universal"])
 
     @classmethod
-    def breakdown(cls, tiers: typing.Sequence[Tier]) -> typing.Mapping[str, typing.Sequence[typing.Self]]:
-        economy = cls(tiers)
-        economy = economy.remove_production_input("energy_cells")
-        economy = economy.remove_production_input("water")
+    def breakdown(cls) -> typing.Mapping[str, typing.Sequence[typing.Self]]:
+        economy = cls(WARES)
+        # economy = economy.remove_production_input("energy_cells")
+        # economy = economy.remove_production_input("water")
 
         return {
             "Universal": [
@@ -176,31 +170,30 @@ class PlotlyWriter:
         color: str
 
     def plot(self, economy: EconomyGraph):
-        resources = {resource.key: resource for tier in economy.tiers for resource in tier.wares}
+        mapping = economy.as_dict()
 
-        if not resources:
+        if not mapping:
             raise Exception("Economy contains no resources")
 
-        labels = [resource.name for resource in resources.values()]
+        labels = [ware.name for ware in economy.wares]
         links = [
             self.Link(
-                source=labels.index(resources[source].name),
+                source=labels.index(mapping[input_ware_key].name),
                 target=labels.index(target.name),
-                value=value,
+                value=amount,
                 label=production.method,
                 color=production.colour(),
             )
-            for tier in economy.tiers
-            for target in tier.wares
+            for target in economy.wares
             for production in target.recipes
-            for source, value in production.wares.items()
+            for input_ware_key, amount in production.wares.items()
         ]
 
         figure = plotly.graph_objs.Figure(
             data=plotly.graph_objs.Sankey(
                 arrangement="snap",
                 node={
-                    "label": [resource.name for resource in economy.wares().values()],
+                    "label": [ware.name for ware in economy.wares],
                 },
                 link={
                     "source": [link.source for link in links],
@@ -269,38 +262,38 @@ class GraphvizWriter:
             penwidth="2.5",
         )
 
-        for tier in economy.tiers:
-            with g.subgraph(name=str(tier.level)) as s:
-                s.attr(label=str(tier), cluster="true")
-                for resource in tier.wares:
-                    s.node(resource.name, colour=resource.fillcolor(), shape="box")
+        for tier, wares in itertools.groupby(economy.wares, key=lambda w: w.tier):
+            with g.subgraph(name=str(tier.key)) as s:
+                s.attr(label=tier.name, cluster="true")
+                for resource in wares:
+                    s.node(resource.name, colour=resource.graphviz_fillcolor(), shape="box")
 
-        resources = economy.wares()
-        for output_resource in resources.values():
-            for production in output_resource.recipes:
-                for input_resource_id, amount in production.wares.items():
-                    input_resource = resources[input_resource_id]
+        resources = economy.as_dict()
+        for output_ware in economy.wares:
+            for recipe in output_ware.recipes:
+                for input_ware_key, amount in recipe.wares.items():
+                    input_ware = resources[input_ware_key]
                     constraint = self.recipe_constraint(
-                        production.method,
-                        input_resource.name,
-                        output_resource.name,
+                        recipe.method,
+                        input_ware.name,
+                        output_ware.name,
                     )
                     color = self.recipe_color(
-                        production.method,
-                        input_resource.name,
-                        output_resource.name,
+                        recipe.method,
+                        input_ware.name,
+                        output_ware.name,
                     )
                     g.edge(
-                        input_resource.name,
-                        output_resource.name,
+                        input_ware.name,
+                        output_ware.name,
                         constraint=constraint,
                         color=color,
                     )
         return g
 
     @staticmethod
-    def recipe_constraint(recipe: str, input_resource_name: str, output_resource_name: str) -> str:
-        match (recipe, input_resource_name, output_resource_name):
+    def recipe_constraint(recipe: str, input_ware_name: str, output_ware_name: str) -> str:
+        match (recipe, input_ware_name, output_ware_name):
             case (_, "Water", _):
                 return "false"
             case (_, "Energy Cells", _):
@@ -312,8 +305,8 @@ class GraphvizWriter:
         return "true"
 
     @staticmethod
-    def recipe_color(recipe: str, input_resource_name: str, output_resource_name: str) -> str:
-        match (recipe, input_resource_name, output_resource_name):
+    def recipe_color(recipe: str, input_ware_name: str, output_ware_name: str) -> str:
+        match (recipe, input_ware_name, output_ware_name):
             case (_, "Water" | "Energy Cells", _):
                 return "azure2"
             case (_, _, "Medical Supplies"):
@@ -378,7 +371,7 @@ class Render:
         return path
 
     def main(self):
-        self.index(self.all_diagrams(EconomyGraph.breakdown(TIERS)))
+        self.index(self.all_diagrams(EconomyGraph.breakdown()))
 
 
 if __name__ == "__main__":

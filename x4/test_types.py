@@ -1,17 +1,17 @@
 import pytest
 
-from x4.types import WareFilter
+from x4.types import Include
 
 
 @pytest.mark.parametrize(
     ("wf", "key", "expected"),
     [
-        (WareFilter(include={"a"}), "a", True),
-        (WareFilter(include={"b"}), "a", False),
-        (WareFilter(include={"a"}, exclude={"a"}), "a", False),
-        (WareFilter(include={"b"}, exclude={"a"}), "a", False),
-        (WareFilter(include={"helium"}), "helium", True),
+        (Include(include={"a"}), "a", True),
+        (Include(include={"b"}), "a", False),
+        (Include(include={"a"}, exclude={"a"}), "a", False),
+        (Include(include={"b"}, exclude={"a"}), "a", False),
+        (Include(include={"helium"}), "helium", True),
     ],
 )
-def test_ware_filter(wf: WareFilter, key: str, expected: bool) -> None:
+def test_ware_filter(wf: Include, key: str, expected: bool) -> None:
     assert wf.match(key) == expected
