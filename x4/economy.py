@@ -9,7 +9,7 @@ import structlog
 
 from x4 import docs
 from x4.logs import configure_structlog_once
-from x4.types import Economy, Method
+from x4.types import Economy, Method, Tier
 from x4_data.economy import COMMONWEALTH, TIERS
 
 logger = structlog.get_logger(logger_name=__name__)
@@ -122,36 +122,36 @@ class EconomyGraph(Economy):
     def universal(self) -> typing.Self:
         return self.filter(group="Universal", methods=["Universal"])
 
+    @classmethod
+    def breakdown(cls, tiers: typing.Sequence[Tier]) -> typing.Mapping[str, typing.Sequence[typing.Self]]:
+        economy = cls(tiers)
+        economy = economy.remove_production_input("energy_cells")
+        economy = economy.remove_production_input("water")
 
-def breakdown() -> typing.Mapping[str, typing.Sequence[EconomyGraph]]:
-    economy = EconomyGraph(TIERS)
-    economy = economy.remove_production_input("energy_cells")
-    economy = economy.remove_production_input("water")
-
-    return {
-        "Universal": [
-            economy.universal().construction().with_name("Universal construction"),
-            economy.universal().refined(),
-            # economy.universal().components(),
-            # economy.universal().advanced(),
-            # economy.universal().equipment(),
-        ],
-        "Commonwealth": [
-            economy.commonwealth().food_and_drugs(),
-        ],
-        "Teladi": [
-            economy.construction().filter("Teladi", "Teladi construction", methods=["Teladi", "Universal"]),
-            economy.consumption().filter("Teladi", "Teladi consumption", methods=["Teladi"]),
-        ],
-        "Cradle of Humanity": [
-            economy.construction().filter("Cradle of Humanity", "Terran construction", methods=["Terran"]),
-            economy.consumption().filter("Cradle of Humanity", "Terran consumption", methods=["Terran"]),
-        ],
-        "Tides of Avarice": [
-            economy.filter("Tides of Avarice", "Scrap", methods=["Recycling"]),
-            economy.construction().filter("Tides of Avarice", "Scrap construction", methods=["Recycling", "Universal"]),
-        ],
-    }
+        return {
+            "Universal": [
+                economy.universal().construction().with_name("Universal construction"),
+                economy.universal().refined(),
+                # economy.universal().components(),
+                # economy.universal().advanced(),
+                # economy.universal().equipment(),
+            ],
+            "Commonwealth": [
+                economy.commonwealth().food_and_drugs(),
+            ],
+            "Teladi": [
+                economy.construction().filter("Teladi", "Teladi construction", methods=["Teladi", "Universal"]),
+                economy.consumption().filter("Teladi", "Teladi consumption", methods=["Teladi"]),
+            ],
+            "Cradle of Humanity": [
+                economy.construction().filter("Cradle of Humanity", "Terran construction", methods=["Terran"]),
+                economy.consumption().filter("Cradle of Humanity", "Terran consumption", methods=["Terran"]),
+            ],
+            "Tides of Avarice": [
+                economy.filter("Tides of Avarice", "Scrap", methods=["Recycling"]),
+                economy.construction().filter("Tides of Avarice", "Scrap construction", methods=["Recycling", "Universal"]),
+            ],
+        }
 
 
 @dataclasses.dataclass(frozen=True)
@@ -220,7 +220,7 @@ class PlotlyWriter:
         html = self.output_directory / economy.filename("sankey", "html")
 
         figure = self.plot(economy=economy)
-        figure.write_html(html.as_posix())
+        figure.write_html(html.as_posix(), include_plotlyjs="cdn")
         figure.write_image(png.as_posix(), width=1000, height=500)
         logger.warning(
             "Drew economy with plotly",
@@ -350,37 +350,37 @@ class GraphvizWriter:
         )
 
 
-def render_diagrams(output_directory: pathlib.Path, economies: typing.Sequence[EconomyGraph]) -> typing.Iterable[Diagram]:
-    graphviz_writer = GraphvizWriter(output_directory=output_directory)
-    plotly_writer = PlotlyWriter(output_directory=output_directory)
+class Render:
+    output_directory: pathlib.Path = docs
 
-    for economy in economies:
-        yield graphviz_writer.render(economy)
-        yield plotly_writer.render(economy)
+    def group_diagrams(self, economies: typing.Sequence[EconomyGraph]) -> typing.Iterable[Diagram]:
+        graphviz_writer = GraphvizWriter(output_directory=self.output_directory)
+        plotly_writer = PlotlyWriter(output_directory=self.output_directory)
 
+        for economy in economies:
+            yield graphviz_writer.render(economy)
+            yield plotly_writer.render(economy)
 
-def render_all(
-    output_directory: pathlib.Path,
-    groups: typing.Mapping[str, typing.Sequence[EconomyGraph]],
-) -> typing.Mapping[str, typing.Sequence[Diagram]]:
-    return {k: list(render_diagrams(output_directory, v)) for k, v in groups.items()}
+    def all_diagrams(
+        self,
+        groups: typing.Mapping[str, typing.Sequence[EconomyGraph]],
+    ) -> typing.Mapping[str, typing.Sequence[Diagram]]:
+        return {k: list(self.group_diagrams(v)) for k, v in groups.items()}
 
+    def index(self, groups: typing.Mapping[str, typing.Sequence[Diagram]]) -> pathlib.Path:
+        loader = jinja2.FileSystemLoader(pathlib.Path(__file__).with_name("templates"))
+        environment = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
+        template = environment.get_template("index.html")
+        rendered = template.render(groups=groups)
+        path = self.output_directory / "index.html"
+        path.write_text(rendered)
+        logger.warning("Rendered index", path=path)
+        return path
 
-def render_index(output_directory: pathlib.Path, groups: typing.Mapping[str, typing.Sequence[Diagram]]) -> pathlib.Path:
-    loader = jinja2.FileSystemLoader(pathlib.Path(__file__).with_name("templates"))
-    environment = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
-    template = environment.get_template("index.html")
-    rendered = template.render(groups=groups)
-    path = output_directory / "index.html"
-    path.write_text(rendered)
-    logger.warning("Rendered index", path=path)
-    return path
-
-
-def main():
-    render_index(docs, render_all(docs, breakdown()))
+    def main(self):
+        self.index(self.all_diagrams(EconomyGraph.breakdown(TIERS)))
 
 
 if __name__ == "__main__":
     configure_structlog_once()
-    main()
+    Render().main()
