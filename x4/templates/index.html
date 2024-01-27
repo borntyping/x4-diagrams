@@ -61,6 +61,12 @@
       color: var(--secondary-dark-10);
     }
 
+    /* Remove all styles from links in headers */
+    h4 a, h4 a:visited {
+      text-decoration: none;
+      color: unset;
+    }
+
     /* Style heading anchor links */
     a.x-anchor {
       text-decoration: none;
@@ -160,7 +166,7 @@
       <div class="col sm-12 md-4">
         <div id="sidebar">
           <aside class="paper padding">
-            <h4>Table of contents</h4>
+            <h4><a href="#top">Table of contents</a></h4>
             <ol>
               {% for group in groups %}
                 <li>

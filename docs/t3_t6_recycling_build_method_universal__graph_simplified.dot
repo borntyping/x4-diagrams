@@ -94,9 +94,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="hydrogen">Hy</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="hydrogen">Hy</td>
       
     </tr>
   
@@ -115,9 +115,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -190,9 +190,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -216,9 +216,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
@@ -330,9 +330,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
     </tr>
   
@@ -357,9 +357,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
     </tr>
   
@@ -414,9 +414,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
-      
         <td align="text" bgcolor="white" color="#42d4f4" port="advanced_composites">AC</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
@@ -439,13 +439,13 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
-      
-        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
+        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
+      
+        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
@@ -468,9 +468,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
@@ -493,9 +493,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#42d4f4" port="advanced_composites">AC</td>
       
-        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
       
     </tr>
   
@@ -514,9 +514,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
@@ -539,9 +539,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
@@ -564,9 +564,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
-        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
       
     </tr>
   
@@ -620,9 +620,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
@@ -701,9 +701,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
-      
         <td align="text" bgcolor="white" color="#42d4f4" port="weapon_components">WC</td>
+      
+        <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
       
     </tr>
   
@@ -731,9 +731,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
-      
         <td align="text" bgcolor="white" color="#42d4f4" port="weapon_components">WC</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
       
     </tr>
   
@@ -819,9 +819,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
-      
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
       
     </tr>
   
