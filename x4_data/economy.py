@@ -852,7 +852,7 @@ WARES_TIER_3 = (
     Ware(
         key="teladianium",
         name="Teladianium",
-        acronym="Tl",
+        acronym="Te",
         tier=TIER_3,
         colour=Palette.YELLOW,
         volume=16,

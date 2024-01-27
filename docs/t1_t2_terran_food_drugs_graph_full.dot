@@ -1,0 +1,175 @@
+digraph "X4 Economy" {
+	edge [arrowType=normal]
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	label=<<b>T1–T2: Terran Food &amp; Drugs</b>>
+	graph [nodesep=0.3 pad=0.5 ranksep=3]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
+	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
+	subgraph 0 {
+		cluster=true label="T0: Harvested"
+		helium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="helium" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#469990" colspan="1">Helium</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="stimulants">St</td>
+      
+    </tr>
+  
+</table>>]
+		methane [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="methane" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#bfef45" colspan="1">Methane</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
+      
+    </tr>
+  
+</table>>]
+		silicon [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#bfef45" colspan="1">Silicon</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="stimulants">St</td>
+      
+    </tr>
+  
+</table>>]
+		ice [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="ice" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="2">Ice</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="4">Energy Cells</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="terran_mre">TM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="stimulants">St</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 1 {
+		cluster=true label="T1: Basic Food"
+		protein_paste [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="protein_paste" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
+      
+        <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="3">Protein Paste</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="terran_mre">TM</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 2 {
+		cluster=true label="T2: Food and Drugs"
+		medical_supplies [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="medical_supplies" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#000000" colspan="3">Medical Supplies</td>
+  </tr>
+  
+</table>>]
+		terran_mre [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="terran_mre" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="2">Terran MRE</td>
+  </tr>
+  
+</table>>]
+		stimulants [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="stimulants" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
+      
+        <td align="text" bgcolor="white" color="#bfef45" port="silicon">Si</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="3">Stimulants</td>
+  </tr>
+  
+</table>>]
+	}
+	energy_cells:protein_paste:s -> protein_paste:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	ice:protein_paste:s -> protein_paste:ice:n [arrowhead=empty color="#4363d8" weight=1.0]
+	methane:protein_paste:s -> protein_paste:methane:n [arrowhead=odot color="#bfef45" weight=1.0]
+	energy_cells:medical_supplies:s -> medical_supplies:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	ice:medical_supplies:s -> medical_supplies:ice:n [arrowhead=empty color="#4363d8" weight=1.0]
+	protein_paste:medical_supplies:s -> medical_supplies:protein_paste:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	energy_cells:terran_mre:s -> terran_mre:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	protein_paste:terran_mre:s -> terran_mre:protein_paste:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	energy_cells:stimulants:s -> stimulants:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	helium:stimulants:s -> stimulants:helium:n [arrowhead=odot color="#469990" weight=1.0]
+	silicon:stimulants:s -> stimulants:silicon:n [arrowhead=empty color="#bfef45" weight=1.0]
+}

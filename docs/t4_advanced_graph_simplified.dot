@@ -58,6 +58,23 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
+		teladianium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="teladianium" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#ffe119" colspan="3">Teladianium</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#ffd8b1" port="advanced_composites">AC</td>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
+      
+    </tr>
+  
+</table>>]
 		antimatter_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="antimatter_cells" port="output">
   
   <tr>
@@ -93,9 +110,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
-      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
       
     </tr>
   
@@ -108,9 +125,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
-      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
       
     </tr>
   
@@ -123,6 +140,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
+      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
@@ -130,7 +149,7 @@ digraph "X4 Economy" {
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#ffd8b1" colspan="2">Advanced Composites</td>
+    <td align="text" bgcolor="white" color="#ffd8b1" colspan="3">Advanced Composites</td>
   </tr>
   
 </table>>]
@@ -138,6 +157,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
+      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
@@ -145,7 +166,7 @@ digraph "X4 Economy" {
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#e6194B" colspan="2">Hull Parts</td>
+    <td align="text" bgcolor="white" color="#e6194B" colspan="3">Hull Parts</td>
   </tr>
   
 </table>>]
@@ -155,12 +176,14 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
+      
         <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="2">Engine Parts</td>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Engine Parts</td>
   </tr>
   
 </table>>]
@@ -197,10 +220,16 @@ digraph "X4 Economy" {
 	superfluid_coolant:quantum_tubes:s -> quantum_tubes:superfluid_coolant:n [arrowhead=box color="#42d4f4" weight=1.0]
 	graphene:advanced_composites:s -> advanced_composites:graphene:n [arrowhead=box color="#000000" weight=1.0]
 	refined_metals:advanced_composites:s -> advanced_composites:refined_metals:n [arrowhead=box color="#800000" weight=1.0]
+	graphene:advanced_composites:s -> advanced_composites:graphene:n [arrowhead=box color="#000000" weight=1.0]
+	teladianium:advanced_composites:s -> advanced_composites:teladianium:n [arrowhead=box color="#ffe119" weight=1.0]
 	graphene:hull_parts:s -> hull_parts:graphene:n [arrowhead=box color="#000000" weight=1.0]
 	refined_metals:hull_parts:s -> hull_parts:refined_metals:n [arrowhead=box color="#800000" weight=1.0]
+	graphene:hull_parts:s -> hull_parts:graphene:n [arrowhead=box color="#000000" weight=1.0]
+	teladianium:hull_parts:s -> hull_parts:teladianium:n [arrowhead=box color="#ffe119" weight=1.0]
 	antimatter_cells:engine_parts:s -> engine_parts:antimatter_cells:n [arrowhead=box color="#dcbeff" weight=1.0]
 	refined_metals:engine_parts:s -> engine_parts:refined_metals:n [arrowhead=box color="#800000" weight=1.0]
+	antimatter_cells:engine_parts:s -> engine_parts:antimatter_cells:n [arrowhead=box color="#dcbeff" weight=1.0]
+	teladianium:engine_parts:s -> engine_parts:teladianium:n [arrowhead=box color="#ffe119" weight=1.0]
 	silicon_wafers:microchips:s -> microchips:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
 	silicon_wafers:smart_chips:s -> smart_chips:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
 }

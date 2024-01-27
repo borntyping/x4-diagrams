@@ -251,9 +251,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
       
     </tr>
   
@@ -266,9 +266,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
       
     </tr>
   
@@ -281,9 +281,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
       
     </tr>
   
@@ -296,9 +296,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="weapon_components">WC</td>
-      
         <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="weapon_components">WC</td>
       
     </tr>
   
@@ -341,9 +341,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#dcbeff" port="shield_components">SC</td>
-      
         <td align="text" bgcolor="white" color="#aaffc3" port="field_coils">FC</td>
+      
+        <td align="text" bgcolor="white" color="#dcbeff" port="shield_components">SC</td>
       
     </tr>
   
@@ -356,9 +356,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffd8b1" port="turret_components">TC</td>
-      
         <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
+      
+        <td align="text" bgcolor="white" color="#ffd8b1" port="turret_components">TC</td>
       
     </tr>
   

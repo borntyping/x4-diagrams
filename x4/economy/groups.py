@@ -13,74 +13,54 @@ class EconomyGroup:
 
 
 def groups() -> typing.Sequence[EconomyGroup]:
-    world = Economy().done()
+    world = Economy()
 
-    food_and_drugs = world.with_name("T1–T2: Food & Drugs").filter_by_tier({1, 2}).done()
-    construction = world.with_name("T3–T6: Construction").filter_by_tier({3, 4, 5, 6}).done()
+    food_and_drugs = world.with_name("T1–T2: Food & Drugs").filter_by_tier({1, 2})
+    construction = world.with_name("T3–T6: Construction").filter_by_tier({3, 4, 5, 6})
 
-    universal = world.with_name("Universal").with_single_recipe(["Universal"]).done()
-    commonwealth: list[Method] = ["Universal", "Argon", "Boron", "Paranid", "Split", "Teladi"]
+    commonwealth: set[Method] = {"Universal", "Argon", "Boron", "Paranid", "Split", "Teladi"}
+    foundations = world.with_name("Foundations").with_selected_recipes(commonwealth)
 
     return [
         EconomyGroup(
             title="Foundations",
             economies=[
-                universal.with_name("T3–T6: Construction").filter_by_tier({3, 4, 5, 6}).with_hints(Hint.SIMPLIFY_EXCLUSIVE),
-                universal.with_name(str(TIER_3)).filter_by_tier({3}).done(),
-                universal.with_name(str(TIER_4)).filter_by_tier({4}).with_hints(Hint.SIMPLIFY_EXCLUSIVE).done(),
-                universal.with_name(str(TIER_5)).filter_by_tier({5}).with_hints(Hint.SIMPLIFY_EXCLUSIVE).done(),
-                universal.with_name(str(TIER_6)).filter_by_tier({6}).with_hints(Hint.SIMPLIFY_EXCLUSIVE).done(),
-                (
-                    food_and_drugs.with_name("T1–T2: Food & Drugs")
-                    .with_selected_recipes(set(commonwealth))
-                    .with_hints(Hint.SIMPLIFY_INCLUSIVE)
-                    .done()
-                ),
-                food_and_drugs.with_name("T1–T2: Argon Food & Drugs").with_single_recipe(["Argon"]).done(),
-                food_and_drugs.with_name("T1–T2: Paranid Food & Drugs").with_single_recipe(["Paranid"]).done(),
-                food_and_drugs.with_name("T1–T2: Teladi Food & Drugs").with_single_recipe(["Teladi"]).done(),
-                (
-                    construction.with_name("T3–T6: Teladi Construction")
-                    .with_single_recipe(["Teladi", "Universal"])
-                    .with_hints(Hint.SIMPLIFY_EXCLUSIVE)
-                    .done()
-                ),
+                foundations("T3–T6: Construction").filter_by_tier({3, 4, 5, 6}),
+                foundations(str(TIER_3)).filter_by_tier({3}),
+                foundations(str(TIER_4)).filter_by_tier({4}),
+                foundations(str(TIER_5)).filter_by_tier({5}),
+                foundations(str(TIER_6)).filter_by_tier({6}),
+                foundations("T1–T2: Food & Drugs").filter_by_tier({1, 2}),
+                food_and_drugs("T1–T2: Argon Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Argon"]),
+                food_and_drugs("T1–T2: Paranid Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Paranid"]),
+                food_and_drugs("T1–T2: Teladi Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Teladi"]),
+                construction("T3–T6: Teladi Construction").with_single_recipe(["Teladi", "Universal"]),
             ],
         ),
         EconomyGroup(
             title="Split Vendetta",
             economies=[
-                food_and_drugs.with_name("T1–T2: Split Food & Drugs").with_single_recipe(["Split"]).done(),
+                food_and_drugs("T1–T2: Split Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Split"]),
             ],
         ),
         EconomyGroup(
             title="Cradle of Humanity",
             economies=[
-                food_and_drugs.with_name("T1–T2: Terran Food & Drugs").with_single_recipe(["Terran"]).done(),
-                construction.with_name("T3–T6: Terran Construction").with_single_recipe(["Terran"]).done(),
+                food_and_drugs("T1–T2: Terran Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Terran"]),
+                construction("T3–T6: Terran Construction").with_single_recipe(["Terran"]),
             ],
         ),
         EconomyGroup(
             title="Tides of Avarice",
             economies=[
-                (
-                    construction.with_name("T3–T6: Scrapping Construction")
-                    .with_single_recipe(["Recycling"])
-                    .with_hints(Hint.SIMPLIFY_EXCLUSIVE)
-                    .done()
-                ),
-                (
-                    construction.with_name("T3–T6: Scrapping Construction")
-                    .with_single_recipe(["Recycling", "Universal"])
-                    .with_hints(Hint.SIMPLIFY_EXCLUSIVE)
-                    .done()
-                ),
+                construction("T3–T6: Scrapping Construction").with_single_recipe(["Recycling"]),
+                construction("T3–T6: Scrapping Construction").with_single_recipe(["Recycling", "Universal"]),
             ],
         ),
         EconomyGroup(
             title="Kingdom End",
             economies=[
-                food_and_drugs.with_name("T1–T2: Boron Food & Drugs").with_single_recipe(["Boron"]).done(),
+                food_and_drugs("T1–T2: Boron Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Boron"]),
             ],
         ),
     ]

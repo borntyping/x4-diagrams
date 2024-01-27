@@ -71,11 +71,31 @@ class Include(WareFilter):
         return ware.key in self.include
 
 
-class Hint(enum.IntFlag):
-    NONE = enum.auto()
+class Hint(enum.Flag):
+    """
+    >>> flags = Hint.SIMPLE_GRAPH | Hint.FULL_SANKEY
+    >>> Hint.FULL_GRAPH in flags
+    False
+    >>> Hint.FULL_SANKEY in flags
+    True
+    >>> Hint.SIMPLE_GRAPH in flags
+    True
+    >>> Hint.SIMPLE_SANKEY in flags
+    False
+    >>> Hint.FULL_GRAPH in Hint.SIMPLE
+    False
+    >>> Hint.FULL_SANKEY in Hint.SIMPLE
+    False
+    """
 
-    SIMPLIFY_INCLUSIVE = enum.auto()
-    SIMPLIFY_EXCLUSIVE = enum.auto()
+    SIMPLE_GRAPH = enum.auto()
+    FULL_GRAPH = enum.auto()
+
+    SIMPLE_SANKEY = enum.auto()
+    FULL_SANKEY = enum.auto()
+
+    SIMPLE = SIMPLE_GRAPH | SIMPLE_SANKEY
+    FULL_GRAPH_ONLY = FULL_GRAPH | SIMPLE_SANKEY
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
@@ -84,7 +104,7 @@ class Economy:
 
     name: str = "X4"
     description: typing.Sequence[str] = ()
-    hints: Hint = Hint.NONE
+    hint: Hint = Hint.SIMPLE
 
     def __post_init__(self):
         assert isinstance(self.wares, typing.Sequence)
@@ -102,11 +122,16 @@ class Economy:
     def __iter__(self) -> typing.Iterator[Ware]:
         return iter(self.wares)
 
-    def __call__(self, name: str) -> typing.Self:
-        return self.with_name(name)
+    def __call__(self, name: str, hint: Hint | None = None) -> typing.Self:
+        return dataclasses.replace(self, name=name, hint=self.hint if hint is None else hint)
 
-    def with_wares(self, wares: typing.Sequence[Ware]) -> typing.Self:
-        return dataclasses.replace(self, wares=wares)
+    def with_wares(self, wares: typing.Sequence[Ware], verify: bool = True) -> typing.Self:
+        economy = dataclasses.replace(self, wares=wares)
+
+        if verify:
+            self.verify()
+
+        return economy
 
     def with_name(self, name: str) -> typing.Self:
         logger.debug("Replacing name", economy=self, name=name)
@@ -115,8 +140,8 @@ class Economy:
     def with_description(self, description: str) -> typing.Self:
         return dataclasses.replace(self, description=(*self.description, description))
 
-    def with_hints(self, hints: Hint) -> typing.Self:
-        return dataclasses.replace(self, hints=hints)
+    def with_hint(self, hint: Hint) -> typing.Self:
+        return dataclasses.replace(self, hint=hint)
 
     @property
     def tiers(self) -> typing.List[Tier]:
@@ -180,44 +205,17 @@ class Economy:
     def outputs_for_ware(self, input_ware: Ware) -> typing.Sequence[Ware]:
         return [ware for ware in self.wares if input_ware.key in ware.inputs_as_set()]
 
-    def filter_wares(self, wf: WareFilter) -> typing.Self:
-        economy = self.with_wares([ware for ware in self.wares if wf(ware)])
-        logger.info("Filtered wares", economy=repr(economy), wf=wf)
-        return economy
+    def filter_wares(self, wf: WareFilter, verify: bool = True) -> typing.Self:
+        return self.with_wares([ware for ware in self.wares if wf(ware)], verify=verify)
 
     def select_tiers(self, tier_ids: set[int]) -> typing.Self:
         """
         Return an economy describing how to make the wares in the given tiers.
         """
         economy: Economy = self.filter_wares(WareInTiers(tier_ids))
-        return self._select_inputs_and_outputs(
-            inputs=economy.inputs(),
-            outputs=economy.outputs(),
-        )
+        inputs = economy.inputs()
+        outputs = economy.outputs()
 
-    def filter_method(self, priority: typing.Sequence[Method]) -> typing.Self:
-        """
-        Return an economy describing how to make the wares with the given methods.
-
-        Only one method for each ware will be used, prioritising the first methods in the input sequence.
-
-        This needs to select wares using only those production methods,
-        then find the dependencies of those wares,
-        then remove unused production methods from the final list of wares.
-        """
-
-        # Remove undesired recipes from the economy.
-        economy = self.with_single_recipe(priority)
-
-        # Select wares that still have a recipe.
-        wares_with_recipe = economy.filter_wares(HasRecipe())
-
-        return self._select_inputs_and_outputs(
-            inputs=wares_with_recipe.inputs(),
-            outputs=wares_with_recipe.outputs(),
-        )
-
-    def _select_inputs_and_outputs(self, inputs: set[str], outputs: set[str]):
         all_wares = Include(inputs | outputs)
         only_inputs = Include(inputs - outputs)
 
@@ -237,10 +235,10 @@ class Economy:
         outputs = economy.outputs()
 
         # Create an economy containing our inputs *and* outputs.
-        economy = self.filter_wares(Include(inputs | outputs))
+        economy = self.filter_wares(Include(inputs | outputs), verify=False)
 
         # Remove all recipes for wares that are inputs but *not* outputs.
-        economy = economy.remove_all_recipes(lambda w: w.key in inputs - outputs)
+        economy = economy.remove_all_recipes(lambda w: w.key in inputs - outputs, verify=False)
 
         # Missile components need hull parts, should that show for T6?
 
@@ -249,8 +247,8 @@ class Economy:
     def remove_inputs(self, keys: set[str]) -> typing.Self:
         return self.with_wares([ware.remove_inputs(keys) for ware in self.wares if ware.key not in keys])
 
-    def remove_all_recipes(self, wf: WareFilter) -> typing.Self:
-        return self.with_wares([w.with_no_recipes() if wf(w) else w for w in self.wares])
+    def remove_all_recipes(self, wf: WareFilter, *, verify: bool = True) -> typing.Self:
+        return self.with_wares([w.with_no_recipes() if wf(w) else w for w in self.wares], verify=verify)
 
     def with_single_recipe(self, priority: typing.Sequence[Method]) -> typing.Self:
         wares = [ware.with_single_recipe(priority) for ware in self.wares]
@@ -271,7 +269,7 @@ class Economy:
     # def filter_recipes(self, f: typing.Callable[[Recipe], bool]) -> typing.Self:
     #     return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
 
-    def done(self) -> typing.Self:
+    def verify(self) -> typing.Self:
         logger.info("Validating economy", economy=repr(self))
 
         if not self.wares:
@@ -300,7 +298,7 @@ class Economy:
         names = [wares[c].name.lower() for c in sorted(keys) if c in wares]
         description = "Not shown: {}.".format(p.join(names))
 
-        economy = self.with_description(description).remove_inputs(keys).done()
+        economy = self.with_description(description).remove_inputs(keys).verify()
 
         for key in keys:
             assert key not in economy.wares_as_dict(), f"{key} still present in {economy}"

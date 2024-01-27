@@ -1,0 +1,332 @@
+digraph "X4 Economy" {
+	edge [arrowType=normal]
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	label=<<b>T3–T6: Terran Construction</b><br/><br/>Not shown: energy cells.>
+	graph [nodesep=0.3 pad=0.5 ranksep=3]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
+	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
+	subgraph 0 {
+		cluster=true label="T0: Harvested"
+		helium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="helium" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#469990" colspan="1">Helium</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+</table>>]
+		methane [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="methane" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#bfef45" colspan="1">Methane</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+    </tr>
+  
+</table>>]
+		ore [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="ore" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#e6194B" colspan="2">Ore</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+</table>>]
+		hydrogen [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="hydrogen" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="1">Hydrogen</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+    </tr>
+  
+</table>>]
+		silicon [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#bfef45" colspan="2">Silicon</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 3 {
+		cluster=true label="T3: Refined"
+		computronic_substrate [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="computronic_substrate" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="hydrogen">Hy</td>
+      
+        <td align="text" bgcolor="white" color="#bfef45" port="silicon">Si</td>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="ore">Or</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="7">Computronic Substrate</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="ship_hulls">SH</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="station_modules">SM</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="engines">En</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="thrusters">Th</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="shields">Sh</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="turrets">Tu</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="guns_and_launchers">GL</td>
+      
+    </tr>
+  
+</table>>]
+		metallic_microlattice [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="metallic_microlattice" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="ore">Or</td>
+      
+        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="7">Metallic Microlattice</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="ship_hulls">SH</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="engines">En</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="thrusters">Th</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="shields">Sh</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="turrets">Tu</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="guns_and_launchers">GL</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 4 {
+		cluster=true label="T4: Advanced"
+		silicon_carbide [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon_carbide" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#bfef45" port="silicon">Si</td>
+      
+        <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#000075" colspan="6">Silicon Carbide</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="station_modules">SM</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="engines">En</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="thrusters">Th</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="shields">Sh</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="turrets">Tu</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="guns_and_launchers">GL</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 6 {
+		cluster=true label="T6: Equipment"
+		ship_hulls [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="ship_hulls" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Ship Hulls</td>
+  </tr>
+  
+</table>>]
+		station_modules [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="station_modules" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Station modules</td>
+  </tr>
+  
+</table>>]
+		engines [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="engines" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Engines</td>
+  </tr>
+  
+</table>>]
+		thrusters [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="thrusters" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Thrusters</td>
+  </tr>
+  
+</table>>]
+		shields [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="shields" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Shields</td>
+  </tr>
+  
+</table>>]
+		turrets [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="turrets" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Turrets</td>
+  </tr>
+  
+</table>>]
+		guns_and_launchers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="guns_and_launchers" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Guns and Launchers</td>
+  </tr>
+  
+</table>>]
+	}
+	hydrogen:computronic_substrate:s -> computronic_substrate:hydrogen:n [arrowhead=odot color="#42d4f4" weight=1.0]
+	ore:computronic_substrate:s -> computronic_substrate:ore:n [arrowhead=empty color="#e6194B" weight=1.0]
+	silicon:computronic_substrate:s -> computronic_substrate:silicon:n [arrowhead=empty color="#bfef45" weight=1.0]
+	helium:metallic_microlattice:s -> metallic_microlattice:helium:n [arrowhead=odot color="#469990" weight=1.0]
+	ore:metallic_microlattice:s -> metallic_microlattice:ore:n [arrowhead=empty color="#e6194B" weight=1.0]
+	metallic_microlattice:silicon_carbide:s -> silicon_carbide:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
+	methane:silicon_carbide:s -> silicon_carbide:methane:n [arrowhead=odot color="#bfef45" weight=1.0]
+	silicon:silicon_carbide:s -> silicon_carbide:silicon:n [arrowhead=empty color="#bfef45" weight=1.0]
+	metallic_microlattice:ship_hulls:s -> ship_hulls:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
+	computronic_substrate:ship_hulls:s -> ship_hulls:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+	silicon_carbide:station_modules:s -> station_modules:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
+	computronic_substrate:station_modules:s -> station_modules:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+	metallic_microlattice:engines:s -> engines:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
+	silicon_carbide:engines:s -> engines:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
+	computronic_substrate:engines:s -> engines:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+	metallic_microlattice:thrusters:s -> thrusters:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
+	silicon_carbide:thrusters:s -> thrusters:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
+	computronic_substrate:thrusters:s -> thrusters:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+	metallic_microlattice:shields:s -> shields:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
+	silicon_carbide:shields:s -> shields:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
+	computronic_substrate:shields:s -> shields:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+	metallic_microlattice:turrets:s -> turrets:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
+	silicon_carbide:turrets:s -> turrets:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
+	computronic_substrate:turrets:s -> turrets:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+	metallic_microlattice:guns_and_launchers:s -> guns_and_launchers:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
+	silicon_carbide:guns_and_launchers:s -> guns_and_launchers:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
+	computronic_substrate:guns_and_launchers:s -> guns_and_launchers:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+}

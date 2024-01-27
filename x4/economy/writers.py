@@ -120,7 +120,7 @@ class PlotlyWriter(Writer):
         logger.warning("Drew economy with plotly", economy=repr(economy))
         return Diagram(
             title=economy.name,
-            description=(*economy.description, "Rendered with plotly."),
+            description=(*economy.description, "Rendered with Plotly."),
             image=image,
             links={"Interactive": interactive, "Image": image},
         )
@@ -219,11 +219,11 @@ class GraphvizWriter(Writer):
         raise ValueError(storage)
 
     def weight(self, input_ware: Ware, output_ware: Ware) -> str:
-        match (input_ware, output_ware):
-            case (Ware(key="energy_cells"), _):
-                return "0.1"
-            case (Ware(key="water"), _):
-                return "0.1"
+        # match (input_ware, output_ware):
+        #     case (Ware(key="energy_cells"), _):
+        #         return "0.1"
+        #     case (Ware(key="water"), _):
+        #         return "0.1"
 
         return "1.0"
 
@@ -260,7 +260,7 @@ class GraphvizWriter(Writer):
         logger.info("Drew economy with graphviz", economy=repr(economy))
         return Diagram(
             title=economy.name,
-            description=(*economy.description, "Rendered with graphviz."),
+            description=(*economy.description, "Rendered with Graphviz."),
             image=image,
             links={"Image": image, "Source": source},
         )
@@ -301,14 +301,19 @@ class Builder:
         )
 
     def diagrams(self, economy: Economy) -> typing.Iterable[Diagram]:
-        if economy.hints in Hint.SIMPLIFY_INCLUSIVE | Hint.SIMPLIFY_EXCLUSIVE:
-            simplified = economy.remove_common_inputs()
-            yield self.graphviz_writer.diagram(simplified, filename_suffixes=("simplified",))
-            yield self.plotly_writer.diagram(simplified, filename_suffixes=("simplified",))
+        simplified = economy.remove_common_inputs()
 
-        if economy.hints not in Hint.SIMPLIFY_EXCLUSIVE:
-            yield self.graphviz_writer.diagram(economy)
-            yield self.plotly_writer.diagram(economy)
+        if economy.hint & Hint.SIMPLE_GRAPH:
+            yield self.graphviz_writer.diagram(simplified, ("simplified",))
+
+        if economy.hint & Hint.FULL_GRAPH:
+            yield self.graphviz_writer.diagram(economy, ("full",))
+
+        if economy.hint & Hint.SIMPLE_SANKEY:
+            yield self.plotly_writer.diagram(simplified, ("simplified",))
+
+        if economy.hint & Hint.FULL_SANKEY:
+            yield self.plotly_writer.diagram(economy, ("full",))
 
     def main(self, groups: typing.Sequence[EconomyGroup]) -> pathlib.Path:
         return self.index_writer.index([self.economy_group(group) for group in groups])
