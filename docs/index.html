@@ -1,656 +1,1336 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
   <meta charset="UTF-8">
   <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>X4 Diagrams</title>
   <link
-      rel="stylesheet"
-      href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"/>
+      rel="stylesheet" href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"/>
   <style>
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-auto-rows: 1fr;
-      grid-gap: 1em;
+    header, section, aside {
+      & > :first-child {
+        margin-top: 0;
+      }
+
+      & > :last-child {
+        margin-bottom: 0;
+      }
     }
 
+    header {
+      text-align: center;
+
+      & a {
+        color: var(--secondary);
+        text-decoration: none;
+      }
+
+      & p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    /* Lay cards out on a grid. */
     .card {
       text-align: center;
     }
 
-    .card img {
-      aspect-ratio: 2 / 1;
-      object-fit: cover;
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+      gap: 1rem;
     }
 
-    .card h4 {
-      height: 2em;
+    /* Make all images the same size. */
+    .card img {
+      aspect-ratio: 2 / 1;
+      object-fit: contain;
+    }
+
+    /* Remove the underline effect from PaperCSS. */
+    a {
+      background-image: none;
+      text-decoration: underline;
+    }
+
+    /* Don't hide visited links. */
+    a:visited {
+      color: var(--secondary-dark-10);
+    }
+
+    /* Style heading anchor links */
+    a.x-anchor {
+      text-decoration: none;
+      opacity: 0;
+      font-size: 0.65em;
+    }
+
+    h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+      & a.x-anchor {
+        opacity: 1;
+      }
+    }
+
+    #sidebar {
+      /* Make the sidebar sticky. */
+      position: sticky;
+      top: calc(40px);
+
+      /* Avoid padding the lists in the sidebar too much. */
+      & aside {
+        & ol, & ul {
+          list-style: none;
+          padding-left: 20px;
+        }
+
+        & > ol, & > ul {
+          padding-left: 0 !important;
+        }
+      }
+    }
+
+    /* Mute the "return to top" link. */
+    footer a,
+    footer a:visited {
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
-  <article class="paper container container-lg margin-top-large margin-bottom-large">
-    <section>
-      <h1 class="margin-top-none">X4 Diagrams</h1>
-      <p>
-        Created by
-        <a href="https://borntyping.co.uk">@borntyping</a>. Source code at
-        <a href="https://github.com/borntyping/x4-diagrams">github.com/borntyping/x4-diagrams</a>.
-      </p>
-      <p>
-        This project is entirely unaffiliated with Egosoft. Go buy
-        <a href="https://store.steampowered.com/app/392160/X4_Foundations/">X4: Foundations</a>.
-      </p>
-      <p>
-        Created with
-        <a href="https://graphviz.org/">GraphViz</a>,
-        <a href="https://plotly.com/graphing-libraries/">Plotly Graphing Libraries</a>,
-        <a href="https://www.getpapercss.com/">PaperCSS</a>,
-        <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a>,
-        and
-        <a href="https://www.structlog.org/en/stable/">structlog</a>.
-      </p>
-    </section>
+  <div class="container container-lg">
+    <div class="row">
+      <div class="col sm-12 md-8">
+        <article>
+          <header class="paper">
+            <h1 class="margin-top-none"><a href="#top">X4 Diagrams</a></h1>
+            <p>Diagrams illustrating various parts of the
+              <a href="https://store.steampowered.com/app/392160/X4_Foundations/">X4: Foundations</a> economy.
+            </p>
+          </header>
 
-    <section>
-      <h2 id="Production">Production</h2>
+          
+            <section id="Universal" class="paper">
+              <h3>
+                <span>Universal</span>
+                <a class="x-anchor" href="#Universal">¶</a>
+              </h3>
+              
+                <div id="T1–T2: Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_food_drugs__graph.png" alt="T1–T2: Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_food_drugs__sankey.png" alt="T1–T2: Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_food_drugs_graph.png" alt="T1–T2: Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_food_drugs_sankey.png" alt="T1–T2: Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T3–T6: Construction">
+                  <h4>
+                    <span>T3–T6: Construction</span>
+                    <a class="x-anchor" href="#T3–T6: Construction">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t3_t6_construction__graph.png" alt="T3–T6: Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_construction__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_construction__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_construction__sankey.png" alt="T3–T6: Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_construction__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_construction__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_construction_graph.png" alt="T3–T6: Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_construction_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_construction_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_construction_sankey.png" alt="T3–T6: Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_construction_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_construction_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T3: Refined">
+                  <h4>
+                    <span>T3: Refined</span>
+                    <a class="x-anchor" href="#T3: Refined">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t3_refined__graph.png" alt="T3: Refined">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_refined__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_refined__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_refined__sankey.png" alt="T3: Refined">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_refined__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_refined__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_refined_graph.png" alt="T3: Refined">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_refined_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_refined_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_refined_sankey.png" alt="T3: Refined">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_refined_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_refined_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T4: Advanced">
+                  <h4>
+                    <span>T4: Advanced</span>
+                    <a class="x-anchor" href="#T4: Advanced">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t4_advanced__graph.png" alt="T4: Advanced">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t4_advanced__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t4_advanced__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t4_advanced__sankey.png" alt="T4: Advanced">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t4_advanced__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t4_advanced__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t4_advanced_graph.png" alt="T4: Advanced">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t4_advanced_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t4_advanced_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t4_advanced_sankey.png" alt="T4: Advanced">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t4_advanced_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t4_advanced_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T5: Components">
+                  <h4>
+                    <span>T5: Components</span>
+                    <a class="x-anchor" href="#T5: Components">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t5_components__graph.png" alt="T5: Components">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t5_components__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t5_components__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t5_components__sankey.png" alt="T5: Components">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t5_components__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t5_components__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t5_components_graph.png" alt="T5: Components">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t5_components_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t5_components_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t5_components_sankey.png" alt="T5: Components">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t5_components_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t5_components_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T6: Equipment">
+                  <h4>
+                    <span>T6: Equipment</span>
+                    <a class="x-anchor" href="#T6: Equipment">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t6_equipment_graph.png" alt="T6: Equipment">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t6_equipment_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t6_equipment_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t6_equipment_sankey.png" alt="T6: Equipment">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t6_equipment_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t6_equipment_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+            </section>
+          
+            <section id="Foundations" class="paper">
+              <h3>
+                <span>Foundations</span>
+                <a class="x-anchor" href="#Foundations">¶</a>
+              </h3>
+              
+                <div id="T1–T2: Commonwealth Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Commonwealth Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Commonwealth Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_commonwealth_food_drugs__graph.png" alt="T1–T2: Commonwealth Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_commonwealth_food_drugs__sankey.png" alt="T1–T2: Commonwealth Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_commonwealth_food_drugs_graph.png" alt="T1–T2: Commonwealth Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_commonwealth_food_drugs_sankey.png" alt="T1–T2: Commonwealth Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_commonwealth_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T1–T2: Argon Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Argon Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Argon Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_argon_food_drugs__graph.png" alt="T1–T2: Argon Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_argon_food_drugs__sankey.png" alt="T1–T2: Argon Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_argon_food_drugs_graph.png" alt="T1–T2: Argon Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_argon_food_drugs_sankey.png" alt="T1–T2: Argon Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_argon_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T1–T2: Boron Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Boron Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Boron Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs__graph.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs__sankey.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs_graph.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs_sankey.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T1–T2: Paranid Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Paranid Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Paranid Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_paranid_food_drugs__graph.png" alt="T1–T2: Paranid Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_paranid_food_drugs__sankey.png" alt="T1–T2: Paranid Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_paranid_food_drugs_graph.png" alt="T1–T2: Paranid Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_paranid_food_drugs_sankey.png" alt="T1–T2: Paranid Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_paranid_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T1–T2: Teladi Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Teladi Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Teladi Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_teladi_food_drugs__graph.png" alt="T1–T2: Teladi Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_teladi_food_drugs__sankey.png" alt="T1–T2: Teladi Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_teladi_food_drugs_graph.png" alt="T1–T2: Teladi Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_teladi_food_drugs_sankey.png" alt="T1–T2: Teladi Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_teladi_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T3–T6: Teladi Construction">
+                  <h4>
+                    <span>T3–T6: Teladi Construction</span>
+                    <a class="x-anchor" href="#T3–T6: Teladi Construction">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t3_t6_teladi_construction__graph.png" alt="T3–T6: Teladi Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_teladi_construction__sankey.png" alt="T3–T6: Teladi Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_teladi_construction_graph.png" alt="T3–T6: Teladi Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_teladi_construction_sankey.png" alt="T3–T6: Teladi Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_teladi_construction_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+            </section>
+          
+            <section id="Split Vendetta" class="paper">
+              <h3>
+                <span>Split Vendetta</span>
+                <a class="x-anchor" href="#Split Vendetta">¶</a>
+              </h3>
+              
+                <div id="T1–T2: Split Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Split Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Split Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_split_food_drugs__graph.png" alt="T1–T2: Split Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_split_food_drugs__sankey.png" alt="T1–T2: Split Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_split_food_drugs_graph.png" alt="T1–T2: Split Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_split_food_drugs_sankey.png" alt="T1–T2: Split Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_split_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+            </section>
+          
+            <section id="Cradle of Humanity" class="paper">
+              <h3>
+                <span>Cradle of Humanity</span>
+                <a class="x-anchor" href="#Cradle of Humanity">¶</a>
+              </h3>
+              
+                <div id="T1–T2: Terran Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Terran Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Terran Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_terran_food_drugs__graph.png" alt="T1–T2: Terran Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_terran_food_drugs__sankey.png" alt="T1–T2: Terran Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_terran_food_drugs_graph.png" alt="T1–T2: Terran Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_terran_food_drugs_sankey.png" alt="T1–T2: Terran Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_terran_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T3–T6: Terran Construction">
+                  <h4>
+                    <span>T3–T6: Terran Construction</span>
+                    <a class="x-anchor" href="#T3–T6: Terran Construction">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t3_t6_terran_construction__graph.png" alt="T3–T6: Terran Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_terran_construction__sankey.png" alt="T3–T6: Terran Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_terran_construction_graph.png" alt="T3–T6: Terran Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_terran_construction_sankey.png" alt="T3–T6: Terran Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_terran_construction_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+            </section>
+          
+            <section id="Tides of Avarice" class="paper">
+              <h3>
+                <span>Tides of Avarice</span>
+                <a class="x-anchor" href="#Tides of Avarice">¶</a>
+              </h3>
+              
+                <div id="T3–T6: Scrapping Construction">
+                  <h4>
+                    <span>T3–T6: Scrapping Construction</span>
+                    <a class="x-anchor" href="#T3–T6: Scrapping Construction">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction__graph.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction__sankey.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction_graph.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction_sankey.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+                <div id="T3–T6: Scrapping Construction">
+                  <h4>
+                    <span>T3–T6: Scrapping Construction</span>
+                    <a class="x-anchor" href="#T3–T6: Scrapping Construction">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction__graph.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction__sankey.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction_graph.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t3_t6_scrapping_construction_sankey.png" alt="T3–T6: Scrapping Construction">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t3_t6_scrapping_construction_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+            </section>
+          
+            <section id="Kingdom End" class="paper">
+              <h3>
+                <span>Kingdom End</span>
+                <a class="x-anchor" href="#Kingdom End">¶</a>
+              </h3>
+              
+                <div id="T1–T2: Boron Food & Drugs">
+                  <h4>
+                    <span>T1–T2: Boron Food & Drugs</span>
+                    <a class="x-anchor" href="#T1–T2: Boron Food & Drugs">¶</a>
+                  </h4>
+                  <div class="cards">
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs__graph.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs__sankey.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs__sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs_graph.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with graphviz</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_graph.png">Image</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_graph.dot">Source</a>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="card">
+                        <img src="t1_t2_boron_food_drugs_sankey.png" alt="T1–T2: Boron Food & Drugs">
+                        <div class="card-body">
+                          <p class="card-text">Rendered with plotly</p>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_sankey.html">Interactive</a>
+                          
+                            <a class="card-link" href="t1_t2_boron_food_drugs_sankey.png">Image</a>
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                </div>
+              
+            </section>
+          
+        </article>
+      </div>
+      <div class="col sm-12 md-4">
+        <div id="sidebar">
+          <aside class="paper padding">
+            <ol>
+              
+                <li>
+                  <a href="#Universal">Universal</a>
+                  <ol>
+                    
+                      <li>
+                        <a href="#T1–T2: Food & Drugs">T1–T2: Food & Drugs</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T3–T6: Construction">T3–T6: Construction</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T3: Refined">T3: Refined</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T4: Advanced">T4: Advanced</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T5: Components">T5: Components</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T6: Equipment">T6: Equipment</a>
+                      </li>
+                    
+                  </ol>
+                </li>
+              
+                <li>
+                  <a href="#Foundations">Foundations</a>
+                  <ol>
+                    
+                      <li>
+                        <a href="#T1–T2: Commonwealth Food & Drugs">T1–T2: Commonwealth Food & Drugs</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T1–T2: Argon Food & Drugs">T1–T2: Argon Food & Drugs</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T1–T2: Boron Food & Drugs">T1–T2: Boron Food & Drugs</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T1–T2: Paranid Food & Drugs">T1–T2: Paranid Food & Drugs</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T1–T2: Teladi Food & Drugs">T1–T2: Teladi Food & Drugs</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T3–T6: Teladi Construction">T3–T6: Teladi Construction</a>
+                      </li>
+                    
+                  </ol>
+                </li>
+              
+                <li>
+                  <a href="#Split Vendetta">Split Vendetta</a>
+                  <ol>
+                    
+                      <li>
+                        <a href="#T1–T2: Split Food & Drugs">T1–T2: Split Food & Drugs</a>
+                      </li>
+                    
+                  </ol>
+                </li>
+              
+                <li>
+                  <a href="#Cradle of Humanity">Cradle of Humanity</a>
+                  <ol>
+                    
+                      <li>
+                        <a href="#T1–T2: Terran Food & Drugs">T1–T2: Terran Food & Drugs</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T3–T6: Terran Construction">T3–T6: Terran Construction</a>
+                      </li>
+                    
+                  </ol>
+                </li>
+              
+                <li>
+                  <a href="#Tides of Avarice">Tides of Avarice</a>
+                  <ol>
+                    
+                      <li>
+                        <a href="#T3–T6: Scrapping Construction">T3–T6: Scrapping Construction</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#T3–T6: Scrapping Construction">T3–T6: Scrapping Construction</a>
+                      </li>
+                    
+                  </ol>
+                </li>
+              
+                <li>
+                  <a href="#Kingdom End">Kingdom End</a>
+                  <ol>
+                    
+                      <li>
+                        <a href="#T1–T2: Boron Food & Drugs">T1–T2: Boron Food & Drugs</a>
+                      </li>
+                    
+                  </ol>
+                </li>
+              
+            </ol>
+          </aside>
 
-      <ol>
-        
-          <li>
-            <a href="#Universal">Universal</a>
-          </li>
-        
-          <li>
-            <a href="#Commonwealth">Commonwealth</a>
-          </li>
-        
-          <li>
-            <a href="#Argon">Argon</a>
-          </li>
-        
-          <li>
-            <a href="#Boron">Boron</a>
-          </li>
-        
-          <li>
-            <a href="#Paranid">Paranid</a>
-          </li>
-        
-          <li>
-            <a href="#Teladi">Teladi</a>
-          </li>
-        
-      </ol>
+          <aside class="paper padding">
+            <p>
+              Created by
+              <a href="https://borntyping.co.uk">@borntyping</a>. Source code at
+              <a href="https://github.com/borntyping/x4-diagrams">github.com/borntyping/x4-diagrams</a>.
+            </p>
+            <p>
+              This project is entirely unaffiliated with Egosoft. Go buy
+              <a href="https://store.steampowered.com/app/392160/X4_Foundations/">X4: Foundations</a>.
+            </p>
+            <p>
+              Created with
+              <a href="https://graphviz.org/">GraphViz</a>,
+              <a href="https://plotly.com/graphing-libraries/">Plotly Graphing Libraries</a>,
+              <a href="https://www.getpapercss.com/">PaperCSS</a>,
+              <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a>,
+              and
+              <a href="https://www.structlog.org/en/stable/">structlog</a>.
+            </p>
+          </aside>
 
-      
-        <h3 id="Universal">Universal</h3>
-        <div class="cards">
-          
-            <div id="Tier 1–2: Food & Drugs †" class="card">
-              <img src="tier_1_2_food_drugs__graph.png" alt="tier_1_2_food_drugs__graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 1–2: Food & Drugs †</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_1_2_food_drugs__graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_1_2_food_drugs__graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 1–2: Food & Drugs †" class="card">
-              <img src="tier_1_2_food_drugs__sankey.png" alt="tier_1_2_food_drugs__sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 1–2: Food & Drugs †</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_1_2_food_drugs__sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_1_2_food_drugs__sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 3–6: Construction †" class="card">
-              <img src="tier_3_6_construction__graph.png" alt="tier_3_6_construction__graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 3–6: Construction †</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_3_6_construction__graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_3_6_construction__graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 3–6: Construction †" class="card">
-              <img src="tier_3_6_construction__sankey.png" alt="tier_3_6_construction__sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 3–6: Construction †</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_3_6_construction__sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_3_6_construction__sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 1–2: Food & Drugs" class="card">
-              <img src="tier_1_2_food_drugs_graph.png" alt="tier_1_2_food_drugs_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 1–2: Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_1_2_food_drugs_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_1_2_food_drugs_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 1–2: Food & Drugs" class="card">
-              <img src="tier_1_2_food_drugs_sankey.png" alt="tier_1_2_food_drugs_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 1–2: Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_1_2_food_drugs_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_1_2_food_drugs_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 3–6: Construction" class="card">
-              <img src="tier_3_6_construction_graph.png" alt="tier_3_6_construction_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 3–6: Construction</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_3_6_construction_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_3_6_construction_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 3–6: Construction" class="card">
-              <img src="tier_3_6_construction_sankey.png" alt="tier_3_6_construction_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 3–6: Construction</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_3_6_construction_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_3_6_construction_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 3: Refined" class="card">
-              <img src="tier_3_refined_graph.png" alt="tier_3_refined_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 3: Refined</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_3_refined_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_3_refined_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 3: Refined" class="card">
-              <img src="tier_3_refined_sankey.png" alt="tier_3_refined_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 3: Refined</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_3_refined_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_3_refined_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 4: Advanced" class="card">
-              <img src="tier_4_advanced_graph.png" alt="tier_4_advanced_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 4: Advanced</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_4_advanced_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_4_advanced_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 4: Advanced" class="card">
-              <img src="tier_4_advanced_sankey.png" alt="tier_4_advanced_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 4: Advanced</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_4_advanced_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_4_advanced_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 5: Components" class="card">
-              <img src="tier_5_components_graph.png" alt="tier_5_components_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 5: Components</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_5_components_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_5_components_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 5: Components" class="card">
-              <img src="tier_5_components_sankey.png" alt="tier_5_components_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 5: Components</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_5_components_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_5_components_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 6: Equipment" class="card">
-              <img src="tier_6_equipment_graph.png" alt="tier_6_equipment_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 6: Equipment</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_6_equipment_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="tier_6_equipment_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Tier 6: Equipment" class="card">
-              <img src="tier_6_equipment_sankey.png" alt="tier_6_equipment_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Tier 6: Equipment</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="tier_6_equipment_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="tier_6_equipment_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
+          <footer class="text-center">
+            <p><a href="#top">Return to top</a></p>
+          </footer>
         </div>
-      
-        <h3 id="Commonwealth">Commonwealth</h3>
-        <div class="cards">
-          
-            <div id="Commonwealth Tier 1–2: Food & Drugs" class="card">
-              <img src="commonwealth_tier_1_2_food_drugs_graph.png" alt="commonwealth_tier_1_2_food_drugs_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Commonwealth Tier 1–2: Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="commonwealth_tier_1_2_food_drugs_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="commonwealth_tier_1_2_food_drugs_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Commonwealth Tier 1–2: Food & Drugs" class="card">
-              <img src="commonwealth_tier_1_2_food_drugs_sankey.png" alt="commonwealth_tier_1_2_food_drugs_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Commonwealth Tier 1–2: Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="commonwealth_tier_1_2_food_drugs_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="commonwealth_tier_1_2_food_drugs_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-        </div>
-      
-        <h3 id="Argon">Argon</h3>
-        <div class="cards">
-          
-            <div id="Argon Food & Drugs" class="card">
-              <img src="argon_food_drugs_graph.png" alt="argon_food_drugs_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Argon Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="argon_food_drugs_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="argon_food_drugs_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Argon Food & Drugs" class="card">
-              <img src="argon_food_drugs_sankey.png" alt="argon_food_drugs_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Argon Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="argon_food_drugs_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="argon_food_drugs_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-        </div>
-      
-        <h3 id="Boron">Boron</h3>
-        <div class="cards">
-          
-            <div id="Boron Food & Drugs" class="card">
-              <img src="boron_food_drugs_graph.png" alt="boron_food_drugs_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Boron Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="boron_food_drugs_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="boron_food_drugs_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Boron Food & Drugs" class="card">
-              <img src="boron_food_drugs_sankey.png" alt="boron_food_drugs_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Boron Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="boron_food_drugs_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="boron_food_drugs_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-        </div>
-      
-        <h3 id="Paranid">Paranid</h3>
-        <div class="cards">
-          
-            <div id="Paranid Food & Drugs" class="card">
-              <img src="paranid_food_drugs_graph.png" alt="paranid_food_drugs_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Paranid Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="paranid_food_drugs_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="paranid_food_drugs_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Paranid Food & Drugs" class="card">
-              <img src="paranid_food_drugs_sankey.png" alt="paranid_food_drugs_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Paranid Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="paranid_food_drugs_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="paranid_food_drugs_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-        </div>
-      
-        <h3 id="Teladi">Teladi</h3>
-        <div class="cards">
-          
-            <div id="Teladi Food & Drugs" class="card">
-              <img src="teladi_food_drugs_graph.png" alt="teladi_food_drugs_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Teladi Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="teladi_food_drugs_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="teladi_food_drugs_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Teladi Food & Drugs" class="card">
-              <img src="teladi_food_drugs_sankey.png" alt="teladi_food_drugs_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Teladi Food & Drugs</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="teladi_food_drugs_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="teladi_food_drugs_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Teladi Construction" class="card">
-              <img src="teladi_construction_graph.png" alt="teladi_construction_graph.png">
-              <div class="card-body">
-                <h4 class="card-title">Teladi Construction</h4>
-                <h5 class="card-subtitle">Rendered with graphviz</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="teladi_construction_graph.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                    <a
-                        href="teladi_construction_graph.dot"
-                        class="paper-btn btn-small">Source</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-            <div id="Teladi Construction" class="card">
-              <img src="teladi_construction_sankey.png" alt="teladi_construction_sankey.png">
-              <div class="card-body">
-                <h4 class="card-title">Teladi Construction</h4>
-                <h5 class="card-subtitle">Rendered with plotly</h5>
-                <p class="child-borders margin-bottom-none">
-                  
-                    <a
-                        href="teladi_construction_sankey.html"
-                        class="paper-btn btn-small">Interactive</a>
-                  
-                    <a
-                        href="teladi_construction_sankey.png"
-                        class="paper-btn btn-small">Image</a>
-                  
-                </p>
-              </div>
-            </div>
-          
-        </div>
-      
-    </section>
-  </article>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

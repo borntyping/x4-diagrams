@@ -80,7 +80,7 @@ class Tier:
     # wares: typing.Sequence[Ware]
 
     def __str__(self) -> str:
-        return f"Tier {self.key}: {self.name}"
+        return f"T{self.key}: {self.name}"
 
     # def __bool__(self) -> bool:
     #     return bool(self.wares)

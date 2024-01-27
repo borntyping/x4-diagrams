@@ -110,33 +110,33 @@ class Economy:
     def filter_by_tier(self, keys: set[int]) -> typing.Self:
         return self._focus(self.filter_wares(lambda w: w.tier.key in keys))
 
-    def filter_by_recipe(self, f: RecipeFilter) -> typing.Self:
-        """
-        :deprecated:
-        """
-        logger.info("Filtering by recipe", economy=self, f=f)
-        wares = self.as_dict()
-
-        recipes = [
-            (recipe, output)
-            for output in self.wares
-            for recipe in output.recipes
-            if f(
-                recipe=recipe,
-                inputs=[wares[i.key] for i in recipe.input_wares],
-                output=output,
-            )
-        ]
-
-        inputs: set[str] = {key for (recipe, _) in recipes for key in recipe.input_wares}
-        outputs: set[str] = {output.key for (_, output) in recipes}
-
-        economy = self.filter_recipes(lambda recipe: recipe in {r for r, _ in recipes})
-        logger.info("Filtered recipes", economy=economy, f=f)
-
-        economy = economy.filter_wares(Include(inputs | outputs))
-        logger.info("Filtered wares", economy=economy, f=f)
-        return economy
+    # def filter_by_recipe(self, f: RecipeFilter) -> typing.Self:
+    #     """
+    #     :deprecated:
+    #     """
+    #     logger.info("Filtering by recipe", economy=self, f=f)
+    #     wares = self.as_dict()
+    #
+    #     recipes = [
+    #         (recipe, output)
+    #         for output in self.wares
+    #         for recipe in output.recipes
+    #         if f(
+    #             recipe=recipe,
+    #             inputs=[wares[i.key] for i in recipe.input_wares],
+    #             output=output,
+    #         )
+    #     ]
+    #
+    #     inputs: set[str] = {key for (recipe, _) in recipes for key in recipe.input_wares}
+    #     outputs: set[str] = {output.key for (_, output) in recipes}
+    #
+    #     economy = self.filter_recipes(lambda recipe: recipe in {r for r, _ in recipes})
+    #     logger.info("Filtered recipes", economy=economy, f=f)
+    #
+    #     economy = economy.filter_wares(Include(inputs | outputs))
+    #     logger.info("Filtered wares", economy=economy, f=f)
+    #     return economy
 
     def dependencies(self) -> set[str]:
         """
@@ -251,8 +251,14 @@ class Economy:
 
         return self
 
-    def filter_recipes(self, f: typing.Callable[[Recipe], bool]) -> typing.Self:
-        return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
+    # def filter_recipes(self, f: typing.Callable[[Recipe], bool]) -> typing.Self:
+    #     return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
 
-    def remove_common_inputs(self) -> typing.Self:
-        return self.with_name(f"{self.name} †").remove_input("water", "energy_cells").done()
+    def simplified(self) -> typing.Self | None:
+        common_inputs = {"water", "energy_cells"}
+        uses_common_inputs = bool({ware.key for ware in self.wares} & common_inputs)
+
+        if not uses_common_inputs:
+            return None
+
+        return self.with_name(f"{self.name} †").remove_input(*common_inputs).done()

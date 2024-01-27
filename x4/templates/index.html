@@ -1,94 +1,193 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
   <meta charset="UTF-8">
   <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>X4 Diagrams</title>
   <link
-      rel="stylesheet"
-      href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"/>
+      rel="stylesheet" href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"/>
   <style>
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-auto-rows: 1fr;
-      grid-gap: 1em;
+    header, section, aside {
+      & > :first-child {
+        margin-top: 0;
+      }
+
+      & > :last-child {
+        margin-bottom: 0;
+      }
     }
 
+    header {
+      text-align: center;
+
+      & a {
+        color: var(--secondary);
+        text-decoration: none;
+      }
+
+      & p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    /* Lay cards out on a grid. */
     .card {
       text-align: center;
     }
 
-    .card img {
-      aspect-ratio: 2 / 1;
-      object-fit: cover;
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr;
+      gap: 1rem;
     }
 
-    .card h4 {
-      height: 2em;
+    /* Make all images the same size. */
+    .card img {
+      aspect-ratio: 2 / 1;
+      object-fit: contain;
+    }
+
+    /* Remove the underline effect from PaperCSS. */
+    a {
+      background-image: none;
+      text-decoration: underline;
+    }
+
+    /* Don't hide visited links. */
+    a:visited {
+      color: var(--secondary-dark-10);
+    }
+
+    /* Style heading anchor links */
+    a.x-anchor {
+      text-decoration: none;
+      opacity: 0;
+      font-size: 0.65em;
+    }
+
+    h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+      & a.x-anchor {
+        opacity: 1;
+      }
+    }
+
+    #sidebar {
+      /* Make the sidebar sticky. */
+      position: sticky;
+      top: calc(40px);
+
+      /* Avoid padding the lists in the sidebar too much. */
+      & aside {
+        & ol, & ul {
+          list-style: none;
+          padding-left: 20px;
+        }
+
+        & > ol, & > ul {
+          padding-left: 0 !important;
+        }
+      }
+    }
+
+    /* Mute the "return to top" link. */
+    footer a,
+    footer a:visited {
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
-  <article class="paper container container-lg margin-top-large margin-bottom-large">
-    <section>
-      <h1 class="margin-top-none">X4 Diagrams</h1>
-      <p>
-        Created by
-        <a href="https://borntyping.co.uk">@borntyping</a>. Source code at
-        <a href="https://github.com/borntyping/x4-diagrams">github.com/borntyping/x4-diagrams</a>.
-      </p>
-      <p>
-        This project is entirely unaffiliated with Egosoft. Go buy
-        <a href="https://store.steampowered.com/app/392160/X4_Foundations/">X4: Foundations</a>.
-      </p>
-      <p>
-        Created with
-        <a href="https://graphviz.org/">GraphViz</a>,
-        <a href="https://plotly.com/graphing-libraries/">Plotly Graphing Libraries</a>,
-        <a href="https://www.getpapercss.com/">PaperCSS</a>,
-        <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a>,
-        and
-        <a href="https://www.structlog.org/en/stable/">structlog</a>.
-      </p>
-    </section>
+  <div class="container container-lg">
+    <div class="row">
+      <div class="col sm-12 md-8">
+        <article>
+          <header class="paper">
+            <h1 class="margin-top-none"><a href="#top">X4 Diagrams</a></h1>
+            <p>Diagrams illustrating various parts of the
+              <a href="https://store.steampowered.com/app/392160/X4_Foundations/">X4: Foundations</a> economy.
+            </p>
+          </header>
 
-    <section>
-      <h2 id="Production">Production</h2>
-
-      <ol>
-        {% for group, group_diagrams in groups.items() %}
-          <li>
-            <a href="#{{ group }}">{{ group }}</a>
-          </li>
-        {% endfor %}
-      </ol>
-
-      {% for group, diagrams in groups.items() %}
-        <h3 id="{{ group }}">{{ group }}</h3>
-        <div class="cards">
-          {% for diagram in diagrams %}
-            <div id="{{ diagram.title }}" class="card">
-              <img src="{{ diagram.image }}" alt="{{ diagram.image }}">
-              <div class="card-body">
-                <h4 class="card-title">{{ diagram.title }}</h4>
-                <h5 class="card-subtitle">{{ diagram.subtitle }}</h5>
-                <p class="child-borders margin-bottom-none">
-                  {% for text, path in diagram.links.items() %}
-                    <a
-                        href="{{ path }}"
-                        class="paper-btn btn-small">{{ text }}</a>
-                  {% endfor %}
-                </p>
-              </div>
-            </div>
+          {% for group in groups %}
+            <section id="{{ group.title }}" class="paper">
+              <h3>
+                <span>{{ group.title }}</span>
+                <a class="x-anchor" href="#{{ group.title }}">¶</a>
+              </h3>
+              {% for economy in group.economies %}
+                <div id="{{ economy.title }}">
+                  <h4>
+                    <span>{{ economy.title }}</span>
+                    <a class="x-anchor" href="#{{ economy.title }}">¶</a>
+                  </h4>
+                  <div class="cards">
+                    {% for diagram in economy.diagrams %}
+                      <div class="card">
+                        <img src="{{ diagram.image }}" alt="{{ economy.title }}">
+                        <div class="card-body">
+                          <p class="card-text">{{ diagram.subtitle }}</p>
+                          {% for text, path in diagram.links.items() %}
+                            <a class="card-link" href="{{ path }}">{{ text }}</a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </section>
           {% endfor %}
+        </article>
+      </div>
+      <div class="col sm-12 md-4">
+        <div id="sidebar">
+          <aside class="paper padding">
+            <ol>
+              {% for group in groups %}
+                <li>
+                  <a href="#{{ group.title }}">{{ group.title }}</a>
+                  <ol>
+                    {% for economy in group.economies %}
+                      <li>
+                        <a href="#{{ economy.title }}">{{ economy.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ol>
+                </li>
+              {% endfor %}
+            </ol>
+          </aside>
+
+          <aside class="paper padding">
+            <p>
+              Created by
+              <a href="https://borntyping.co.uk">@borntyping</a>. Source code at
+              <a href="https://github.com/borntyping/x4-diagrams">github.com/borntyping/x4-diagrams</a>.
+            </p>
+            <p>
+              This project is entirely unaffiliated with Egosoft. Go buy
+              <a href="https://store.steampowered.com/app/392160/X4_Foundations/">X4: Foundations</a>.
+            </p>
+            <p>
+              Created with
+              <a href="https://graphviz.org/">GraphViz</a>,
+              <a href="https://plotly.com/graphing-libraries/">Plotly Graphing Libraries</a>,
+              <a href="https://www.getpapercss.com/">PaperCSS</a>,
+              <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a>,
+              and
+              <a href="https://www.structlog.org/en/stable/">structlog</a>.
+            </p>
+          </aside>
+
+          <footer class="text-center">
+            <p><a href="#top">Return to top</a></p>
+          </footer>
         </div>
-      {% endfor %}
-    </section>
-  </article>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

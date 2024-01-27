@@ -2,12 +2,15 @@ import dataclasses
 import itertools
 import pathlib
 import re
+import typing
 
 import graphviz
+import jinja2
 import plotly.graph_objs
 import structlog
 
 from x4.economy.economy import Economy
+from x4.economy.groups import EconomyGroup
 
 logger = structlog.get_logger(logger_name=__name__)
 
@@ -18,6 +21,20 @@ class Diagram:
     subtitle: str
     image: pathlib.Path
     links: dict[str, pathlib.Path]
+
+
+@dataclasses.dataclass(frozen=True)
+class EconomyOutput:
+    title: str
+    diagrams: typing.Sequence[Diagram]
+    original: Economy
+
+
+@dataclasses.dataclass(frozen=True)
+class EconomyGroupOutput:
+    title: str
+    economies: typing.Sequence[EconomyOutput]
+    original: EconomyGroup
 
 
 class Writer:
@@ -78,7 +95,7 @@ class PlotlyWriter(Writer):
         figure.update_layout(title_text=economy.name)
         return figure
 
-    def render(self, economy: Economy) -> Diagram:
+    def diagam(self, economy: Economy) -> Diagram:
         logger.debug("Drawing economy with plotly", economy=economy)
         self.output_directory.mkdir(exist_ok=True)
         png = self.output_directory / self.filename(economy, "sankey", "png")
@@ -189,7 +206,7 @@ class GraphvizWriter(Writer):
                 return "goldenrod"
         return "slategray4"
 
-    def render(self, economy: Economy) -> Diagram:
+    def diagram(self, economy: Economy) -> Diagram:
         logger.debug("Drawing economy with graphviz", economy=economy)
         self.output_directory.mkdir(exist_ok=True)
         dot = self.dot(economy=economy)
@@ -211,3 +228,51 @@ class GraphvizWriter(Writer):
             image=image,
             links={"Image": image, "Source": source},
         )
+
+
+@dataclasses.dataclass(frozen=True)
+class IndexWriter:
+    output_directory: pathlib.Path
+    templates_directory: pathlib.Path
+
+    def index(self, groups: typing.Sequence[EconomyGroupOutput]) -> pathlib.Path:
+        loader = jinja2.FileSystemLoader(self.templates_directory)
+        environment = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
+        template = environment.get_template("index.html")
+        rendered = template.render(groups=groups)
+        path = self.output_directory / "index.html"
+        path.write_text(rendered)
+        logger.warning("Rendered index", path=path)
+        return path
+
+
+@dataclasses.dataclass(frozen=True)
+class Builder:
+    graphviz_writer: GraphvizWriter
+    plotly_writer: PlotlyWriter
+    index_writer: IndexWriter
+
+    def economy_group(self, group: EconomyGroup) -> EconomyGroupOutput:
+        return EconomyGroupOutput(
+            title=group.title,
+            economies=[self.economy(economy) for economy in group.economies],
+            original=group,
+        )
+
+    def economy(self, economy: Economy) -> EconomyOutput:
+        return EconomyOutput(
+            title=economy.name,
+            diagrams=tuple(self.diagrams(economy)),
+            original=economy,
+        )
+
+    def diagrams(self, economy: Economy) -> typing.Iterable[Diagram]:
+        if simplified := economy.simplified():
+            yield self.graphviz_writer.diagram(simplified)
+            yield self.plotly_writer.diagam(simplified)
+
+        yield self.graphviz_writer.diagram(economy)
+        yield self.plotly_writer.diagam(economy)
+
+    def main(self, groups: typing.Sequence[EconomyGroup]) -> pathlib.Path:
+        return self.index_writer.index([self.economy_group(group) for group in groups])
