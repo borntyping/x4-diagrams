@@ -293,14 +293,17 @@ class Economy:
     def remove_common_inputs(self) -> typing.Self | None:
         """Remove wares from both recipe inputs and from the economy."""
         keys = {"energy_cells", "water"}
+        economy = self.remove_inputs(keys).verify()
 
-        wares = self.wares_as_dict()
-        names = [wares[c].name.lower() for c in sorted(keys) if c in wares]
-        description = "Not shown: {}.".format(p.join(names))
-
-        economy = self.with_description(description).remove_inputs(keys).verify()
-
+        # Check we actually removed the inputs.
         for key in keys:
             assert key not in economy.wares_as_dict(), f"{key} still present in {economy}"
+
+        # Add a description recording what was removed.
+        wares = self.wares_as_dict()
+        names = [wares[c].name.lower() for c in sorted(keys) if c in wares]
+        if names:
+            description = "Not shown: {}.".format(p.join(names))
+            economy = economy.with_description(description)
 
         return economy

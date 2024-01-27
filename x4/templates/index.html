@@ -82,14 +82,24 @@
       /* Avoid padding the lists in the sidebar too much. */
 
       & aside {
-        & ol, & ul {
+        & ol {
           list-style: none;
           padding-left: 20px;
         }
 
-        & > ol, & > ul {
+        & > ol {
           padding-left: 0 !important;
         }
+      }
+
+      & h4 {
+        margin-bottom: 0.5em;
+      }
+    }
+
+    #references {
+      li {
+        margin-top: 0.5em;
       }
     }
 
@@ -150,6 +160,7 @@
       <div class="col sm-12 md-4">
         <div id="sidebar">
           <aside class="paper padding">
+            <h4>Table of contents</h4>
             <ol>
               {% for group in groups %}
                 <li>
@@ -168,6 +179,8 @@
           </aside>
 
           <aside class="paper padding">
+            <h4>Source</h4>
+
             <p>
               Created by
               <a href="https://borntyping.co.uk">@borntyping</a>. Source code at
@@ -186,6 +199,35 @@
               and
               <a href="https://www.structlog.org/en/stable/">structlog</a>.
             </p>
+          </aside>
+
+          <aside id="references" class="paper padding">
+            <h4>References</h4>
+            <ol>
+              <li>
+                <a href="https://wiki.egosoft.com:1337/X4%20Foundations%20Wiki/Manual%20and%20Guides/Objects%20in%20the%20Game%20Universe/Economy%20Flow%20Charts/">Economy Flow Charts - X4 Foundations Wiki</a> by multiple authors.
+              </li>
+              <li>
+                <a href="http://www.x4-game.com">X4 Station Calculator</a> by
+                <a href="https://github.com/crissian">@crissian</a>
+              </li>
+              <li>
+                <a href="https://x4prodchart.com/">X4 Production Chart</a> by
+                <a href="https://abrahamzakharov.com/">Abraham Zakharov</a>
+              </li>
+              <li>
+                <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1585211529">Production Chain Guide</a> by
+                <a href="https://steamcommunity.com/id/PyroChiliarch">PyroChiliarch</a>
+              </li>
+              <li>
+                <a href="https://roguey.co.uk/x4/wares/">Wares - Roguey&#39;s X4 site</a> by
+                <a href="https://roguey.co.uk">Roguey</a>
+              </li>
+              <li>
+                <a href="http://www.x4-game.com">X4: Foundations</a> by
+                <a href="https://www.egosoft.com">Egosoft</a>
+              </li>
+            </ol>
           </aside>
 
           <footer class="text-center">

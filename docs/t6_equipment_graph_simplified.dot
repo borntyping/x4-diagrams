@@ -1,7 +1,7 @@
 digraph "X4 Economy" {
 	edge [arrowType=normal]
 	compound=true fontname="Helvetica,Arial,sans-serif"
-	label=<<b>T6: Equipment</b><br/><br/>Not shown: .>
+	label=<<b>T6: Equipment</b>>
 	graph [nodesep=0.3 pad=0.5 ranksep=3]
 	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
@@ -242,9 +242,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#fffac8" port="missile_components">MC</td>
-      
         <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fffac8" port="missile_components">MC</td>
       
     </tr>
   
@@ -272,9 +272,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
       
     </tr>
   
@@ -287,9 +287,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
       
     </tr>
   
@@ -317,9 +317,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
-      
         <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
       
     </tr>
   
@@ -332,9 +332,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
-      
         <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
       
     </tr>
   
@@ -347,9 +347,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#aaffc3" port="field_coils">FC</td>
-      
         <td align="text" bgcolor="white" color="#dcbeff" port="shield_components">SC</td>
+      
+        <td align="text" bgcolor="white" color="#aaffc3" port="field_coils">FC</td>
       
     </tr>
   
@@ -392,9 +392,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
-      
         <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
       
         <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       

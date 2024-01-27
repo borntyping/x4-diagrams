@@ -138,9 +138,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
-      
         <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
       
     </tr>
   
@@ -153,9 +153,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
+        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
         <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
@@ -215,9 +215,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffd8b1" port="advanced_composites">AC</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
+        <td align="text" bgcolor="white" color="#ffd8b1" port="advanced_composites">AC</td>
       
     </tr>
   
@@ -266,9 +266,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
+        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
         <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
@@ -283,9 +283,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
+        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
     </tr>
   

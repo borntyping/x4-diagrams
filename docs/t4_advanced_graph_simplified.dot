@@ -116,9 +116,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
-      
         <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
     </tr>
   
@@ -131,9 +131,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
-      
         <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
     </tr>
   
@@ -146,11 +146,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
       
         <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
     </tr>
   
@@ -163,11 +163,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
       
         <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
     </tr>
   
@@ -180,9 +180,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
-      
         <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
+      
+        <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
       
         <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
