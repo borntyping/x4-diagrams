@@ -1,9 +1,11 @@
 import dataclasses
 import typing
 
-from x4.economy.economy import Economy, Hint
+from x4.colours import Palette
+from x4.economy.economy import BuildMethodEdgeColour, Economy, Hint
 from x4.types import Method
 from x4_data.economy import TIER_3, TIER_4, TIER_5, TIER_6, WARES
+from x4_data.races import TELADI
 
 
 @dataclasses.dataclass(frozen=True)
@@ -38,7 +40,11 @@ def groups() -> typing.Sequence[EconomyGroup]:
                 food_and_drugs("T1–T2: Argon Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Argon"]),
                 food_and_drugs("T1–T2: Paranid Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Paranid"]),
                 food_and_drugs("T1–T2: Teladi Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Teladi"]),
-                construction("T3–T6: Teladi Build Method").select_recipe(["Teladi", "Universal"]),
+                (
+                    construction("T3–T6: Teladi Build Method")
+                    .select_recipe(["Teladi", "Universal"])
+                    .highlight_build_method("Teladi")
+                ),
             ],
         ),
         EconomyGroup(
@@ -57,8 +63,17 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Tides of Avarice",
             economies=[
-                construction("T3–T6: Recycling Recipes").select_recipe(["Recycling"]),
-                construction("T3–T6: Recycling Build Method").select_recipe(["Recycling", "Universal"]),
+                construction("T3–T6: Recycling Recipes").select_recipes(methods={"Recycling+Universal", "Recycling+Terran"}),
+                (
+                    construction("T3–T6: Recycling Build Method (Universal)")
+                    .select_recipe(["Recycling+Universal", "Universal"])
+                    .highlight_build_method("Recycling+Universal")
+                ),
+                (
+                    construction("T3–T6: Recycling Build Method (Terran)")
+                    .select_recipe(["Recycling+Terran", "Terran"])
+                    .highlight_build_method("Recycling+Terran")
+                ),
             ],
         ),
         EconomyGroup(

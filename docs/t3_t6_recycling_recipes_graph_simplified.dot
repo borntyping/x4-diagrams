@@ -33,12 +33,14 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="1">Computronic Substrate</td>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="2">Computronic Substrate</td>
   </tr>
   
 </table>>]
@@ -49,12 +51,14 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#000075" colspan="1">Hull Parts</td>
+    <td align="text" bgcolor="white" color="#000075" colspan="2">Hull Parts</td>
   </tr>
   
 </table>>]
@@ -62,12 +66,14 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#000075" colspan="1">Silicon Carbide</td>
+    <td align="text" bgcolor="white" color="#000075" colspan="2">Silicon Carbide</td>
   </tr>
   
 </table>>]
@@ -78,12 +84,14 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="1">Claytronics</td>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="2">Claytronics</td>
   </tr>
   
 </table>>]

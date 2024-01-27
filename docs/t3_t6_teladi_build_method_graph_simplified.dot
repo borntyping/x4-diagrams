@@ -1,7 +1,7 @@
 digraph "X4 Economy" {
 	edge [arrowType=normal]
 	compound=true fontname="Helvetica,Arial,sans-serif"
-	label=<<b>T3–T6: Teladi Build Method</b><br/><br/>Not shown: energy cells.>
+	label=<<b>T3–T6: Teladi Build Method</b><br/><br/>Highlighting recipes using the Teladi build method.<br/>Not shown: energy cells.>
 	graph [nodesep=0.3 pad=0.5 ranksep=3]
 	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
@@ -83,6 +83,8 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
     </tr>
   
   <tr>
@@ -101,6 +103,8 @@ digraph "X4 Economy" {
 		graphene [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="graphene" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
       
@@ -127,6 +131,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#42d4f4" port="hydrogen">Hy</td>
       
     </tr>
@@ -147,6 +153,8 @@ digraph "X4 Economy" {
 		teladianium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="teladianium" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="ore">Or</td>
       
@@ -173,18 +181,22 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#e6194B" port="ore">Or</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#e6194B" colspan="1">Refined Metals</td>
+    <td align="text" bgcolor="white" color="#e6194B" colspan="2">Refined Metals</td>
   </tr>
   
 </table>>]
 		silicon_wafers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon_wafers" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
       
@@ -212,6 +224,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
@@ -236,6 +250,8 @@ digraph "X4 Economy" {
 		quantum_tubes [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="quantum_tubes" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
@@ -266,6 +282,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
@@ -273,7 +291,7 @@ digraph "X4 Economy" {
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Advanced Composites</td>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">Advanced Composites</td>
   </tr>
   
     <tr>
@@ -288,6 +306,8 @@ digraph "X4 Economy" {
 		hull_parts [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="hull_parts" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
@@ -322,6 +342,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
@@ -346,6 +368,8 @@ digraph "X4 Economy" {
 		microchips [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="microchips" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="silicon_wafers">SW</td>
       
@@ -373,6 +397,8 @@ digraph "X4 Economy" {
 		smart_chips [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="smart_chips" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="silicon_wafers">SW</td>
       
@@ -402,18 +428,20 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
-        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
+        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#fabed4" colspan="4">Drone Components</td>
+    <td align="text" bgcolor="white" color="#fabed4" colspan="5">Drone Components</td>
   </tr>
   
     <tr>
@@ -431,14 +459,16 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#ffd8b1" colspan="3">Turret Components</td>
+    <td align="text" bgcolor="white" color="#ffd8b1" colspan="4">Turret Components</td>
   </tr>
   
     <tr>
@@ -452,14 +482,16 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="advanced_composites">AC</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="advanced_composites">AC</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#808000" colspan="2">Missile Components</td>
+    <td align="text" bgcolor="white" color="#808000" colspan="3">Missile Components</td>
   </tr>
   
     <tr>
@@ -475,12 +507,14 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#aaffc3" colspan="2">Field Coils</td>
+    <td align="text" bgcolor="white" color="#aaffc3" colspan="3">Field Coils</td>
   </tr>
   
     <tr>
@@ -496,12 +530,14 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#dcbeff" colspan="2">Shield Components</td>
+    <td align="text" bgcolor="white" color="#dcbeff" colspan="3">Shield Components</td>
   </tr>
   
     <tr>
@@ -515,6 +551,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
         <td align="text" bgcolor="white" color="#42d4f4" port="advanced_composites">AC</td>
@@ -522,7 +560,7 @@ digraph "X4 Economy" {
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#f032e6" colspan="2">Antimatter Converters</td>
+    <td align="text" bgcolor="white" color="#f032e6" colspan="3">Antimatter Converters</td>
   </tr>
   
     <tr>
@@ -540,12 +578,14 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Weapon Components</td>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">Weapon Components</td>
   </tr>
   
     <tr>
@@ -563,6 +603,8 @@ digraph "X4 Economy" {
 		scanning_arrays [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scanning_arrays" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
@@ -592,16 +634,18 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
+        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Claytronics</td>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="4">Claytronics</td>
   </tr>
   
     <tr>
@@ -616,6 +660,8 @@ digraph "X4 Economy" {
     <tr>
       
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
@@ -669,9 +715,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
-      
         <td align="text" bgcolor="white" color="#808000" port="missile_components">MC</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
       
     </tr>
   
@@ -684,9 +730,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
-      
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
       
     </tr>
   
@@ -699,9 +745,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
+      
+        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
       
     </tr>
   
@@ -714,9 +760,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
+      
+        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
       
     </tr>
   
@@ -729,9 +775,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
-      
         <td align="text" bgcolor="white" color="#42d4f4" port="weapon_components">WC</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
       
     </tr>
   
@@ -744,9 +790,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
       
     </tr>
   
@@ -759,9 +805,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
       
     </tr>
   
@@ -789,9 +835,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffd8b1" port="turret_components">TC</td>
-      
         <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
+      
+        <td align="text" bgcolor="white" color="#ffd8b1" port="turret_components">TC</td>
       
     </tr>
   
@@ -833,71 +879,71 @@ digraph "X4 Economy" {
   
 </table>>]
 	}
-	helium:superfluid_coolant:s -> superfluid_coolant:helium:n [arrowhead=odot color="#469990" weight=1.0]
-	methane:graphene:s -> graphene:methane:n [arrowhead=odot color="#bfef45" weight=1.0]
-	hydrogen:antimatter_cells:s -> antimatter_cells:hydrogen:n [arrowhead=odot color="#42d4f4" weight=1.0]
+	helium:superfluid_coolant:s -> superfluid_coolant:helium:n [arrowhead=odot color="#a9a9a9" weight=1.0]
+	methane:graphene:s -> graphene:methane:n [arrowhead=odot color="#a9a9a9" weight=1.0]
+	hydrogen:antimatter_cells:s -> antimatter_cells:hydrogen:n [arrowhead=odot color="#a9a9a9" weight=1.0]
 	ore:teladianium:s -> teladianium:ore:n [arrowhead=empty color="#e6194B" weight=1.0]
-	ore:refined_metals:s -> refined_metals:ore:n [arrowhead=empty color="#e6194B" weight=1.0]
-	silicon:silicon_wafers:s -> silicon_wafers:silicon:n [arrowhead=empty color="#3cb44b" weight=1.0]
-	graphene:plasma_conductors:s -> plasma_conductors:graphene:n [arrowhead=box color="#000000" weight=1.0]
-	superfluid_coolant:plasma_conductors:s -> plasma_conductors:superfluid_coolant:n [arrowhead=box color="#42d4f4" weight=1.0]
-	graphene:quantum_tubes:s -> quantum_tubes:graphene:n [arrowhead=box color="#000000" weight=1.0]
-	superfluid_coolant:quantum_tubes:s -> quantum_tubes:superfluid_coolant:n [arrowhead=box color="#42d4f4" weight=1.0]
-	graphene:advanced_composites:s -> advanced_composites:graphene:n [arrowhead=box color="#000000" weight=1.0]
+	ore:refined_metals:s -> refined_metals:ore:n [arrowhead=empty color="#a9a9a9" weight=1.0]
+	silicon:silicon_wafers:s -> silicon_wafers:silicon:n [arrowhead=empty color="#a9a9a9" weight=1.0]
+	graphene:plasma_conductors:s -> plasma_conductors:graphene:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	superfluid_coolant:plasma_conductors:s -> plasma_conductors:superfluid_coolant:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	graphene:quantum_tubes:s -> quantum_tubes:graphene:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	superfluid_coolant:quantum_tubes:s -> quantum_tubes:superfluid_coolant:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	graphene:advanced_composites:s -> advanced_composites:graphene:n [arrowhead=box color="#e6194B" weight=1.0]
 	teladianium:advanced_composites:s -> advanced_composites:teladianium:n [arrowhead=box color="#e6194B" weight=1.0]
-	graphene:hull_parts:s -> hull_parts:graphene:n [arrowhead=box color="#000000" weight=1.0]
+	graphene:hull_parts:s -> hull_parts:graphene:n [arrowhead=box color="#e6194B" weight=1.0]
 	teladianium:hull_parts:s -> hull_parts:teladianium:n [arrowhead=box color="#e6194B" weight=1.0]
-	antimatter_cells:engine_parts:s -> engine_parts:antimatter_cells:n [arrowhead=box color="#dcbeff" weight=1.0]
+	antimatter_cells:engine_parts:s -> engine_parts:antimatter_cells:n [arrowhead=box color="#e6194B" weight=1.0]
 	teladianium:engine_parts:s -> engine_parts:teladianium:n [arrowhead=box color="#e6194B" weight=1.0]
-	silicon_wafers:microchips:s -> microchips:silicon_wafers:n [arrowhead=box color="#3cb44b" weight=1.0]
-	silicon_wafers:smart_chips:s -> smart_chips:silicon_wafers:n [arrowhead=box color="#3cb44b" weight=1.0]
-	engine_parts:drone_components:s -> drone_components:engine_parts:n [arrowhead=box color="#ffe119" weight=1.0]
-	hull_parts:drone_components:s -> drone_components:hull_parts:n [arrowhead=box color="#000075" weight=1.0]
-	microchips:drone_components:s -> drone_components:microchips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	scanning_arrays:drone_components:s -> drone_components:scanning_arrays:n [arrowhead=box color="#f58231" weight=1.0]
-	microchips:turret_components:s -> turret_components:microchips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	quantum_tubes:turret_components:s -> turret_components:quantum_tubes:n [arrowhead=box color="#f032e6" weight=1.0]
-	scanning_arrays:turret_components:s -> turret_components:scanning_arrays:n [arrowhead=box color="#f58231" weight=1.0]
-	advanced_composites:missile_components:s -> missile_components:advanced_composites:n [arrowhead=box color="#42d4f4" weight=1.0]
-	hull_parts:missile_components:s -> missile_components:hull_parts:n [arrowhead=box color="#000075" weight=1.0]
-	plasma_conductors:field_coils:s -> field_coils:plasma_conductors:n [arrowhead=box color="#808000" weight=1.0]
-	quantum_tubes:field_coils:s -> field_coils:quantum_tubes:n [arrowhead=box color="#f032e6" weight=1.0]
-	plasma_conductors:shield_components:s -> shield_components:plasma_conductors:n [arrowhead=box color="#808000" weight=1.0]
-	quantum_tubes:shield_components:s -> shield_components:quantum_tubes:n [arrowhead=box color="#f032e6" weight=1.0]
-	advanced_composites:antimatter_converters:s -> antimatter_converters:advanced_composites:n [arrowhead=box color="#42d4f4" weight=1.0]
-	microchips:antimatter_converters:s -> antimatter_converters:microchips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	hull_parts:weapon_components:s -> weapon_components:hull_parts:n [arrowhead=box color="#000075" weight=1.0]
-	plasma_conductors:weapon_components:s -> weapon_components:plasma_conductors:n [arrowhead=box color="#808000" weight=1.0]
-	silicon_wafers:scanning_arrays:s -> scanning_arrays:silicon_wafers:n [arrowhead=box color="#3cb44b" weight=1.0]
+	silicon_wafers:microchips:s -> microchips:silicon_wafers:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_wafers:smart_chips:s -> smart_chips:silicon_wafers:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	engine_parts:drone_components:s -> drone_components:engine_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	hull_parts:drone_components:s -> drone_components:hull_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	microchips:drone_components:s -> drone_components:microchips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	scanning_arrays:drone_components:s -> drone_components:scanning_arrays:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	microchips:turret_components:s -> turret_components:microchips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	quantum_tubes:turret_components:s -> turret_components:quantum_tubes:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	scanning_arrays:turret_components:s -> turret_components:scanning_arrays:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	advanced_composites:missile_components:s -> missile_components:advanced_composites:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	hull_parts:missile_components:s -> missile_components:hull_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	plasma_conductors:field_coils:s -> field_coils:plasma_conductors:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	quantum_tubes:field_coils:s -> field_coils:quantum_tubes:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	plasma_conductors:shield_components:s -> shield_components:plasma_conductors:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	quantum_tubes:shield_components:s -> shield_components:quantum_tubes:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	advanced_composites:antimatter_converters:s -> antimatter_converters:advanced_composites:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	microchips:antimatter_converters:s -> antimatter_converters:microchips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	hull_parts:weapon_components:s -> weapon_components:hull_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	plasma_conductors:weapon_components:s -> weapon_components:plasma_conductors:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_wafers:scanning_arrays:s -> scanning_arrays:silicon_wafers:n [arrowhead=box color="#e6194B" weight=1.0]
 	teladianium:scanning_arrays:s -> scanning_arrays:teladianium:n [arrowhead=box color="#e6194B" weight=1.0]
-	antimatter_cells:claytronics:s -> claytronics:antimatter_cells:n [arrowhead=box color="#dcbeff" weight=1.0]
-	microchips:claytronics:s -> claytronics:microchips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	quantum_tubes:claytronics:s -> claytronics:quantum_tubes:n [arrowhead=box color="#f032e6" weight=1.0]
-	microchips:advanced_electronics:s -> advanced_electronics:microchips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	quantum_tubes:advanced_electronics:s -> advanced_electronics:quantum_tubes:n [arrowhead=box color="#f032e6" weight=1.0]
-	hull_parts:ship_hulls:s -> ship_hulls:hull_parts:n [arrowhead=box color="#000075" weight=1.0]
-	hull_parts:nav_beacons:s -> nav_beacons:hull_parts:n [arrowhead=box color="#000075" weight=1.0]
-	missile_components:missiles:s -> missiles:missile_components:n [arrowhead=box color="#808000" weight=1.0]
-	smart_chips:missiles:s -> missiles:smart_chips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	hull_parts:station_modules:s -> station_modules:hull_parts:n [arrowhead=box color="#000075" weight=1.0]
-	claytronics:station_modules:s -> station_modules:claytronics:n [arrowhead=box color="#4363d8" weight=1.0]
-	antimatter_converters:engines:s -> engines:antimatter_converters:n [arrowhead=box color="#f032e6" weight=1.0]
-	engine_parts:engines:s -> engines:engine_parts:n [arrowhead=box color="#ffe119" weight=1.0]
-	antimatter_converters:thrusters:s -> thrusters:antimatter_converters:n [arrowhead=box color="#f032e6" weight=1.0]
-	engine_parts:thrusters:s -> thrusters:engine_parts:n [arrowhead=box color="#ffe119" weight=1.0]
-	weapon_components:mines:s -> mines:weapon_components:n [arrowhead=box color="#42d4f4" weight=1.0]
-	smart_chips:mines:s -> mines:smart_chips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	drone_components:drones:s -> drones:drone_components:n [arrowhead=box color="#fabed4" weight=1.0]
-	smart_chips:drones:s -> drones:smart_chips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	drone_components:laser_towers:s -> laser_towers:drone_components:n [arrowhead=box color="#fabed4" weight=1.0]
-	smart_chips:laser_towers:s -> laser_towers:smart_chips:n [arrowhead=box color="#3cb44b" weight=1.0]
-	field_coils:shields:s -> shields:field_coils:n [arrowhead=box color="#aaffc3" weight=1.0]
-	shield_components:shields:s -> shields:shield_components:n [arrowhead=box color="#dcbeff" weight=1.0]
-	turret_components:turrets:s -> turrets:turret_components:n [arrowhead=box color="#ffd8b1" weight=1.0]
-	advanced_electronics:turrets:s -> turrets:advanced_electronics:n [arrowhead=box color="#469990" weight=1.0]
-	advanced_electronics:guns_and_launchers:s -> guns_and_launchers:advanced_electronics:n [arrowhead=box color="#469990" weight=1.0]
-	weapon_components:guns_and_launchers:s -> guns_and_launchers:weapon_components:n [arrowhead=box color="#42d4f4" weight=1.0]
-	scanning_arrays:satellites:s -> satellites:scanning_arrays:n [arrowhead=box color="#f58231" weight=1.0]
-	advanced_electronics:satellites:s -> satellites:advanced_electronics:n [arrowhead=box color="#469990" weight=1.0]
-	hull_parts:satellites:s -> satellites:hull_parts:n [arrowhead=box color="#000075" weight=1.0]
+	antimatter_cells:claytronics:s -> claytronics:antimatter_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	microchips:claytronics:s -> claytronics:microchips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	quantum_tubes:claytronics:s -> claytronics:quantum_tubes:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	microchips:advanced_electronics:s -> advanced_electronics:microchips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	quantum_tubes:advanced_electronics:s -> advanced_electronics:quantum_tubes:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	hull_parts:ship_hulls:s -> ship_hulls:hull_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	hull_parts:nav_beacons:s -> nav_beacons:hull_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	missile_components:missiles:s -> missiles:missile_components:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	smart_chips:missiles:s -> missiles:smart_chips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	hull_parts:station_modules:s -> station_modules:hull_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	claytronics:station_modules:s -> station_modules:claytronics:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	antimatter_converters:engines:s -> engines:antimatter_converters:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	engine_parts:engines:s -> engines:engine_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	antimatter_converters:thrusters:s -> thrusters:antimatter_converters:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	engine_parts:thrusters:s -> thrusters:engine_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	weapon_components:mines:s -> mines:weapon_components:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	smart_chips:mines:s -> mines:smart_chips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	drone_components:drones:s -> drones:drone_components:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	smart_chips:drones:s -> drones:smart_chips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	drone_components:laser_towers:s -> laser_towers:drone_components:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	smart_chips:laser_towers:s -> laser_towers:smart_chips:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	field_coils:shields:s -> shields:field_coils:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	shield_components:shields:s -> shields:shield_components:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	turret_components:turrets:s -> turrets:turret_components:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	advanced_electronics:turrets:s -> turrets:advanced_electronics:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	advanced_electronics:guns_and_launchers:s -> guns_and_launchers:advanced_electronics:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	weapon_components:guns_and_launchers:s -> guns_and_launchers:weapon_components:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	scanning_arrays:satellites:s -> satellites:scanning_arrays:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	advanced_electronics:satellites:s -> satellites:advanced_electronics:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	hull_parts:satellites:s -> satellites:hull_parts:n [arrowhead=box color="#a9a9a9" weight=1.0]
 }

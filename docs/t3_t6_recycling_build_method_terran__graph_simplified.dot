@@ -1,7 +1,7 @@
 digraph "X4 Economy" {
 	edge [arrowType=normal]
 	compound=true fontname="Helvetica,Arial,sans-serif"
-	label=<<b>T3–T6: Terran Build Method</b><br/><br/>Not shown: energy cells.>
+	label=<<b>T3–T6: Recycling Build Method (Terran)</b><br/><br/>Highlighting recipes using the Recycling+Terran build method.<br/>Not shown: energy cells.>
 	graph [nodesep=0.3 pad=0.5 ranksep=3]
 	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
@@ -20,51 +20,23 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
-		methane [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="methane" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#bfef45" colspan="1">Methane</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
-      
-    </tr>
-  
-</table>>]
 		ore [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="ore" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#e6194B" colspan="2">Ore</td>
+    <td align="text" bgcolor="white" color="#e6194B" colspan="1">Ore</td>
   </tr>
   
     <tr>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
       
         <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
       
     </tr>
   
 </table>>]
-		hydrogen [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="hydrogen" port="output">
+		scrap_metal [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scrap_metal" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="1">Hydrogen</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
-    </tr>
-  
-</table>>]
-		silicon [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#3cb44b" colspan="2">Silicon</td>
+    <td align="text" bgcolor="white" color="#9A6324" colspan="2">Scrap Metal</td>
   </tr>
   
     <tr>
@@ -85,11 +57,7 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#e6194B" port="ore">Or</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="hydrogen">Hy</td>
-      
-        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
+        <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
       
     </tr>
   
@@ -129,12 +97,10 @@ digraph "X4 Economy" {
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="7">Metallic Microlattice</td>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="6">Metallic Microlattice</td>
   </tr>
   
     <tr>
-      
-        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
       
         <td align="text" bgcolor="white" color="#911eb4" port="ship_hulls">SH</td>
       
@@ -158,13 +124,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
-      
-        <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
+        <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
       
     </tr>
   
@@ -308,31 +270,27 @@ digraph "X4 Economy" {
   
 </table>>]
 	}
-	hydrogen:computronic_substrate:s -> computronic_substrate:hydrogen:n [arrowhead=odot color="#42d4f4" weight=1.0]
-	ore:computronic_substrate:s -> computronic_substrate:ore:n [arrowhead=empty color="#e6194B" weight=1.0]
-	silicon:computronic_substrate:s -> computronic_substrate:silicon:n [arrowhead=empty color="#3cb44b" weight=1.0]
-	helium:metallic_microlattice:s -> metallic_microlattice:helium:n [arrowhead=odot color="#469990" weight=1.0]
-	ore:metallic_microlattice:s -> metallic_microlattice:ore:n [arrowhead=empty color="#e6194B" weight=1.0]
-	metallic_microlattice:silicon_carbide:s -> silicon_carbide:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
-	methane:silicon_carbide:s -> silicon_carbide:methane:n [arrowhead=odot color="#bfef45" weight=1.0]
-	silicon:silicon_carbide:s -> silicon_carbide:silicon:n [arrowhead=empty color="#3cb44b" weight=1.0]
-	metallic_microlattice:ship_hulls:s -> ship_hulls:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
-	computronic_substrate:ship_hulls:s -> ship_hulls:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
-	silicon_carbide:station_modules:s -> station_modules:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
-	computronic_substrate:station_modules:s -> station_modules:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
-	metallic_microlattice:engines:s -> engines:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
-	silicon_carbide:engines:s -> engines:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
-	computronic_substrate:engines:s -> engines:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
-	metallic_microlattice:thrusters:s -> thrusters:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
-	silicon_carbide:thrusters:s -> thrusters:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
-	computronic_substrate:thrusters:s -> thrusters:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
-	metallic_microlattice:shields:s -> shields:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
-	silicon_carbide:shields:s -> shields:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
-	computronic_substrate:shields:s -> shields:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
-	metallic_microlattice:turrets:s -> turrets:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
-	silicon_carbide:turrets:s -> turrets:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
-	computronic_substrate:turrets:s -> turrets:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
-	metallic_microlattice:guns_and_launchers:s -> guns_and_launchers:metallic_microlattice:n [arrowhead=box color="#42d4f4" weight=1.0]
-	silicon_carbide:guns_and_launchers:s -> guns_and_launchers:silicon_carbide:n [arrowhead=box color="#000075" weight=1.0]
-	computronic_substrate:guns_and_launchers:s -> guns_and_launchers:computronic_substrate:n [arrowhead=box color="#4363d8" weight=1.0]
+	scrap_metal:computronic_substrate:s -> computronic_substrate:scrap_metal:n [arrowhead=empty color="#e6194B" weight=1.0]
+	helium:metallic_microlattice:s -> metallic_microlattice:helium:n [arrowhead=odot color="#a9a9a9" weight=1.0]
+	ore:metallic_microlattice:s -> metallic_microlattice:ore:n [arrowhead=empty color="#a9a9a9" weight=1.0]
+	scrap_metal:silicon_carbide:s -> silicon_carbide:scrap_metal:n [arrowhead=empty color="#e6194B" weight=1.0]
+	metallic_microlattice:ship_hulls:s -> ship_hulls:metallic_microlattice:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	computronic_substrate:ship_hulls:s -> ship_hulls:computronic_substrate:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_carbide:station_modules:s -> station_modules:silicon_carbide:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	computronic_substrate:station_modules:s -> station_modules:computronic_substrate:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	metallic_microlattice:engines:s -> engines:metallic_microlattice:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_carbide:engines:s -> engines:silicon_carbide:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	computronic_substrate:engines:s -> engines:computronic_substrate:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	metallic_microlattice:thrusters:s -> thrusters:metallic_microlattice:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_carbide:thrusters:s -> thrusters:silicon_carbide:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	computronic_substrate:thrusters:s -> thrusters:computronic_substrate:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	metallic_microlattice:shields:s -> shields:metallic_microlattice:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_carbide:shields:s -> shields:silicon_carbide:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	computronic_substrate:shields:s -> shields:computronic_substrate:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	metallic_microlattice:turrets:s -> turrets:metallic_microlattice:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_carbide:turrets:s -> turrets:silicon_carbide:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	computronic_substrate:turrets:s -> turrets:computronic_substrate:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	metallic_microlattice:guns_and_launchers:s -> guns_and_launchers:metallic_microlattice:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	silicon_carbide:guns_and_launchers:s -> guns_and_launchers:silicon_carbide:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	computronic_substrate:guns_and_launchers:s -> guns_and_launchers:computronic_substrate:n [arrowhead=box color="#a9a9a9" weight=1.0]
 }

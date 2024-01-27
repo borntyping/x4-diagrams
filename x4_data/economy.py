@@ -141,7 +141,7 @@ WARES_TIER_0 = (
             Recipe(
                 time=60,
                 amount=1,
-                method="Recycling",
+                method="Recycling+Universal",
                 inputs=(
                     RecipeInput("energy_cells", 10),
                     RecipeInput("raw_scrap", 1),
@@ -944,7 +944,7 @@ WARES_TIER_3 = (
             Recipe(
                 time=300,
                 amount=50,
-                method="Recycling",
+                method="Recycling+Terran",
                 inputs=(
                     RecipeInput("energy_cells", 12500),
                     RecipeInput("scrap_metal", 1000),
@@ -1086,7 +1086,7 @@ WARES_TIER_4 = (
             Recipe(
                 time=300,
                 amount=200,
-                method="Recycling",
+                method="Recycling+Universal",
                 inputs=(
                     RecipeInput("energy_cells", 3500),
                     RecipeInput("scrap_metal", 75),
@@ -1210,7 +1210,7 @@ WARES_TIER_4 = (
             Recipe(
                 time=300,
                 amount=60,
-                method="Recycling",
+                method="Recycling+Terran",
                 inputs=(
                     RecipeInput("energy_cells", 4000),
                     RecipeInput("scrap_metal", 250),
@@ -1452,7 +1452,7 @@ WARES_TIER_5 = (
             Recipe(
                 time=300,
                 amount=60,
-                method="Recycling",
+                method="Recycling+Universal",
                 inputs=(
                     RecipeInput("energy_cells", 12000),
                     RecipeInput("scrap_metal", 300),

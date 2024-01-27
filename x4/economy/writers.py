@@ -58,7 +58,6 @@ class PlotlyWriter(Writer):
         target: int
         value: int
         label: str
-        color: str
 
     def plot(self, economy: Economy):
         mapping = economy.wares_as_dict()
@@ -69,15 +68,15 @@ class PlotlyWriter(Writer):
         labels = [ware.name for ware in economy.wares]
         links = [
             self.Link(
-                source=labels.index(mapping[input_ware.key].name),
-                target=labels.index(target.name),
-                value=input_ware.amount,
-                label=production.method,
-                color=production.plotly_colour(),
+                source=labels.index(mapping[recipe_input.key].name),
+                target=labels.index(output_ware.name),
+                value=1,
+                label=recipe.method,
             )
-            for target in economy.wares
-            for production in target.recipes
-            for input_ware in production.inputs
+            for output_ware in economy.wares
+            for recipe in output_ware.recipes
+            for recipe_input in recipe.inputs
+            if economy.edge_filter(recipe, mapping[recipe_input.key], output_ware)
         ]
 
         figure = plotly.graph_objs.Figure(
@@ -89,9 +88,8 @@ class PlotlyWriter(Writer):
                 link={
                     "source": [link.source for link in links],
                     "target": [link.target for link in links],
-                    "value": [1 for link in links],
+                    "value": [link.value for link in links],
                     "label": [link.label for link in links],
-                    # "color": [link.color for link in links],
                 },
             )
         )
@@ -174,30 +172,31 @@ class GraphvizWriter(Writer):
             with g.subgraph(name=str(tier.key)) as s:
                 s.attr(label=str(tier), cluster="true")
                 for ware in wares:
-                    label = template.render(
-                        ware=ware,
-                        inputs=[mapping[key] for key in ware.inputs_as_set()],
-                        outputs=economy.outputs_for_ware(ware),
-                    )
+                    if economy.ware_filter(ware):
+                        label = template.render(
+                            ware=ware,
+                            inputs=[mapping[key] for key in ware.inputs_as_set()],
+                            outputs=economy.outputs_for_ware(ware),
+                        )
 
-                    s.node(ware.key, label=f"<{label}>")
+                        s.node(ware.key, label=f"<{label}>")
 
         for output_ware in economy.wares:
             for recipe in output_ware.recipes:
-                for i in recipe.inputs:
-                    if i.key not in mapping:
-                        raise Exception(f"Input for {output_ware} not found in {economy}: {i.key}")
+                for recipe_input in recipe.inputs:
+                    if recipe_input.key not in mapping:
+                        raise Exception(f"Input for {output_ware} not found in {economy}: {recipe_input.key}")
 
-                    input_ware = mapping[i.key]
-                    color = self.recipe_color(
-                        recipe.method,
-                        input_ware.name,
-                        output_ware.name,
-                    )
+                    input_ware = mapping[recipe_input.key]
+
+                    if not economy.edge_filter(recipe, input_ware, output_ware):
+                        continue
+
+                    color = economy.edge_colour(recipe, input_ware, output_ware)
                     g.edge(
                         f"{input_ware.key}:{output_ware.key}:s",
                         f"{output_ware.key}:{input_ware.key}:n",
-                        color=input_ware.colour,
+                        color=color,
                         weight=self.weight(input_ware=input_ware, output_ware=output_ware),
                         arrowhead=self.arrowhead(input_ware.storage),
                     )
@@ -226,21 +225,6 @@ class GraphvizWriter(Writer):
         #         return "0.1"
 
         return "1.0"
-
-    @staticmethod
-    def recipe_color(recipe: str, input_ware_name: str, output_ware_name: str) -> str:
-        match (recipe, input_ware_name, output_ware_name):
-            case (_, "Water" | "Energy Cells", _):
-                return "azure2"
-            case (_, _, "Medical Supplies"):
-                return "azure2"
-            case (_, "Scrap Metal", _):
-                return "red"
-            case (_, "Refined Metals", _):
-                return "firebrick"
-            case (_, "Teladianium", _) | ("Teladi", _, _):
-                return "goldenrod"
-        return "slategray4"
 
     def diagram(self, economy: Economy, filename_suffixes: typing.Sequence[str] = ()) -> Diagram:
         logger.debug("Drawing economy with graphviz", economy=economy)

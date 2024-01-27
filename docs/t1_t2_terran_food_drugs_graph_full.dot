@@ -89,9 +89,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
+      
+        <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
       
     </tr>
   
@@ -115,9 +115,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
       
@@ -132,9 +132,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
       
     </tr>
   
@@ -147,11 +147,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
+        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
+        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
       
     </tr>
   

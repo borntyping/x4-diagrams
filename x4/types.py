@@ -9,7 +9,9 @@ from x4.colours import Palette
 logger = structlog.get_logger(logger_name=__name__)
 
 
-type Method = typing.Literal["Universal", "Recycling", "Argon", "Boron", "Paranid", "Split", "Teladi", "Terran"]
+type Method = typing.Literal[
+    "Universal", "Recycling+Universal", "Argon", "Boron", "Paranid", "Split", "Teladi", "Terran", "Recycling+Terran"
+]
 type Storage = typing.Literal["Container", "Liquid", "Solid", "Condensate"]
 
 
@@ -64,28 +66,8 @@ class Recipe:
     amount: int | None = dataclasses.field(default=None)
     inputs: typing.Sequence[RecipeInput] = dataclasses.field(default_factory=tuple)
 
-    plotly_colours: typing.ClassVar[typing.Dict[str, str | None]] = {
-        "Universal": "rgba(185, 217, 235, 0.90)",
-        "Recycling": "rgba(0, 248, 0, 0.25)",
-        "Argon": "rgba(55, 55, 255, 0.25)",
-        "Boron": "rgba(0, 0, 200, 0.25)",
-        "Paranid": "rgba(133, 0, 255, 0.25)",
-        "Split": "rgba(255, 0, 0, 0.25)",
-        "Teladi": "rgba(245, 245, 39, 0.25)",
-        "Terran": "rgba(200, 200, 200, 0.50)",
-    }
-
-    def plotly_colour(self) -> str:
-        return self.plotly_colours[self.method]
-
     def inputs_as_set(self) -> set[str]:
         return set([i.key for i in self.inputs])
-
-    def with_inputs(self, inputs: typing.Sequence[RecipeInput]):
-        return dataclasses.replace(self, inputs=inputs)
-
-    def remove_inputs(self, keys: set[str]) -> typing.Self:
-        return self.with_inputs([i for i in self.inputs if i.key not in keys])
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
@@ -144,9 +126,6 @@ class Ware:
 
     def with_selected_recipes(self, methods: typing.Set[Method]) -> typing.Self:
         return self.with_recipes([r for r in self.recipes if r.method in methods])
-
-    def remove_inputs(self, keys: set[str]) -> typing.Self:
-        return self.with_recipes([p.remove_inputs(keys) for p in self.recipes])
 
     def with_no_recipes(self):
         return self.with_recipes([])

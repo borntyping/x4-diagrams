@@ -6,6 +6,7 @@ import typing
 import inflect
 import structlog
 
+from x4.colours import Palette
 from x4.types import Method, Recipe, Tier, Ware
 from x4_data.economy import WARES
 
@@ -41,6 +42,31 @@ class Hint(enum.Flag):
     FULL_GRAPH_ONLY = FULL_GRAPH | SIMPLE_SANKEY
 
 
+class EdgeColour(typing.Protocol):
+    def __call__(self, recipe: Recipe, input_ware: Ware, output_ware: Ware) -> Palette:
+        ...
+
+
+class EdgeFilter(typing.Protocol):
+    def __call__(self, recipe: Recipe, input_ware: Ware, output_ware: Ware) -> bool:
+        ...
+
+
+class WareFilter(typing.Protocol):
+    def __call__(self, ware: Ware) -> bool:
+        ...
+
+
+@dataclasses.dataclass()
+class BuildMethodEdgeColour(EdgeColour):
+    method: Method
+    method_colour: Palette = Palette.RED
+    other_colour: Palette = Palette.GREY
+
+    def __call__(self, recipe: Recipe, input_ware: Ware, output_ware: Ware) -> Palette:
+        return self.method_colour if recipe.method == self.method else self.other_colour
+
+
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class Economy:
     wares: typing.Sequence[Ware] = dataclasses.field(repr=False, default=WARES)
@@ -48,6 +74,10 @@ class Economy:
     name: str = "X4"
     description: typing.Sequence[str] = ()
     hint: Hint = Hint.SIMPLE
+
+    ware_filter: WareFilter = lambda w: True
+    edge_filter: EdgeFilter = lambda r, i, o: True
+    edge_colour: EdgeColour = lambda r, i, o: i.colour
 
     def __post_init__(self):
         assert isinstance(self.wares, typing.Sequence)
@@ -76,6 +106,16 @@ class Economy:
     def with_name(self, name: str) -> typing.Self:
         logger.debug("Replacing name", economy=self, name=name)
         return dataclasses.replace(self, name=name)
+
+    def with_edge_colour(self, edge_colour: EdgeColour) -> typing.Self:
+        return dataclasses.replace(self, edge_colour=edge_colour)
+
+    def highlight_build_method(self, method: Method):
+        return dataclasses.replace(
+            self,
+            edge_colour=BuildMethodEdgeColour(method=method),
+            description=(f"Highlighting recipes using the {method} build method.", *self.description),
+        )
 
     def with_description(self, description: str) -> typing.Self:
         return dataclasses.replace(self, description=(*self.description, description))
@@ -169,16 +209,16 @@ class Economy:
         TODO: replace this with a filter that can be passed to the writers, so graphviz
         TODO: can still show those inputs in the tables.
         """
-        keys = {"energy_cells", "water"}
-        economy = self.with_wares([ware.remove_inputs(keys) for ware in self.wares if ware.key not in keys])
-
-        # Check we actually removed the inputs.
-        for key in keys:
-            assert key not in economy.wares_as_dict(), f"{key} still present in {economy}"
+        exclude = {"energy_cells", "water"}
+        economy = dataclasses.replace(
+            self,
+            edge_filter=lambda r, i, o: i.key not in exclude,
+            ware_filter=lambda w: w.key not in exclude,
+        )
 
         # Add a description recording what was removed.
         wares = self.wares_as_dict()
-        names = [wares[c].name.lower() for c in sorted(keys) if c in wares]
+        names = [wares[c].name.lower() for c in sorted(exclude) if c in wares]
         if names:
             description = "Not shown: {}.".format(p.join(names))
             economy = economy.with_description(description)

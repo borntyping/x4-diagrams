@@ -141,7 +141,7 @@
                         <div class="card-body">
                           <p class="card-text">
                             {% for line in diagram.description %}
-                              {{ line }}<br>
+                              <span>{{ line }}</span>
                             {% endfor %}
                           </p>
                           {% for text, path in diagram.links.items() %}
@@ -169,7 +169,6 @@
                     {% for economy in group.economies %}
                       <li>
                         <a href="#{{ economy.title }}">{{ economy.title }}</a>
-                        <span>({{ economy.diagrams|length }})</span>
                       </li>
                     {% endfor %}
                   </ol>

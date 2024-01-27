@@ -5,6 +5,9 @@ digraph "X4 Economy" {
 	graph [nodesep=0.3 pad=0.5 ranksep=3]
 	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
+	subgraph 0 {
+		cluster=true label="T0: Harvested"
+	}
 	subgraph 3 {
 		cluster=true label="T3: Refined"
 		superfluid_coolant [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="superfluid_coolant" port="output">
@@ -118,6 +121,8 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#42d4f4" port="superfluid_coolant">SC</td>
@@ -142,6 +147,8 @@ digraph "X4 Economy" {
 		quantum_tubes [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="quantum_tubes" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
@@ -172,16 +179,18 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">Advanced Composites</td>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="4">Advanced Composites</td>
   </tr>
   
     <tr>
@@ -197,16 +206,18 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#000075" colspan="3">Hull Parts</td>
+    <td align="text" bgcolor="white" color="#000075" colspan="4">Hull Parts</td>
   </tr>
   
     <tr>
@@ -224,16 +235,18 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#ffe119" colspan="3">Engine Parts</td>
+    <td align="text" bgcolor="white" color="#ffe119" colspan="4">Engine Parts</td>
   </tr>
   
     <tr>
@@ -246,6 +259,8 @@ digraph "X4 Economy" {
 		microchips [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="microchips" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="silicon_wafers">SW</td>
       
@@ -274,12 +289,14 @@ digraph "X4 Economy" {
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#3cb44b" port="silicon_wafers">SW</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#3cb44b" colspan="1">Smart Chips</td>
+    <td align="text" bgcolor="white" color="#3cb44b" colspan="2">Smart Chips</td>
   </tr>
   
 </table>>]
@@ -290,18 +307,20 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
-        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
+        <td align="text" bgcolor="white" color="#ffe119" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#fabed4" colspan="4">Drone Components</td>
+    <td align="text" bgcolor="white" color="#fabed4" colspan="5">Drone Components</td>
   </tr>
   
 </table>>]
@@ -311,14 +330,16 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#ffd8b1" colspan="3">Turret Components</td>
+    <td align="text" bgcolor="white" color="#ffd8b1" colspan="4">Turret Components</td>
   </tr>
   
 </table>>]
@@ -326,14 +347,16 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="advanced_composites">AC</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="advanced_composites">AC</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#808000" colspan="2">Missile Components</td>
+    <td align="text" bgcolor="white" color="#808000" colspan="3">Missile Components</td>
   </tr>
   
 </table>>]
@@ -343,12 +366,14 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#aaffc3" colspan="2">Field Coils</td>
+    <td align="text" bgcolor="white" color="#aaffc3" colspan="3">Field Coils</td>
   </tr>
   
 </table>>]
@@ -358,18 +383,22 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#dcbeff" colspan="2">Shield Components</td>
+    <td align="text" bgcolor="white" color="#dcbeff" colspan="3">Shield Components</td>
   </tr>
   
 </table>>]
 		antimatter_converters [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="antimatter_converters" port="output">
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
@@ -378,7 +407,7 @@ digraph "X4 Economy" {
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#f032e6" colspan="2">Antimatter Converters</td>
+    <td align="text" bgcolor="white" color="#f032e6" colspan="3">Antimatter Converters</td>
   </tr>
   
 </table>>]
@@ -388,12 +417,14 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Weapon Components</td>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">Weapon Components</td>
   </tr>
   
 </table>>]
@@ -406,6 +437,8 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="silicon_wafers">SW</td>
@@ -413,7 +446,7 @@ digraph "X4 Economy" {
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#f58231" colspan="3">Scanning Arrays</td>
+    <td align="text" bgcolor="white" color="#f58231" colspan="4">Scanning Arrays</td>
   </tr>
   
     <tr>
@@ -432,16 +465,18 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
+        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Claytronics</td>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="4">Claytronics</td>
   </tr>
   
 </table>>]
@@ -451,12 +486,14 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#469990" colspan="2">Advanced Electronics</td>
+    <td align="text" bgcolor="white" color="#469990" colspan="3">Advanced Electronics</td>
   </tr>
   
 </table>>]
