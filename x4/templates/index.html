@@ -158,6 +158,7 @@
                     {% for economy in group.economies %}
                       <li>
                         <a href="#{{ economy.title }}">{{ economy.title }}</a>
+                        <span>({{ economy.diagrams|length }})</span>
                       </li>
                     {% endfor %}
                   </ol>

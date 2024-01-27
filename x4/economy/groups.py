@@ -1,7 +1,7 @@
 import dataclasses
 import typing
 
-from x4.economy.economy import Economy, Simplify
+from x4.economy.economy import Economy, Hint
 from x4.types import Method
 from x4_data.economy import TIER_3, TIER_4, TIER_5, TIER_6, WARES
 
@@ -24,8 +24,8 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Universal",
             economies=[
-                food_and_drugs.with_hints(Simplify.INCLUSIVE),
-                construction.with_hints(Simplify.EXCLUSIVE),
+                food_and_drugs.with_hints(Hint.SIMPLIFY_INCLUSIVE),
+                construction.with_hints(Hint.SIMPLIFY_EXCLUSIVE),
                 universal.with_name(str(TIER_3)).filter_by_tier({3}).done(),
                 universal.with_name(str(TIER_4)).filter_by_tier({4}).done(),
                 universal.with_name(str(TIER_5)).filter_by_tier({5}).done(),
@@ -35,7 +35,10 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Foundations",
             economies=[
-                food_and_drugs.with_name("T1–T2: Commonwealth Food & Drugs").filter_by_method(commonwealth).done(),
+                food_and_drugs.with_name("T1–T2: Commonwealth Food & Drugs")
+                .filter_by_method(commonwealth)
+                .with_hints(Hint.SIMPLIFY_INCLUSIVE)
+                .done(),
                 food_and_drugs.with_name("T1–T2: Argon Food & Drugs").filter_by_method(["Argon"]).done(),
                 food_and_drugs.with_name("T1–T2: Boron Food & Drugs").filter_by_method(["Boron"]).done(),
                 food_and_drugs.with_name("T1–T2: Paranid Food & Drugs").filter_by_method(["Paranid"]).done(),

@@ -10,7 +10,7 @@ import jinja2
 import plotly.graph_objs
 import structlog
 
-from x4.economy.economy import Economy, Simplify
+from x4.economy.economy import Economy, Hint
 from x4.economy.groups import EconomyGroup
 
 logger = structlog.get_logger(logger_name=__name__)
@@ -281,12 +281,12 @@ class Builder:
         )
 
     def diagrams(self, economy: Economy) -> typing.Iterable[Diagram]:
-        if economy.simplify in {Simplify.INCLUSIVE, Simplify.EXCLUSIVE}:
+        if economy.hints in Hint.SIMPLIFY_INCLUSIVE | Hint.SIMPLIFY_EXCLUSIVE:
             simplified = economy.remove_common_inputs()
             yield self.graphviz_writer.diagram(simplified)
             yield self.plotly_writer.diagram(simplified)
 
-        if economy.simplify in {Simplify.NEVER, Simplify.INCLUSIVE}:
+        if economy.hints not in Hint.SIMPLIFY_EXCLUSIVE:
             yield self.graphviz_writer.diagram(economy)
             yield self.plotly_writer.diagram(economy)
 

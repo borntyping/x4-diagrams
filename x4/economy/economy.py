@@ -71,10 +71,14 @@ class Include(WareFilter):
         return ware.key in self.include
 
 
-class Simplify(enum.Enum):
-    NEVER = enum.auto()
-    INCLUSIVE = enum.auto()
-    EXCLUSIVE = enum.auto()
+class Hint(enum.IntFlag):
+    NONE = enum.auto()
+
+    SIMPLIFY_INCLUSIVE = enum.auto()
+    SIMPLIFY_EXCLUSIVE = enum.auto()
+
+
+assert Hint.NONE not in Hint.SIMPLIFY_INCLUSIVE | Hint.SIMPLIFY_EXCLUSIVE
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
@@ -84,7 +88,7 @@ class Economy:
     name: str = "X4"
     description: typing.Sequence[str] = ()
 
-    simplify: Simplify = Simplify.NEVER
+    hints: Hint = Hint.NONE
 
     def __post_init__(self):
         assert isinstance(self.wares, typing.Sequence)
@@ -117,8 +121,8 @@ class Economy:
     def with_description(self, description: str) -> typing.Self:
         return dataclasses.replace(self, description=(*self.description, description))
 
-    def with_hints(self, simplify: Simplify) -> typing.Self:
-        return dataclasses.replace(self, simplify=simplify)
+    def with_hints(self, hints: Hint) -> typing.Self:
+        return dataclasses.replace(self, hints=hints)
 
     @property
     def tiers(self) -> typing.List[Tier]:
@@ -243,7 +247,7 @@ class Economy:
         return economy
 
     def remove_inputs(self, keys: set[str]) -> typing.Self:
-        return self.with_wares([ware.remove_inputs(keys) for ware in self.wares])
+        return self.with_wares([ware.remove_inputs(keys) for ware in self.wares if ware.key not in keys])
 
     def remove_all_recipes(self, wf: WareFilter) -> typing.Self:
         return self.with_wares([w.with_no_recipes() if wf(w) else w for w in self.wares])
@@ -276,10 +280,16 @@ class Economy:
     #     return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
 
     def remove_common_inputs(self) -> typing.Self | None:
-        wares = self.as_dict()
+        """Remove wares from both recipe inputs and from the economy."""
         keys = {"energy_cells", "water"}
 
+        wares = self.as_dict()
         names = [wares[c].name.lower() for c in sorted(keys) if c in wares]
         description = "Not shown: {}.".format(p.join(names))
 
-        return self.with_description(description).remove_inputs(keys).done()
+        economy = self.with_name(f"{self.name} simplified").with_description(description).remove_inputs(keys).done()
+
+        for key in keys:
+            assert key not in economy.as_dict(), f"{key} still present in {economy}"
+
+        return economy
