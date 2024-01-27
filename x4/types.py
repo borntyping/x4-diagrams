@@ -94,16 +94,16 @@ class Ware:
     name: str
     acronym: str
     tier: Tier
-    colour: Palette = dataclasses.field()
+    colour: Palette = dataclasses.field(repr=False)
 
-    volume: int | None = dataclasses.field(default=None)
-    storage: typing.Literal["Container", "Liquid", "Solid", "Condensate"] | None = dataclasses.field(default=None)
-    price_min: int | None = dataclasses.field(default=None)
-    price_avg: int | None = dataclasses.field(default=None)
-    price_max: int | None = dataclasses.field(default=None)
-    recipes: typing.Sequence[Recipe] = dataclasses.field(default_factory=tuple)
+    volume: int | None = dataclasses.field(default=None, repr=False)
+    storage: typing.Literal["Container", "Liquid", "Solid", "Condensate"] | None = dataclasses.field(default=None, repr=False)
+    price_min: int | None = dataclasses.field(default=None, repr=False)
+    price_avg: int | None = dataclasses.field(default=None, repr=False)
+    price_max: int | None = dataclasses.field(default=None, repr=False)
+    recipes: typing.Sequence[Recipe] = dataclasses.field(default_factory=tuple, repr=False)
 
-    tags: set[str] = dataclasses.field(default_factory=set)
+    tags: set[str] = dataclasses.field(default_factory=set, repr=False)
 
     def __str__(self) -> str:
         return f"{self.name}"

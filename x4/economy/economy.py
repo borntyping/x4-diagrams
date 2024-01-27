@@ -14,63 +14,6 @@ logger = structlog.get_logger(logger_name=__name__)
 p = inflect.engine()
 
 
-class RecipeFilter(typing.Protocol):
-    def __call__(self, recipe: "Recipe", inputs: typing.Collection["Ware"], output: "Ware") -> bool:
-        ...
-
-
-@dataclasses.dataclass()
-class TierRecipeFilter(RecipeFilter):
-    keys: set[int]
-
-    def __call__(self, recipe: "Recipe", inputs: typing.Collection["Ware"], output: "Ware") -> bool:
-        return output.tier.key in self.keys
-
-
-class WareFilter(typing.Protocol):
-    def __repr__(self):
-        return "{}<{}>".format(self.__class__.__qualname__, self.__partial_repr__())
-
-    @abc.abstractmethod
-    def __partial_repr__(self) -> str:
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def __call__(self, ware: "Ware") -> bool:
-        raise NotImplementedError
-
-
-@dataclasses.dataclass(frozen=True, repr=False)
-class WareInTiers(WareFilter):
-    keys: set[int]
-
-    def __partial_repr__(self) -> str:
-        return "in tier {}".format(", ".join(str(t) for t in self.keys))
-
-    def __call__(self, ware: "Ware") -> bool:
-        return ware.tier.key in self.keys
-
-
-@dataclasses.dataclass(frozen=True, repr=False)
-class HasRecipe(WareFilter):
-    def __partial_repr__(self) -> str:
-        return "has recipe"
-
-    def __call__(self, ware: "Ware") -> bool:
-        return bool(ware.recipes)
-
-
-@dataclasses.dataclass(frozen=True, repr=False)
-class Include(WareFilter):
-    include: set[str]
-
-    def __partial_repr__(self) -> str:
-        return "include {} wares".format(len(self.include))
-
-    def __call__(self, ware: "Ware") -> bool:
-        return ware.key in self.include
-
-
 class Hint(enum.Flag):
     """
     >>> flags = Hint.SIMPLE_GRAPH | Hint.FULL_SANKEY
@@ -125,12 +68,9 @@ class Economy:
     def __call__(self, name: str, hint: Hint | None = None) -> typing.Self:
         return dataclasses.replace(self, name=name, hint=self.hint if hint is None else hint)
 
-    def with_wares(self, wares: typing.Sequence[Ware], verify: bool = True) -> typing.Self:
+    def with_wares(self, wares: typing.Sequence[Ware]) -> typing.Self:
         economy = dataclasses.replace(self, wares=wares)
-
-        if verify:
-            self.verify()
-
+        economy.verify()
         return economy
 
     def with_name(self, name: str) -> typing.Self:
@@ -154,37 +94,6 @@ class Economy:
     def wares_as_dict(self) -> dict[str, Ware]:
         return {ware.key: ware for ware in self.wares}
 
-    def filter_by_tier(self, keys: set[int]) -> typing.Self:
-        return self._focus(self.filter_wares(lambda w: w.tier.key in keys))
-
-    # def filter_by_recipe(self, f: RecipeFilter) -> typing.Self:
-    #     """
-    #     :deprecated:
-    #     """
-    #     logger.info("Filtering by recipe", economy=self, f=f)
-    #     wares = self.as_dict()
-    #
-    #     recipes = [
-    #         (recipe, output)
-    #         for output in self.wares
-    #         for recipe in output.recipes
-    #         if f(
-    #             recipe=recipe,
-    #             inputs=[wares[i.key] for i in recipe.input_wares],
-    #             output=output,
-    #         )
-    #     ]
-    #
-    #     inputs: set[str] = {key for (recipe, _) in recipes for key in recipe.input_wares}
-    #     outputs: set[str] = {output.key for (_, output) in recipes}
-    #
-    #     economy = self.filter_recipes(lambda recipe: recipe in {r for r, _ in recipes})
-    #     logger.info("Filtered recipes", economy=economy, f=f)
-    #
-    #     economy = economy.filter_wares(Include(inputs | outputs))
-    #     logger.info("Filtered wares", economy=economy, f=f)
-    #     return economy
-
     def dependencies(self) -> set[str]:
         """
         :deprecated:
@@ -205,95 +114,63 @@ class Economy:
     def outputs_for_ware(self, input_ware: Ware) -> typing.Sequence[Ware]:
         return [ware for ware in self.wares if input_ware.key in ware.inputs_as_set()]
 
-    def filter_wares(self, wf: WareFilter, verify: bool = True) -> typing.Self:
-        return self.with_wares([ware for ware in self.wares if wf(ware)], verify=verify)
+    def select_tiers(self, keys: set[int]) -> typing.Self:
+        logger.info("Selecting tiers", economy=self, tiers=keys)
 
-    def select_tiers(self, tier_ids: set[int]) -> typing.Self:
-        """
-        Return an economy describing how to make the wares in the given tiers.
-        """
-        economy: Economy = self.filter_wares(WareInTiers(tier_ids))
-        inputs = economy.inputs()
-        outputs = economy.outputs()
+        # Remove all recipes for wares that aren't in the tiers we care about.
+        wares = [(ware if ware.tier.key in keys else ware.with_no_recipes()) for ware in self.wares]
 
-        all_wares = Include(inputs | outputs)
-        only_inputs = Include(inputs - outputs)
+        # Remove all wares that aren't in our tier or one we need as an input.
+        needs = {key for ware in wares for key in ware.inputs_as_set()}
+        wares = [ware for ware in wares if ware.tier.key in keys or ware.key in needs]
 
-        # Create an economy containing our inputs *and* outputs.
-        economy = self.filter_wares(all_wares)
+        for ware in wares:
+            if ware.tier.key in keys and ware.tier.key != 0:
+                assert ware.recipes, "Expected ware in the selected tier to have a recipe"
 
-        # Remove all recipes for wares that are inputs but *not* outputs.
-        economy = economy.remove_all_recipes(only_inputs)
+            if ware.tier.key not in keys:
+                assert not ware.recipes, "Expected wares not in the selected tier to have all recipes removed"
 
-        return economy
+        return self.with_wares(wares)
 
-    def _focus(self, economy: typing.Self) -> typing.Self:
-        """
-        Filter wares and recipes to focus on a subset.
-        """
-        inputs = economy.inputs()
-        outputs = economy.outputs()
-
-        # Create an economy containing our inputs *and* outputs.
-        economy = self.filter_wares(Include(inputs | outputs), verify=False)
-
-        # Remove all recipes for wares that are inputs but *not* outputs.
-        economy = economy.remove_all_recipes(lambda w: w.key in inputs - outputs, verify=False)
-
-        # Missile components need hull parts, should that show for T6?
-
-        return economy
-
-    def remove_inputs(self, keys: set[str]) -> typing.Self:
-        return self.with_wares([ware.remove_inputs(keys) for ware in self.wares if ware.key not in keys])
-
-    def remove_all_recipes(self, wf: WareFilter, *, verify: bool = True) -> typing.Self:
-        return self.with_wares([w.with_no_recipes() if wf(w) else w for w in self.wares], verify=verify)
-
-    def with_single_recipe(self, priority: typing.Sequence[Method]) -> typing.Self:
+    def select_recipe(self, priority: typing.Sequence[Method]) -> typing.Self:
+        """Ensure each ware has at most one recipe."""
+        logger.info("Selecting a single recipe", economy=self, priority=priority)
         wares = [ware.with_single_recipe(priority) for ware in self.wares]
 
+        for ware in wares:
+            for recipe in ware.recipes:
+                assert recipe.method in priority, "A recipe was not correctly filtered."
+
         deps = self.deps(wares)
-        wares = [ware for ware in wares if ware.recipes or ware.key in deps]
+        wares = [ware for ware in wares if (ware.recipes or ware.key in deps)]
 
         return self.with_wares(wares)
 
-    def with_selected_recipes(self, methods: typing.Set[Method]) -> typing.Self:
+    def select_recipes(self, *, methods: typing.Set[Method]) -> typing.Self:
+        """Remove any recipes that aren't in the given methods."""
+        logger.info("Selecting multiple recipes", economy=self, methods=methods)
         wares = [ware.with_selected_recipes(methods) for ware in self.wares]
 
+        for ware in wares:
+            for recipe in ware.recipes:
+                assert recipe.method in methods, "A recipe was not correctly filtered."
+
         deps = self.deps(wares)
-        wares = [ware for ware in wares if ware.recipes or ware.key in deps]
+        wares = [ware for ware in wares if (ware.recipes or ware.key in deps)]
 
         return self.with_wares(wares)
 
-    # def filter_recipes(self, f: typing.Callable[[Recipe], bool]) -> typing.Self:
-    #     return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
+    def simplify(self) -> typing.Self | None:
+        """
+        Remove wares that are inputs for a very large number of recipes from the economy,
+        which can make graphs much easier to read.
 
-    def verify(self) -> typing.Self:
-        logger.info("Validating economy", economy=repr(self))
-
-        if not self.wares:
-            raise Exception(f"No wares in {self!r} economy")
-
-        missing = list()
-
-        keys = {ware.key for ware in self.wares}
-
-        for ware in self.wares:
-            for dep in ware.inputs_as_set():
-                if dep not in keys:
-                    missing.append((ware, dep))
-
-        if missing:
-            description = ", ".join(["{} → {}".format(ware, dep) for ware, dep in missing])
-            raise Exception(f"Missing dependencies for '{self}': {description}")
-
-        return self
-
-    def remove_common_inputs(self) -> typing.Self | None:
-        """Remove wares from both recipe inputs and from the economy."""
+        TODO: replace this with a filter that can be passed to the writers, so graphviz
+        TODO: can still show those inputs in the tables.
+        """
         keys = {"energy_cells", "water"}
-        economy = self.remove_inputs(keys).verify()
+        economy = self.with_wares([ware.remove_inputs(keys) for ware in self.wares if ware.key not in keys])
 
         # Check we actually removed the inputs.
         for key in keys:
@@ -307,3 +184,25 @@ class Economy:
             economy = economy.with_description(description)
 
         return economy
+
+    def verify(self) -> typing.Self:
+        logger.info("Validating economy", economy=repr(self))
+
+        if not self.wares:
+            raise Exception(f"No wares in {self!r} economy")
+
+        missing = list()
+
+        keys = {ware.key for ware in self.wares}
+
+        for ware in self.wares:
+            for recipe in ware.recipes:
+                for recipe_input in recipe.inputs:
+                    if recipe_input.key not in keys:
+                        missing.append((ware, recipe, recipe_input))
+
+        if missing:
+            descriptions = [f"{ware} → {recipe.method} → {recipe_input.key}" for ware, recipe, recipe_input in missing]
+            raise Exception(f"Missing dependencies for {self}:\n  * {'\n  * '.join(descriptions)}")
+
+        return self

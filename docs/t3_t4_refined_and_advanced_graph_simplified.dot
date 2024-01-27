@@ -254,9 +254,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
-        <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
     </tr>
   
@@ -271,9 +271,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
-        <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
     </tr>
   
@@ -288,9 +288,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
-        <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
     </tr>
   
@@ -329,11 +329,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="silicon_wafers">SW</td>
+        <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="teladianium">Te</td>
       
-        <td align="text" bgcolor="white" color="#e6194B" port="refined_metals">RM</td>
+        <td align="text" bgcolor="white" color="#3cb44b" port="silicon_wafers">SW</td>
       
     </tr>
   

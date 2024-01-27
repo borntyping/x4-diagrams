@@ -301,7 +301,7 @@ class Builder:
         )
 
     def diagrams(self, economy: Economy) -> typing.Iterable[Diagram]:
-        simplified = economy.remove_common_inputs()
+        simplified = economy.simplify()
 
         if economy.hint & Hint.SIMPLE_GRAPH:
             yield self.graphviz_writer.diagram(simplified, ("simplified",))
