@@ -69,7 +69,7 @@ class Recipe:
     def with_input_wares(self, input_wares: typing.Sequence[InputWare]):
         return dataclasses.replace(self, input_wares=input_wares)
 
-    def remove_input(self, *keys: str) -> typing.Self:
+    def remove_inputs(self, keys: set[str]) -> typing.Self:
         return self.with_input_wares([i for i in self.input_wares if i.key not in keys])
 
 
@@ -138,8 +138,8 @@ class Ware:
     def with_single_recipe(self, methods: typing.Sequence[Method]) -> typing.Self:
         return self.with_recipes(self.single_recipe(methods))
 
-    def remove_input(self, *keys: str) -> typing.Self:
-        return self.with_recipes([p.remove_input(*keys) for p in self.recipes])
+    def remove_inputs(self, keys: set[str]) -> typing.Self:
+        return self.with_recipes([p.remove_inputs(keys) for p in self.recipes])
 
     def with_no_recipes(self):
         return self.with_recipes([])

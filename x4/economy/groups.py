@@ -1,7 +1,7 @@
 import dataclasses
 import typing
 
-from x4.economy.economy import Economy
+from x4.economy.economy import Economy, Simplify
 from x4.types import Method
 from x4_data.economy import TIER_3, TIER_4, TIER_5, TIER_6, WARES
 
@@ -13,7 +13,7 @@ class EconomyGroup:
 
 
 def groups() -> typing.Sequence[EconomyGroup]:
-    world = Economy("X4", WARES).done()
+    world = Economy().done()
     universal = world.with_name("Universal").filter_by_method(["Universal"]).done()
 
     food_and_drugs = world.with_name("T1–T2: Food & Drugs").filter_by_tier({1, 2}).done()
@@ -24,8 +24,8 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Universal",
             economies=[
-                food_and_drugs,
-                construction,
+                food_and_drugs.with_hints(Simplify.INCLUSIVE),
+                construction.with_hints(Simplify.EXCLUSIVE),
                 universal.with_name(str(TIER_3)).filter_by_tier({3}).done(),
                 universal.with_name(str(TIER_4)).filter_by_tier({4}).done(),
                 universal.with_name(str(TIER_5)).filter_by_tier({5}).done(),

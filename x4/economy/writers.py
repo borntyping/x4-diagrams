@@ -1,4 +1,5 @@
 import dataclasses
+import html
 import itertools
 import pathlib
 import re
@@ -9,7 +10,7 @@ import jinja2
 import plotly.graph_objs
 import structlog
 
-from x4.economy.economy import Economy
+from x4.economy.economy import Economy, Simplify
 from x4.economy.groups import EconomyGroup
 
 logger = structlog.get_logger(logger_name=__name__)
@@ -18,7 +19,7 @@ logger = structlog.get_logger(logger_name=__name__)
 @dataclasses.dataclass(frozen=True)
 class Diagram:
     title: str
-    subtitle: str
+    description: typing.Tuple[str, ...]
     image: pathlib.Path
     links: dict[str, pathlib.Path]
 
@@ -92,10 +93,16 @@ class PlotlyWriter(Writer):
                 },
             )
         )
-        figure.update_layout(title_text=economy.name)
+
+        figure.update_layout(
+            title_text="{}<br><sup>{}</sup>".format(
+                economy.name,
+                " ".join(economy.description),
+            ),
+        )
         return figure
 
-    def diagam(self, economy: Economy) -> Diagram:
+    def diagram(self, economy: Economy) -> Diagram:
         logger.debug("Drawing economy with plotly", economy=economy)
         self.output_directory.mkdir(exist_ok=True)
         png = self.output_directory / self.filename(economy, "sankey", "png")
@@ -111,7 +118,7 @@ class PlotlyWriter(Writer):
         logger.warning("Drew economy with plotly", economy=repr(economy), image=image)
         return Diagram(
             title=economy.name,
-            subtitle="Rendered with plotly",
+            description=(*economy.description, "Rendered with plotly."),
             image=image,
             links={"Interactive": interactive, "Image": image},
         )
@@ -122,9 +129,16 @@ class GraphvizWriter(Writer):
     output_directory: pathlib.Path
 
     def dot(self, economy: Economy) -> graphviz.Graph:
+        label_parts = [f"<b>{html.escape(economy.name)}</b>"]
+        if economy.description:
+            label_parts.append(f"<br/>")
+        for line in economy.description:
+            label_parts.append(f"<br/>{html.escape(line)}")
+
         fontname = "Helvetica,Arial,sans-serif"
         g = graphviz.Graph("X4 Economy")
         g.attr(fontname=fontname, compound="true")
+        g.attr(label=f"<{''.join(label_parts)}>")
         g.attr(
             "graph",
             pad="0.5",
@@ -224,7 +238,7 @@ class GraphvizWriter(Writer):
         logger.info("Drew economy with graphviz", economy=repr(economy), image=image)
         return Diagram(
             title=economy.name,
-            subtitle="Rendered with graphviz",
+            description=(*economy.description, "Rendered with graphviz."),
             image=image,
             links={"Image": image, "Source": source},
         )
@@ -267,12 +281,14 @@ class Builder:
         )
 
     def diagrams(self, economy: Economy) -> typing.Iterable[Diagram]:
-        if simplified := economy.simplified():
+        if economy.simplify in {Simplify.INCLUSIVE, Simplify.EXCLUSIVE}:
+            simplified = economy.remove_common_inputs()
             yield self.graphviz_writer.diagram(simplified)
-            yield self.plotly_writer.diagam(simplified)
+            yield self.plotly_writer.diagram(simplified)
 
-        yield self.graphviz_writer.diagram(economy)
-        yield self.plotly_writer.diagam(economy)
+        if economy.simplify in {Simplify.NEVER, Simplify.INCLUSIVE}:
+            yield self.graphviz_writer.diagram(economy)
+            yield self.plotly_writer.diagram(economy)
 
     def main(self, groups: typing.Sequence[EconomyGroup]) -> pathlib.Path:
         return self.index_writer.index([self.economy_group(group) for group in groups])

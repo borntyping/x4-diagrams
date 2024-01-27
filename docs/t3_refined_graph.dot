@@ -1,5 +1,6 @@
 graph "X4 Economy" {
 	compound=true fontname="Helvetica,Arial,sans-serif"
+	label=<<b>T3: Refined</b>>
 	graph [nodesep=0.3 pad=0.5 ranksep=2]
 	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
 	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]

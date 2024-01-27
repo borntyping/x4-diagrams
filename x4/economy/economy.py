@@ -1,12 +1,17 @@
 import abc
 import dataclasses
+import enum
 import typing
 
+import inflect
 import structlog
 
 from x4.types import Method, Recipe, Tier, Ware
+from x4_data.economy import WARES
 
 logger = structlog.get_logger(logger_name=__name__)
+
+p = inflect.engine()
 
 
 class RecipeFilter(typing.Protocol):
@@ -66,13 +71,23 @@ class Include(WareFilter):
         return ware.key in self.include
 
 
-@dataclasses.dataclass(frozen=True)
+class Simplify(enum.Enum):
+    NEVER = enum.auto()
+    INCLUSIVE = enum.auto()
+    EXCLUSIVE = enum.auto()
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
 class Economy:
-    name: str
-    wares: typing.Sequence[Ware] = dataclasses.field(repr=False)
+    wares: typing.Sequence[Ware] = dataclasses.field(repr=False, default=WARES)
+
+    name: str = "X4"
+    description: typing.Sequence[str] = ()
+
+    simplify: Simplify = Simplify.NEVER
 
     def __post_init__(self):
-        assert isinstance(self.wares, list)
+        assert isinstance(self.wares, typing.Sequence)
         for tier in self.wares:
             assert isinstance(tier, Ware)
 
@@ -93,8 +108,17 @@ class Economy:
     def __call__(self, name: str) -> typing.Self:
         return self.with_name(name)
 
+    def with_wares(self, wares: typing.Sequence[Ware]) -> typing.Self:
+        return dataclasses.replace(self, wares=wares)
+
     def with_name(self, name: str) -> typing.Self:
         return dataclasses.replace(self, name=name)
+
+    def with_description(self, description: str) -> typing.Self:
+        return dataclasses.replace(self, description=(*self.description, description))
+
+    def with_hints(self, simplify: Simplify) -> typing.Self:
+        return dataclasses.replace(self, simplify=simplify)
 
     @property
     def tiers(self) -> typing.List[Tier]:
@@ -151,9 +175,6 @@ class Economy:
 
     def outputs(self) -> set[str]:
         return {ware.key for ware in self.wares}
-
-    def with_wares(self, wares: typing.Sequence[Ware]) -> typing.Self:
-        return dataclasses.replace(self, wares=wares)
 
     def filter_wares(self, wf: WareFilter) -> typing.Self:
         economy = self.with_wares([ware for ware in self.wares if wf(ware)])
@@ -221,8 +242,8 @@ class Economy:
 
         return economy
 
-    def remove_input(self, *keys: str) -> typing.Self:
-        return self.with_wares([ware.remove_input(*keys) for ware in self.wares])
+    def remove_inputs(self, keys: set[str]) -> typing.Self:
+        return self.with_wares([ware.remove_inputs(keys) for ware in self.wares])
 
     def remove_all_recipes(self, wf: WareFilter) -> typing.Self:
         return self.with_wares([w.with_no_recipes() if wf(w) else w for w in self.wares])
@@ -254,11 +275,11 @@ class Economy:
     # def filter_recipes(self, f: typing.Callable[[Recipe], bool]) -> typing.Self:
     #     return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
 
-    def simplified(self) -> typing.Self | None:
-        common_inputs = {"water", "energy_cells"}
-        uses_common_inputs = bool({ware.key for ware in self.wares} & common_inputs)
+    def remove_common_inputs(self) -> typing.Self | None:
+        wares = self.as_dict()
+        keys = {"energy_cells", "water"}
 
-        if not uses_common_inputs:
-            return None
+        names = [wares[c].name.lower() for c in sorted(keys) if c in wares]
+        description = "Not shown: {}.".format(p.join(names))
 
-        return self.with_name(f"{self.name} †").remove_input(*common_inputs).done()
+        return self.with_description(description).remove_inputs(keys).done()

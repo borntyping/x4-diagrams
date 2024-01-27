@@ -19,7 +19,7 @@ TIER_4 = Tier(key=4, name="Advanced")
 TIER_5 = Tier(key=5, name="Components")
 TIER_6 = Tier(key=6, name="Equipment")
 
-WARES_TIER_0 = [
+WARES_TIER_0 = (
     Ware(
         key="helium",
         name="Helium",
@@ -174,9 +174,9 @@ WARES_TIER_0 = [
             ),
         ],
     ),
-]
+)
 
-WARES_TIER_1 = [
+WARES_TIER_1 = (
     Ware(
         key="maja_snails",
         name="Maja Snails",
@@ -430,9 +430,9 @@ WARES_TIER_1 = [
             ),
         ],
     ),
-]
+)
 
-WARES_TIER_2 = [
+WARES_TIER_2 = (
     Ware(
         key="spacefuel",
         name="Spacefuel",
@@ -709,9 +709,9 @@ WARES_TIER_2 = [
             )
         ],
     ),
-]
+)
 
-WARES_TIER_3 = [
+WARES_TIER_3 = (
     Ware(
         key="superfluid_coolant",
         name="Superfluid Coolant",
@@ -892,9 +892,9 @@ WARES_TIER_3 = [
             )
         ],
     ),
-]
+)
 
-WARES_TIER_4 = [
+WARES_TIER_4 = (
     Ware(
         key="plasma_conductors",
         name="Plasma Conductors",
@@ -1118,9 +1118,9 @@ WARES_TIER_4 = [
             ),
         ],
     ),
-]
+)
 
-WARES_TIER_5 = [
+WARES_TIER_5 = (
     Ware(
         key="drone_components",
         name="Drone Components",
@@ -1365,9 +1365,9 @@ WARES_TIER_5 = [
             )
         ],
     ),
-]
+)
 
-WARES_TIER_6 = [
+WARES_TIER_6 = (
     Ware(
         key="ship_hulls",
         name="Ship Hulls",
@@ -1618,9 +1618,9 @@ WARES_TIER_6 = [
         ],
         tags={"terminal"},
     ),
-]
+)
 
-WARES = [
+WARES = (
     *WARES_TIER_0,
     *WARES_TIER_1,
     *WARES_TIER_2,
@@ -1628,4 +1628,4 @@ WARES = [
     *WARES_TIER_4,
     *WARES_TIER_5,
     *WARES_TIER_6,
-]
+)

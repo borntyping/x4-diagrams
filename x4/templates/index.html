@@ -34,13 +34,13 @@
 
     /* Lay cards out on a grid. */
     .card {
-      text-align: center;
+      text-align: left;
     }
 
     .cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 1fr;
+      grid-auto-rows: min-content;
       gap: 1rem;
     }
 
@@ -80,6 +80,7 @@
       top: calc(40px);
 
       /* Avoid padding the lists in the sidebar too much. */
+
       & aside {
         & ol, & ul {
           list-style: none;
@@ -128,7 +129,11 @@
                       <div class="card">
                         <img src="{{ diagram.image }}" alt="{{ economy.title }}">
                         <div class="card-body">
-                          <p class="card-text">{{ diagram.subtitle }}</p>
+                          <p class="card-text">
+                            {% for line in diagram.description %}
+                              {{ line }}<br>
+                            {% endfor %}
+                          </p>
                           {% for text, path in diagram.links.items() %}
                             <a class="card-link" href="{{ path }}">{{ text }}</a>
                           {% endfor %}
