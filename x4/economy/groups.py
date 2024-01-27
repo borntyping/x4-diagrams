@@ -25,16 +25,20 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Foundations",
             economies=[
-                foundations("T3–T6: Construction").filter_by_tier({3, 4, 5, 6}),
-                foundations(str(TIER_3)).filter_by_tier({3}),
-                foundations(str(TIER_4)).filter_by_tier({4}),
-                foundations(str(TIER_5)).filter_by_tier({5}),
-                foundations(str(TIER_6)).filter_by_tier({6}),
                 foundations("T1–T2: Food & Drugs").filter_by_tier({1, 2}),
+                foundations("T3–T6: Construction").filter_by_tier({3, 4, 5, 6}),
+                foundations("T3–T4: Refined and Advanced").filter_by_tier({3, 4}),
+                foundations("T5–T6: Advanced and Components").filter_by_tier({4, 5}),
+                foundations("T5–T6: Components and Equipment").filter_by_tier({5, 6}),
+            ],
+        ),
+        EconomyGroup(
+            title="Foundations: Argon, Paranid, and Teladi",
+            economies=[
                 food_and_drugs("T1–T2: Argon Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Argon"]),
                 food_and_drugs("T1–T2: Paranid Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Paranid"]),
                 food_and_drugs("T1–T2: Teladi Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Teladi"]),
-                construction("T3–T6: Teladi Construction").with_single_recipe(["Teladi", "Universal"]),
+                construction("T3–T6: Teladi Build Method").with_single_recipe(["Teladi", "Universal"]),
             ],
         ),
         EconomyGroup(
@@ -47,14 +51,14 @@ def groups() -> typing.Sequence[EconomyGroup]:
             title="Cradle of Humanity",
             economies=[
                 food_and_drugs("T1–T2: Terran Food & Drugs", Hint.FULL_GRAPH_ONLY).with_single_recipe(["Terran"]),
-                construction("T3–T6: Terran Construction").with_single_recipe(["Terran"]),
+                construction("T3–T6: Terran Build Method").with_single_recipe(["Terran"]),
             ],
         ),
         EconomyGroup(
             title="Tides of Avarice",
             economies=[
-                construction("T3–T6: Scrapping Construction").with_single_recipe(["Recycling"]),
-                construction("T3–T6: Scrapping Construction").with_single_recipe(["Recycling", "Universal"]),
+                construction("T3–T6: Recycling Recipes").with_single_recipe(["Recycling"]),
+                construction("T3–T6: Recycling Build Method").with_single_recipe(["Recycling", "Universal"]),
             ],
         ),
         EconomyGroup(

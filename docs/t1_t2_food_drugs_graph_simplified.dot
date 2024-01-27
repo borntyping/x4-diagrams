@@ -265,9 +265,7 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
-      
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
       
         <td align="text" bgcolor="white" color="#800000" port="scruffin_fruits">SF</td>
       
@@ -275,7 +273,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
       
-        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
     </tr>
   

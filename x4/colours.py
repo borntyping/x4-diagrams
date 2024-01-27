@@ -19,12 +19,12 @@ class Palette(enum.StrEnum):
     TEAL = "#469990"
     LAVENDER = "#dcbeff"
     BROWN = "#9A6324"
-    BEIGE = "#fffac8"
+    # BEIGE = "#fffac8" # Does not display well on a white background
     MAROON = "#800000"
     MINT = "#aaffc3"
     OLIVE = "#808000"
     APRICOT = "#ffd8b1"
     NAVY = "#000075"
     GREY = "#a9a9a9"
-    WHITE = "#ffffff"
+    # WHITE = "#ffffff" # Does not display well on a white background
     BLACK = "#000000"

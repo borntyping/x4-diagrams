@@ -36,7 +36,7 @@ digraph "X4 Economy" {
 		silicon [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#bfef45" colspan="1">Silicon</td>
+    <td align="text" bgcolor="white" color="#3cb44b" colspan="1">Silicon</td>
   </tr>
   
     <tr>
@@ -89,9 +89,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
-      
         <td align="text" bgcolor="white" color="#bfef45" port="methane">Me</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
       
     </tr>
   
@@ -117,9 +117,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
       
     </tr>
   
@@ -149,9 +149,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#bfef45" port="silicon">Si</td>
-      
         <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
+      
+        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
       
     </tr>
   
@@ -171,5 +171,5 @@ digraph "X4 Economy" {
 	protein_paste:terran_mre:s -> terran_mre:protein_paste:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	energy_cells:stimulants:s -> stimulants:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	helium:stimulants:s -> stimulants:helium:n [arrowhead=odot color="#469990" weight=1.0]
-	silicon:stimulants:s -> stimulants:silicon:n [arrowhead=empty color="#bfef45" weight=1.0]
+	silicon:stimulants:s -> stimulants:silicon:n [arrowhead=empty color="#3cb44b" weight=1.0]
 }

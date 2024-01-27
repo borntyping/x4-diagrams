@@ -7,4 +7,5 @@ stats = {color: len(list(group)) for color, group in itertools.groupby(WARES, ke
 
 
 for color in Palette:
-    print(f"{color.name:<10} {stats.get(color, 0) * '█'}")
+    count = stats.get(color, 0)
+    print(f"{color.name:<10} {count:2} {count * '█'}")

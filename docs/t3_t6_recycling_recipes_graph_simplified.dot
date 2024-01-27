@@ -1,0 +1,95 @@
+digraph "X4 Economy" {
+	edge [arrowType=normal]
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	label=<<b>T3–T6: Recycling Recipes</b><br/><br/>Not shown: energy cells.>
+	graph [nodesep=0.3 pad=0.5 ranksep=3]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
+	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
+	subgraph 0 {
+		cluster=true label="T0: Harvested"
+		scrap_metal [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scrap_metal" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#9A6324" colspan="4">Scrap Metal</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 3 {
+		cluster=true label="T3: Refined"
+		computronic_substrate [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="computronic_substrate" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="1">Computronic Substrate</td>
+  </tr>
+  
+</table>>]
+	}
+	subgraph 4 {
+		cluster=true label="T4: Advanced"
+		hull_parts [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="hull_parts" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#000075" colspan="1">Hull Parts</td>
+  </tr>
+  
+</table>>]
+		silicon_carbide [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon_carbide" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#000075" colspan="1">Silicon Carbide</td>
+  </tr>
+  
+</table>>]
+	}
+	subgraph 5 {
+		cluster=true label="T5: Components"
+		claytronics [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="claytronics" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="1">Claytronics</td>
+  </tr>
+  
+</table>>]
+	}
+	scrap_metal:computronic_substrate:s -> computronic_substrate:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
+	scrap_metal:hull_parts:s -> hull_parts:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
+	scrap_metal:silicon_carbide:s -> silicon_carbide:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
+	scrap_metal:claytronics:s -> claytronics:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
+}
