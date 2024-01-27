@@ -1,52 +1,31 @@
 graph "X4 Economy" {
+	edge [arrowType=normal]
 	compound=true fontname="Helvetica,Arial,sans-serif"
 	label=<<b>T1–T2: Split Food &amp; Drugs</b>>
-	graph [nodesep=0.3 pad=0.5 ranksep=2]
-	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=0 shape=record style=filled]
-	edge [fontname="Helvetica,Arial,sans-serif" penwidth=2.5]
+	graph [nodesep=0.3 pad=0.5 ranksep=3]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=1 shape=box]
+	edge [arrowhead=normal arrowtype=normal fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.5 tailport=s]
 	subgraph 0 {
 		cluster=true label=Harvested
-		Helium [colour=lightsteelblue2 shape=box]
-		Methane [colour=lightsteelblue2 shape=box]
-		Silicon [colour=lightsteelblue2 shape=box]
-		Ice [colour=lightsteelblue2 shape=box]
-		Water [colour=lightsteelblue2 shape=box]
-		"Energy Cells" [colour=lightsteelblue2 shape=box]
+		water [label="{<output> Water}" colour=lightsteelblue2 shape=record]
+		energy_cells [label="{<output> Energy Cells}" colour=lightsteelblue2 shape=record]
 	}
 	subgraph 1 {
 		cluster=true label="Basic Food"
-		"Maja Snails" [colour=lightsteelblue2 shape=box]
-		Meat [colour=lightsteelblue2 shape=box]
-		"Soja Beans" [colour=lightsteelblue2 shape=box]
-		Spices [colour=lightsteelblue2 shape=box]
-		"Sunrise Flowers" [colour=lightsteelblue2 shape=box]
-		"Swamp Plant" [colour=lightsteelblue2 shape=box]
-		Wheat [colour=lightsteelblue2 shape=box]
-		"Chelt Meat" [colour=lightsteelblue2 shape=box]
-		"Scruffin Fruit" [colour=lightsteelblue2 shape=box]
-		"Protein Paste" [colour=lightsteelblue2 shape=box]
-		Plankton [colour=lightsteelblue2 shape=box]
-		BoGas [colour=lightsteelblue2 shape=box]
+		spices [label="{<output> Spices}" colour=lightsteelblue2 shape=record]
+		chelt_meat [label="{{<water> W|<energy_cells> EC}|<output> Chelt Meat}" colour=lightsteelblue2 shape=record]
+		scruffin_fruits [label="{{<water> W|<energy_cells> EC}|<output> Scruffin Fruit}" colour=lightsteelblue2 shape=record]
 	}
 	subgraph 2 {
 		cluster=true label="Food and Drugs"
-		Spacefuel [colour=lightsteelblue2 shape=box]
-		"Food Rations" [colour=lightsteelblue2 shape=box]
-		"Maja Dust" [colour=lightsteelblue2 shape=box]
-		"Soja Husk" [colour=lightsteelblue2 shape=box]
-		Spaceweed [colour=lightsteelblue2 shape=box]
-		"Nostrop Oil" [colour=lightsteelblue2 shape=box]
-		"Medical Supplies" [colour=lightsteelblue2 shape=box]
-		"Terran MRE" [colour=lightsteelblue2 shape=box]
-		Stimulants [colour=lightsteelblue2 shape=box]
-		BoFu [colour=lightsteelblue2 shape=box]
+		medical_supplies [label="{{<water> W|<scruffin_fruits> SF|<spices> S|<energy_cells> EC}|<output> Medical Supplies}" colour=lightsteelblue2 shape=record]
 	}
-	"Energy Cells" -- "Chelt Meat" [color=azure2 constraint=false]
-	Water -- "Chelt Meat" [color=azure2 constraint=false]
-	"Energy Cells" -- "Scruffin Fruit" [color=azure2 constraint=false]
-	Water -- "Scruffin Fruit" [color=azure2 constraint=false]
-	"Energy Cells" -- "Medical Supplies" [color=azure2 constraint=false]
-	"Scruffin Fruit" -- "Medical Supplies" [color=azure2 constraint=false]
-	Spices -- "Medical Supplies" [color=azure2 constraint=false]
-	Water -- "Medical Supplies" [color=azure2 constraint=false]
+	energy_cells:output:s -- chelt_meat:energy_cells:n [color=azure2]
+	water:output:s -- chelt_meat:water:n [color=azure2]
+	energy_cells:output:s -- scruffin_fruits:energy_cells:n [color=azure2]
+	water:output:s -- scruffin_fruits:water:n [color=azure2]
+	energy_cells:output:s -- medical_supplies:energy_cells:n [color=azure2]
+	scruffin_fruits:output:s -- medical_supplies:scruffin_fruits:n [color=azure2]
+	spices:output:s -- medical_supplies:spices:n [color=azure2]
+	water:output:s -- medical_supplies:water:n [color=azure2]
 }

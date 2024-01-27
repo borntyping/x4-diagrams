@@ -14,17 +14,17 @@ class EconomyGroup:
 
 def groups() -> typing.Sequence[EconomyGroup]:
     world = Economy().done()
-    universal = world.with_name("Universal").filter_by_method(["Universal"]).done()
 
     food_and_drugs = world.with_name("T1–T2: Food & Drugs").filter_by_tier({1, 2}).done()
-    construction = universal.with_name("T3–T6: Construction").filter_by_tier({3, 4, 5, 6}).done()
+    construction = world.with_name("T3–T6: Construction").filter_by_tier({3, 4, 5, 6}).done()
+
+    universal = world.with_name("Universal").filter_by_method(["Universal"]).done()
     commonwealth: list[Method] = ["Universal", "Argon", "Boron", "Paranid", "Split", "Teladi"]
 
     return [
         EconomyGroup(
             title="Universal",
             economies=[
-                food_and_drugs.with_hints(Hint.SIMPLIFY_INCLUSIVE),
                 construction.with_hints(Hint.SIMPLIFY_EXCLUSIVE),
                 universal.with_name(str(TIER_3)).filter_by_tier({3}).done(),
                 universal.with_name(str(TIER_4)).filter_by_tier({4}).done(),
@@ -35,15 +35,21 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Foundations",
             economies=[
-                food_and_drugs.with_name("T1–T2: Commonwealth Food & Drugs")
-                .filter_by_method(commonwealth)
-                .with_hints(Hint.SIMPLIFY_INCLUSIVE)
-                .done(),
+                (
+                    food_and_drugs.with_name("T1–T2: Commonwealth Food & Drugs")
+                    .filter_by_method(commonwealth)
+                    .with_hints(Hint.SIMPLIFY_INCLUSIVE)
+                    .done()
+                ),
                 food_and_drugs.with_name("T1–T2: Argon Food & Drugs").filter_by_method(["Argon"]).done(),
-                food_and_drugs.with_name("T1–T2: Boron Food & Drugs").filter_by_method(["Boron"]).done(),
                 food_and_drugs.with_name("T1–T2: Paranid Food & Drugs").filter_by_method(["Paranid"]).done(),
                 food_and_drugs.with_name("T1–T2: Teladi Food & Drugs").filter_by_method(["Teladi"]).done(),
-                construction.with_name("T3–T6: Teladi Construction").filter_by_method(["Teladi", "Universal"]).done(),
+                (
+                    construction.with_name("T3–T6: Teladi Construction")
+                    .filter_by_method(["Teladi", "Universal"])
+                    .with_hints(Hint.SIMPLIFY_EXCLUSIVE)
+                    .done()
+                ),
             ],
         ),
         EconomyGroup(
@@ -62,8 +68,18 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Tides of Avarice",
             economies=[
-                construction.with_name("T3–T6: Scrapping Construction").filter_by_method(["Recycling"]).done(),
-                construction.with_name("T3–T6: Scrapping Construction").filter_by_method(["Recycling", "Universal"]).done(),
+                (
+                    construction.with_name("T3–T6: Scrapping Construction")
+                    .filter_by_method(["Recycling"])
+                    .with_hints(Hint.SIMPLIFY_EXCLUSIVE)
+                    .done()
+                ),
+                (
+                    construction.with_name("T3–T6: Scrapping Construction")
+                    .filter_by_method(["Recycling", "Universal"])
+                    .with_hints(Hint.SIMPLIFY_EXCLUSIVE)
+                    .done()
+                ),
             ],
         ),
         EconomyGroup(

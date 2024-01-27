@@ -136,37 +136,55 @@ class GraphvizWriter(Writer):
             label_parts.append(f"<br/>{html.escape(line)}")
 
         fontname = "Helvetica,Arial,sans-serif"
-        g = graphviz.Graph("X4 Economy")
+        g = graphviz.Graph("X4 Economy", edge_attr={"arrowType": "normal"})
         g.attr(fontname=fontname, compound="true")
         g.attr(label=f"<{''.join(label_parts)}>")
         g.attr(
             "graph",
             pad="0.5",
-            ranksep="2",
+            ranksep="3",
             nodesep="0.3",
         )
         g.attr(
             "node",
             fontname=fontname,
-            penwidth="0",
-            style="filled",
+            penwidth="1",
+            # style="filled",
             color="slategray1",
             margin="0.2",
-            shape="record",
+            shape="box",
         )
         g.attr(
             "edge",
             fontname=fontname,
             penwidth="2.5",
+            arrowhead="normal",
+            arrowtype="normal",
+            headport="n",
+            tailport="s",
         )
+
+        mapping = economy.as_dict()
 
         for tier, wares in itertools.groupby(economy.wares, key=lambda w: w.tier):
             with g.subgraph(name=str(tier.key)) as s:
                 s.attr(label=tier.name, cluster="true")
-                for resource in wares:
-                    s.node(resource.name, colour=resource.graphviz_fillcolor(), shape="box")
+                for ware in wares:
+                    if inputs := ware.inputs():
+                        label_inputs = "|".join(f"<{key}> {mapping[key].acronym}" for key in ware.inputs())
+                        label_output = f"<output> {ware.name}"
+                        label = "{{%s}|%s}" % (label_inputs, label_output)
+                    else:
+                        label_output = f"<output> {ware.name}"
+                        label = "{%s}" % (label_output,)
 
-        mapping = economy.as_dict()
+                    s.node(
+                        ware.key,
+                        label=label,
+                        colour=ware.graphviz_fillcolor(),
+                        shape="record",
+                    )
+
         for output_ware in economy.wares:
             for recipe in output_ware.recipes:
                 for i in recipe.input_wares:
@@ -174,36 +192,17 @@ class GraphvizWriter(Writer):
                         raise Exception(f"Input for {output_ware} not found in {economy}: {i.key}")
 
                     input_ware = mapping[i.key]
-                    constraint = self.recipe_constraint(
-                        recipe.method,
-                        input_ware.name,
-                        output_ware.name,
-                    )
                     color = self.recipe_color(
                         recipe.method,
                         input_ware.name,
                         output_ware.name,
                     )
                     g.edge(
-                        input_ware.name,
-                        output_ware.name,
-                        constraint=constraint,
+                        f"{input_ware.key}:output:s",
+                        f"{output_ware.key}:{input_ware.key}:n",
                         color=color,
                     )
         return g
-
-    @staticmethod
-    def recipe_constraint(recipe: str, input_ware_name: str, output_ware_name: str) -> str:
-        match (recipe, input_ware_name, output_ware_name):
-            case (_, "Water", _):
-                return "false"
-            case (_, "Energy Cells", _):
-                return "false"
-            case (_, "Scrap Metal", _):
-                return "false"
-            case (_, _, "Medical Supplies"):
-                return "false"
-        return "true"
 
     @staticmethod
     def recipe_color(recipe: str, input_ware_name: str, output_ware_name: str) -> str:

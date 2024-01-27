@@ -118,6 +118,10 @@ class Ware:
         return f"{self.name}"
 
     @property
+    def acronym(self) -> str:
+        return "".join(part[0] for part in self.name.split())
+
+    @property
     def id(self) -> str:
         return self.name.lower().replace(" ", "_")
 

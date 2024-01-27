@@ -78,16 +78,12 @@ class Hint(enum.IntFlag):
     SIMPLIFY_EXCLUSIVE = enum.auto()
 
 
-assert Hint.NONE not in Hint.SIMPLIFY_INCLUSIVE | Hint.SIMPLIFY_EXCLUSIVE
-
-
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class Economy:
     wares: typing.Sequence[Ware] = dataclasses.field(repr=False, default=WARES)
 
     name: str = "X4"
     description: typing.Sequence[str] = ()
-
     hints: Hint = Hint.NONE
 
     def __post_init__(self):
@@ -103,9 +99,6 @@ class Economy:
             recipes=len(self.recipes),
         )
 
-    # def __str__(self) -> str:
-    #     return self.name
-
     def __iter__(self) -> typing.Iterator[Ware]:
         return iter(self.wares)
 
@@ -116,6 +109,7 @@ class Economy:
         return dataclasses.replace(self, wares=wares)
 
     def with_name(self, name: str) -> typing.Self:
+        logger.debug("Replacing name", economy=self, name=name)
         return dataclasses.replace(self, name=name)
 
     def with_description(self, description: str) -> typing.Self:
@@ -173,6 +167,9 @@ class Economy:
         wares = {ware.key for ware in self.wares}
         inputs = {key for ware in self.wares for key in ware.inputs()}
         return wares | inputs
+
+    def deps(self, wares: typing.Sequence[Ware]) -> set[str]:
+        return {key for ware in wares for key in ware.inputs()}
 
     def inputs(self) -> set[str]:
         return {key for ware in self.wares for key in ware.inputs()}
@@ -253,7 +250,12 @@ class Economy:
         return self.with_wares([w.with_no_recipes() if wf(w) else w for w in self.wares])
 
     def filter_by_method(self, priority: typing.Sequence[Method]) -> typing.Self:
-        return self.with_wares([ware.with_single_recipe(priority) for ware in self.wares])
+        wares = [ware.with_single_recipe(priority) for ware in self.wares]
+
+        deps = self.deps(wares)
+        wares = [ware for ware in wares if ware.recipes or ware.key in deps]
+
+        return self.with_wares(wares)
 
     def done(self) -> typing.Self:
         logger.info("Validating economy", economy=repr(self))
