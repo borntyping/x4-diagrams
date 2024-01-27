@@ -10,13 +10,49 @@ digraph "X4 Economy" {
 	}
 	subgraph 1 {
 		cluster=true label="T1: Basic Food"
+		bogas [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bogas" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">BoGas</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
+		chelt_meat [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="chelt_meat" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#800000" colspan="2">Chelt Meat</td>
+  </tr>
+  
+</table>>]
 		maja_snails [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="maja_snails" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -37,9 +73,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -54,13 +90,57 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
+		plankton [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="plankton" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Plankton</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
+		scruffin_fruits [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scruffin_fruits" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#800000" colspan="2">Scruffin Fruit</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
 		soja_beans [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="soja_beans" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -81,9 +161,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -112,9 +192,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -135,9 +215,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -156,9 +236,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -177,103 +257,23 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
-		chelt_meat [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="chelt_meat" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#800000" colspan="2">Chelt Meat</td>
-  </tr>
-  
-</table>>]
-		scruffin_fruits [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scruffin_fruits" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#800000" colspan="2">Scruffin Fruit</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
-      
-    </tr>
-  
-</table>>]
-		plankton [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="plankton" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Plankton</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
-      
-    </tr>
-  
-</table>>]
-		bogas [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bogas" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">BoGas</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
-      
-    </tr>
-  
-</table>>]
 	}
 	subgraph 2 {
 		cluster=true label="T2: Food and Drugs"
-		spacefuel [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spacefuel" port="output">
+		bofu [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bofu" port="output">
   
     <tr>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Spacefuel</td>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">BoFu</td>
   </tr>
   
 </table>>]
@@ -281,13 +281,13 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -300,11 +300,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
         <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
       
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -313,78 +313,23 @@ digraph "X4 Economy" {
   </tr>
   
 </table>>]
-		soja_husk [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="soja_husk" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
-      
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#911eb4" colspan="4">Soja Husk</td>
-  </tr>
-  
-</table>>]
-		spaceweed [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spaceweed" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#808000" port="swamp_plant">SP</td>
-      
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#808000" colspan="3">Spaceweed</td>
-  </tr>
-  
-</table>>]
-		nostrop_oil [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="nostrop_oil" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#808000" colspan="4">Nostrop Oil</td>
-  </tr>
-  
-</table>>]
 		medical_supplies [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="medical_supplies" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
-      
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
         <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
       
         <td align="text" bgcolor="white" color="#800000" port="scruffin_fruits">SF</td>
       
@@ -395,20 +340,75 @@ digraph "X4 Economy" {
   </tr>
   
 </table>>]
-		bofu [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bofu" port="output">
+		nostrop_oil [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="nostrop_oil" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
       
     </tr>
   
   <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">BoFu</td>
+    <td align="text" bgcolor="white" color="#808000" colspan="4">Nostrop Oil</td>
+  </tr>
+  
+</table>>]
+		soja_husk [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="soja_husk" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="4">Soja Husk</td>
+  </tr>
+  
+</table>>]
+		spacefuel [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spacefuel" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Spacefuel</td>
+  </tr>
+  
+</table>>]
+		spaceweed [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spaceweed" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="swamp_plant">SP</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#808000" colspan="3">Spaceweed</td>
   </tr>
   
 </table>>]

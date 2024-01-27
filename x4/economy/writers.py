@@ -1,6 +1,7 @@
 import dataclasses
 import html
 import itertools
+import math
 import pathlib
 import re
 import typing
@@ -171,14 +172,11 @@ class GraphvizWriter(Writer):
         for tier, wares in itertools.groupby(economy.wares, key=lambda w: w.tier):
             with g.subgraph(name=str(tier.key)) as s:
                 s.attr(label=str(tier), cluster="true")
-                for ware in wares:
+                for ware in sorted(wares, key=lambda w: w.name):
                     if economy.ware_filter(ware):
-                        label = template.render(
-                            ware=ware,
-                            inputs=[mapping[key] for key in ware.inputs_as_set()],
-                            outputs=economy.outputs_for_ware(ware),
-                        )
-
+                        inputs = [mapping[key] for key in ware.inputs_as_set()]
+                        outputs = economy.outputs_for_ware(ware)
+                        label = template.render(ware=ware, inputs=inputs, outputs=outputs)
                         s.node(ware.key, label=f"<{label}>")
 
         for output_ware in economy.wares:

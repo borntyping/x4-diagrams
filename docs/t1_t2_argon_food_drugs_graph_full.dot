@@ -7,25 +7,6 @@ digraph "X4 Economy" {
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
 	subgraph 0 {
 		cluster=true label="T0: Harvested"
-		water [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="water" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="4">Water</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="spacefuel">SF</td>
-      
-        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
-      
-    </tr>
-  
-</table>>]
 		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
   
   <tr>
@@ -47,6 +28,25 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
+		water [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="water" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="4">Water</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="spacefuel">SF</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
 	}
 	subgraph 1 {
 		cluster=true label="T1: Basic Food"
@@ -54,9 +54,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -90,9 +90,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -114,34 +114,17 @@ digraph "X4 Economy" {
 	}
 	subgraph 2 {
 		cluster=true label="T2: Food and Drugs"
-		spacefuel [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spacefuel" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Spacefuel</td>
-  </tr>
-  
-</table>>]
 		food_rations [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="food_rations" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
-        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -156,16 +139,33 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
   <tr>
     <td align="text" bgcolor="white" color="#000000" colspan="4">Medical Supplies</td>
+  </tr>
+  
+</table>>]
+		spacefuel [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spacefuel" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Spacefuel</td>
   </tr>
   
 </table>>]

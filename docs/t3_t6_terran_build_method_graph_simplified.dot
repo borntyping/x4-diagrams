@@ -20,6 +20,19 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
+		hydrogen [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="hydrogen" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="1">Hydrogen</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+    </tr>
+  
+</table>>]
 		methane [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="methane" port="output">
   
   <tr>
@@ -48,19 +61,6 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
-		hydrogen [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="hydrogen" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#42d4f4" colspan="1">Hydrogen</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
-    </tr>
-  
-</table>>]
 		silicon [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon" port="output">
   
   <tr>
@@ -83,13 +83,13 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="ore">Or</td>
       
         <td align="text" bgcolor="white" color="#42d4f4" port="hydrogen">Hy</td>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -120,11 +120,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#e6194B" port="ore">Or</td>
+      
+        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
       
     </tr>
   
@@ -192,13 +192,64 @@ digraph "X4 Economy" {
 	}
 	subgraph 6 {
 		cluster=true label="T6: Equipment"
+		engines [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="engines" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Engines</td>
+  </tr>
+  
+</table>>]
+		guns_and_launchers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="guns_and_launchers" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Guns and Launchers</td>
+  </tr>
+  
+</table>>]
+		shields [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="shields" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Shields</td>
+  </tr>
+  
+</table>>]
 		ship_hulls [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="ship_hulls" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
         <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
       
     </tr>
   
@@ -211,9 +262,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
       
     </tr>
   
@@ -222,32 +273,15 @@ digraph "X4 Economy" {
   </tr>
   
 </table>>]
-		engines [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="engines" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Engines</td>
-  </tr>
-  
-</table>>]
 		thrusters [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="thrusters" port="output">
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
         <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
       
     </tr>
   
@@ -256,54 +290,20 @@ digraph "X4 Economy" {
   </tr>
   
 </table>>]
-		shields [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="shields" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Shields</td>
-  </tr>
-  
-</table>>]
 		turrets [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="turrets" port="output">
   
     <tr>
       
+        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
+      
         <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
       
     </tr>
   
   <tr>
     <td align="text" bgcolor="white" color="#911eb4" colspan="3">Turrets</td>
-  </tr>
-  
-</table>>]
-		guns_and_launchers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="guns_and_launchers" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
-      
-        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
-      
-        <td align="text" bgcolor="white" color="#42d4f4" port="metallic_microlattice">MM</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Guns and Launchers</td>
   </tr>
   
 </table>>]

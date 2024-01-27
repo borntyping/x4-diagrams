@@ -7,36 +7,29 @@ digraph "X4 Economy" {
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
 	subgraph 0 {
 		cluster=true label="T0: Harvested"
-		helium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="helium" port="output">
+		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#469990" colspan="1">Helium</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="stimulants">St</td>
-      
-    </tr>
-  
-</table>>]
-		methane [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="methane" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#bfef45" colspan="1">Methane</td>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="4">Energy Cells</td>
   </tr>
   
     <tr>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
       
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="terran_mre">TM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="stimulants">St</td>
+      
     </tr>
   
 </table>>]
-		silicon [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon" port="output">
+		helium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="helium" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#3cb44b" colspan="1">Silicon</td>
+    <td align="text" bgcolor="white" color="#469990" colspan="1">Helium</td>
   </tr>
   
     <tr>
@@ -61,19 +54,26 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
-		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
+		methane [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="methane" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#a9a9a9" colspan="4">Energy Cells</td>
+    <td align="text" bgcolor="white" color="#bfef45" colspan="1">Methane</td>
   </tr>
   
     <tr>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
       
-        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="terran_mre">TM</td>
+    </tr>
+  
+</table>>]
+		silicon [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#3cb44b" colspan="1">Silicon</td>
+  </tr>
+  
+    <tr>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="stimulants">St</td>
       
@@ -115,11 +115,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="ice">Ic</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -128,35 +128,35 @@ digraph "X4 Economy" {
   </tr>
   
 </table>>]
-		terran_mre [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="terran_mre" port="output">
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
-      
-    </tr>
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#a9a9a9" colspan="2">Terran MRE</td>
-  </tr>
-  
-</table>>]
 		stimulants [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="stimulants" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
+        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#3cb44b" port="silicon">Si</td>
+        <td align="text" bgcolor="white" color="#469990" port="helium">He</td>
       
     </tr>
   
   <tr>
     <td align="text" bgcolor="white" color="#a9a9a9" colspan="3">Stimulants</td>
+  </tr>
+  
+</table>>]
+		terran_mre [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="terran_mre" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="protein_paste">PP</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="2">Terran MRE</td>
   </tr>
   
 </table>>]
