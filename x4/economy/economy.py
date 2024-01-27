@@ -39,6 +39,8 @@ class Hint(enum.Flag):
     FULL_SANKEY = enum.auto()
 
     SIMPLE = SIMPLE_GRAPH | SIMPLE_SANKEY
+    FULL = FULL_GRAPH | FULL_SANKEY
+
     FULL_GRAPH_ONLY = FULL_GRAPH | SIMPLE_SANKEY
 
 
@@ -173,7 +175,11 @@ class Economy:
 
         return self.with_wares(wares)
 
-    def select_recipe(self, priority: typing.Sequence[Method]) -> typing.Self:
+    def select_recipe(
+        self,
+        priority: typing.Sequence[Method],
+        display_if_available: typing.Sequence[Method] = (),
+    ) -> typing.Self:
         """Ensure each ware has at most one recipe."""
         logger.info("Selecting a single recipe", economy=self, priority=priority)
         wares = [ware.with_single_recipe(priority) for ware in self.wares]
@@ -182,8 +188,13 @@ class Economy:
             for recipe in ware.recipes:
                 assert recipe.method in priority, "A recipe was not correctly filtered."
 
+        need = {ware.key for ware in wares if ware.recipes}
         deps = self.deps(wares)
-        wares = [ware for ware in wares if (ware.recipes or ware.key in deps)]
+        wares = [
+            ware.with_single_recipe([*priority, *display_if_available])
+            for ware in self.wares
+            if (ware.key in need or ware.key in deps)
+        ]
 
         return self.with_wares(wares)
 

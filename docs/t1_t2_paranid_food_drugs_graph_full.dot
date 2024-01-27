@@ -10,7 +10,7 @@ digraph "X4 Economy" {
 		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#a9a9a9" colspan="5">Energy Cells</td>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="6">Energy Cells</td>
   </tr>
   
     <tr>
@@ -18,6 +18,8 @@ digraph "X4 Economy" {
         <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
       
         <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
         <td align="text" bgcolor="white" color="#911eb4" port="maja_dust">MD</td>
       
@@ -31,7 +33,7 @@ digraph "X4 Economy" {
 		water [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="water" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Water</td>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="4">Water</td>
   </tr>
   
     <tr>
@@ -39,6 +41,8 @@ digraph "X4 Economy" {
         <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
       
         <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
         <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
       
@@ -52,9 +56,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
       
     </tr>
   
@@ -75,9 +79,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
       
     </tr>
   
@@ -95,6 +99,14 @@ digraph "X4 Economy" {
   
 </table>>]
 		spices [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spices" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
   
   <tr>
     <td align="text" bgcolor="white" color="#000000" colspan="3">Spices</td>
@@ -120,9 +132,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
-        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
       
     </tr>
   
@@ -137,11 +149,11 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -156,11 +168,11 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
-        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
-      
         <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
       
     </tr>
   
@@ -174,6 +186,8 @@ digraph "X4 Economy" {
 	water:maja_snails:s -> maja_snails:water:n [arrowhead=box color="#4363d8" weight=1.0]
 	energy_cells:soja_beans:s -> soja_beans:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	water:soja_beans:s -> soja_beans:water:n [arrowhead=box color="#4363d8" weight=1.0]
+	energy_cells:spices:s -> spices:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	water:spices:s -> spices:water:n [arrowhead=box color="#4363d8" weight=1.0]
 	energy_cells:maja_dust:s -> maja_dust:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	maja_snails:maja_dust:s -> maja_dust:maja_snails:n [arrowhead=box color="#911eb4" weight=1.0]
 	spices:maja_dust:s -> maja_dust:spices:n [arrowhead=box color="#000000" weight=1.0]

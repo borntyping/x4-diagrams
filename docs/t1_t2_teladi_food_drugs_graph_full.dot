@@ -10,10 +10,12 @@ digraph "X4 Economy" {
 		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#a9a9a9" colspan="5">Energy Cells</td>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="6">Energy Cells</td>
   </tr>
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
         <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
       
@@ -31,10 +33,12 @@ digraph "X4 Economy" {
 		water [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="water" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#4363d8" colspan="4">Water</td>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="5">Water</td>
   </tr>
   
     <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
         <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
       
@@ -51,6 +55,14 @@ digraph "X4 Economy" {
 	subgraph 1 {
 		cluster=true label="T1: Basic Food"
 		spices [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spices" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
   
   <tr>
     <td align="text" bgcolor="white" color="#000000" colspan="3">Spices</td>
@@ -71,9 +83,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
       
     </tr>
   
@@ -94,9 +106,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
       
     </tr>
   
@@ -170,6 +182,8 @@ digraph "X4 Economy" {
   
 </table>>]
 	}
+	energy_cells:spices:s -> spices:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
+	water:spices:s -> spices:water:n [arrowhead=box color="#4363d8" weight=1.0]
 	energy_cells:sunrise_flowers:s -> sunrise_flowers:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	water:sunrise_flowers:s -> sunrise_flowers:water:n [arrowhead=box color="#4363d8" weight=1.0]
 	energy_cells:swamp_plant:s -> swamp_plant:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]

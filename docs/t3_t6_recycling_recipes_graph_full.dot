@@ -1,12 +1,31 @@
 digraph "X4 Economy" {
 	edge [arrowType=normal]
 	compound=true fontname="Helvetica,Arial,sans-serif"
-	label=<<b>T3–T6: Recycling Recipes</b><br/><br/>Not shown: energy cells.>
+	label=<<b>T3–T6: Recycling Recipes</b>>
 	graph [nodesep=0.3 pad=0.5 ranksep=3]
 	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
 	subgraph 0 {
 		cluster=true label="T0: Harvested"
+		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="4">Energy Cells</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="computronic_substrate">CS</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#000075" port="silicon_carbide">SC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
+      
+    </tr>
+  
+</table>>]
 		scrap_metal [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scrap_metal" port="output">
   
   <tr>
@@ -96,8 +115,12 @@ digraph "X4 Economy" {
   
 </table>>]
 	}
+	energy_cells:computronic_substrate:s -> computronic_substrate:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	scrap_metal:computronic_substrate:s -> computronic_substrate:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
+	energy_cells:hull_parts:s -> hull_parts:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	scrap_metal:hull_parts:s -> hull_parts:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
+	energy_cells:silicon_carbide:s -> silicon_carbide:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	scrap_metal:silicon_carbide:s -> silicon_carbide:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
+	energy_cells:claytronics:s -> claytronics:energy_cells:n [arrowhead=box color="#a9a9a9" weight=1.0]
 	scrap_metal:claytronics:s -> claytronics:scrap_metal:n [arrowhead=empty color="#9A6324" weight=1.0]
 }

@@ -37,9 +37,9 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Foundations: Argon, Paranid, and Teladi",
             economies=[
-                food_and_drugs("T1–T2: Argon Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Argon"]),
-                food_and_drugs("T1–T2: Paranid Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Paranid"]),
-                food_and_drugs("T1–T2: Teladi Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Teladi"]),
+                food_and_drugs("T1–T2: Argon Food & Drugs", Hint.FULL).select_recipe(["Argon"], ["Universal"]),
+                food_and_drugs("T1–T2: Paranid Food & Drugs", Hint.FULL).select_recipe(["Paranid"], ["Universal"]),
+                food_and_drugs("T1–T2: Teladi Food & Drugs", Hint.FULL).select_recipe(["Teladi"], ["Universal"]),
                 (
                     construction("T3–T6: Teladi Build Method")
                     .select_recipe(["Teladi", "Universal"])
@@ -50,20 +50,24 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Split Vendetta",
             economies=[
-                food_and_drugs("T1–T2: Split Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Split"]),
+                food_and_drugs("T1–T2: Split Food & Drugs", Hint.FULL).select_recipe(["Split"], ["Universal"]),
             ],
         ),
         EconomyGroup(
             title="Cradle of Humanity",
             economies=[
-                food_and_drugs("T1–T2: Terran Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Terran"]),
+                food_and_drugs("T1–T2: Terran Food & Drugs", Hint.FULL).select_recipe(["Terran"]),
                 construction("T3–T6: Terran Build Method").select_recipe(["Terran"]),
             ],
         ),
         EconomyGroup(
             title="Tides of Avarice",
             economies=[
-                construction("T3–T6: Recycling Recipes").select_recipes(methods={"Recycling+Universal", "Recycling+Terran"}),
+                (
+                    construction("T3–T6: Recycling Recipes")
+                    .select_recipes(methods={"Recycling+Universal", "Recycling+Terran"})
+                    .with_hint(Hint.FULL)
+                ),
                 (
                     construction("T3–T6: Recycling Build Method (Universal)")
                     .select_recipe(["Recycling+Universal", "Universal"])
@@ -79,7 +83,7 @@ def groups() -> typing.Sequence[EconomyGroup]:
         EconomyGroup(
             title="Kingdom End",
             economies=[
-                food_and_drugs("T1–T2: Boron Food & Drugs", Hint.FULL_GRAPH_ONLY).select_recipe(["Boron"]),
+                food_and_drugs("T1–T2: Boron Food & Drugs", Hint.FULL).select_recipe(["Boron"]),
             ],
         ),
     ]
