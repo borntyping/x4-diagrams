@@ -52,9 +52,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -70,9 +70,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -85,9 +85,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -103,9 +103,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
-      
         <td align="text" bgcolor="white" color="#9A6324" port="scrap_metal">SM</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   

@@ -132,11 +132,11 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
         <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
-      
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
     </tr>
   
@@ -151,9 +151,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
       
@@ -168,9 +168,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
-      
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
       

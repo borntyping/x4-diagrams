@@ -97,11 +97,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
         <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
       
-        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
       
     </tr>
   
@@ -116,9 +116,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
       
-        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
-      
         <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
       
     </tr>
   

@@ -10,6 +10,7 @@ import graphviz
 import jinja2
 import plotly.graph_objs
 import structlog
+import webcolors
 
 from x4.economy.economy import Economy, Hint
 from x4.economy.groups import EconomyGroup
@@ -59,6 +60,11 @@ class PlotlyWriter(Writer):
         target: int
         value: int
         label: str
+        color: str
+
+        def color_transparent(self):
+            r, g, b = webcolors.hex_to_rgb(self.color)
+            return "rgba({}, {}, {}, {})".format(r, g, b, 0.1)
 
     def plot(self, economy: Economy):
         mapping = economy.wares_as_dict()
@@ -73,6 +79,7 @@ class PlotlyWriter(Writer):
                 target=labels.index(output_ware.name),
                 value=1,
                 label=recipe.method,
+                color=economy.edge_colour(recipe, mapping[recipe_input.key], output_ware),
             )
             for output_ware in economy.wares
             for recipe in output_ware.recipes
@@ -82,17 +89,21 @@ class PlotlyWriter(Writer):
 
         figure = plotly.graph_objs.Figure(
             data=plotly.graph_objs.Sankey(
-                arrangement="snap",
+                valueformat=".0d",
+                valuesuffix=" recipes",
                 node={
                     "label": [ware.name for ware in economy.wares],
+                    "color": [ware.colour for ware in economy.wares],
+                    "pad": 40,
                 },
                 link={
                     "source": [link.source for link in links],
                     "target": [link.target for link in links],
                     "value": [link.value for link in links],
                     "label": [link.label for link in links],
+                    "color": [link.color_transparent() for link in links],
                 },
-            )
+            ),
         )
 
         figure.update_layout(
