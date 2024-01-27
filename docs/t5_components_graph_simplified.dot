@@ -7,32 +7,6 @@ digraph "X4 Economy" {
 	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
 	subgraph 3 {
 		cluster=true label="T3: Refined"
-		refined_metals [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="refined_metals" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#800000" colspan="1">Refined Metals</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
-      
-    </tr>
-  
-</table>>]
-		teladianium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="teladianium" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#ffe119" colspan="1">Teladianium</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
-      
-    </tr>
-  
-</table>>]
 		antimatter_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="antimatter_cells" port="output">
   
   <tr>
@@ -42,19 +16,6 @@ digraph "X4 Economy" {
     <tr>
       
         <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
-      
-    </tr>
-  
-</table>>]
-		silicon_wafers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon_wafers" port="output">
-  
-  <tr>
-    <td align="text" bgcolor="white" color="#aaffc3" colspan="1">Silicon Wafers</td>
-  </tr>
-  
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
     </tr>
   
@@ -175,11 +136,11 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
       
+        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
         <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
       
         <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
-      
-        <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
     </tr>
   
@@ -194,9 +155,9 @@ digraph "X4 Economy" {
       
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
-        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
-      
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
+      
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
     </tr>
   
@@ -209,9 +170,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffd8b1" port="advanced_composites">AC</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#ffd8b1" port="advanced_composites">AC</td>
       
     </tr>
   
@@ -224,9 +185,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
     </tr>
   
@@ -239,9 +200,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
-      
         <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
     </tr>
   
@@ -269,9 +230,9 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
-      
         <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="plasma_conductors">PC</td>
       
     </tr>
   
@@ -280,20 +241,13 @@ digraph "X4 Economy" {
   </tr>
   
 </table>>]
+	}
+	subgraph 4 {
+		cluster=true label="T4: Advanced"
 		scanning_arrays [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scanning_arrays" port="output">
   
-    <tr>
-      
-        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
-      
-        <td align="text" bgcolor="white" color="#aaffc3" port="silicon_wafers">SW</td>
-      
-        <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
-      
-    </tr>
-  
   <tr>
-    <td align="text" bgcolor="white" color="#f58231" colspan="3">Scanning Arrays</td>
+    <td align="text" bgcolor="white" color="#f58231" colspan="2">Scanning Arrays</td>
   </tr>
   
     <tr>
@@ -305,15 +259,18 @@ digraph "X4 Economy" {
     </tr>
   
 </table>>]
+	}
+	subgraph 5 {
+		cluster=true label="T5: Components"
 		claytronics [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="claytronics" port="output">
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
+        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
       
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
-        <td align="text" bgcolor="white" color="#f032e6" port="quantum_tubes">QT</td>
+        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
     </tr>
   
@@ -355,10 +312,6 @@ digraph "X4 Economy" {
 	microchips:antimatter_converters:s -> antimatter_converters:microchips:n [arrowhead=box color="#3cb44b" weight=1.0]
 	hull_parts:weapon_components:s -> weapon_components:hull_parts:n [arrowhead=box color="#e6194B" weight=1.0]
 	plasma_conductors:weapon_components:s -> weapon_components:plasma_conductors:n [arrowhead=box color="#808000" weight=1.0]
-	refined_metals:scanning_arrays:s -> scanning_arrays:refined_metals:n [arrowhead=box color="#800000" weight=1.0]
-	silicon_wafers:scanning_arrays:s -> scanning_arrays:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
-	silicon_wafers:scanning_arrays:s -> scanning_arrays:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
-	teladianium:scanning_arrays:s -> scanning_arrays:teladianium:n [arrowhead=box color="#ffe119" weight=1.0]
 	antimatter_cells:claytronics:s -> claytronics:antimatter_cells:n [arrowhead=box color="#dcbeff" weight=1.0]
 	microchips:claytronics:s -> claytronics:microchips:n [arrowhead=box color="#3cb44b" weight=1.0]
 	quantum_tubes:claytronics:s -> claytronics:quantum_tubes:n [arrowhead=box color="#f032e6" weight=1.0]

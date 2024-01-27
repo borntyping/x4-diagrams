@@ -44,7 +44,7 @@ digraph "X4 Economy" {
 		refined_metals [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="refined_metals" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#800000" colspan="3">Refined Metals</td>
+    <td align="text" bgcolor="white" color="#800000" colspan="4">Refined Metals</td>
   </tr>
   
     <tr>
@@ -54,6 +54,8 @@ digraph "X4 Economy" {
         <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
     </tr>
   
@@ -61,7 +63,7 @@ digraph "X4 Economy" {
 		teladianium [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="teladianium" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#ffe119" colspan="3">Teladianium</td>
+    <td align="text" bgcolor="white" color="#ffe119" colspan="4">Teladianium</td>
   </tr>
   
     <tr>
@@ -71,6 +73,8 @@ digraph "X4 Economy" {
         <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
       
         <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
     </tr>
   
@@ -91,7 +95,7 @@ digraph "X4 Economy" {
 		silicon_wafers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="silicon_wafers" port="output">
   
   <tr>
-    <td align="text" bgcolor="white" color="#aaffc3" colspan="2">Silicon Wafers</td>
+    <td align="text" bgcolor="white" color="#aaffc3" colspan="3">Silicon Wafers</td>
   </tr>
   
     <tr>
@@ -99,6 +103,8 @@ digraph "X4 Economy" {
         <td align="text" bgcolor="white" color="#3cb44b" port="microchips">Mc</td>
       
         <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
       
     </tr>
   
@@ -140,11 +146,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
-      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
       
     </tr>
   
@@ -157,11 +163,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
-      
         <td align="text" bgcolor="white" color="#000000" port="graphene">Gr</td>
       
         <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
       
     </tr>
   
@@ -174,11 +180,11 @@ digraph "X4 Economy" {
   
     <tr>
       
-        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
+        <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
       
         <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
       
-        <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
+        <td align="text" bgcolor="white" color="#dcbeff" port="antimatter_cells">AC</td>
       
     </tr>
   
@@ -213,6 +219,23 @@ digraph "X4 Economy" {
   </tr>
   
 </table>>]
+		scanning_arrays [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scanning_arrays" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#aaffc3" port="silicon_wafers">SW</td>
+      
+        <td align="text" bgcolor="white" color="#800000" port="refined_metals">RM</td>
+      
+        <td align="text" bgcolor="white" color="#ffe119" port="teladianium">Te</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#f58231" colspan="3">Scanning Arrays</td>
+  </tr>
+  
+</table>>]
 	}
 	graphene:plasma_conductors:s -> plasma_conductors:graphene:n [arrowhead=box color="#000000" weight=1.0]
 	superfluid_coolant:plasma_conductors:s -> plasma_conductors:superfluid_coolant:n [arrowhead=box color="#42d4f4" weight=1.0]
@@ -232,4 +255,8 @@ digraph "X4 Economy" {
 	teladianium:engine_parts:s -> engine_parts:teladianium:n [arrowhead=box color="#ffe119" weight=1.0]
 	silicon_wafers:microchips:s -> microchips:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
 	silicon_wafers:smart_chips:s -> smart_chips:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
+	refined_metals:scanning_arrays:s -> scanning_arrays:refined_metals:n [arrowhead=box color="#800000" weight=1.0]
+	silicon_wafers:scanning_arrays:s -> scanning_arrays:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
+	silicon_wafers:scanning_arrays:s -> scanning_arrays:silicon_wafers:n [arrowhead=box color="#aaffc3" weight=1.0]
+	teladianium:scanning_arrays:s -> scanning_arrays:teladianium:n [arrowhead=box color="#ffe119" weight=1.0]
 }
