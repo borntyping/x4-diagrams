@@ -75,16 +75,16 @@ class PlotlyWriter(Writer):
         labels = [ware.name for ware in economy.wares]
         links = [
             self.Link(
-                source=labels.index(mapping[recipe_input.key].name),
+                source=labels.index(input_ware.name),
                 target=labels.index(output_ware.name),
                 value=1,
-                label=recipe.method,
-                color=economy.edge_colour(recipe, mapping[recipe_input.key], output_ware),
+                label=f"{recipe.method} ({input_ware}  → {output_ware})",
+                color=economy.edge_colour(recipe, input_ware, output_ware),
             )
             for output_ware in economy.wares
             for recipe in output_ware.recipes
             for recipe_input in recipe.inputs
-            if economy.edge_filter(recipe, mapping[recipe_input.key], output_ware)
+            if (input_ware := mapping[recipe_input.key]) and economy.edge_filter(recipe, input_ware, output_ware)
         ]
 
         figure = plotly.graph_objs.Figure(
