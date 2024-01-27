@@ -1,17 +1,22 @@
 import dataclasses
+import functools
 import typing
 
 import structlog
 
+from x4.colours import Palette
+
 logger = structlog.get_logger(logger_name=__name__)
 
 
-Method = typing.Literal["Universal", "Recycling", "Argon", "Boron", "Paranid", "Split", "Teladi", "Terran"]
+type Method = typing.Literal["Universal", "Recycling", "Argon", "Boron", "Paranid", "Split", "Teladi", "Terran"]
+type Storage = typing.Literal["Container", "Liquid", "Solid", "Condensate"]
 
 
 @dataclasses.dataclass(frozen=True)
 class Race:
     name: str
+    colour: Palette
 
 
 @dataclasses.dataclass()
@@ -36,8 +41,18 @@ class Faction:
         )
 
 
+@dataclasses.dataclass(order=True, frozen=True, kw_only=True)
+class Tier:
+    key: int
+    name: str
+    colour: Palette
+
+    def __str__(self) -> str:
+        return f"T{self.key}: {self.name}"
+
+
 @dataclasses.dataclass(frozen=True)
-class InputWare:
+class RecipeInput:
     key: str
     amount: int | None
 
@@ -47,7 +62,7 @@ class Recipe:
     method: Method
     time: int | None = dataclasses.field(default=None)
     amount: int | None = dataclasses.field(default=None)
-    input_wares: typing.Sequence[InputWare] = dataclasses.field(default_factory=tuple)
+    inputs: typing.Sequence[RecipeInput] = dataclasses.field(default_factory=tuple)
 
     plotly_colours: typing.ClassVar[typing.Dict[str, str | None]] = {
         "Universal": "rgba(185, 217, 235, 0.90)",
@@ -63,47 +78,24 @@ class Recipe:
     def plotly_colour(self) -> str:
         return self.plotly_colours[self.method]
 
-    def input_keys(self) -> set[str]:
-        return set([i.key for i in self.input_wares])
+    def inputs_as_set(self) -> set[str]:
+        return set([i.key for i in self.inputs])
 
-    def with_input_wares(self, input_wares: typing.Sequence[InputWare]):
-        return dataclasses.replace(self, input_wares=input_wares)
+    def with_inputs(self, inputs: typing.Sequence[RecipeInput]):
+        return dataclasses.replace(self, inputs=inputs)
 
     def remove_inputs(self, keys: set[str]) -> typing.Self:
-        return self.with_input_wares([i for i in self.input_wares if i.key not in keys])
-
-
-@dataclasses.dataclass(order=True, frozen=True, kw_only=True)
-class Tier:
-    key: int
-    name: str
-    # wares: typing.Sequence[Ware]
-
-    def __str__(self) -> str:
-        return f"T{self.key}: {self.name}"
-
-    # def __bool__(self) -> bool:
-    #     return bool(self.wares)
-    #
-    # def dependencies(self) -> set[str]:
-    #     return {d for w in self.wares for d in w.dependencies()}
-    #
-
-    #
-    # def use_recipes(self, methods: typing.Sequence[Method]) -> typing.Self:
-    #     wares = [ware.with_single_recipe(methods) for ware in self.wares]
-    #     return dataclasses.replace(self, wares=wares)
-    #
-    # def remove_input(self, resource_id: str) -> typing.Self:
-    #     wares = [ware.remove_input(resource_id) for ware in self.wares]
-    #     return dataclasses.replace(self, wares=wares)
+        return self.with_inputs([i for i in self.inputs if i.key not in keys])
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class Ware:
     key: str
     name: str
+    acronym: str
     tier: Tier
+    colour: Palette = dataclasses.field()
+
     volume: int | None = dataclasses.field(default=None)
     storage: typing.Literal["Container", "Liquid", "Solid", "Condensate"] | None = dataclasses.field(default=None)
     price_min: int | None = dataclasses.field(default=None)
@@ -112,23 +104,31 @@ class Ware:
     recipes: typing.Sequence[Recipe] = dataclasses.field(default_factory=tuple)
 
     tags: set[str] = dataclasses.field(default_factory=set)
-    colour: str = dataclasses.field(default="lightsteelblue2")
 
     def __str__(self) -> str:
         return f"{self.name}"
 
-    @property
-    def acronym(self) -> str:
-        return "".join(part[0] for part in self.name.split())
-
-    @property
+    @functools.cached_property
     def id(self) -> str:
         return self.name.lower().replace(" ", "_")
 
-    def inputs(self) -> set[str]:
-        return {key for recipe in self.recipes for key in recipe.input_keys()}
+    @functools.cached_property
+    def acronym(self) -> str:
+        return "".join(part[0] for part in self.name.split())
 
+    def inputs_as_set(self) -> set[str]:
+        return {key for recipe in self.recipes for key in recipe.inputs_as_set()}
+
+    @functools.cached_property
     def graphviz_fillcolor(self) -> str:
+        return self.colour
+
+    @functools.cached_property
+    def gv_bg_colour(self) -> str:
+        return "white"
+
+    @functools.cached_property
+    def gv_fg_colour(self) -> str:
         return self.colour
 
     def single_recipe(self, methods: typing.Sequence[Method]) -> typing.Sequence[Recipe]:
@@ -141,6 +141,9 @@ class Ware:
 
     def with_single_recipe(self, methods: typing.Sequence[Method]) -> typing.Self:
         return self.with_recipes(self.single_recipe(methods))
+
+    def with_selected_recipes(self, methods: typing.Set[Method]) -> typing.Self:
+        return self.with_recipes([r for r in self.recipes if r.method in methods])
 
     def remove_inputs(self, keys: set[str]) -> typing.Self:
         return self.with_recipes([p.remove_inputs(keys) for p in self.recipes])

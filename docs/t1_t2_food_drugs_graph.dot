@@ -1,0 +1,569 @@
+digraph "X4 Economy" {
+	edge [arrowType=normal]
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	label=<<b>T1–T2: Food &amp; Drugs</b>>
+	graph [nodesep=0.3 pad=0.5 ranksep=3]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
+	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
+	subgraph 0 {
+		cluster=true label="T0: Harvested"
+		water [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="water" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="14">Water</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="swamp_plant">SP</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+        <td align="text" bgcolor="white" color="#800000" port="chelt_meat">CM</td>
+      
+        <td align="text" bgcolor="white" color="#800000" port="scruffin_fruits">SF</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="spacefuel">SF</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="nostrop_oil">NO</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="19">Energy Cells</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="swamp_plant">SP</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+        <td align="text" bgcolor="white" color="#800000" port="chelt_meat">CM</td>
+      
+        <td align="text" bgcolor="white" color="#800000" port="scruffin_fruits">SF</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="spacefuel">SF</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="food_rations">FR</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_dust">MD</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_husk">SH</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="spaceweed">SW</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="nostrop_oil">NO</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 1 {
+		cluster=true label="T1: Basic Food"
+		maja_snails [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="maja_snails" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Maja Snails</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_dust">MD</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_husk">SH</td>
+      
+    </tr>
+  
+</table>>]
+		meat [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="meat" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="2">Meat</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="food_rations">FR</td>
+      
+    </tr>
+  
+</table>>]
+		soja_beans [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="soja_beans" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Soja Beans</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_husk">SH</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		spices [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spices" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#000000" colspan="6">Spices</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="food_rations">FR</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_dust">MD</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_husk">SH</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="spaceweed">SW</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="nostrop_oil">NO</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		sunrise_flowers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="sunrise_flowers" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#808000" colspan="2">Sunrise Flowers</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#808000" port="nostrop_oil">NO</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		swamp_plant [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="swamp_plant" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#808000" colspan="2">Swamp Plant</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#808000" port="spaceweed">SW</td>
+      
+    </tr>
+  
+</table>>]
+		wheat [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="wheat" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Wheat</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="spacefuel">SF</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="food_rations">FR</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		chelt_meat [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="chelt_meat" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#800000" colspan="2">Chelt Meat</td>
+  </tr>
+  
+</table>>]
+		scruffin_fruits [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scruffin_fruits" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#800000" colspan="2">Scruffin Fruit</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		plankton [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="plankton" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Plankton</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
+		bogas [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bogas" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">BoGas</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 2 {
+		cluster=true label="T2: Food and Drugs"
+		spacefuel [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spacefuel" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Spacefuel</td>
+  </tr>
+  
+</table>>]
+		food_rations [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="food_rations" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="meat">Mt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="4">Food Rations</td>
+  </tr>
+  
+</table>>]
+		maja_dust [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="maja_dust" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Maja Dust</td>
+  </tr>
+  
+</table>>]
+		soja_husk [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="soja_husk" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="maja_snails">MS</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="4">Soja Husk</td>
+  </tr>
+  
+</table>>]
+		spaceweed [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="spaceweed" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="swamp_plant">SP</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#808000" colspan="3">Spaceweed</td>
+  </tr>
+  
+</table>>]
+		nostrop_oil [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="nostrop_oil" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#808000" colspan="4">Nostrop Oil</td>
+  </tr>
+  
+</table>>]
+		medical_supplies [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="medical_supplies" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#800000" port="scruffin_fruits">SF</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="spices">Sp</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#808000" port="sunrise_flowers">SF</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="wheat">Wh</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="soja_beans">SB</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#000000" colspan="8">Medical Supplies</td>
+  </tr>
+  
+</table>>]
+		bofu [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bofu" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">BoFu</td>
+  </tr>
+  
+</table>>]
+	}
+	energy_cells:maja_snails:s -> maja_snails:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:maja_snails:s -> maja_snails:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:meat:s -> meat:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:meat:s -> meat:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:soja_beans:s -> soja_beans:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:soja_beans:s -> soja_beans:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:spices:s -> spices:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:spices:s -> spices:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:sunrise_flowers:s -> sunrise_flowers:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:sunrise_flowers:s -> sunrise_flowers:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:swamp_plant:s -> swamp_plant:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:swamp_plant:s -> swamp_plant:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:wheat:s -> wheat:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:wheat:s -> wheat:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:chelt_meat:s -> chelt_meat:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:chelt_meat:s -> chelt_meat:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:scruffin_fruits:s -> scruffin_fruits:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:scruffin_fruits:s -> scruffin_fruits:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:plankton:s -> plankton:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:plankton:s -> plankton:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:bogas:s -> bogas:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:bogas:s -> bogas:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:spacefuel:s -> spacefuel:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:spacefuel:s -> spacefuel:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	wheat:spacefuel:s -> spacefuel:wheat:n [arrowhead=box color="#4363d8" weight=1.0]
+	energy_cells:food_rations:s -> food_rations:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	meat:food_rations:s -> food_rations:meat:n [arrowhead=box color="#4363d8" weight=1.0]
+	spices:food_rations:s -> food_rations:spices:n [arrowhead=box color="#000000" weight=1.0]
+	wheat:food_rations:s -> food_rations:wheat:n [arrowhead=box color="#4363d8" weight=1.0]
+	energy_cells:maja_dust:s -> maja_dust:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	maja_snails:maja_dust:s -> maja_dust:maja_snails:n [arrowhead=box color="#911eb4" weight=1.0]
+	spices:maja_dust:s -> maja_dust:spices:n [arrowhead=box color="#000000" weight=1.0]
+	energy_cells:soja_husk:s -> soja_husk:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	maja_snails:soja_husk:s -> soja_husk:maja_snails:n [arrowhead=box color="#911eb4" weight=1.0]
+	soja_beans:soja_husk:s -> soja_husk:soja_beans:n [arrowhead=box color="#911eb4" weight=1.0]
+	spices:soja_husk:s -> soja_husk:spices:n [arrowhead=box color="#000000" weight=1.0]
+	energy_cells:spaceweed:s -> spaceweed:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	spices:spaceweed:s -> spaceweed:spices:n [arrowhead=box color="#000000" weight=1.0]
+	swamp_plant:spaceweed:s -> spaceweed:swamp_plant:n [arrowhead=box color="#808000" weight=1.0]
+	energy_cells:nostrop_oil:s -> nostrop_oil:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	spices:nostrop_oil:s -> nostrop_oil:spices:n [arrowhead=box color="#000000" weight=1.0]
+	sunrise_flowers:nostrop_oil:s -> nostrop_oil:sunrise_flowers:n [arrowhead=box color="#808000" weight=1.0]
+	water:nostrop_oil:s -> nostrop_oil:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:medical_supplies:s -> medical_supplies:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	spices:medical_supplies:s -> medical_supplies:spices:n [arrowhead=box color="#000000" weight=1.0]
+	water:medical_supplies:s -> medical_supplies:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	wheat:medical_supplies:s -> medical_supplies:wheat:n [arrowhead=box color="#4363d8" weight=1.0]
+	energy_cells:medical_supplies:s -> medical_supplies:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	soja_beans:medical_supplies:s -> medical_supplies:soja_beans:n [arrowhead=box color="#911eb4" weight=1.0]
+	spices:medical_supplies:s -> medical_supplies:spices:n [arrowhead=box color="#000000" weight=1.0]
+	water:medical_supplies:s -> medical_supplies:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:medical_supplies:s -> medical_supplies:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	spices:medical_supplies:s -> medical_supplies:spices:n [arrowhead=box color="#000000" weight=1.0]
+	sunrise_flowers:medical_supplies:s -> medical_supplies:sunrise_flowers:n [arrowhead=box color="#808000" weight=1.0]
+	water:medical_supplies:s -> medical_supplies:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:medical_supplies:s -> medical_supplies:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	scruffin_fruits:medical_supplies:s -> medical_supplies:scruffin_fruits:n [arrowhead=box color="#800000" weight=1.0]
+	spices:medical_supplies:s -> medical_supplies:spices:n [arrowhead=box color="#000000" weight=1.0]
+	water:medical_supplies:s -> medical_supplies:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:medical_supplies:s -> medical_supplies:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	plankton:medical_supplies:s -> medical_supplies:plankton:n [arrowhead=box color="#42d4f4" weight=1.0]
+	water:medical_supplies:s -> medical_supplies:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	bogas:bofu:s -> bofu:bogas:n [arrowhead=box color="#42d4f4" weight=1.0]
+	energy_cells:bofu:s -> bofu:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	plankton:bofu:s -> bofu:plankton:n [arrowhead=box color="#42d4f4" weight=1.0]
+}

@@ -12,6 +12,7 @@ import structlog
 
 from x4.economy.economy import Economy, Hint
 from x4.economy.groups import EconomyGroup
+from x4.types import Storage, Ware
 
 logger = structlog.get_logger(logger_name=__name__)
 
@@ -40,9 +41,10 @@ class EconomyGroupOutput:
 
 class Writer:
     @staticmethod
-    def filename(economy: Economy, suffix: str, ext: str) -> str:
+    def filename(economy: Economy, suffixes: typing.Sequence[str], ext: str) -> str:
         name = re.sub(r"[^a-z0-9]", "_", economy.name.lower())
         name = re.sub("__+", "_", name)
+        suffix = "_".join(suffixes)
         return "{}_{}.{}".format(name, suffix, ext)
 
 
@@ -59,7 +61,7 @@ class PlotlyWriter(Writer):
         color: str
 
     def plot(self, economy: Economy):
-        mapping = economy.as_dict()
+        mapping = economy.wares_as_dict()
 
         if not mapping:
             raise Exception("Economy contains no resources")
@@ -75,7 +77,7 @@ class PlotlyWriter(Writer):
             )
             for target in economy.wares
             for production in target.recipes
-            for input_ware in production.input_wares
+            for input_ware in production.inputs
         ]
 
         figure = plotly.graph_objs.Figure(
@@ -102,20 +104,20 @@ class PlotlyWriter(Writer):
         )
         return figure
 
-    def diagram(self, economy: Economy) -> Diagram:
+    def diagram(self, economy: Economy, filename_suffixes: typing.Sequence[str] = ()) -> Diagram:
         logger.debug("Drawing economy with plotly", economy=economy)
         self.output_directory.mkdir(exist_ok=True)
-        png = self.output_directory / self.filename(economy, "sankey", "png")
-        html = self.output_directory / self.filename(economy, "sankey", "html")
+        png_path = self.output_directory / self.filename(economy, ("sankey", *filename_suffixes), "png")
+        html_path = self.output_directory / self.filename(economy, ("sankey", *filename_suffixes), "html")
 
         figure = self.plot(economy=economy)
-        figure.write_html(html.as_posix(), include_plotlyjs="cdn")
-        figure.write_image(png.as_posix(), width=1000, height=500)
+        figure.write_html(html_path.as_posix(), include_plotlyjs="cdn")
+        figure.write_image(png_path.as_posix(), width=1000, height=500)
 
-        image = png.relative_to(self.output_directory)
-        interactive = html.relative_to(self.output_directory)
+        image = png_path.relative_to(self.output_directory)
+        interactive = html_path.relative_to(self.output_directory)
 
-        logger.warning("Drew economy with plotly", economy=repr(economy), image=image)
+        logger.warning("Drew economy with plotly", economy=repr(economy))
         return Diagram(
             title=economy.name,
             description=(*economy.description, "Rendered with plotly."),
@@ -127,8 +129,9 @@ class PlotlyWriter(Writer):
 @dataclasses.dataclass(frozen=True)
 class GraphvizWriter(Writer):
     output_directory: pathlib.Path
+    environment: jinja2.Environment
 
-    def dot(self, economy: Economy) -> graphviz.Graph:
+    def dot(self, economy: Economy) -> graphviz.Digraph:
         label_parts = [f"<b>{html.escape(economy.name)}</b>"]
         if economy.description:
             label_parts.append(f"<br/>")
@@ -136,7 +139,7 @@ class GraphvizWriter(Writer):
             label_parts.append(f"<br/>{html.escape(line)}")
 
         fontname = "Helvetica,Arial,sans-serif"
-        g = graphviz.Graph("X4 Economy", edge_attr={"arrowType": "normal"})
+        g = graphviz.Digraph("X4 Economy", edge_attr={"arrowType": "normal"})
         g.attr(fontname=fontname, compound="true")
         g.attr(label=f"<{''.join(label_parts)}>")
         g.attr(
@@ -148,46 +151,40 @@ class GraphvizWriter(Writer):
         g.attr(
             "node",
             fontname=fontname,
-            penwidth="1",
+            penwidth="2.0",
             # style="filled",
             color="slategray1",
             margin="0.2",
-            shape="box",
+            shape="plaintext",
         )
         g.attr(
             "edge",
             fontname=fontname,
-            penwidth="2.5",
+            penwidth="2.0",
             arrowhead="normal",
-            arrowtype="normal",
+            arrowsize="1.0",
             headport="n",
             tailport="s",
         )
 
-        mapping = economy.as_dict()
+        mapping = economy.wares_as_dict()
+        template = self.environment.get_template("ware.html")
 
         for tier, wares in itertools.groupby(economy.wares, key=lambda w: w.tier):
             with g.subgraph(name=str(tier.key)) as s:
-                s.attr(label=tier.name, cluster="true")
+                s.attr(label=str(tier), cluster="true")
                 for ware in wares:
-                    if inputs := ware.inputs():
-                        label_inputs = "|".join(f"<{key}> {mapping[key].acronym}" for key in ware.inputs())
-                        label_output = f"<output> {ware.name}"
-                        label = "{{%s}|%s}" % (label_inputs, label_output)
-                    else:
-                        label_output = f"<output> {ware.name}"
-                        label = "{%s}" % (label_output,)
-
-                    s.node(
-                        ware.key,
-                        label=label,
-                        colour=ware.graphviz_fillcolor(),
-                        shape="record",
+                    label = template.render(
+                        ware=ware,
+                        inputs=[mapping[key] for key in ware.inputs_as_set()],
+                        outputs=economy.outputs_for_ware(ware),
                     )
+
+                    s.node(ware.key, label=f"<{label}>")
 
         for output_ware in economy.wares:
             for recipe in output_ware.recipes:
-                for i in recipe.input_wares:
+                for i in recipe.inputs:
                     if i.key not in mapping:
                         raise Exception(f"Input for {output_ware} not found in {economy}: {i.key}")
 
@@ -198,11 +195,37 @@ class GraphvizWriter(Writer):
                         output_ware.name,
                     )
                     g.edge(
-                        f"{input_ware.key}:output:s",
+                        f"{input_ware.key}:{output_ware.key}:s",
                         f"{output_ware.key}:{input_ware.key}:n",
-                        color=color,
+                        color=input_ware.colour,
+                        weight=self.weight(input_ware=input_ware, output_ware=output_ware),
+                        arrowhead=self.arrowhead(input_ware.storage),
                     )
         return g
+
+    @staticmethod
+    def arrowhead(storage: Storage | None) -> str:
+        if storage == "Container":
+            return "box"
+        elif storage == "Liquid":
+            return "odot"
+        elif storage == "Solid":
+            return "empty"
+        elif storage == "Condensate":
+            return "invempty"
+        elif storage is None:
+            return "none"
+
+        raise ValueError(storage)
+
+    def weight(self, input_ware: Ware, output_ware: Ware) -> str:
+        match (input_ware, output_ware):
+            case (Ware(key="energy_cells"), _):
+                return "0.1"
+            case (Ware(key="water"), _):
+                return "0.1"
+
+        return "1.0"
 
     @staticmethod
     def recipe_color(recipe: str, input_ware_name: str, output_ware_name: str) -> str:
@@ -219,12 +242,12 @@ class GraphvizWriter(Writer):
                 return "goldenrod"
         return "slategray4"
 
-    def diagram(self, economy: Economy) -> Diagram:
+    def diagram(self, economy: Economy, filename_suffixes: typing.Sequence[str] = ()) -> Diagram:
         logger.debug("Drawing economy with graphviz", economy=economy)
         self.output_directory.mkdir(exist_ok=True)
         dot = self.dot(economy=economy)
-        filename = self.filename(economy, "graph", "dot")
-        outfile = self.output_directory / self.filename(economy, "graph", "png")
+        filename = self.filename(economy, ("graph", *filename_suffixes), "dot")
+        outfile = self.output_directory / self.filename(economy, ("graph", *filename_suffixes), "png")
         path = dot.render(
             directory=self.output_directory,
             filename=filename,
@@ -234,7 +257,7 @@ class GraphvizWriter(Writer):
 
         image = pathlib.Path(path).relative_to(self.output_directory)
         source = (self.output_directory / filename).relative_to(self.output_directory)
-        logger.info("Drew economy with graphviz", economy=repr(economy), image=image)
+        logger.info("Drew economy with graphviz", economy=repr(economy))
         return Diagram(
             title=economy.name,
             description=(*economy.description, "Rendered with graphviz."),
@@ -246,12 +269,10 @@ class GraphvizWriter(Writer):
 @dataclasses.dataclass(frozen=True)
 class IndexWriter:
     output_directory: pathlib.Path
-    templates_directory: pathlib.Path
+    environment: jinja2.Environment
 
     def index(self, groups: typing.Sequence[EconomyGroupOutput]) -> pathlib.Path:
-        loader = jinja2.FileSystemLoader(self.templates_directory)
-        environment = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
-        template = environment.get_template("index.html")
+        template = self.environment.get_template("index.html")
         rendered = template.render(groups=groups)
         path = self.output_directory / "index.html"
         path.write_text(rendered)
@@ -282,8 +303,8 @@ class Builder:
     def diagrams(self, economy: Economy) -> typing.Iterable[Diagram]:
         if economy.hints in Hint.SIMPLIFY_INCLUSIVE | Hint.SIMPLIFY_EXCLUSIVE:
             simplified = economy.remove_common_inputs()
-            yield self.graphviz_writer.diagram(simplified)
-            yield self.plotly_writer.diagram(simplified)
+            yield self.graphviz_writer.diagram(simplified, filename_suffixes=("simplified",))
+            yield self.plotly_writer.diagram(simplified, filename_suffixes=("simplified",))
 
         if economy.hints not in Hint.SIMPLIFY_EXCLUSIVE:
             yield self.graphviz_writer.diagram(economy)

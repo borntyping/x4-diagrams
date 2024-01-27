@@ -1,33 +1,141 @@
-graph "X4 Economy" {
+digraph "X4 Economy" {
 	edge [arrowType=normal]
 	compound=true fontname="Helvetica,Arial,sans-serif"
 	label=<<b>T1–T2: Boron Food &amp; Drugs</b>>
 	graph [nodesep=0.3 pad=0.5 ranksep=3]
-	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=1 shape=box]
-	edge [arrowhead=normal arrowtype=normal fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.5 tailport=s]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
+	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
 	subgraph 0 {
-		cluster=true label=Harvested
-		water [label="{<output> Water}" colour=lightsteelblue2 shape=record]
-		energy_cells [label="{<output> Energy Cells}" colour=lightsteelblue2 shape=record]
+		cluster=true label="T0: Harvested"
+		water [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="water" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="3">Water</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+    </tr>
+  
+</table>>]
+		energy_cells [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="energy_cells" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#a9a9a9" colspan="4">Energy Cells</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
 	}
 	subgraph 1 {
-		cluster=true label="Basic Food"
-		plankton [label="{{<water> W|<energy_cells> EC}|<output> Plankton}" colour=lightsteelblue2 shape=record]
-		bogas [label="{{<water> W|<energy_cells> EC}|<output> BoGas}" colour=lightsteelblue2 shape=record]
+		cluster=true label="T1: Basic Food"
+		plankton [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="plankton" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Plankton</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#000000" port="medical_supplies">MS</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
+		bogas [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bogas" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">BoGas</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bofu">BF</td>
+      
+    </tr>
+  
+</table>>]
 	}
 	subgraph 2 {
-		cluster=true label="Food and Drugs"
-		medical_supplies [label="{{<water> W|<plankton> P|<energy_cells> EC}|<output> Medical Supplies}" colour=lightsteelblue2 shape=record]
-		bofu [label="{{<plankton> P|<energy_cells> EC|<bogas> B}|<output> BoFu}" colour=lightsteelblue2 shape=record]
+		cluster=true label="T2: Food and Drugs"
+		medical_supplies [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="medical_supplies" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="water">Wt</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#000000" colspan="3">Medical Supplies</td>
+  </tr>
+  
+</table>>]
+		bofu [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="bofu" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="bogas">BG</td>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="plankton">Pl</td>
+      
+        <td align="text" bgcolor="white" color="#a9a9a9" port="energy_cells">EC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="3">BoFu</td>
+  </tr>
+  
+</table>>]
 	}
-	energy_cells:output:s -- plankton:energy_cells:n [color=azure2]
-	water:output:s -- plankton:water:n [color=azure2]
-	energy_cells:output:s -- bogas:energy_cells:n [color=azure2]
-	water:output:s -- bogas:water:n [color=azure2]
-	energy_cells:output:s -- medical_supplies:energy_cells:n [color=azure2]
-	plankton:output:s -- medical_supplies:plankton:n [color=azure2]
-	water:output:s -- medical_supplies:water:n [color=azure2]
-	bogas:output:s -- bofu:bogas:n [color=slategray4]
-	energy_cells:output:s -- bofu:energy_cells:n [color=azure2]
-	plankton:output:s -- bofu:plankton:n [color=slategray4]
+	energy_cells:plankton:s -> plankton:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:plankton:s -> plankton:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:bogas:s -> bogas:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	water:bogas:s -> bogas:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	energy_cells:medical_supplies:s -> medical_supplies:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	plankton:medical_supplies:s -> medical_supplies:plankton:n [arrowhead=box color="#42d4f4" weight=1.0]
+	water:medical_supplies:s -> medical_supplies:water:n [arrowhead=box color="#4363d8" weight=0.1]
+	bogas:bofu:s -> bofu:bogas:n [arrowhead=box color="#42d4f4" weight=1.0]
+	energy_cells:bofu:s -> bofu:energy_cells:n [arrowhead=box color="#a9a9a9" weight=0.1]
+	plankton:bofu:s -> bofu:plankton:n [arrowhead=box color="#42d4f4" weight=1.0]
 }

@@ -1,0 +1,428 @@
+digraph "X4 Economy" {
+	edge [arrowType=normal]
+	compound=true fontname="Helvetica,Arial,sans-serif"
+	label=<<b>T6: Equipment</b><br/><br/>Not shown: .>
+	graph [nodesep=0.3 pad=0.5 ranksep=3]
+	node [color=slategray1 fontname="Helvetica,Arial,sans-serif" margin=0.2 penwidth=2.0 shape=plaintext]
+	edge [arrowhead=normal arrowsize=1.0 fontname="Helvetica,Arial,sans-serif" headport=n penwidth=2.0 tailport=s]
+	subgraph 4 {
+		cluster=true label="T4: Advanced"
+		hull_parts [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="hull_parts" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#e6194B" colspan="4">Hull Parts</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="ship_hulls">SH</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="nav_beacons">NB</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="station_modules">SM</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="satellites">Sa</td>
+      
+    </tr>
+  
+</table>>]
+		engine_parts [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="engine_parts" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="2">Engine Parts</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="engines">En</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="thrusters">Th</td>
+      
+    </tr>
+  
+</table>>]
+		smart_chips [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="smart_chips" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#aaffc3" colspan="4">Smart Chips</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="missiles">Mi</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="mines">Mi</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="drones">Dr</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="laser_towers">LT</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 5 {
+		cluster=true label="T5: Components"
+		drone_components [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="drone_components" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#fabed4" colspan="2">Drone Components</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="drones">Dr</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="laser_towers">LT</td>
+      
+    </tr>
+  
+</table>>]
+		turret_components [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="turret_components" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#ffd8b1" colspan="1">Turret Components</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="turrets">Tu</td>
+      
+    </tr>
+  
+</table>>]
+		missile_components [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="missile_components" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#fffac8" colspan="1">Missile Components</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="missiles">Mi</td>
+      
+    </tr>
+  
+</table>>]
+		field_coils [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="field_coils" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#aaffc3" colspan="1">Field Coils</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="shields">Sh</td>
+      
+    </tr>
+  
+</table>>]
+		shield_components [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="shield_components" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#dcbeff" colspan="1">Shield Components</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="shields">Sh</td>
+      
+    </tr>
+  
+</table>>]
+		antimatter_converters [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="antimatter_converters" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#f032e6" colspan="2">Antimatter Converters</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="engines">En</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="thrusters">Th</td>
+      
+    </tr>
+  
+</table>>]
+		weapon_components [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="weapon_components" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#42d4f4" colspan="2">Weapon Components</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="mines">Mi</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="guns_and_launchers">GL</td>
+      
+    </tr>
+  
+</table>>]
+		scanning_arrays [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="scanning_arrays" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#f58231" colspan="1">Scanning Arrays</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="satellites">Sa</td>
+      
+    </tr>
+  
+</table>>]
+		claytronics [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="claytronics" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#4363d8" colspan="1">Claytronics</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="station_modules">SM</td>
+      
+    </tr>
+  
+</table>>]
+		advanced_electronics [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="advanced_electronics" port="output">
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#469990" colspan="3">Advanced Electronics</td>
+  </tr>
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="turrets">Tu</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="guns_and_launchers">GL</td>
+      
+        <td align="text" bgcolor="white" color="#911eb4" port="satellites">Sa</td>
+      
+    </tr>
+  
+</table>>]
+	}
+	subgraph 6 {
+		cluster=true label="T6: Equipment"
+		ship_hulls [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="ship_hulls" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="1">Ship Hulls</td>
+  </tr>
+  
+</table>>]
+		nav_beacons [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="nav_beacons" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="1">Nav Beacons</td>
+  </tr>
+  
+</table>>]
+		missiles [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="missiles" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fffac8" port="missile_components">MC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Missiles</td>
+  </tr>
+  
+</table>>]
+		station_modules [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="station_modules" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="claytronics">Cl</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Station modules</td>
+  </tr>
+  
+</table>>]
+		engines [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="engines" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Engines</td>
+  </tr>
+  
+</table>>]
+		thrusters [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="thrusters" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#4363d8" port="engine_parts">EP</td>
+      
+        <td align="text" bgcolor="white" color="#f032e6" port="antimatter_converters">AC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Thrusters</td>
+  </tr>
+  
+</table>>]
+		mines [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="mines" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="weapon_components">WC</td>
+      
+        <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Mines</td>
+  </tr>
+  
+</table>>]
+		drones [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="drones" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Drones</td>
+  </tr>
+  
+</table>>]
+		laser_towers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="laser_towers" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#aaffc3" port="smart_chips">SC</td>
+      
+        <td align="text" bgcolor="white" color="#fabed4" port="drone_components">DC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Laser Towers</td>
+  </tr>
+  
+</table>>]
+		shields [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="shields" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#dcbeff" port="shield_components">SC</td>
+      
+        <td align="text" bgcolor="white" color="#aaffc3" port="field_coils">FC</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Shields</td>
+  </tr>
+  
+</table>>]
+		turrets [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="turrets" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#ffd8b1" port="turret_components">TC</td>
+      
+        <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Turrets</td>
+  </tr>
+  
+</table>>]
+		guns_and_launchers [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="guns_and_launchers" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#42d4f4" port="weapon_components">WC</td>
+      
+        <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="2">Guns and Launchers</td>
+  </tr>
+  
+</table>>]
+		satellites [label=<<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="satellites" port="output">
+  
+    <tr>
+      
+        <td align="text" bgcolor="white" color="#e6194B" port="hull_parts">HP</td>
+      
+        <td align="text" bgcolor="white" color="#f58231" port="scanning_arrays">SA</td>
+      
+        <td align="text" bgcolor="white" color="#469990" port="advanced_electronics">AE</td>
+      
+    </tr>
+  
+  <tr>
+    <td align="text" bgcolor="white" color="#911eb4" colspan="3">Satellites</td>
+  </tr>
+  
+</table>>]
+	}
+	hull_parts:ship_hulls:s -> ship_hulls:hull_parts:n [arrowhead=box color="#e6194B" weight=1.0]
+	hull_parts:nav_beacons:s -> nav_beacons:hull_parts:n [arrowhead=box color="#e6194B" weight=1.0]
+	missile_components:missiles:s -> missiles:missile_components:n [arrowhead=box color="#fffac8" weight=1.0]
+	smart_chips:missiles:s -> missiles:smart_chips:n [arrowhead=box color="#aaffc3" weight=1.0]
+	hull_parts:station_modules:s -> station_modules:hull_parts:n [arrowhead=box color="#e6194B" weight=1.0]
+	claytronics:station_modules:s -> station_modules:claytronics:n [arrowhead=box color="#4363d8" weight=1.0]
+	antimatter_converters:engines:s -> engines:antimatter_converters:n [arrowhead=box color="#f032e6" weight=1.0]
+	engine_parts:engines:s -> engines:engine_parts:n [arrowhead=box color="#4363d8" weight=1.0]
+	antimatter_converters:thrusters:s -> thrusters:antimatter_converters:n [arrowhead=box color="#f032e6" weight=1.0]
+	engine_parts:thrusters:s -> thrusters:engine_parts:n [arrowhead=box color="#4363d8" weight=1.0]
+	weapon_components:mines:s -> mines:weapon_components:n [arrowhead=box color="#42d4f4" weight=1.0]
+	smart_chips:mines:s -> mines:smart_chips:n [arrowhead=box color="#aaffc3" weight=1.0]
+	drone_components:drones:s -> drones:drone_components:n [arrowhead=box color="#fabed4" weight=1.0]
+	smart_chips:drones:s -> drones:smart_chips:n [arrowhead=box color="#aaffc3" weight=1.0]
+	drone_components:laser_towers:s -> laser_towers:drone_components:n [arrowhead=box color="#fabed4" weight=1.0]
+	smart_chips:laser_towers:s -> laser_towers:smart_chips:n [arrowhead=box color="#aaffc3" weight=1.0]
+	field_coils:shields:s -> shields:field_coils:n [arrowhead=box color="#aaffc3" weight=1.0]
+	shield_components:shields:s -> shields:shield_components:n [arrowhead=box color="#dcbeff" weight=1.0]
+	turret_components:turrets:s -> turrets:turret_components:n [arrowhead=box color="#ffd8b1" weight=1.0]
+	advanced_electronics:turrets:s -> turrets:advanced_electronics:n [arrowhead=box color="#469990" weight=1.0]
+	advanced_electronics:guns_and_launchers:s -> guns_and_launchers:advanced_electronics:n [arrowhead=box color="#469990" weight=1.0]
+	weapon_components:guns_and_launchers:s -> guns_and_launchers:weapon_components:n [arrowhead=box color="#42d4f4" weight=1.0]
+	scanning_arrays:satellites:s -> satellites:scanning_arrays:n [arrowhead=box color="#f58231" weight=1.0]
+	advanced_electronics:satellites:s -> satellites:advanced_electronics:n [arrowhead=box color="#469990" weight=1.0]
+	hull_parts:satellites:s -> satellites:hull_parts:n [arrowhead=box color="#e6194B" weight=1.0]
+}

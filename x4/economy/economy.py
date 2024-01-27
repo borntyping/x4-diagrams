@@ -126,7 +126,7 @@ class Economy:
     def recipes(self) -> typing.Sequence[Recipe]:
         return [recipe for ware in self.wares for recipe in ware.recipes]
 
-    def as_dict(self) -> dict[str, Ware]:
+    def wares_as_dict(self) -> dict[str, Ware]:
         return {ware.key: ware for ware in self.wares}
 
     def filter_by_tier(self, keys: set[int]) -> typing.Self:
@@ -165,17 +165,20 @@ class Economy:
         :deprecated:
         """
         wares = {ware.key for ware in self.wares}
-        inputs = {key for ware in self.wares for key in ware.inputs()}
+        inputs = {key for ware in self.wares for key in ware.inputs_as_set()}
         return wares | inputs
 
     def deps(self, wares: typing.Sequence[Ware]) -> set[str]:
-        return {key for ware in wares for key in ware.inputs()}
+        return {key for ware in wares for key in ware.inputs_as_set()}
 
     def inputs(self) -> set[str]:
-        return {key for ware in self.wares for key in ware.inputs()}
+        return {key for ware in self.wares for key in ware.inputs_as_set()}
 
     def outputs(self) -> set[str]:
         return {ware.key for ware in self.wares}
+
+    def outputs_for_ware(self, input_ware: Ware) -> typing.Sequence[Ware]:
+        return [ware for ware in self.wares if input_ware.key in ware.inputs_as_set()]
 
     def filter_wares(self, wf: WareFilter) -> typing.Self:
         economy = self.with_wares([ware for ware in self.wares if wf(ware)])
@@ -204,7 +207,7 @@ class Economy:
         """
 
         # Remove undesired recipes from the economy.
-        economy = self.filter_by_method(priority)
+        economy = self.with_single_recipe(priority)
 
         # Select wares that still have a recipe.
         wares_with_recipe = economy.filter_wares(HasRecipe())
@@ -249,13 +252,24 @@ class Economy:
     def remove_all_recipes(self, wf: WareFilter) -> typing.Self:
         return self.with_wares([w.with_no_recipes() if wf(w) else w for w in self.wares])
 
-    def filter_by_method(self, priority: typing.Sequence[Method]) -> typing.Self:
+    def with_single_recipe(self, priority: typing.Sequence[Method]) -> typing.Self:
         wares = [ware.with_single_recipe(priority) for ware in self.wares]
 
         deps = self.deps(wares)
         wares = [ware for ware in wares if ware.recipes or ware.key in deps]
 
         return self.with_wares(wares)
+
+    def with_selected_recipes(self, methods: typing.Set[Method]) -> typing.Self:
+        wares = [ware.with_selected_recipes(methods) for ware in self.wares]
+
+        deps = self.deps(wares)
+        wares = [ware for ware in wares if ware.recipes or ware.key in deps]
+
+        return self.with_wares(wares)
+
+    # def filter_recipes(self, f: typing.Callable[[Recipe], bool]) -> typing.Self:
+    #     return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
 
     def done(self) -> typing.Self:
         logger.info("Validating economy", economy=repr(self))
@@ -268,7 +282,7 @@ class Economy:
         keys = {ware.key for ware in self.wares}
 
         for ware in self.wares:
-            for dep in ware.inputs():
+            for dep in ware.inputs_as_set():
                 if dep not in keys:
                     missing.append((ware, dep))
 
@@ -278,20 +292,17 @@ class Economy:
 
         return self
 
-    # def filter_recipes(self, f: typing.Callable[[Recipe], bool]) -> typing.Self:
-    #     return self.with_wares([ware.filter_recipes(f) for ware in self.wares])
-
     def remove_common_inputs(self) -> typing.Self | None:
         """Remove wares from both recipe inputs and from the economy."""
         keys = {"energy_cells", "water"}
 
-        wares = self.as_dict()
+        wares = self.wares_as_dict()
         names = [wares[c].name.lower() for c in sorted(keys) if c in wares]
         description = "Not shown: {}.".format(p.join(names))
 
-        economy = self.with_name(f"{self.name} simplified").with_description(description).remove_inputs(keys).done()
+        economy = self.with_description(description).remove_inputs(keys).done()
 
         for key in keys:
-            assert key not in economy.as_dict(), f"{key} still present in {economy}"
+            assert key not in economy.wares_as_dict(), f"{key} still present in {economy}"
 
         return economy

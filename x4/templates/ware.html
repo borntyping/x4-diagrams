@@ -1,0 +1,19 @@
+<table border="0" cellborder="2" cellpadding="4" cellspacing="1" fixedsize="false" id="{{ ware.key }}" port="output">
+  {% if inputs %}
+    <tr>
+      {% for input in inputs %}
+        <td align="text" bgcolor="{{ input.gv_bg_colour }}" color="{{ input.gv_fg_colour }}" port="{{ input.key }}">{{ input.acronym }}</td>
+      {% endfor %}
+    </tr>
+  {% endif %}
+  <tr>
+    <td align="text" bgcolor="{{ ware.gv_bg_colour }}" color="{{ ware.gv_fg_colour }}" colspan="{{ [inputs|length,outputs|length,1]|max }}">{{ ware.name }}</td>
+  </tr>
+  {% if outputs %}
+    <tr>
+      {% for output in outputs %}
+        <td align="text" bgcolor="{{ output.gv_bg_colour }}" color="{{ output.gv_fg_colour }}" port="{{ output.key }}">{{ output.acronym }}</td>
+      {% endfor %}
+    </tr>
+  {% endif %}
+</table>

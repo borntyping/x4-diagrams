@@ -1,6 +1,8 @@
 import typing
 
-from x4.types import InputWare, Method, Recipe, Tier, Ware
+from x4.colours import Palette
+from x4.types import RecipeInput, Method, Recipe, Tier, Ware
+from x4_data.races import ARGON, BORON, PARANID, SPLIT, TELADI, TERRAN
 
 COMMONWEALTH: typing.Sequence[Method] = (
     "Universal",
@@ -11,19 +13,21 @@ COMMONWEALTH: typing.Sequence[Method] = (
     "Teladi",
 )
 
-TIER_0 = Tier(key=0, name="Harvested")
-TIER_1 = Tier(key=1, name="Basic Food")
-TIER_2 = Tier(key=2, name="Food and Drugs")
-TIER_3 = Tier(key=3, name="Refined")
-TIER_4 = Tier(key=4, name="Advanced")
-TIER_5 = Tier(key=5, name="Components")
-TIER_6 = Tier(key=6, name="Equipment")
+TIER_0 = Tier(key=0, name="Harvested", colour=Palette.GREY)
+TIER_1 = Tier(key=1, name="Basic Food", colour=Palette.GREY)
+TIER_2 = Tier(key=2, name="Food and Drugs", colour=Palette.GREY)
+TIER_3 = Tier(key=3, name="Refined", colour=Palette.GREY)
+TIER_4 = Tier(key=4, name="Advanced", colour=Palette.GREY)
+TIER_5 = Tier(key=5, name="Components", colour=Palette.GREY)
+TIER_6 = Tier(key=6, name="Equipment", colour=Palette.PURPLE)
 
 WARES_TIER_0 = (
     Ware(
         key="helium",
         name="Helium",
+        acronym="He",
         tier=TIER_0,
+        colour=Palette.TEAL,
         volume=6,
         storage="Liquid",
         price_min=37,
@@ -34,7 +38,9 @@ WARES_TIER_0 = (
     Ware(
         key="methane",
         name="Methane",
+        acronym="Me",
         tier=TIER_0,
+        colour=Palette.LIME,
         volume=6,
         storage="Liquid",
         price_min=41,
@@ -45,7 +51,9 @@ WARES_TIER_0 = (
     Ware(
         key="ore",
         name="Ore",
+        acronym="Or",
         tier=TIER_0,
+        colour=Palette.RED,
         volume=10,
         storage="Solid",
         price_min=43,
@@ -56,7 +64,9 @@ WARES_TIER_0 = (
     Ware(
         key="hydrogen",
         name="Hydrogen",
+        acronym="Hy",
         tier=TIER_0,
+        colour=Palette.CYAN,
         volume=6,
         storage="Liquid",
         price_min=49,
@@ -67,7 +77,9 @@ WARES_TIER_0 = (
     Ware(
         key="silicon",
         name="Silicon",
+        acronym="Si",
         tier=TIER_0,
+        colour=Palette.LIME,
         volume=10,
         storage="Solid",
         price_min=111,
@@ -78,7 +90,9 @@ WARES_TIER_0 = (
     Ware(
         key="nividium",
         name="Nividium",
+        acronym="Nv",
         tier=TIER_0,
+        colour=Palette.MAGENTA,
         volume=10,
         storage="Solid",
         price_min=434,
@@ -89,7 +103,9 @@ WARES_TIER_0 = (
     Ware(
         key="ice",
         name="Ice",
+        acronym="Ic",
         tier=TIER_0,
+        colour=Palette.BLUE,
         volume=8,
         storage="Solid",
         price_min=26,
@@ -100,7 +116,9 @@ WARES_TIER_0 = (
     Ware(
         key="raw_scrap",
         name="Raw Scrap",
+        acronym="RS",
         tier=TIER_0,
+        colour=Palette.BROWN,
         volume=10,
         storage="Solid",
         price_min=153,
@@ -111,7 +129,9 @@ WARES_TIER_0 = (
     Ware(
         key="scrap_metal",
         name="Scrap Metal",
+        acronym="SM",
         tier=TIER_0,
+        colour=Palette.BROWN,
         volume=10,
         storage="Solid",
         price_min=318,
@@ -122,9 +142,9 @@ WARES_TIER_0 = (
                 time=60,
                 amount=1,
                 method="Recycling",
-                input_wares=(
-                    InputWare("energy_cells", 10),
-                    InputWare("raw_scrap", 1),
+                inputs=(
+                    RecipeInput("energy_cells", 10),
+                    RecipeInput("raw_scrap", 1),
                 ),
             )
         ],
@@ -132,7 +152,9 @@ WARES_TIER_0 = (
     Ware(
         key="water",
         name="Water",
+        acronym="Wt",
         tier=TIER_0,
+        colour=Palette.BLUE,
         volume=6,
         storage="Container",
         price_min=32,
@@ -143,9 +165,9 @@ WARES_TIER_0 = (
                 time=120,
                 amount=193,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("ice", 320),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("ice", 320),
                 ),
             ),
         ],
@@ -153,7 +175,9 @@ WARES_TIER_0 = (
     Ware(
         key="energy_cells",
         name="Energy Cells",
+        acronym="EC",
         tier=TIER_0,
+        colour=Palette.GREY,
         volume=1,
         storage="Container",
         price_min=10,
@@ -164,13 +188,13 @@ WARES_TIER_0 = (
                 time=60,
                 amount=175,
                 method="Universal",
-                input_wares=(),
+                inputs=(),
             ),
             Recipe(
                 time=60,
                 amount=50,
                 method="Terran",
-                input_wares=(),
+                inputs=(),
             ),
         ],
     ),
@@ -180,7 +204,9 @@ WARES_TIER_1 = (
     Ware(
         key="maja_snails",
         name="Maja Snails",
+        acronym="MS",
         tier=TIER_1,
+        colour=PARANID.colour,
         volume=6,
         storage="Container",
         price_min=35,
@@ -191,9 +217,9 @@ WARES_TIER_1 = (
                 time=450,
                 amount=146,
                 method="Paranid",
-                input_wares=(
-                    InputWare("energy_cells", 40),
-                    InputWare("water", 100),
+                inputs=(
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("water", 100),
                 ),
             ),
         ],
@@ -201,7 +227,9 @@ WARES_TIER_1 = (
     Ware(
         key="meat",
         name="Meat",
+        acronym="Mt",
         tier=TIER_1,
+        colour=ARGON.colour,
         volume=6,
         storage="Container",
         price_min=29,
@@ -212,9 +240,9 @@ WARES_TIER_1 = (
                 time=450,
                 amount=290,
                 method="Argon",
-                input_wares=(
-                    InputWare("energy_cells", 80),
-                    InputWare("water", 100),
+                inputs=(
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("water", 100),
                 ),
             ),
         ],
@@ -222,7 +250,9 @@ WARES_TIER_1 = (
     Ware(
         key="soja_beans",
         name="Soja Beans",
+        acronym="SB",
         tier=TIER_1,
+        colour=PARANID.colour,
         volume=5,
         storage="Container",
         price_min=40,
@@ -233,9 +263,9 @@ WARES_TIER_1 = (
                 time=300,
                 amount=104,
                 method="Paranid",
-                input_wares=(
-                    InputWare("energy_cells", 30),
-                    InputWare("water", 80),
+                inputs=(
+                    RecipeInput("energy_cells", 30),
+                    RecipeInput("water", 80),
                 ),
             ),
         ],
@@ -243,7 +273,9 @@ WARES_TIER_1 = (
     Ware(
         key="spices",
         name="Spices",
+        acronym="Sp",
         tier=TIER_1,
+        colour=Palette.BLACK,
         volume=3,
         storage="Container",
         price_min=12,
@@ -254,9 +286,9 @@ WARES_TIER_1 = (
                 time=600,
                 amount=500,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 40),
-                    InputWare("water", 80),
+                inputs=(
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("water", 80),
                 ),
             ),
         ],
@@ -264,7 +296,9 @@ WARES_TIER_1 = (
     Ware(
         key="sunrise_flowers",
         name="Sunrise Flowers",
+        acronym="SF",
         tier=TIER_1,
+        colour=TELADI.colour,
         volume=5,
         storage="Container",
         price_min=48,
@@ -275,9 +309,9 @@ WARES_TIER_1 = (
                 time=300,
                 amount=100,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 30),
-                    InputWare("water", 80),
+                inputs=(
+                    RecipeInput("energy_cells", 30),
+                    RecipeInput("water", 80),
                 ),
             ),
         ],
@@ -285,7 +319,9 @@ WARES_TIER_1 = (
     Ware(
         key="swamp_plant",
         name="Swamp Plant",
+        acronym="SP",
         tier=TIER_1,
+        colour=TELADI.colour,
         volume=6,
         storage="Container",
         price_min=50,
@@ -296,9 +332,9 @@ WARES_TIER_1 = (
                 time=450,
                 amount=120,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 40),
-                    InputWare("water", 100),
+                inputs=(
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("water", 100),
                 ),
             ),
         ],
@@ -306,7 +342,9 @@ WARES_TIER_1 = (
     Ware(
         key="wheat",
         name="Wheat",
+        acronym="Wh",
         tier=TIER_1,
+        colour=ARGON.colour,
         volume=4,
         storage="Container",
         price_min=19,
@@ -317,9 +355,9 @@ WARES_TIER_1 = (
                 time=300,
                 amount=310,
                 method="Argon",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("water", 80),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("water", 80),
                 ),
             ),
         ],
@@ -327,7 +365,9 @@ WARES_TIER_1 = (
     Ware(
         key="chelt_meat",
         name="Chelt Meat",
+        acronym="CM",
         tier=TIER_1,
+        colour=SPLIT.colour,
         volume=7,
         storage="Container",
         price_min=31,
@@ -338,9 +378,9 @@ WARES_TIER_1 = (
                 time=450,
                 amount=209,
                 method="Split",
-                input_wares=(
-                    InputWare("energy_cells", 50),
-                    InputWare("water", 120),
+                inputs=(
+                    RecipeInput("energy_cells", 50),
+                    RecipeInput("water", 120),
                 ),
             ),
         ],
@@ -348,7 +388,9 @@ WARES_TIER_1 = (
     Ware(
         key="scruffin_fruits",
         name="Scruffin Fruit",
+        acronym="SF",
         tier=TIER_1,
+        colour=SPLIT.colour,
         volume=6,
         storage="Container",
         price_min=17,
@@ -359,9 +401,9 @@ WARES_TIER_1 = (
                 time=300,
                 amount=255,
                 method="Split",
-                input_wares=(
-                    InputWare("energy_cells", 30),
-                    InputWare("water", 80),
+                inputs=(
+                    RecipeInput("energy_cells", 30),
+                    RecipeInput("water", 80),
                 ),
             ),
         ],
@@ -369,7 +411,9 @@ WARES_TIER_1 = (
     Ware(
         key="protein_paste",
         name="Protein Paste",
+        acronym="PP",
         tier=TIER_1,
+        colour=TERRAN.colour,
         volume=4,
         storage="Container",
         price_min=57,
@@ -380,10 +424,10 @@ WARES_TIER_1 = (
                 time=300,
                 amount=219,
                 method="Terran",
-                input_wares=(
-                    InputWare("energy_cells", 80),
-                    InputWare("ice", 80),
-                    InputWare("methane", 200),
+                inputs=(
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("ice", 80),
+                    RecipeInput("methane", 200),
                 ),
             )
         ],
@@ -391,7 +435,9 @@ WARES_TIER_1 = (
     Ware(
         key="plankton",
         name="Plankton",
+        acronym="Pl",
         tier=TIER_1,
+        colour=BORON.colour,
         volume=1,
         storage="Container",
         price_min=11,
@@ -402,9 +448,9 @@ WARES_TIER_1 = (
                 time=400,
                 amount=275,
                 method="Boron",
-                input_wares=(
-                    InputWare("energy_cells", 20),
-                    InputWare("water", 50),
+                inputs=(
+                    RecipeInput("energy_cells", 20),
+                    RecipeInput("water", 50),
                 ),
             ),
         ],
@@ -412,7 +458,9 @@ WARES_TIER_1 = (
     Ware(
         key="bogas",
         name="BoGas",
+        acronym="BG",
         tier=TIER_1,
+        colour=BORON.colour,
         volume=4,
         storage="Container",
         price_min=44,
@@ -423,9 +471,9 @@ WARES_TIER_1 = (
                 time=150,
                 amount=110,
                 method="Boron",
-                input_wares=(
-                    InputWare("energy_cells", 40),
-                    InputWare("water", 100),
+                inputs=(
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("water", 100),
                 ),
             ),
         ],
@@ -436,7 +484,9 @@ WARES_TIER_2 = (
     Ware(
         key="spacefuel",
         name="Spacefuel",
+        acronym="SF",
         tier=TIER_2,
+        colour=ARGON.colour,
         volume=2,
         storage="Container",
         price_min=60,
@@ -447,10 +497,10 @@ WARES_TIER_2 = (
                 time=480,
                 amount=98,
                 method="Argon",
-                input_wares=(
-                    InputWare("energy_cells", 40),
-                    InputWare("water", 100),
-                    InputWare("wheat", 80),
+                inputs=(
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("water", 100),
+                    RecipeInput("wheat", 80),
                 ),
             )
         ],
@@ -458,7 +508,9 @@ WARES_TIER_2 = (
     Ware(
         key="food_rations",
         name="Food Rations",
+        acronym="FR",
         tier=TIER_2,
+        colour=ARGON.colour,
         volume=1,
         storage="Container",
         price_min=12,
@@ -469,11 +521,11 @@ WARES_TIER_2 = (
                 time=240,
                 amount=460,
                 method="Argon",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("meat", 40),
-                    InputWare("spices", 40),
-                    InputWare("wheat", 40),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("meat", 40),
+                    RecipeInput("spices", 40),
+                    RecipeInput("wheat", 40),
                 ),
             )
         ],
@@ -481,7 +533,9 @@ WARES_TIER_2 = (
     Ware(
         key="maja_dust",
         name="Maja Dust",
+        acronym="MD",
         tier=TIER_2,
+        colour=PARANID.colour,
         volume=6,
         storage="Container",
         price_min=94,
@@ -492,10 +546,10 @@ WARES_TIER_2 = (
                 time=600,
                 amount=64,
                 method="Paranid",
-                input_wares=(
-                    InputWare("energy_cells", 40),
-                    InputWare("maja_snails", 120),
-                    InputWare("spices", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("maja_snails", 120),
+                    RecipeInput("spices", 60),
                 ),
             )
         ],
@@ -503,7 +557,9 @@ WARES_TIER_2 = (
     Ware(
         key="soja_husk",
         name="Soja Husk",
+        acronym="SH",
         tier=TIER_2,
+        colour=PARANID.colour,
         volume=1,
         storage="Container",
         price_min=19,
@@ -514,11 +570,11 @@ WARES_TIER_2 = (
                 time=300,
                 amount=350,
                 method="Paranid",
-                input_wares=(
-                    InputWare("energy_cells", 80),
-                    InputWare("maja_snails", 50),
-                    InputWare("soja_beans", 40),
-                    InputWare("spices", 20),
+                inputs=(
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("maja_snails", 50),
+                    RecipeInput("soja_beans", 40),
+                    RecipeInput("spices", 20),
                 ),
             )
         ],
@@ -526,7 +582,9 @@ WARES_TIER_2 = (
     Ware(
         key="spaceweed",
         name="Spaceweed",
+        acronym="SW",
         tier=TIER_2,
+        colour=TELADI.colour,
         volume=3,
         storage="Container",
         price_min=75,
@@ -537,10 +595,10 @@ WARES_TIER_2 = (
                 time=600,
                 amount=183,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 140),
-                    InputWare("spices", 40),
-                    InputWare("swamp_plant", 120),
+                inputs=(
+                    RecipeInput("energy_cells", 140),
+                    RecipeInput("spices", 40),
+                    RecipeInput("swamp_plant", 120),
                 ),
             )
         ],
@@ -548,7 +606,9 @@ WARES_TIER_2 = (
     Ware(
         key="nostrop_oil",
         name="Nostrop Oil",
+        acronym="NO",
         tier=TIER_2,
+        colour=TELADI.colour,
         volume=1,
         storage="Container",
         price_min=20,
@@ -559,11 +619,11 @@ WARES_TIER_2 = (
                 time=300,
                 amount=500,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("spices", 40),
-                    InputWare("sunrise_flowers", 40),
-                    InputWare("water", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("spices", 40),
+                    RecipeInput("sunrise_flowers", 40),
+                    RecipeInput("water", 60),
                 ),
             )
         ],
@@ -571,7 +631,9 @@ WARES_TIER_2 = (
     Ware(
         key="medical_supplies",
         name="Medical Supplies",
+        acronym="MS",
         tier=TIER_2,
+        colour=Palette.BLACK,
         volume=2,
         storage="Container",
         price_min=43,
@@ -582,64 +644,64 @@ WARES_TIER_2 = (
                 time=300,
                 amount=208,
                 method="Argon",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("spices", 40),
-                    InputWare("water", 60),
-                    InputWare("wheat", 30),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("spices", 40),
+                    RecipeInput("water", 60),
+                    RecipeInput("wheat", 30),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Paranid",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("soja_beans", 10),
-                    InputWare("spices", 40),
-                    InputWare("water", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("soja_beans", 10),
+                    RecipeInput("spices", 40),
+                    RecipeInput("water", 60),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("spices", 40),
-                    InputWare("sunrise_flowers", 12),
-                    InputWare("water", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("spices", 40),
+                    RecipeInput("sunrise_flowers", 12),
+                    RecipeInput("water", 60),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Split",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("scruffin_fruits", 30),
-                    InputWare("spices", 60),
-                    InputWare("water", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("scruffin_fruits", 30),
+                    RecipeInput("spices", 60),
+                    RecipeInput("water", 60),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=140,
                 method="Terran",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("ice", 50),
-                    InputWare("protein_paste", 24),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("ice", 50),
+                    RecipeInput("protein_paste", 24),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=208,
                 method="Boron",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("plankton", 95),
-                    InputWare("water", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("plankton", 95),
+                    RecipeInput("water", 60),
                 ),
             ),
         ],
@@ -647,7 +709,9 @@ WARES_TIER_2 = (
     Ware(
         key="terran_mre",
         name="Terran MRE",
+        acronym="TM",
         tier=TIER_2,
+        colour=TERRAN.colour,
         volume=2,
         storage="Container",
         price_min=32,
@@ -658,9 +722,9 @@ WARES_TIER_2 = (
                 time=240,
                 amount=175,
                 method="Terran",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("protein_paste", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("protein_paste", 60),
                 ),
             )
         ],
@@ -668,7 +732,9 @@ WARES_TIER_2 = (
     Ware(
         key="stimulants",
         name="Stimulants",
+        acronym="St",
         tier=TIER_2,
+        colour=TERRAN.colour,
         volume=12,
         storage="Container",
         price_min=153,
@@ -679,10 +745,10 @@ WARES_TIER_2 = (
                 time=300,
                 amount=98,
                 method="Terran",
-                input_wares=(
-                    InputWare("energy_cells", 80),
-                    InputWare("helium", 400),
-                    InputWare("silicon", 20),
+                inputs=(
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("helium", 400),
+                    RecipeInput("silicon", 20),
                 ),
             )
         ],
@@ -690,7 +756,9 @@ WARES_TIER_2 = (
     Ware(
         key="bofu",
         name="BoFu",
+        acronym="BF",
         tier=TIER_2,
+        colour=BORON.colour,
         volume=4,
         storage="Container",
         price_min=61,
@@ -701,10 +769,10 @@ WARES_TIER_2 = (
                 time=240,
                 amount=82,
                 method="Boron",
-                input_wares=(
-                    InputWare("bogas", 40),
-                    InputWare("energy_cells", 40),
-                    InputWare("plankton", 120),
+                inputs=(
+                    RecipeInput("bogas", 40),
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("plankton", 120),
                 ),
             )
         ],
@@ -715,7 +783,9 @@ WARES_TIER_3 = (
     Ware(
         key="superfluid_coolant",
         name="Superfluid Coolant",
+        acronym="SC",
         tier=TIER_3,
+        colour=Palette.CYAN,
         volume=16,
         storage="Container",
         price_min=90,
@@ -726,9 +796,9 @@ WARES_TIER_3 = (
                 time=240,
                 amount=95,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("helium", 320),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("helium", 320),
                 ),
             ),
         ],
@@ -736,7 +806,9 @@ WARES_TIER_3 = (
     Ware(
         key="graphene",
         name="Graphene",
+        acronym="Gr",
         tier=TIER_3,
+        colour=Palette.BLACK,
         volume=20,
         storage="Container",
         price_min=100,
@@ -747,9 +819,9 @@ WARES_TIER_3 = (
                 time=240,
                 amount=96,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 80),
-                    InputWare("methane", 320),
+                inputs=(
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("methane", 320),
                 ),
             ),
         ],
@@ -757,7 +829,9 @@ WARES_TIER_3 = (
     Ware(
         key="refined_metals",
         name="Refined Metals",
+        acronym="RM",
         tier=TIER_3,
+        colour=Palette.MAROON,
         volume=14,
         storage="Container",
         price_min=89,
@@ -768,9 +842,9 @@ WARES_TIER_3 = (
                 time=150,
                 amount=88,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 90),
-                    InputWare("ore", 240),
+                inputs=(
+                    RecipeInput("energy_cells", 90),
+                    RecipeInput("ore", 240),
                 ),
             ),
         ],
@@ -778,7 +852,9 @@ WARES_TIER_3 = (
     Ware(
         key="teladianium",
         name="Teladianium",
+        acronym="Tl",
         tier=TIER_3,
+        colour=Palette.YELLOW,
         volume=16,
         storage="Container",
         price_min=121,
@@ -789,9 +865,9 @@ WARES_TIER_3 = (
                 time=120,
                 amount=70,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 45),
-                    InputWare("ore", 280),
+                inputs=(
+                    RecipeInput("energy_cells", 45),
+                    RecipeInput("ore", 280),
                 ),
             ),
         ],
@@ -799,7 +875,9 @@ WARES_TIER_3 = (
     Ware(
         key="antimatter_cells",
         name="Antimatter Cells",
+        acronym="AC",
         tier=TIER_3,
+        colour=Palette.LAVENDER,
         volume=18,
         storage="Container",
         price_min=121,
@@ -810,9 +888,9 @@ WARES_TIER_3 = (
                 time=120,
                 amount=99,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 100),
-                    InputWare("hydrogen", 320),
+                inputs=(
+                    RecipeInput("energy_cells", 100),
+                    RecipeInput("hydrogen", 320),
                 ),
             ),
         ],
@@ -820,7 +898,9 @@ WARES_TIER_3 = (
     Ware(
         key="silicon_wafers",
         name="Silicon Wafers",
+        acronym="SW",
         tier=TIER_3,
+        colour=Palette.MINT,
         volume=18,
         storage="Container",
         price_min=180,
@@ -831,9 +911,9 @@ WARES_TIER_3 = (
                 time=180,
                 amount=107,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 90),
-                    InputWare("silicon", 240),
+                inputs=(
+                    RecipeInput("energy_cells", 90),
+                    RecipeInput("silicon", 240),
                 ),
             ),
         ],
@@ -841,7 +921,9 @@ WARES_TIER_3 = (
     Ware(
         key="computronic_substrate",
         name="Computronic Substrate",
+        acronym="CS",
         tier=TIER_3,
+        colour=Palette.BLUE,
         volume=50,
         storage="Container",
         price_min=7452,
@@ -852,20 +934,20 @@ WARES_TIER_3 = (
                 time=600,
                 amount=98,
                 method="Terran",
-                input_wares=(
-                    InputWare("energy_cells", 4000),
-                    InputWare("hydrogen", 2000),
-                    InputWare("ore", 3000),
-                    InputWare("silicon", 3000),
+                inputs=(
+                    RecipeInput("energy_cells", 4000),
+                    RecipeInput("hydrogen", 2000),
+                    RecipeInput("ore", 3000),
+                    RecipeInput("silicon", 3000),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=50,
                 method="Recycling",
-                input_wares=(
-                    InputWare("energy_cells", 12500),
-                    InputWare("scrap_metal", 1000),
+                inputs=(
+                    RecipeInput("energy_cells", 12500),
+                    RecipeInput("scrap_metal", 1000),
                 ),
             ),
         ],
@@ -873,7 +955,9 @@ WARES_TIER_3 = (
     Ware(
         key="metallic_microlattice",
         name="Metallic Microlattice",
+        acronym="MM",
         tier=TIER_3,
+        colour=Palette.CYAN,
         volume=1,
         storage="Container",
         price_min=42,
@@ -884,10 +968,10 @@ WARES_TIER_3 = (
                 time=180,
                 amount=190,
                 method="Terran",
-                input_wares=(
-                    InputWare("energy_cells", 50),
-                    InputWare("helium", 130),
-                    InputWare("ore", 50),
+                inputs=(
+                    RecipeInput("energy_cells", 50),
+                    RecipeInput("helium", 130),
+                    RecipeInput("ore", 50),
                 ),
             )
         ],
@@ -898,7 +982,9 @@ WARES_TIER_4 = (
     Ware(
         key="plasma_conductors",
         name="Plasma Conductors",
+        acronym="PC",
         tier=TIER_4,
+        colour=Palette.OLIVE,
         volume=32,
         storage="Container",
         price_min=769,
@@ -909,10 +995,10 @@ WARES_TIER_4 = (
                 time=900,
                 amount=44,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("graphene", 96),
-                    InputWare("superfluid_coolant", 140),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("graphene", 96),
+                    RecipeInput("superfluid_coolant", 140),
                 ),
             )
         ],
@@ -920,7 +1006,9 @@ WARES_TIER_4 = (
     Ware(
         key="quantum_tubes",
         name="Quantum Tubes",
+        acronym="QT",
         tier=TIER_4,
+        colour=Palette.MAGENTA,
         volume=22,
         storage="Container",
         price_min=225,
@@ -931,10 +1019,10 @@ WARES_TIER_4 = (
                 time=720,
                 amount=94,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 40),
-                    InputWare("graphene", 116),
-                    InputWare("superfluid_coolant", 30),
+                inputs=(
+                    RecipeInput("energy_cells", 40),
+                    RecipeInput("graphene", 116),
+                    RecipeInput("superfluid_coolant", 30),
                 ),
             )
         ],
@@ -942,7 +1030,9 @@ WARES_TIER_4 = (
     Ware(
         key="advanced_composites",
         name="Advanced Composites",
+        acronym="AC",
         tier=TIER_4,
+        colour=Palette.APRICOT,
         volume=32,
         storage="Container",
         price_min=432,
@@ -953,20 +1043,20 @@ WARES_TIER_4 = (
                 time=300,
                 amount=54,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 50),
-                    InputWare("graphene", 80),
-                    InputWare("refined_metals", 80),
+                inputs=(
+                    RecipeInput("energy_cells", 50),
+                    RecipeInput("graphene", 80),
+                    RecipeInput("refined_metals", 80),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=54,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 50),
-                    InputWare("graphene", 80),
-                    InputWare("teladianium", 58),
+                inputs=(
+                    RecipeInput("energy_cells", 50),
+                    RecipeInput("graphene", 80),
+                    RecipeInput("teladianium", 58),
                 ),
             ),
         ],
@@ -974,7 +1064,9 @@ WARES_TIER_4 = (
     Ware(
         key="hull_parts",
         name="Hull Parts",
+        acronym="HP",
         tier=TIER_4,
+        colour=Palette.RED,
         volume=12,
         storage="Container",
         price_min=146,
@@ -985,29 +1077,29 @@ WARES_TIER_4 = (
                 time=900,
                 amount=294,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 80),
-                    InputWare("graphene", 40),
-                    InputWare("refined_metals", 280),
+                inputs=(
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("graphene", 40),
+                    RecipeInput("refined_metals", 280),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=200,
                 method="Recycling",
-                input_wares=(
-                    InputWare("energy_cells", 3500),
-                    InputWare("scrap_metal", 75),
+                inputs=(
+                    RecipeInput("energy_cells", 3500),
+                    RecipeInput("scrap_metal", 75),
                 ),
             ),
             Recipe(
                 time=900,
                 amount=294,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 80),
-                    InputWare("graphene", 40),
-                    InputWare("teladianium", 204),
+                inputs=(
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("graphene", 40),
+                    RecipeInput("teladianium", 204),
                 ),
             ),
         ],
@@ -1015,7 +1107,9 @@ WARES_TIER_4 = (
     Ware(
         key="engine_parts",
         name="Engine Parts",
+        acronym="EP",
         tier=TIER_4,
+        colour=Palette.BLUE,
         volume=15,
         storage="Container",
         price_min=128,
@@ -1026,20 +1120,20 @@ WARES_TIER_4 = (
                 time=900,
                 amount=208,
                 method="Universal",
-                input_wares=(
-                    InputWare("antimatter_cells", 80),
-                    InputWare("energy_cells", 60),
-                    InputWare("refined_metals", 96),
+                inputs=(
+                    RecipeInput("antimatter_cells", 80),
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("refined_metals", 96),
                 ),
             ),
             Recipe(
                 time=900,
                 amount=208,
                 method="Teladi",
-                input_wares=(
-                    InputWare("antimatter_cells", 80),
-                    InputWare("energy_cells", 60),
-                    InputWare("teladianium", 70),
+                inputs=(
+                    RecipeInput("antimatter_cells", 80),
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("teladianium", 70),
                 ),
             ),
         ],
@@ -1047,7 +1141,9 @@ WARES_TIER_4 = (
     Ware(
         key="microchips",
         name="Microchips",
+        acronym="Mc",
         tier=TIER_4,
+        colour=Palette.GREEN,
         volume=22,
         storage="Container",
         price_min=805,
@@ -1058,9 +1154,9 @@ WARES_TIER_4 = (
                 time=600,
                 amount=72,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 50),
-                    InputWare("silicon_wafers", 200),
+                inputs=(
+                    RecipeInput("energy_cells", 50),
+                    RecipeInput("silicon_wafers", 200),
                 ),
             )
         ],
@@ -1068,7 +1164,9 @@ WARES_TIER_4 = (
     Ware(
         key="smart_chips",
         name="Smart Chips",
+        acronym="SC",
         tier=TIER_4,
+        colour=Palette.MINT,
         volume=2,
         storage="Container",
         price_min=46,
@@ -1079,9 +1177,9 @@ WARES_TIER_4 = (
                 time=600,
                 amount=143,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 50),
-                    InputWare("silicon_wafers", 20),
+                inputs=(
+                    RecipeInput("energy_cells", 50),
+                    RecipeInput("silicon_wafers", 20),
                 ),
             )
         ],
@@ -1089,7 +1187,9 @@ WARES_TIER_4 = (
     Ware(
         key="silicon_carbide",
         name="Silicon Carbide",
+        acronym="SC",
         tier=TIER_4,
+        colour=Palette.NAVY,
         volume=20,
         storage="Container",
         price_min=1202,
@@ -1100,20 +1200,20 @@ WARES_TIER_4 = (
                 time=300,
                 amount=48,
                 method="Terran",
-                input_wares=(
-                    InputWare("energy_cells", 200),
-                    InputWare("metallic_microlattice", 2),
-                    InputWare("methane", 400),
-                    InputWare("silicon", 300),
+                inputs=(
+                    RecipeInput("energy_cells", 200),
+                    RecipeInput("metallic_microlattice", 2),
+                    RecipeInput("methane", 400),
+                    RecipeInput("silicon", 300),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=60,
                 method="Recycling",
-                input_wares=(
-                    InputWare("energy_cells", 4000),
-                    InputWare("scrap_metal", 250),
+                inputs=(
+                    RecipeInput("energy_cells", 4000),
+                    RecipeInput("scrap_metal", 250),
                 ),
             ),
         ],
@@ -1124,7 +1224,9 @@ WARES_TIER_5 = (
     Ware(
         key="drone_components",
         name="Drone Components",
+        acronym="DC",
         tier=TIER_5,
+        colour=Palette.PINK,
         volume=30,
         storage="Container",
         price_min=685,
@@ -1135,12 +1237,12 @@ WARES_TIER_5 = (
                 time=1200,
                 amount=105,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("engine_parts", 20),
-                    InputWare("hull_parts", 20),
-                    InputWare("microchips", 20),
-                    InputWare("scanning_arrays", 40),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("engine_parts", 20),
+                    RecipeInput("hull_parts", 20),
+                    RecipeInput("microchips", 20),
+                    RecipeInput("scanning_arrays", 40),
                 ),
             )
         ],
@@ -1148,7 +1250,9 @@ WARES_TIER_5 = (
     Ware(
         key="turret_components",
         name="Turret Components",
+        acronym="TC",
         tier=TIER_5,
+        colour=Palette.APRICOT,
         volume=20,
         storage="Container",
         price_min=164,
@@ -1159,11 +1263,11 @@ WARES_TIER_5 = (
                 time=1800,
                 amount=170,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("microchips", 20),
-                    InputWare("quantum_tubes", 20),
-                    InputWare("scanning_arrays", 10),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("microchips", 20),
+                    RecipeInput("quantum_tubes", 20),
+                    RecipeInput("scanning_arrays", 10),
                 ),
             )
         ],
@@ -1171,7 +1275,9 @@ WARES_TIER_5 = (
     Ware(
         key="missile_components",
         name="Missile Components",
+        acronym="MC",
         tier=TIER_5,
+        colour=Palette.BEIGE,
         volume=2,
         storage="Container",
         price_min=6,
@@ -1182,10 +1288,10 @@ WARES_TIER_5 = (
                 time=900,
                 amount=281,
                 method="Universal",
-                input_wares=(
-                    InputWare("advanced_composites", 2),
-                    InputWare("energy_cells", 20),
-                    InputWare("hull_parts", 2),
+                inputs=(
+                    RecipeInput("advanced_composites", 2),
+                    RecipeInput("energy_cells", 20),
+                    RecipeInput("hull_parts", 2),
                 ),
             )
         ],
@@ -1193,7 +1299,9 @@ WARES_TIER_5 = (
     Ware(
         key="field_coils",
         name="Field Coils",
+        acronym="FC",
         tier=TIER_5,
+        colour=Palette.MINT,
         volume=15,
         storage="Container",
         price_min=247,
@@ -1204,10 +1312,10 @@ WARES_TIER_5 = (
                 time=600,
                 amount=175,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("plasma_conductors", 40),
-                    InputWare("quantum_tubes", 43),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("plasma_conductors", 40),
+                    RecipeInput("quantum_tubes", 43),
                 ),
             )
         ],
@@ -1215,7 +1323,9 @@ WARES_TIER_5 = (
     Ware(
         key="shield_components",
         name="Shield Components",
+        acronym="SC",
         tier=TIER_5,
+        colour=Palette.LAVENDER,
         volume=10,
         storage="Container",
         price_min=113,
@@ -1226,10 +1336,10 @@ WARES_TIER_5 = (
                 time=1200,
                 amount=193,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 70),
-                    InputWare("plasma_conductors", 20),
-                    InputWare("quantum_tubes", 20),
+                inputs=(
+                    RecipeInput("energy_cells", 70),
+                    RecipeInput("plasma_conductors", 20),
+                    RecipeInput("quantum_tubes", 20),
                 ),
             )
         ],
@@ -1237,7 +1347,9 @@ WARES_TIER_5 = (
     Ware(
         key="antimatter_converters",
         name="Antimatter Converters",
+        acronym="AC",
         tier=TIER_5,
+        colour=Palette.MAGENTA,
         volume=10,
         storage="Container",
         price_min=248,
@@ -1248,10 +1360,10 @@ WARES_TIER_5 = (
                 time=300,
                 amount=133,
                 method="Universal",
-                input_wares=(
-                    InputWare("advanced_composites", 20),
-                    InputWare("energy_cells", 80),
-                    InputWare("microchips", 30),
+                inputs=(
+                    RecipeInput("advanced_composites", 20),
+                    RecipeInput("energy_cells", 80),
+                    RecipeInput("microchips", 30),
                 ),
             )
         ],
@@ -1259,7 +1371,9 @@ WARES_TIER_5 = (
     Ware(
         key="weapon_components",
         name="Weapon Components",
+        acronym="WC",
         tier=TIER_5,
+        colour=Palette.CYAN,
         volume=20,
         storage="Container",
         price_min=171,
@@ -1270,10 +1384,10 @@ WARES_TIER_5 = (
                 time=1800,
                 amount=170,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("hull_parts", 20),
-                    InputWare("plasma_conductors", 30),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("hull_parts", 20),
+                    RecipeInput("plasma_conductors", 30),
                 ),
             )
         ],
@@ -1281,7 +1395,9 @@ WARES_TIER_5 = (
     Ware(
         key="scanning_arrays",
         name="Scanning Arrays",
+        acronym="SA",
         tier=TIER_5,
+        colour=Palette.ORANGE,
         volume=38,
         storage="Container",
         price_min=842,
@@ -1292,29 +1408,30 @@ WARES_TIER_5 = (
                 time=600,
                 amount=36,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("refined_metals", 100),
-                    InputWare("silicon_wafers", 60),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("refined_metals", 100),
+                    RecipeInput("silicon_wafers", 60),
                 ),
             ),
             Recipe(
                 time=600,
                 amount=36,
                 method="Teladi",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("silicon_wafers", 60),
-                    InputWare("teladianium", 73),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("silicon_wafers", 60),
+                    RecipeInput("teladianium", 73),
                 ),
             ),
         ],
-        colour="orange1",
     ),
     Ware(
         key="claytronics",
         name="Claytronics",
+        acronym="Cl",
         tier=TIER_5,
+        colour=Palette.BLUE,
         volume=24,
         storage="Container",
         price_min=1734,
@@ -1325,20 +1442,20 @@ WARES_TIER_5 = (
                 time=900,
                 amount=108,
                 method="Universal",
-                input_wares=(
-                    InputWare("antimatter_cells", 100),
-                    InputWare("energy_cells", 140),
-                    InputWare("microchips", 160),
-                    InputWare("quantum_tubes", 100),
+                inputs=(
+                    RecipeInput("antimatter_cells", 100),
+                    RecipeInput("energy_cells", 140),
+                    RecipeInput("microchips", 160),
+                    RecipeInput("quantum_tubes", 100),
                 ),
             ),
             Recipe(
                 time=300,
                 amount=60,
                 method="Recycling",
-                input_wares=(
-                    InputWare("energy_cells", 12000),
-                    InputWare("scrap_metal", 300),
+                inputs=(
+                    RecipeInput("energy_cells", 12000),
+                    RecipeInput("scrap_metal", 300),
                 ),
             ),
         ],
@@ -1346,7 +1463,9 @@ WARES_TIER_5 = (
     Ware(
         key="advanced_electronics",
         name="Advanced Electronics",
+        acronym="AE",
         tier=TIER_5,
+        colour=Palette.TEAL,
         volume=30,
         storage="Container",
         price_min=710,
@@ -1357,10 +1476,10 @@ WARES_TIER_5 = (
                 time=720,
                 amount=54,
                 method="Universal",
-                input_wares=(
-                    InputWare("energy_cells", 60),
-                    InputWare("microchips", 44),
-                    InputWare("quantum_tubes", 20),
+                inputs=(
+                    RecipeInput("energy_cells", 60),
+                    RecipeInput("microchips", 44),
+                    RecipeInput("quantum_tubes", 20),
                 ),
             )
         ],
@@ -1371,17 +1490,19 @@ WARES_TIER_6 = (
     Ware(
         key="ship_hulls",
         name="Ship Hulls",
+        acronym="SH",
         tier=TIER_6,
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(InputWare("hull_parts", None),),
+                inputs=(RecipeInput("hull_parts", None),),
             ),
             Recipe(
                 method="Terran",
-                input_wares=(
-                    InputWare("metallic_microlattice", None),
-                    InputWare("computronic_substrate", None),
+                inputs=(
+                    RecipeInput("metallic_microlattice", None),
+                    RecipeInput("computronic_substrate", None),
                 ),
             ),
         ],
@@ -1390,11 +1511,13 @@ WARES_TIER_6 = (
     Ware(
         key="nav_beacons",
         name="Nav Beacons",
+        acronym="NB",
         tier=TIER_6,
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(InputWare("hull_parts", None),),
+                inputs=(RecipeInput("hull_parts", None),),
             )
         ],
         tags={"terminal"},
@@ -1402,13 +1525,15 @@ WARES_TIER_6 = (
     Ware(
         key="missiles",
         name="Missiles",
+        acronym="Mi",
         tier=TIER_6,
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("missile_components", None),
-                    InputWare("smart_chips", None),
+                inputs=(
+                    RecipeInput("missile_components", None),
+                    RecipeInput("smart_chips", None),
                 ),
             )
         ],
@@ -1417,21 +1542,22 @@ WARES_TIER_6 = (
     Ware(
         key="station_modules",
         name="Station modules",
+        acronym="SM",
         tier=TIER_6,
-        colour="hotpink1",
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("hull_parts", None),
-                    InputWare("claytronics", None),
+                inputs=(
+                    RecipeInput("hull_parts", None),
+                    RecipeInput("claytronics", None),
                 ),
             ),
             Recipe(
                 method="Terran",
-                input_wares=(
-                    InputWare("silicon_carbide", None),
-                    InputWare("computronic_substrate", None),
+                inputs=(
+                    RecipeInput("silicon_carbide", None),
+                    RecipeInput("computronic_substrate", None),
                 ),
             ),
         ],
@@ -1440,22 +1566,23 @@ WARES_TIER_6 = (
     Ware(
         key="engines",
         name="Engines",
+        acronym="En",
         tier=TIER_6,
-        colour="hotpink1",
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("antimatter_converters", None),
-                    InputWare("engine_parts", None),
+                inputs=(
+                    RecipeInput("antimatter_converters", None),
+                    RecipeInput("engine_parts", None),
                 ),
             ),
             Recipe(
                 method="Terran",
-                input_wares=(
-                    InputWare("metallic_microlattice", None),
-                    InputWare("silicon_carbide", None),
-                    InputWare("computronic_substrate", None),
+                inputs=(
+                    RecipeInput("metallic_microlattice", None),
+                    RecipeInput("silicon_carbide", None),
+                    RecipeInput("computronic_substrate", None),
                 ),
             ),
         ],
@@ -1464,22 +1591,23 @@ WARES_TIER_6 = (
     Ware(
         key="thrusters",
         name="Thrusters",
+        acronym="Th",
         tier=TIER_6,
-        colour="hotpink1",
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("antimatter_converters", None),
-                    InputWare("engine_parts", None),
+                inputs=(
+                    RecipeInput("antimatter_converters", None),
+                    RecipeInput("engine_parts", None),
                 ),
             ),
             Recipe(
                 method="Terran",
-                input_wares=(
-                    InputWare("metallic_microlattice", None),
-                    InputWare("silicon_carbide", None),
-                    InputWare("computronic_substrate", None),
+                inputs=(
+                    RecipeInput("metallic_microlattice", None),
+                    RecipeInput("silicon_carbide", None),
+                    RecipeInput("computronic_substrate", None),
                 ),
             ),
         ],
@@ -1488,13 +1616,15 @@ WARES_TIER_6 = (
     Ware(
         key="mines",
         name="Mines",
+        acronym="Mi",
         tier=TIER_6,
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("weapon_components", None),
-                    InputWare("smart_chips", None),
+                inputs=(
+                    RecipeInput("weapon_components", None),
+                    RecipeInput("smart_chips", None),
                 ),
             )
         ],
@@ -1503,13 +1633,15 @@ WARES_TIER_6 = (
     Ware(
         key="drones",
         name="Drones",
+        acronym="Dr",
         tier=TIER_6,
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("drone_components", None),
-                    InputWare("smart_chips", None),
+                inputs=(
+                    RecipeInput("drone_components", None),
+                    RecipeInput("smart_chips", None),
                 ),
             )
         ],
@@ -1518,13 +1650,15 @@ WARES_TIER_6 = (
     Ware(
         key="laser_towers",
         name="Laser Towers",
+        acronym="LT",
         tier=TIER_6,
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("drone_components", None),
-                    InputWare("smart_chips", None),
+                inputs=(
+                    RecipeInput("drone_components", None),
+                    RecipeInput("smart_chips", None),
                 ),
             )
         ],
@@ -1533,22 +1667,23 @@ WARES_TIER_6 = (
     Ware(
         key="shields",
         name="Shields",
+        acronym="Sh",
         tier=TIER_6,
-        colour="hotpink1",
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("field_coils", None),
-                    InputWare("shield_components", None),
+                inputs=(
+                    RecipeInput("field_coils", None),
+                    RecipeInput("shield_components", None),
                 ),
             ),
             Recipe(
                 method="Terran",
-                input_wares=(
-                    InputWare("metallic_microlattice", None),
-                    InputWare("silicon_carbide", None),
-                    InputWare("computronic_substrate", None),
+                inputs=(
+                    RecipeInput("metallic_microlattice", None),
+                    RecipeInput("silicon_carbide", None),
+                    RecipeInput("computronic_substrate", None),
                 ),
             ),
         ],
@@ -1557,22 +1692,23 @@ WARES_TIER_6 = (
     Ware(
         key="turrets",
         name="Turrets",
+        acronym="Tu",
         tier=TIER_6,
-        colour="hotpink1",
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("turret_components", None),
-                    InputWare("advanced_electronics", None),
+                inputs=(
+                    RecipeInput("turret_components", None),
+                    RecipeInput("advanced_electronics", None),
                 ),
             ),
             Recipe(
                 method="Terran",
-                input_wares=(
-                    InputWare("metallic_microlattice", None),
-                    InputWare("silicon_carbide", None),
-                    InputWare("computronic_substrate", None),
+                inputs=(
+                    RecipeInput("metallic_microlattice", None),
+                    RecipeInput("silicon_carbide", None),
+                    RecipeInput("computronic_substrate", None),
                 ),
             ),
         ],
@@ -1581,22 +1717,23 @@ WARES_TIER_6 = (
     Ware(
         key="guns_and_launchers",
         name="Guns and Launchers",
+        acronym="GL",
         tier=TIER_6,
-        colour="hotpink1",
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("advanced_electronics", None),
-                    InputWare("weapon_components", None),
+                inputs=(
+                    RecipeInput("advanced_electronics", None),
+                    RecipeInput("weapon_components", None),
                 ),
             ),
             Recipe(
                 method="Terran",
-                input_wares=(
-                    InputWare("metallic_microlattice", None),
-                    InputWare("silicon_carbide", None),
-                    InputWare("computronic_substrate", None),
+                inputs=(
+                    RecipeInput("metallic_microlattice", None),
+                    RecipeInput("silicon_carbide", None),
+                    RecipeInput("computronic_substrate", None),
                 ),
             ),
         ],
@@ -1605,14 +1742,16 @@ WARES_TIER_6 = (
     Ware(
         key="satellites",
         name="Satellites",
+        acronym="Sa",
         tier=TIER_6,
+        colour=TIER_6.colour,
         recipes=[
             Recipe(
                 method="Universal",
-                input_wares=(
-                    InputWare("scanning_arrays", None),
-                    InputWare("advanced_electronics", None),
-                    InputWare("hull_parts", None),
+                inputs=(
+                    RecipeInput("scanning_arrays", None),
+                    RecipeInput("advanced_electronics", None),
+                    RecipeInput("hull_parts", None),
                 ),
             )
         ],
